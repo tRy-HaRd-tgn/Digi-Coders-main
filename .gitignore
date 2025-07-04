@@ -1,0 +1,10 @@
+.env
+/node_modules
+/static/uploads
+backend/static/uploads/
+frontend/public/static/
+/dist
+/build
+frontend/public/icons
+frontend/public/images
+frontend/public/logo

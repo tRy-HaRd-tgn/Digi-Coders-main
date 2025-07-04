@@ -1,0 +1,73 @@
+.blockly-editor{
+  height: 90vh;
+  width: 100%;
+}
+
+.nav-avatar{
+  color: var(--second-color);
+}
+
+.nav-avatar:hover{
+  color: var(--main-color);
+}
+
+.btn-danger{
+  background-color: #ec0000;
+}
+
+.btn-danger:hover{
+  background-color: var(--main-color);
+}
+
+
+
+
+.profile-picture-container {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.camera-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.profile-picture-container:hover .camera-icon {
+  opacity: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
