@@ -67,32 +67,50 @@ const Navbar = () => {
                 {/* Dropdown menu */}
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>
-                    <NavLink className="dropdown-item" to="/user/viewchapters">
+                    <NavLink
+                      className="dropdown-item"
+                      to="/user/viewchapters?category=HTML"
+                    >
                       HTML
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink className="dropdown-item" to="/user/viewchapters">
+                    <NavLink
+                      className="dropdown-item"
+                      to="/user/viewchapters?category=JavaScript"
+                    >
                       JavaScript
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink className="dropdown-item" to="/user/viewchapters">
+                    <NavLink
+                      className="dropdown-item"
+                      to="/user/viewchapters?category=Python"
+                    >
                       Python
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink className="dropdown-item" to="/user/viewchapters">
+                    <NavLink
+                      className="dropdown-item"
+                      to="/user/viewchapters?category=Game Development"
+                    >
                       Game Development
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink className="dropdown-item" to="/user/viewchapters">
+                    <NavLink
+                      className="dropdown-item"
+                      to="/user/viewchapters?category=Web Development"
+                    >
                       Web Development
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink className="dropdown-item" to="/user/viewchapters">
+                    <NavLink
+                      className="dropdown-item"
+                      to="/user/viewchapters?category=Roblox"
+                    >
                       Roblox
                     </NavLink>
                   </li>

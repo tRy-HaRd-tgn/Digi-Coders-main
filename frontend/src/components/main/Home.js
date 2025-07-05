@@ -436,7 +436,7 @@ const Home = () => {
                         src="/images/course-html.jpg"
                         className="img-fluid"
                       />
-                      <NavLink to="/user/viewchapters">
+                      <NavLink to="/user/viewchapters?category=HTML">
                         <div
                           className="mask"
                           style={{
@@ -470,7 +470,7 @@ const Home = () => {
                         html programming and start writing code using blocks.
                       </p>
                       <NavLink
-                        to="/user/viewchapters"
+                        to="/user/viewchapters?category=HTML"
                         className="btn btn-primary my-3"
                       >
                         Learn More
@@ -487,7 +487,7 @@ const Home = () => {
                       data-mdb-ripple-color="light"
                     >
                       <img src="/images/course-js.jpg" className="img-fluid" />
-                      <NavLink to="/user/viewchapters">
+                      <NavLink to="/user/viewchapters?category=JavaScript">
                         <div
                           className="mask"
                           style={{
@@ -523,7 +523,7 @@ const Home = () => {
                       </p>
 
                       <NavLink
-                        to="/user/viewchapters"
+                        to="/user/viewchapters?category=JavaScript"
                         className="btn btn-primary my-3"
                       >
                         Learn More
@@ -542,7 +542,7 @@ const Home = () => {
                         src="/images/course-python.jpg"
                         className="img-fluid"
                       />
-                      <NavLink to="/user/viewchapters">
+                      <NavLink to="/user/viewchapters?category=Python">
                         <div
                           className="mask"
                           style={{
@@ -577,7 +577,7 @@ const Home = () => {
                       </p>
 
                       <NavLink
-                        to="/user/viewchapters"
+                        to="/user/viewchapters?category=Python"
                         className="btn btn-primary my-3"
                       >
                         Learn More

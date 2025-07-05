@@ -70,7 +70,7 @@ export const Footer = () => {
                 <h6 className="text-uppercase fw-bold mb-4">Courses</h6>
                 <p>
                   <NavLink
-                    to="/user/viewchapters"
+                    to="/user/viewchapters?category=HTML"
                     className="text-reset custom-link-hover"
                   >
                     HTML
@@ -78,7 +78,7 @@ export const Footer = () => {
                 </p>
                 <p>
                   <NavLink
-                    to="/user/viewchapters"
+                    to="/user/viewchapters?category=JavaScript"
                     className="text-reset custom-link-hover"
                   >
                     JavaScript
@@ -86,7 +86,7 @@ export const Footer = () => {
                 </p>
                 <p>
                   <NavLink
-                    to="/user/viewchapters"
+                    to="/user/viewchapters?category=Python"
                     className="text-reset custom-link-hover"
                   >
                     Python
