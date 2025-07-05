@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
@@ -8,13 +8,17 @@ const Login = () => {
         <div data-draggable="true" style={{ position: "relative" }}>
           {/**/}
           {/**/}
-          <section draggable="false" className="container pt-5" data-v-271253ee="">
+          <section
+            draggable="false"
+            className="container pt-5"
+            data-v-271253ee=""
+          >
             <section className="heading mb-10 text-center">
               <h2 className="fw-bold mb-5">
                 <span>Choose your account type</span>
               </h2>
 
-              <div className='signup-link'>
+              <div className="signup-link">
                 <p className="text-center fw-bold mb-8">
                   Don't have an account?{" "}
                   <Link to="/main/signup" className="fw-bold text-body">
@@ -26,7 +30,7 @@ const Login = () => {
               <div className="row gx-lg-5 mb-8 d-flex justify-content-center">
                 {/* First column */}
                 <div className="col-lg-4">
-                  <div class="hover-zoom">
+                  <div className="hover-zoom">
                     <Link to="/main/studentlogin">
                       <img
                         src="/icons/student_icon.jpg"
@@ -45,7 +49,7 @@ const Login = () => {
                         </Link>
                       </div>
                       {/* Divider here */}
-                      <hr class="hr hr-blurry"></hr>
+                      <hr className="hr hr-blurry"></hr>
                     </div>
                   </div>
                 </div>
@@ -53,7 +57,7 @@ const Login = () => {
 
                 {/* second column */}
                 <div className="col-lg-4">
-                  <div class="hover-zoom">
+                  <div className="hover-zoom">
                     <Link to="/main/trainerlogin">
                       <img
                         src="/icons/teacher_icon.jpg"
@@ -73,23 +77,20 @@ const Login = () => {
                       </div>
 
                       {/* Divider here */}
-                      <hr class="hr hr-blurry"></hr>
+                      <hr className="hr hr-blurry"></hr>
                     </div>
-
                   </div>
                 </div>
 
                 {/* second column */}
               </div>
-
             </section>
           </section>
           {/**/}
         </div>
       </>
-
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

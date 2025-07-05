@@ -8,7 +8,6 @@ import app_config from "../../config";
 import { useUserContext } from "../../context/UserContext";
 
 const StudentLogin = () => {
-
   const navigate = useNavigate();
   const { setLoggedIn } = useUserContext();
 
@@ -28,13 +27,16 @@ const StudentLogin = () => {
     onSubmit: async (values, { setSubmitting }) => {
       console.log(values);
 
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/user/authenticate`, {
-        method: "POST",
-        body: JSON.stringify(values), // this is used to convert js data in json formate
-        headers: {
-          "Content-Type": "application/json", // this used to inform the data in send in the form of json
-        },
-      });
+      const res = await fetch(
+        `${process.env.REACT_APP_API_URL}/user/authenticate`,
+        {
+          method: "POST",
+          body: JSON.stringify(values), // this is used to convert js data in json formate
+          headers: {
+            "Content-Type": "application/json", // this used to inform the data in send in the form of json
+          },
+        }
+      );
 
       console.log(res.status);
       if (res.status === 200) {
@@ -43,15 +45,14 @@ const StudentLogin = () => {
           title: "Well Done!!",
           text: "login successfully",
           showConfirmButton: false,
-          timer: 1500
+          timer: 1500,
         });
 
         const data = await res.json();
         sessionStorage.setItem("user", JSON.stringify(data));
         setLoggedIn(true);
         console.log(data);
-        navigate('/main/course');
-
+        navigate("/main/course");
       } else {
         Swal.fire({
           icon: "error",
@@ -63,7 +64,6 @@ const StudentLogin = () => {
     validationSchema: studentLogin,
   });
 
-
   return (
     <motion.div
       initial={{ opacity: 0, x: 300 }}
@@ -71,16 +71,16 @@ const StudentLogin = () => {
       exit={{ opacity: 0.5, x: -300 }}
       transition={{ type: "spring" }}
       className="vid-manage-bg"
-    // style={{
-    //   backgroundImage: `url('/images/bg-animation-img2.jpg`
-    // }}
+      // style={{
+      //   backgroundImage: `url('/images/bg-animation-img2.jpg`
+      // }}
     >
       {/*Student Login Form*/}
       <section className="form">
         <div className="">
           <div className="row g-0">
             <div className="col-lg-6 curve">
-              <div className="pt-5" style={{ marginLeft: "285px", }}>
+              <div className="pt-5" style={{ marginLeft: "285px" }}>
                 <h2 className="my-1">New Here?</h2>
               </div>
 
@@ -88,13 +88,17 @@ const StudentLogin = () => {
                 <div className="d-flex flex-row align-items-center">
                   <div className="flex-fill text-center mb-2 mx-5">
                     <p>
-                      Start your journey with us by signing up and accessing exclusive benefits.
+                      Start your journey with us by signing up and accessing
+                      exclusive benefits.
                     </p>
                   </div>
                 </div>
                 <div className="d-flex flex-row align-items-center">
                   <div className="flex-fill text-center mb-2">
-                    <NavLink to="/main/studentsignup" className="btn btn-primary">
+                    <NavLink
+                      to="/main/studentsignup"
+                      className="btn btn-primary"
+                    >
                       Sign Up
                     </NavLink>
                   </div>
@@ -115,9 +119,7 @@ const StudentLogin = () => {
             <div className="col-lg-6">
               <div className="card-body p-md-5 mx-md-5">
                 <div className="text-center mb-5">
-                  <h3 className="my-5 text-center">
-                    Student Login
-                  </h3>
+                  <h3 className="my-5 text-center">Student Login</h3>
                 </div>
                 <form
                   className="mx-md-5 text-black"
@@ -142,12 +144,19 @@ const StudentLogin = () => {
 
                   <div className="form-group has-icon mb-4">
                     <i className="fas fa-key fa-lg form-control-icon" />
-                    <div class="d-grid d-md-flex justify-content-md-end">
-                      <span
-                        className='form-control-eye'
-                        onClick={handleShow}
-                      >
-                        {show ? <i className="far fa-eye" style={{color: "#c5c5c5"}} /> : <i class="far fa-eye-slash" style={{color: "#c5c5c5"}} />}
+                    <div className="d-grid d-md-flex justify-content-md-end">
+                      <span className="form-control-eye" onClick={handleShow}>
+                        {show ? (
+                          <i
+                            className="far fa-eye"
+                            style={{ color: "#c5c5c5" }}
+                          />
+                        ) : (
+                          <i
+                            className="far fa-eye-slash"
+                            style={{ color: "#c5c5c5" }}
+                          />
+                        )}
                       </span>
                     </div>
                     <input
@@ -165,10 +174,7 @@ const StudentLogin = () => {
                     </span>
                   </div>
                   <div className="mb-4 text-center">
-                    <NavLink
-                      className="nav-link"
-                      to="/main/resetpassword"
-                    >
+                    <NavLink className="nav-link" to="/main/resetpassword">
                       Forget password?
                     </NavLink>
                   </div>
@@ -176,7 +182,7 @@ const StudentLogin = () => {
                     <button
                       className="btn btn-primary btn-block mb-5"
                       type="submit"
-                      style={{ borderRadius: "10px",  marginLeft: "0px" }}
+                      style={{ borderRadius: "10px", marginLeft: "0px" }}
                     >
                       Login &nbsp;
                       <i className="fas fa-arrow-right-to-bracket" />
@@ -213,7 +219,6 @@ const StudentLogin = () => {
                         </button>
                       </div>
                     </div>
-
                   </div>
                 </form>
               </div>

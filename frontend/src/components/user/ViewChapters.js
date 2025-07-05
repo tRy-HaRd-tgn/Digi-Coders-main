@@ -3,7 +3,6 @@ import { NavLink, useParams } from "react-router-dom";
 import app_config from "../../config";
 
 const BrowseChapters = () => {
-
   const { chaptername } = useParams();
 
   const [chapterList, setChapterList] = useState([]);
@@ -15,22 +14,22 @@ const BrowseChapters = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  const trainerList = [
-    "Prince Prajapati",
-    "Mohit Mishra",
-    "Rishabh Agnihotri"
-  ];
+  const trainerList = ["Prince Prajapati", "Mohit Mishra", "Rishabh Agnihotri"];
 
   const categoryList = ["HTML", "JavaScript", "Python"];
 
   const sortChaptersAtoZ = () => {
-    const sortedArray = [...chapterList].sort((a, b) => a.title.localeCompare(b.title));
+    const sortedArray = [...chapterList].sort((a, b) =>
+      a.title.localeCompare(b.title)
+    );
     console.log(sortedArray);
     setChapterList(sortedArray);
   };
-  
+
   const sortChaptersZtoA = () => {
-    const sortedArray = [...chapterList].sort((a, b) => b.title.localeCompare(a.title));
+    const sortedArray = [...chapterList].sort((a, b) =>
+      b.title.localeCompare(a.title)
+    );
     console.log(sortedArray);
     setChapterList(sortedArray);
   };
@@ -41,7 +40,11 @@ const BrowseChapters = () => {
     const data = await res.json();
     console.log(data);
     if (chaptername) {
-      setChapterList(data.filter((chapter) => chapter.title.toLowerCase() === chaptername.toLowerCase()));
+      setChapterList(
+        data.filter(
+          (chapter) => chapter.title.toLowerCase() === chaptername.toLowerCase()
+        )
+      );
     } else {
       setChapterList(data);
     }
@@ -62,8 +65,14 @@ const BrowseChapters = () => {
             <div className="row">
               <div className="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
                 <div
-                  class="bg-image hover-overlay ripple shadow-4-strong rounded-7"
-                  data-mdb-ripple-color="light" style={{ width: "320px", height: "175px", backgroundSize: "cover", backgroundColor: "#e0e0e0" }}
+                  className="bg-image hover-overlay ripple shadow-4-strong rounded-7"
+                  data-mdb-ripple-color="light"
+                  style={{
+                    width: "320px",
+                    height: "175px",
+                    backgroundSize: "cover",
+                    backgroundColor: "#e0e0e0",
+                  }}
                 >
                   <img
                     src={process.env.REACT_APP_API_URL + "/" + chapter.icon}
@@ -111,26 +120,32 @@ const BrowseChapters = () => {
   const searchChapterByName = (e) => {
     const val = e.target.value;
     setChapterList(
-      masterList.filter((chapter) => (chapter.title.toLowerCase().includes(val.toLowerCase())))
-    )
-  }
+      masterList.filter((chapter) =>
+        chapter.title.toLowerCase().includes(val.toLowerCase())
+      )
+    );
+  };
   const searchChapterByTrainer = (e) => {
     const val = e.target.value;
     setChapterList(
-      masterList.filter((chapter) => (chapter.trainer.name.toLowerCase().includes(val.toLowerCase())))
-    )
-  }
+      masterList.filter((chapter) =>
+        chapter.trainer.name.toLowerCase().includes(val.toLowerCase())
+      )
+    );
+  };
   const searchChapterByCategory = (e) => {
     const val = e.target.value;
     setChapterList(
-      masterList.filter((chapter) => (chapter.category.toLowerCase().includes(val.toLowerCase())))
-    )
-  }
+      masterList.filter((chapter) =>
+        chapter.category.toLowerCase().includes(val.toLowerCase())
+      )
+    );
+  };
 
   return (
     <div>
       {/*Page Header*/}
-      <header className=''>
+      <header className="">
         {/* Background image */}
         <div
           id="intro"
@@ -140,7 +155,7 @@ const BrowseChapters = () => {
             height: 230,
             backgroundSize: "cover",
             backgroundPosition: "50% 65%",
-            position: "relative"
+            position: "relative",
           }}
         >
           <div
@@ -148,7 +163,7 @@ const BrowseChapters = () => {
             style={{ backgroundColor: "rgba(35, 37, 45, 0.6)" }}
           >
             <div className="container d-flex align-items-center justify-content-center text-center h-100">
-              <div className='page-heading'>
+              <div className="page-heading">
                 <h1 className="fw-bold mb-4">Digi Coders</h1>
                 {/* <p className='paragraph'>
                   "DigiCoders is a platform for students to learn and explore new
@@ -165,7 +180,11 @@ const BrowseChapters = () => {
                       className="form-control form-control-lg"
                       placeholder="Search"
                       onChange={searchChapterByName}
-                      style={{ backgroundColor: "#f4f4f4", paddingRight: "10px", width: "800px" }}
+                      style={{
+                        backgroundColor: "#f4f4f4",
+                        paddingRight: "10px",
+                        width: "800px",
+                      }}
                     />
                   </div>
                 </div>
@@ -177,7 +196,6 @@ const BrowseChapters = () => {
       </header>
       {/*Page Header*/}
 
-
       <section className="" style={{ backgroundColor: "rgb(174, 223, 243)" }}>
         <div className="container py-1 px-5">
           <div className="my-4">
@@ -185,7 +203,6 @@ const BrowseChapters = () => {
               <div className="row d-flex align-items-center justify-content-center">
                 <div className="col-md-6 col-lg-4 col-xl-4 border-sm-end-none border-end">
                   <div className="d-flex flex-row justify-content-center align-items-center mb-1">
-
                     {/* <select onChange={searchChapterByCategory}>
                       {
                         categoryList.map((category) => (
@@ -194,14 +211,15 @@ const BrowseChapters = () => {
                       }
                     </select> */}
 
-                    <div class="select">
-                      <select class="mySelectArrow" onChange={searchChapterByCategory}>
+                    <div className="select">
+                      <select
+                        className="mySelectArrow"
+                        onChange={searchChapterByCategory}
+                      >
                         <option value="">By Category</option>
-                        {
-                          categoryList.map((category) => (
-                            <option value={category}>{category}</option>
-                          ))
-                        }
+                        {categoryList.map((category) => (
+                          <option value={category}>{category}</option>
+                        ))}
                       </select>
                     </div>
                   </div>
@@ -209,7 +227,6 @@ const BrowseChapters = () => {
 
                 <div className="col-md-6 col-lg-4 col-xl-4 border-sm-end-none border-end">
                   <div className="d-flex flex-row justify-content-center align-items-center mb-1">
-
                     {/* <div className="dropdown mx-2">
                       <select onChange={searchChapterByName} className="select form-control-lg" style={{ border: "3px solid #29c1fe" }}>
                         {
@@ -228,21 +245,19 @@ const BrowseChapters = () => {
                       }
                     </select> */}
 
-                    <div class="select">
-                      <select class="mySelectArrow" onChange={searchChapterByName}>
+                    <div className="select">
+                      <select
+                        className="mySelectArrow"
+                        onChange={searchChapterByName}
+                      >
                         <option value="">By Name</option>
-                        {
-                          trainerList.map((trainer) => (
-                            <option value={trainer}>{trainer}</option>
-                          ))
-                        }
+                        {trainerList.map((trainer) => (
+                          <option value={trainer}>{trainer}</option>
+                        ))}
                       </select>
                     </div>
-
                   </div>
                 </div>
-
-
 
                 <div className="col-md-6 col-lg-4 col-xl-4">
                   <div className="d-flex flex-row justify-content-center align-items-center mb-1">
@@ -258,29 +273,28 @@ const BrowseChapters = () => {
                     </select> */}
 
                     <div class="select">
-                      <select class="mySelectArrow" onChange={e => {
-                        if (e.target.value === "A to Z") {
-                          sortChaptersAtoZ();
-                        } else if (e.target.value === "Z to A") {
-                          sortChaptersZtoA();
-                        }
-                      }}>
+                      <select
+                        class="mySelectArrow"
+                        onChange={(e) => {
+                          if (e.target.value === "A to Z") {
+                            sortChaptersAtoZ();
+                          } else if (e.target.value === "Z to A") {
+                            sortChaptersZtoA();
+                          }
+                        }}
+                      >
                         <option value="">By Sort</option>
                         <option value="A to Z">A To Z</option>
                         <option value="Z to A">Z to A</option>
                       </select>
                     </div>
-
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
       </section>
-
-
 
       <section>
         <div className="container">{displayChapters()}</div>
@@ -304,8 +318,9 @@ const BrowseChapters = () => {
                 .fill(1)
                 .map((item, index) => (
                   <li
-                    className={`page-item ${currentPage === index + 1 ? "active" : ""
-                      }`}
+                    className={`page-item ${
+                      currentPage === index + 1 ? "active" : ""
+                    }`}
                     aria-current="page"
                   >
                     <a
@@ -313,22 +328,23 @@ const BrowseChapters = () => {
                       type="button"
                       onClick={(e) => setCurrentPage(index + 1)}
                     >
-                      {index + 1} <span className="visually-hidden">(current)</span>
+                      {index + 1}{" "}
+                      <span className="visually-hidden">(current)</span>
                     </a>
                   </li>
                 ))}
               {Math.ceil(chapterList.length / maxElements) - currentPage >
                 0 && (
-                  <li className="page-item">
-                    <a
-                      className="page-link border"
-                      type="button"
-                      onClick={(e) => setCurrentPage(currentPage + 1)}
-                    >
-                      Next <i className="fas fa-angles-right" />
-                    </a>
-                  </li>
-                )}
+                <li className="page-item">
+                  <a
+                    className="page-link border"
+                    type="button"
+                    onClick={(e) => setCurrentPage(currentPage + 1)}
+                  >
+                    Next <i className="fas fa-angles-right" />
+                  </a>
+                </li>
+              )}
             </ul>
           </nav>
         </section>
@@ -346,8 +362,7 @@ const BrowseChapters = () => {
         </NavLink>
       </div>
       {/* Copyright */}
-
-    </div >
+    </div>
   );
 };
 

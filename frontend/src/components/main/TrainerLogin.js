@@ -1,16 +1,14 @@
-import React, { useState } from 'react'
-import * as Yup from 'yup';
-import Swal from 'sweetalert2';
-import { useFormik } from 'formik';
-import { NavLink } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import * as Yup from "yup";
+import Swal from "sweetalert2";
+import { useFormik } from "formik";
+import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import app_config from '../../config';
+import app_config from "../../config";
 import { useTrainerContext } from "../../context/TrainerContext";
 
-
 const TrainerLogin = () => {
-
   const navigate = useNavigate();
   const { setLoggedIn } = useTrainerContext();
 
@@ -18,25 +16,27 @@ const TrainerLogin = () => {
   const handleShow = () => setShow(!show);
 
   const trainerlogin = Yup.object().shape({
-    email: Yup.string().email('Invalid email').required('Email is Required'),
-    password: Yup.string()
-      .required('Password Required.')
+    email: Yup.string().email("Invalid email").required("Email is Required"),
+    password: Yup.string().required("Password Required."),
   });
   const Trainerlogin = useFormik({
     initialValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
     onSubmit: async (values, { setSubmitting }) => {
       console.log(values);
 
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/trainer/authenticate`, {
-        method: "POST",
-        body: JSON.stringify(values), // this is used to convert js data in json formate
-        headers: {
-          "Content-Type": "application/json", // this used to inform the data in send in the form of json
-        },
-      });
+      const res = await fetch(
+        `${process.env.REACT_APP_API_URL}/trainer/authenticate`,
+        {
+          method: "POST",
+          body: JSON.stringify(values), // this is used to convert js data in json formate
+          headers: {
+            "Content-Type": "application/json", // this used to inform the data in send in the form of json
+          },
+        }
+      );
       // hello f
       console.log(res.status);
       setSubmitting(false);
@@ -46,15 +46,14 @@ const TrainerLogin = () => {
           title: "Well Done!!",
           text: "login successfully",
           showConfirmButton: false,
-          timer: 1500
+          timer: 1500,
         });
 
         const data = await res.json();
         sessionStorage.setItem("trainer", JSON.stringify(data));
         setLoggedIn(true);
         console.log(data);
-        navigate('/trainer/managechapter');
-
+        navigate("/trainer/managechapter");
       } else {
         Swal.fire({
           icon: "error",
@@ -64,8 +63,6 @@ const TrainerLogin = () => {
       }
     },
     validationSchema: trainerlogin,
-
-
   });
 
   return (
@@ -75,17 +72,16 @@ const TrainerLogin = () => {
       exit={{ opacity: 0.5, x: -300 }}
       transition={{ type: "spring" }}
       className="vid-manage-bg"
-    // style={{
-    //   backgroundImage: `url('/images/bg-animation-img2.jpg`
-    // }}
+      // style={{
+      //   backgroundImage: `url('/images/bg-animation-img2.jpg`
+      // }}
     >
       {/*Student Login Form*/}
-      <section className="form"
-      >
+      <section className="form">
         <div className="">
           <div className="row g-0">
             <div className="col-lg-6 curve">
-              <div className="pt-5" style={{ marginLeft: "285px", }}>
+              <div className="pt-5" style={{ marginLeft: "285px" }}>
                 <h2 className="my-1">New Here?</h2>
               </div>
 
@@ -93,13 +89,17 @@ const TrainerLogin = () => {
                 <div className="d-flex flex-row align-items-center">
                   <div className="flex-fill text-center mb-2 mx-5">
                     <p>
-                      Start your journey with us by signing up and unlock a world of opportunities.
+                      Start your journey with us by signing up and unlock a
+                      world of opportunities.
                     </p>
                   </div>
                 </div>
                 <div className="d-flex flex-row align-items-center">
                   <div className="flex-fill text-center mb-2">
-                    <NavLink to="/main/trainersignup" className="btn btn-primary">
+                    <NavLink
+                      to="/main/trainersignup"
+                      className="btn btn-primary"
+                    >
                       Sign Up
                     </NavLink>
                   </div>
@@ -120,9 +120,7 @@ const TrainerLogin = () => {
             <div className="col-lg-6">
               <div className="card-body p-md-5 mx-md-5">
                 <div className="text-center mb-5">
-                  <h3 className="my-5 text-center">
-                    Trainer Login
-                  </h3>
+                  <h3 className="my-5 text-center">Trainer Login</h3>
                 </div>
                 <form
                   className="mx-md-5 text-black"
@@ -147,12 +145,19 @@ const TrainerLogin = () => {
 
                   <div className="form-group has-icon mb-4">
                     <i className="fas fa-key fa-lg form-control-icon" />
-                    <div class="d-grid d-md-flex justify-content-md-end">
-                      <span
-                        className='form-control-eye'
-                        onClick={handleShow}
-                      >
-                        {show ? <i class="far fa-eye" style={{color: "#c5c5c5"}} /> : <i class="far fa-eye-slash" style={{color: "#c5c5c5"}} />}
+                    <div className="d-grid d-md-flex justify-content-md-end">
+                      <span className="form-control-eye" onClick={handleShow}>
+                        {show ? (
+                          <i
+                            className="far fa-eye"
+                            style={{ color: "#c5c5c5" }}
+                          />
+                        ) : (
+                          <i
+                            className="far fa-eye-slash"
+                            style={{ color: "#c5c5c5" }}
+                          />
+                        )}
                       </span>
                     </div>
                     <input
@@ -163,17 +168,14 @@ const TrainerLogin = () => {
                       className="form-control form-control-lg"
                       placeholder="Password"
                       value={Trainerlogin.values.password}
-                        onChange={Trainerlogin.handleChange}
+                      onChange={Trainerlogin.handleChange}
                     />
                     <span className="text-danger">
-                        {Trainerlogin.errors.password}
-                      </span>
+                      {Trainerlogin.errors.password}
+                    </span>
                   </div>
                   <div className="mb-4 text-center">
-                    <NavLink
-                      className="nav-link"
-                      to="/main/resetpassword"
-                    >
+                    <NavLink className="nav-link" to="/main/resetpassword">
                       Forget password?
                     </NavLink>
                   </div>
@@ -181,7 +183,7 @@ const TrainerLogin = () => {
                     <button
                       className="btn btn-primary btn-block mb-5"
                       type="submit"
-                      style={{ borderRadius: "10px",  marginLeft: "0px" }}
+                      style={{ borderRadius: "10px", marginLeft: "0px" }}
                     >
                       Login &nbsp;
                       <i className="fas fa-arrow-right-to-bracket" />
@@ -218,7 +220,6 @@ const TrainerLogin = () => {
                         </button>
                       </div>
                     </div>
-
                   </div>
                 </form>
               </div>
@@ -228,7 +229,7 @@ const TrainerLogin = () => {
       </section>
       {/*Student Login Form*/}
     </motion.div>
-  )
-}
+  );
+};
 
-export default TrainerLogin
+export default TrainerLogin;
