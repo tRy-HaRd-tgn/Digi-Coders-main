@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import React from "react";
 import Swal from "sweetalert2";
 import app_config from "../../config";
+import "./Contact.css";
 
 const Contact = () => {
   const contactForm = useFormik({
@@ -190,7 +191,7 @@ const Contact = () => {
                         onSubmit={contactForm.handleSubmit}
                       >
                         <div className="form-group has-icon mb-4">
-                          <i className="fas fa-user fa-lg form-control-icon" />
+                          <i className="fas fa-user fa-lg form-control-iconB" />
                           <div className="flex-fill mb-0">
                             <input
                               type="text"
@@ -204,7 +205,7 @@ const Contact = () => {
                           </div>
                         </div>
                         <div className="form-group has-icon mb-4">
-                          <i className="fas fa-envelope fa-lg form-control-icon" />
+                          <i className="fas fa-envelope fa-lg form-control-iconB" />
                           <div className="flex-fill mb-0">
                             <input
                               type="email"
@@ -218,7 +219,7 @@ const Contact = () => {
                           </div>
                         </div>
                         <div className="form-group has-icon mb-4">
-                          <i className="fas fa-tag fa-lg form-control-icon" />
+                          <i className="fas fa-tag fa-lg form-control-iconB" />
                           <div className="flex-fill mb-0">
                             <input
                               type="text"
