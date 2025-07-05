@@ -3,25 +3,35 @@ import { useNavigate } from "react-router-dom";
 
 const UserContext = createContext();
 
-const UserProvider = ({children}) => {
+const UserProvider = ({ children }) => {
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(sessionStorage.getItem("user"))
+  );
 
-    const [currentUser, setCurrentUser] = useState(JSON.parse(sessionStorage.getItem('user')));
+  const [loggedIn, setLoggedIn] = useState(currentUser !== null);
 
-    const [loggedIn, setLoggedIn] = useState(currentUser!==null);
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const logout = () => {
+    sessionStorage.removeItem("user");
+    setCurrentUser(null);
+    setLoggedIn(false);
+    navigate("/main/home");
+  };
 
-    const logout = () => {
-        sessionStorage.removeItem('user');
-        setCurrentUser(null);
-        setLoggedIn(false);
-        navigate('/main/home');
-    }
+  const updateUser = (userData) => {
+    setCurrentUser(userData);
+    sessionStorage.setItem("user", JSON.stringify(userData));
+  };
 
-    return <UserContext.Provider value={{loggedIn, setLoggedIn, logout}}>
-        {children}
+  return (
+    <UserContext.Provider
+      value={{ loggedIn, setLoggedIn, logout, currentUser, updateUser }}
+    >
+      {children}
     </UserContext.Provider>
-}
+  );
+};
 
 export const useUserContext = () => useContext(UserContext);
 

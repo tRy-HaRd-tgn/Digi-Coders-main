@@ -1,21 +1,14 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useTrainerContext } from "../../context/TrainerContext";
-import { useState } from "react";
 
 const Navbar = () => {
-  const { loggedIn, logout } = useTrainerContext();
-  const [currentUser, setCurrentUser] = useState(
-    JSON.parse(sessionStorage.getItem("trainer"))
-  );
+  const { loggedIn, logout, currentUser } = useTrainerContext();
 
   return (
     <>
-     
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      
         <div className="container">
-         
           <NavLink className="navbar-brand me-2" to="/main/home">
             <img
               src="/logo/logo.png"
@@ -25,7 +18,7 @@ const Navbar = () => {
               style={{ marginTop: "-1px" }}
             />
           </NavLink>
-         
+
           <button
             className="navbar-toggler"
             type="button"
@@ -37,12 +30,11 @@ const Navbar = () => {
           >
             <i className="fas fa-bars" />
           </button>
-         
+
           <div
             className="collapse navbar-collapse justify-content-center"
             id="navbarButtonsExample"
           >
-         
             <ul className="navbar-nav mb-2 mb-lg-0" style={{ fontSize: 18 }}>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/trainer/home">
@@ -67,7 +59,7 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          
+
           <div className="d-flex align-items-center">
             {!loggedIn ? (
               <>
@@ -84,11 +76,19 @@ const Navbar = () => {
             ) : (
               <>
                 <img
-                  src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                  src={
+                    currentUser?.avatar
+                      ? `${process.env.REACT_APP_API_URL}/${currentUser.avatar}`
+                      : "https://bootdey.com/img/Content/avatar/avatar1.png"
+                  }
                   className="rounded-circle"
-                  style={{ width: "50px", backgroundSize: "cover" }}
-                  alt="Black and White Portrait of a Man"
+                  style={{ width: "50px", height: "50px", objectFit: "cover" }}
+                  alt="Trainer Avatar"
                   loading="lazy"
+                  onError={(e) => {
+                    e.target.src =
+                      "https://bootdey.com/img/Content/avatar/avatar1.png";
+                  }}
                 />
                 <div className="dropdown">
                   <NavLink
@@ -131,9 +131,7 @@ const Navbar = () => {
             )}
           </div>
         </div>
-       
       </nav>
-   
     </>
   );
 };

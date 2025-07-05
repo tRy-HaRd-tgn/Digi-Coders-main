@@ -3,9 +3,11 @@ import app_config from "../../config";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
+import { useTrainerContext } from "../../context/TrainerContext";
 
 const TrainerProfile = () => {
   const [selImage, setSelImage] = useState(null);
+  const { updateUser } = useTrainerContext();
 
   const [currentTrainer, setCurrentTrainer] = useState(
     JSON.parse(sessionStorage.getItem("trainer"))
@@ -56,8 +58,8 @@ const TrainerProfile = () => {
       if (res.status === 200) {
         const data = await res.json();
         console.log(data);
-        sessionStorage.setItem("trainer", JSON.stringify(data));
-        setCurrentTrainer(values);
+        updateUser(data); // Обновляем тренера в контексте
+        setCurrentTrainer(data);
         Swal.fire({
           icon: "success",
           title: "Well Done!!",
@@ -78,19 +80,84 @@ const TrainerProfile = () => {
     validationSchema: trainersignupSchema,
   });
 
-  const uploadFile = (e) => {
-    const file = e.target.files[0];
+  const uploadFile = async () => {
+    if (!selImage) {
+      Swal.fire({
+        icon: "warning",
+        title: "Внимание!",
+        text: "Пожалуйста, выберите изображение для загрузки",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      return;
+    }
+
     const fd = new FormData();
-    setSelImage(file);
-    fd.append("myfile", file);
-    fetch(`${process.env.REACT_APP_API_URL}/util/uploadfile`, {
-      method: "POST",
-      body: fd,
-    }).then((res) => {
+    fd.append("myfile", selImage);
+
+    try {
+      const res = await fetch(
+        `${process.env.REACT_APP_API_URL}/util/uploadfile`,
+        {
+          method: "POST",
+          body: fd,
+        }
+      );
+
       if (res.status === 200) {
-        console.log("file uploaded");
+        const data = await res.json();
+        console.log("file uploaded successfully", data);
+
+        // Обновляем профиль тренера с новым изображением
+        const updateRes = await fetch(
+          `${process.env.REACT_APP_API_URL}/trainer/update/${currentTrainer._id}`,
+          {
+            method: "PUT",
+            body: JSON.stringify({
+              name: currentTrainer.name,
+              email: currentTrainer.email,
+              mobile_no: currentTrainer.mobile_no,
+              skills: currentTrainer.skills,
+              certifications: currentTrainer.certifications,
+              avatar: data.filename,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        if (updateRes.status === 200) {
+          const updatedTrainer = await updateRes.json();
+          console.log("updatedTrainer from server:", updatedTrainer);
+          updateUser(updatedTrainer); // Обновляем тренера в контексте
+          setCurrentTrainer(updatedTrainer);
+          setImage(""); // Очищаем состояние image
+          setSelImage(null); // Очищаем выбранное изображение
+
+          Swal.fire({
+            icon: "success",
+            title: "Успешно!",
+            text: "Фотография профиля успешно загружена",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+        } else {
+          throw new Error("Failed to update profile");
+        }
+      } else {
+        throw new Error("Failed to upload file");
       }
-    });
+    } catch (error) {
+      console.error("Upload error:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Ошибка!",
+        text: "Не удалось загрузить изображение. Попробуйте еще раз.",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    }
   };
 
   return (
@@ -115,6 +182,25 @@ const TrainerProfile = () => {
                           width: "180px",
                           height: "180px",
                           backgroundSize: "cover",
+                        }}
+                      />
+                    ) : currentTrainer.avatar ? (
+                      <img
+                        src={`${process.env.REACT_APP_API_URL}/${currentTrainer.avatar}`}
+                        alt="Admin"
+                        className="img-fluid rounded-circle p-1 bg-primary"
+                        style={{
+                          width: "180px",
+                          height: "180px",
+                          backgroundSize: "cover",
+                        }}
+                        onError={(e) => {
+                          console.log(
+                            "Image load error for:",
+                            currentTrainer.avatar
+                          );
+                          e.target.src =
+                            "https://bootdey.com/img/Content/avatar/avatar1.png";
                         }}
                       />
                     ) : (
@@ -148,7 +234,9 @@ const TrainerProfile = () => {
                       }}
                     />
                   </div>
-                  <button className="btn btn-primary mt-3">Upload Image</button>
+                  <button className="btn btn-primary mt-3" onClick={uploadFile}>
+                    Upload Image
+                  </button>
                 </div>
                 <hr className="my-3" />
                 <ul className="list-group list-group-flush">

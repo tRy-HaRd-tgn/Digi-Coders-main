@@ -3,14 +3,21 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom";
+import { useUserContext } from "../../context/UserContext";
 import "./UserProfile.css";
 
 const UserProfile = () => {
   const [selImage, setSelImage] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
+  const { updateUser } = useUserContext();
 
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(sessionStorage.getItem("user"))
   );
+
+  // Отладочная информация
+  console.log("currentUser from sessionStorage:", currentUser);
+  console.log("currentUser.avatar:", currentUser?.avatar);
 
   const inputRef = useRef(null);
   const [image, setImage] = useState("");
@@ -21,8 +28,11 @@ const UserProfile = () => {
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
-    console.log(file);
-    setImage(event.target.files[0]);
+    if (file) {
+      console.log(file);
+      setImage(file);
+      setSelImage(file);
+    }
   };
 
   const usersignupSchema = Yup.object().shape({
@@ -33,14 +43,14 @@ const UserProfile = () => {
 
   const userProfileForm = useFormik({
     initialValues: {
-      name: "",
-      email: "",
-      mobile_no: "",
+      name: currentUser?.name || "",
+      email: currentUser?.email || "",
+      mobile_no: currentUser?.mobile_no || "",
     },
     onSubmit: async (values, { setSubmitting }) => {
       console.log(values);
       const res = await fetch(
-        `${process.env.REACT_APP_API_URL}/user/update` + currentUser._id,
+        `${process.env.REACT_APP_API_URL}/user/update/${currentUser._id}`,
         {
           method: "PUT",
           body: JSON.stringify(values), // this is used to convert js data in json formate
@@ -54,8 +64,8 @@ const UserProfile = () => {
       if (res.status === 200) {
         const data = await res.json();
         console.log(data);
-        sessionStorage.setItem("user", JSON.stringify(data));
-        setCurrentUser(values);
+        updateUser(data); // Обновляем пользователя в контексте
+        setCurrentUser(data);
         Swal.fire({
           icon: "success",
           title: "Well Done!!",
@@ -76,19 +86,86 @@ const UserProfile = () => {
     validationSchema: usersignupSchema,
   });
 
-  const uploadFile = (e) => {
-    const file = e.target.files[0];
+  const uploadFile = async () => {
+    if (!selImage) {
+      Swal.fire({
+        icon: "warning",
+        title: "Внимание!",
+        text: "Пожалуйста, выберите изображение для загрузки",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      return;
+    }
+
+    setIsUploading(true);
     const fd = new FormData();
-    setSelImage(file);
-    fd.append("myfile", file);
-    fetch(`${process.env.REACT_APP_API_URL}/util/uploadfile`, {
-      method: "POST",
-      body: fd,
-    }).then((res) => {
+    fd.append("myfile", selImage);
+
+    try {
+      const res = await fetch(
+        `${process.env.REACT_APP_API_URL}/util/uploadfile`,
+        {
+          method: "POST",
+          body: fd,
+        }
+      );
+
       if (res.status === 200) {
-        console.log("file uploaded");
+        const data = await res.json();
+        console.log("file uploaded successfully", data);
+        console.log("currentUser before update:", currentUser);
+
+        // Обновляем профиль пользователя с новым изображением
+        const updateRes = await fetch(
+          `${process.env.REACT_APP_API_URL}/user/update/${currentUser._id}`,
+          {
+            method: "PUT",
+            body: JSON.stringify({
+              name: currentUser.name,
+              email: currentUser.email,
+              mobile_no: currentUser.mobile_no,
+              avatar: data.filename,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        if (updateRes.status === 200) {
+          const updatedUser = await updateRes.json();
+          console.log("updatedUser from server:", updatedUser);
+          updateUser(updatedUser); // Обновляем пользователя в контексте
+          setCurrentUser(updatedUser);
+          setImage(""); // Очищаем состояние image
+          setSelImage(null); // Очищаем выбранное изображение
+
+          Swal.fire({
+            icon: "success",
+            title: "Отлично!",
+            text: "Фотография профиля успешно загружена",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+        } else {
+          throw new Error("Failed to update profile");
+        }
+      } else {
+        throw new Error("Failed to upload file");
       }
-    });
+    } catch (error) {
+      console.error("Upload error:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Ошибка!",
+        text: "Не удалось загрузить изображение. Попробуйте еще раз.",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   return (
@@ -113,6 +190,25 @@ const UserProfile = () => {
                           width: "180px",
                           height: "180px",
                           backgroundSize: "cover",
+                        }}
+                      />
+                    ) : currentUser.avatar ? (
+                      <img
+                        src={`${process.env.REACT_APP_API_URL}/${currentUser.avatar}`}
+                        alt="Admin"
+                        className="img-fluid rounded-circle p-1 bg-primary"
+                        style={{
+                          width: "180px",
+                          height: "180px",
+                          backgroundSize: "cover",
+                        }}
+                        onError={(e) => {
+                          console.log(
+                            "Image load error for:",
+                            currentUser.avatar
+                          );
+                          e.target.src =
+                            "https://www.bootdey.com/img/Content/avatar/avatar6.png";
                         }}
                       />
                     ) : (
@@ -151,7 +247,9 @@ const UserProfile = () => {
                       }}
                     />
                   </div>
-                  <button className="btn btn-primary my-4">Upload Image</button>
+                  <button className="btn btn-primary my-4" onClick={uploadFile}>
+                    Upload Image
+                  </button>
                   {/* <div className="mt-3">
                                         <h4>{currentUser.name}</h4>
                                         <p className="text-secondary">Full Stack Developer</p>
@@ -242,7 +340,7 @@ const UserProfile = () => {
                       onChange={userProfileForm.handleChange}
                     />
                     <span className="text-danger">
-                      {userProfileForm.errors.name}
+                      {userProfileForm.errors.mobile_no}
                     </span>
                   </div>
 

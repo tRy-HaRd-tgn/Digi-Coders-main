@@ -42,8 +42,12 @@ router.get("/getbyemail/:email", (req, res) => {
 });
 
 router.put("/update/:id", (req, res) => {
-  Model.findByIdAndUpdate(req.params.id, req.body)
+  console.log("Updating user with ID:", req.params.id);
+  console.log("Update data:", req.body);
+
+  Model.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then((result) => {
+      console.log("Updated user:", result);
       res.json(result);
     })
     .catch((err) => {

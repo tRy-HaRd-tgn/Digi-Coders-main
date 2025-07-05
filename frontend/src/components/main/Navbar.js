@@ -4,7 +4,7 @@ import { useUserContext } from "../../context/UserContext";
 import { useTrainerContext } from "../../context/TrainerContext";
 
 const Navbar = () => {
-  const { loggedIn, logout } = useUserContext();
+  const { loggedIn, logout, currentUser } = useUserContext();
   // const tCOn = useTrainerContext();
 
   return (
@@ -130,11 +130,19 @@ const Navbar = () => {
             ) : (
               <>
                 <img
-                  src="https://www.bootdey.com/img/Content/avatar/avatar6.png"
+                  src={
+                    currentUser?.avatar
+                      ? `${process.env.REACT_APP_API_URL}/${currentUser.avatar}`
+                      : "https://www.bootdey.com/img/Content/avatar/avatar6.png"
+                  }
                   className="rounded-circle"
-                  style={{ width: "50px", backgroundSize: "cover" }}
-                  alt="Black and White Portrait of a Man"
+                  style={{ width: "50px", height: "50px", objectFit: "cover" }}
+                  alt="User Avatar"
                   loading="lazy"
+                  onError={(e) => {
+                    e.target.src =
+                      "https://www.bootdey.com/img/Content/avatar/avatar6.png";
+                  }}
                 />
                 <div className="dropdown">
                   <NavLink
@@ -145,9 +153,9 @@ const Navbar = () => {
                     data-mdb-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <NavLink className="nav-avatar align-items-center ms-2">
+                    <span className="nav-avatar align-items-center ms-2">
                       <i className="fas fa-caret-down ms-2" />
-                    </NavLink>
+                    </span>
                   </NavLink>
                   <ul
                     className="dropdown-menu dropdown-menu-end"

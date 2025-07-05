@@ -13,7 +13,16 @@ const storage = multer.diskStorage({
 const myStorage = multer({ storage: storage });
 
 router.post("/uploadfile", myStorage.single("myfile"), (req, res) => {
-  res.status(200).json({ status: "success" });
+  if (req.file) {
+    res.status(200).json({
+      status: "success",
+      filename: req.file.filename,
+      originalname: req.file.originalname,
+      path: req.file.path,
+    });
+  } else {
+    res.status(400).json({ status: "error", message: "No file uploaded" });
+  }
 });
 const initMail = () => {
   return new SMTPClient({
