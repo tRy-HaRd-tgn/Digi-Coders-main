@@ -15,11 +15,9 @@ const UserProfile = () => {
     JSON.parse(sessionStorage.getItem("user"))
   );
 
-  // Отладочная информация
   console.log("currentUser from sessionStorage:", currentUser);
   console.log("currentUser.avatar:", currentUser?.avatar);
 
-  // Обновляем пользователя при изменении в sessionStorage
   useEffect(() => {
     const handleUserUpdate = () => {
       const user = JSON.parse(sessionStorage.getItem("user"));
@@ -64,9 +62,9 @@ const UserProfile = () => {
         `${process.env.REACT_APP_API_URL}/user/update/${currentUser._id}`,
         {
           method: "PUT",
-          body: JSON.stringify(values), // this is used to convert js data in json formate
+          body: JSON.stringify(values),
           headers: {
-            "Content-Type": "application/json", // this used to inform the data in send in the form of json
+            "Content-Type": "application/json",
           },
         }
       );
@@ -75,7 +73,7 @@ const UserProfile = () => {
       if (res.status === 200) {
         const data = await res.json();
         console.log(data);
-        updateUser(data); // Обновляем пользователя в контексте
+        updateUser(data);
         setCurrentUser(data);
         Swal.fire({
           icon: "success",
@@ -127,7 +125,6 @@ const UserProfile = () => {
         console.log("file uploaded successfully", data);
         console.log("currentUser before update:", currentUser);
 
-        // Обновляем профиль пользователя с новым изображением
         const updateRes = await fetch(
           `${process.env.REACT_APP_API_URL}/user/update/${currentUser._id}`,
           {
@@ -147,10 +144,10 @@ const UserProfile = () => {
         if (updateRes.status === 200) {
           const updatedUser = await updateRes.json();
           console.log("updatedUser from server:", updatedUser);
-          updateUser(updatedUser); // Обновляем пользователя в контексте
+          updateUser(updatedUser);
           setCurrentUser(updatedUser);
-          setImage(""); // Очищаем состояние image
-          setSelImage(null); // Очищаем выбранное изображение
+          setImage("");
+          setSelImage(null);
 
           Swal.fire({
             icon: "success",
@@ -236,12 +233,7 @@ const UserProfile = () => {
                         }}
                       />
                     )}
-                    {/* <img
-                                            src="https://bootdey.com/img/Content/avatar/avatar6.png"
-                                            alt="Admin"
-                                            className="rounded-circle p-1 bg-primary"
-                                            style={{ width: "180px", backgroundSize: "cover" }}
-                                        /> */}
+
                     <input
                       type="file"
                       ref={inputRef}
@@ -263,10 +255,6 @@ const UserProfile = () => {
                   <button className="btn btn-primary my-4" onClick={uploadFile}>
                     Upload Image
                   </button>
-                  {/* <div className="mt-3">
-                                        <h4>{currentUser.name}</h4>
-                                        <p className="text-secondary">Full Stack Developer</p>
-                                    </div> */}
                 </div>
 
                 <hr className="my-3" />
@@ -291,7 +279,6 @@ const UserProfile = () => {
           </div>
 
           <div className="col-xl-7 mx-2">
-            {/* Account details card*/}
             <div className="card h-100 mb-4">
               <div
                 className="card-header text-center fw-bold text-uppercase mb-5"
@@ -309,7 +296,7 @@ const UserProfile = () => {
                   onSubmit={userProfileForm.handleSubmit}
                 >
                   <div className="form-group has-icon mb-4">
-                    <i className="fas fa-user fa-lg form-control-icon" />
+                    <i className="fas fa-user fa-lg form-control-iconS" />
                     <input
                       type="text"
                       id="name"
@@ -325,7 +312,7 @@ const UserProfile = () => {
                   </div>
 
                   <div className="form-group has-icon mb-4">
-                    <i className="fas fa-envelope fa-lg form-control-icon" />
+                    <i className="fas fa-envelope fa-lg form-control-iconS" />
                     <input
                       type="email"
                       id="email"
@@ -342,7 +329,7 @@ const UserProfile = () => {
                   </div>
 
                   <div className="form-group has-icon mb-5">
-                    <i className="fas fa-mobile-screen-button fa-lg form-control-icon" />
+                    <i className="fas fa-mobile-screen-button fa-lg form-control-iconS" />
                     <input
                       type="text"
                       id="mobile_no"
@@ -356,17 +343,6 @@ const UserProfile = () => {
                       {userProfileForm.errors.mobile_no}
                     </span>
                   </div>
-
-                  {/* <div className='d-flex flex-row align-items-center mx-1 mb-4'>
-                                        <label htmlFor="chapter-img" className="btn btn-primary">
-                                            {' '}
-                                            <i className="fas fa-upload"></i> Upload Image
-                                        </label>
-                                        <span className='text-warning mx-3'>
-                                            {selImage ? selImage.name : 'No Image Selected'}
-                                        </span>
-                                        <input type="file" id="chapter-img" hidden onChange={uploadFile} />
-                                    </div> */}
 
                   <div className="pt-1 pb-1 ">
                     <button

@@ -33,12 +33,26 @@
   opacity: 1;
 }
 
-.form-control-icon {
+.has-icon {
+  position: relative;
+}
+
+.form-control-iconS {
   position: absolute;
-  left: 5px;
-  top: 50%;
-  transform: translateY(-55%);
-  color: #6c757d;
+  top: 44% !important;
+  left: 20px;
+  bottom: 10px;
+  transform: translateY(-50%);
+  color: #333;
+  pointer-events: none;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-control {
+  padding-left: 48px !important;
 }
 
 .form-group.has-icon {
