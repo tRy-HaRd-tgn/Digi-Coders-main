@@ -48,34 +48,49 @@ const TrainerSignup = () => {
     //   console.log(values);
 
     onSubmit: async (values, { setSubmitting }) => {
-      values.avatar = selImage.name;
-      console.log(values);
+      try {
+        values.avatar = selImage ? selImage.name : "";
+        values.createdAt = new Date();
+        console.log(values);
 
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/trainer/add`, {
-        method: "POST",
-        body: JSON.stringify(values),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      console.log(res.status);
-      if (res.status === 200) {
-        Swal.fire({
-          icon: "success",
-          title: "Congratulations",
-          text: "Your account has been successfully created",
-          icon: "success",
-          showConfirmButton: false,
-          timer: 1500,
+        const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+        console.log("API URL:", apiUrl);
+        console.log("Отправка запроса на:", `${apiUrl}/trainer/add`);
+        const res = await fetch(`${apiUrl}/trainer/add`, {
+          method: "POST",
+          body: JSON.stringify(values),
+          headers: {
+            "Content-Type": "application/json",
+          },
         });
-        navigate("/main/trainerlogin");
-      } else {
+
+        console.log("Статус ответа:", res.status);
+        if (res.status === 200) {
+          Swal.fire({
+            icon: "success",
+            title: "Congratulations",
+            text: "Your account has been successfully created",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/main/trainerlogin");
+        } else {
+          const errorData = await res.json();
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: errorData.message || "Something went wrong!",
+          });
+        }
+      } catch (error) {
+        console.error("Registration error:", error);
         Swal.fire({
           icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
+          title: "Ошибка",
+          text: "Произошла ошибка при регистрации. Попробуйте еще раз.",
         });
+      } finally {
+        setSubmitting(false);
       }
     },
     validationSchema: trainersignupSchema,
@@ -86,7 +101,8 @@ const TrainerSignup = () => {
     const fd = new FormData();
     setSelImage(file);
     fd.append("myfile", file);
-    fetch(`${process.env.REACT_APP_API_URL}/util/uploadfile`, {
+    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+    fetch(`${apiUrl}/util/uploadfile`, {
       method: "POST",
       body: fd,
     }).then((res) => {
@@ -238,9 +254,10 @@ const TrainerSignup = () => {
                       <input
                         type="text"
                         id="skills"
+                        name="skills"
                         autoComplete="off"
                         className="form-control form-control-lg"
-                        Placeholder="Skills"
+                        placeholder="Skills"
                         value={trainersignupForm.values.skills}
                         onChange={trainersignupForm.handleChange}
                       />
@@ -253,6 +270,7 @@ const TrainerSignup = () => {
                       <input
                         type="text"
                         id="certifications"
+                        name="certifications"
                         autoComplete="off"
                         className="form-control form-control-lg"
                         placeholder="Certificate"
@@ -285,10 +303,24 @@ const TrainerSignup = () => {
                     <button
                       className="btn btn-primary btn-block mb-5"
                       type="submit"
+                      disabled={trainersignupForm.isSubmitting}
                       style={{ borderRadius: "10px", marginLeft: "0px" }}
                     >
-                      Signup &nbsp;
-                      <i className="fas fa-arrow-right-to-bracket" />
+                      {trainersignupForm.isSubmitting ? (
+                        <>
+                          <span
+                            className="spinner-border spinner-border-sm me-2"
+                            role="status"
+                            aria-hidden="true"
+                          ></span>
+                          Регистрация...
+                        </>
+                      ) : (
+                        <>
+                          Signup &nbsp;
+                          <i className="fas fa-arrow-right-to-bracket" />
+                        </>
+                      )}
                     </button>
 
                     <div>

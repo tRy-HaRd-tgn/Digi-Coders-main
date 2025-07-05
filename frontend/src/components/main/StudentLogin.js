@@ -25,40 +25,51 @@ const StudentLogin = () => {
       password: "",
     },
     onSubmit: async (values, { setSubmitting }) => {
-      console.log(values);
+      try {
+        console.log(values);
+        const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+        console.log("API URL:", apiUrl);
 
-      const res = await fetch(
-        `${process.env.REACT_APP_API_URL}/user/authenticate`,
-        {
+        const res = await fetch(`${apiUrl}/user/authenticate`, {
           method: "POST",
           body: JSON.stringify(values),
           headers: {
             "Content-Type": "application/json",
           },
-        }
-      );
-
-      console.log(res.status);
-      if (res.status === 200) {
-        Swal.fire({
-          icon: "success",
-          title: "Well Done!!",
-          text: "login successfully",
-          showConfirmButton: false,
-          timer: 1500,
         });
 
-        const data = await res.json();
-        sessionStorage.setItem("user", JSON.stringify(data));
-        setLoggedIn(true);
-        console.log(data);
-        navigate("/main/course");
-      } else {
+        console.log("Статус ответа:", res.status);
+        if (res.status === 200) {
+          Swal.fire({
+            icon: "success",
+            title: "Well Done!!",
+            text: "login successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+
+          const data = await res.json();
+          sessionStorage.setItem("user", JSON.stringify(data));
+          setLoggedIn(true);
+          console.log(data);
+          navigate("/main/course");
+        } else {
+          const errorData = await res.json();
+          Swal.fire({
+            icon: "error",
+            title: "Ошибка входа",
+            text: errorData.message || "Неверный email или пароль!",
+          });
+        }
+      } catch (error) {
+        console.error("Login error:", error);
         Swal.fire({
           icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
+          title: "Ошибка",
+          text: "Произошла ошибка при входе. Попробуйте еще раз.",
         });
+      } finally {
+        setSubmitting(false);
       }
     },
     validationSchema: studentLogin,
@@ -181,10 +192,24 @@ const StudentLogin = () => {
                     <button
                       className="btn btn-primary btn-block mb-5"
                       type="submit"
+                      disabled={StudentLogin.isSubmitting}
                       style={{ borderRadius: "10px", marginLeft: "0px" }}
                     >
-                      Login &nbsp;
-                      <i className="fas fa-arrow-right-to-bracket" />
+                      {StudentLogin.isSubmitting ? (
+                        <>
+                          <span
+                            className="spinner-border spinner-border-sm me-2"
+                            role="status"
+                            aria-hidden="true"
+                          ></span>
+                          Вход...
+                        </>
+                      ) : (
+                        <>
+                          Login &nbsp;
+                          <i className="fas fa-arrow-right-to-bracket" />
+                        </>
+                      )}
                     </button>
 
                     <div>

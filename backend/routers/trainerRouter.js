@@ -1,56 +1,56 @@
-const Model = require('../models/trainerModel');
-const { Router } = require('express');
+const Model = require("../models/trainerModel");
+const { Router } = require("express");
 const router = Router();
 
 //add user data
-router.post('/add', (req, res) => {
-    console.log(req.body);
-   // res.send('Respond from User Router');
+router.post("/add", (req, res) => {
+  console.log("Получен запрос на регистрацию тренера:", req.body);
+  // res.send('Respond from User Router');
 
-    new Model(req.body).save()
+  new Model(req.body)
+    .save()
     .then((result) => {
-        res.json(result);
+      console.log("Тренер успешно создан:", result);
+      res.json(result);
     })
     .catch((err) => {
-        console.error(err);
-        res.status(500).json(err);
+      console.error("Ошибка при создании тренера:", err);
+      res.status(500).json({ message: err.message });
     });
 });
 
-router.get('/getall', (req, res) => {
-    Model.find({})
+router.get("/getall", (req, res) => {
+  Model.find({})
     .then((result) => {
-        res.json(result);
+      res.json(result);
     })
     .catch((err) => {
-        console.error(err);
-        res.status(500).json(err);
+      console.error(err);
+      res.status(500).json(err);
     });
 });
 
-router.put('/update/:id', (req, res) => {
-    Model.findByIdAndUpdate(req.params.id, req.body)
+router.put("/update/:id", (req, res) => {
+  Model.findByIdAndUpdate(req.params.id, req.body)
     .then((result) => {
-        res.json(result);
+      res.json(result);
     })
     .catch((err) => {
-        console.error(err);
-        res.status(500).json(err);
+      console.error(err);
+      res.status(500).json(err);
     });
 });
 
-router.post('/authenticate', (req, res) => {
-    Model.findOne(req.body)
+router.post("/authenticate", (req, res) => {
+  Model.findOne(req.body)
     .then((result) => {
-
-        if(result) res.json(result);
-        else res.status(401).json({ message: 'Invalid Credentials'});
-        
-    }).catch((err) => {
-        console.error(err);
-        res.status(500).json(err);
+      if (result) res.json(result);
+      else res.status(401).json({ message: "Invalid Credentials" });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json(err);
     });
-} );
-
+});
 
 module.exports = router;

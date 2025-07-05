@@ -33,7 +33,8 @@ const ResetPassword = () => {
   const handleShowPassword = () => setShowPassword(!showPassword);
 
   const sendOTP = () => {
-    fetch(`${process.env.REACT_APP_API_URL}/util/sendmail`, {
+    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+    fetch(`${apiUrl}/util/sendmail`, {
       method: "POST",
       body: JSON.stringify({
         to: email,
@@ -58,7 +59,8 @@ const ResetPassword = () => {
   };
 
   const verifyUser = () => {
-    fetch(`${process.env.REACT_APP_API_URL}/user/getbyemail` + email)
+    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+    fetch(`${apiUrl}/user/getbyemail` + email)
       .then((res) => {
         return res.json();
       })
@@ -94,7 +96,8 @@ const ResetPassword = () => {
   };
   const resetPassword = ({ password }) => {
     console.log(password);
-    fetch(`${process.env.REACT_APP_API_URL}/user/update` + currentUser._id, {
+    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+    fetch(`${apiUrl}/user/update` + currentUser._id, {
       method: "PUT",
       body: JSON.stringify({ password: password }),
       headers: { "Content-Type": "application/json" },

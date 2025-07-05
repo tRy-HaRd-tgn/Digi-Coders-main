@@ -25,41 +25,51 @@ const TrainerLogin = () => {
       password: "",
     },
     onSubmit: async (values, { setSubmitting }) => {
-      console.log(values);
+      try {
+        console.log(values);
+        const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+        console.log("API URL:", apiUrl);
 
-      const res = await fetch(
-        `${process.env.REACT_APP_API_URL}/trainer/authenticate`,
-        {
+        const res = await fetch(`${apiUrl}/trainer/authenticate`, {
           method: "POST",
-          body: JSON.stringify(values), // this is used to convert js data in json formate
+          body: JSON.stringify(values),
           headers: {
-            "Content-Type": "application/json", // this used to inform the data in send in the form of json
+            "Content-Type": "application/json",
           },
-        }
-      );
-
-      console.log(res.status);
-      setSubmitting(false);
-      if (res.status === 200) {
-        Swal.fire({
-          icon: "success",
-          title: "Well Done!!",
-          text: "login successfully",
-          showConfirmButton: false,
-          timer: 1500,
         });
 
-        const data = await res.json();
-        sessionStorage.setItem("trainer", JSON.stringify(data));
-        setLoggedIn(true);
-        console.log(data);
-        navigate("/trainer/managechapter");
-      } else {
+        console.log("Статус ответа:", res.status);
+        if (res.status === 200) {
+          Swal.fire({
+            icon: "success",
+            title: "Well Done!!",
+            text: "login successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+
+          const data = await res.json();
+          sessionStorage.setItem("trainer", JSON.stringify(data));
+          setLoggedIn(true);
+          console.log(data);
+          navigate("/trainer/managechapter");
+        } else {
+          const errorData = await res.json();
+          Swal.fire({
+            icon: "error",
+            title: "Ошибка входа",
+            text: errorData.message || "Неверный email или пароль!",
+          });
+        }
+      } catch (error) {
+        console.error("Login error:", error);
         Swal.fire({
           icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
+          title: "Ошибка",
+          text: "Произошла ошибка при входе. Попробуйте еще раз.",
         });
+      } finally {
+        setSubmitting(false);
       }
     },
     validationSchema: trainerlogin,
@@ -182,10 +192,24 @@ const TrainerLogin = () => {
                     <button
                       className="btn btn-primary btn-block mb-5"
                       type="submit"
+                      disabled={Trainerlogin.isSubmitting}
                       style={{ borderRadius: "10px", marginLeft: "0px" }}
                     >
-                      Login &nbsp;
-                      <i className="fas fa-arrow-right-to-bracket" />
+                      {Trainerlogin.isSubmitting ? (
+                        <>
+                          <span
+                            className="spinner-border spinner-border-sm me-2"
+                            role="status"
+                            aria-hidden="true"
+                          ></span>
+                          Вход...
+                        </>
+                      ) : (
+                        <>
+                          Login &nbsp;
+                          <i className="fas fa-arrow-right-to-bracket" />
+                        </>
+                      )}
                     </button>
 
                     <div>

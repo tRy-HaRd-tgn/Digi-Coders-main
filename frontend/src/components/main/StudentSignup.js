@@ -49,35 +49,50 @@ const StudentSignup = () => {
       createdAt: "",
     },
     onSubmit: async (values, { setSubmitting }) => {
-      values.avatar = selImage.name;
-      console.log(values);
+      try {
+        values.avatar = selImage ? selImage.name : "";
+        values.createdAt = new Date();
+        console.log(values);
 
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/user/add`, {
-        method: "POST",
-        body: JSON.stringify(values),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      console.log(res.status);
-
-      if (res.status === 200) {
-        Swal.fire({
-          icon: "success",
-          title: "Congratulations",
-          text: "Your account has been successfully created",
-          icon: "success",
-          showConfirmButton: false,
-          timer: 1500,
+        const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+        console.log("API URL:", apiUrl);
+        console.log("Отправка запроса на:", `${apiUrl}/user/add`);
+        const res = await fetch(`${apiUrl}/user/add`, {
+          method: "POST",
+          body: JSON.stringify(values),
+          headers: {
+            "Content-Type": "application/json",
+          },
         });
-        navigate("/main/studentlogin");
-      } else {
+
+        console.log("Статус ответа:", res.status);
+
+        if (res.status === 200) {
+          Swal.fire({
+            icon: "success",
+            title: "Congratulations",
+            text: "Your account has been successfully created",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/main/studentlogin");
+        } else {
+          const errorData = await res.json();
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: errorData.message || "Something went wrong!",
+          });
+        }
+      } catch (error) {
+        console.error("Registration error:", error);
         Swal.fire({
           icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
+          title: "Ошибка",
+          text: "Произошла ошибка при регистрации. Попробуйте еще раз.",
         });
+      } finally {
+        setSubmitting(false);
       }
     },
     validationSchema: StudentsignupSchema,
@@ -88,7 +103,8 @@ const StudentSignup = () => {
     const fd = new FormData();
     setSelImage(file);
     fd.append("myfile", file);
-    fetch(`${process.env.REACT_APP_API_URL}/util/uploadfile`, {
+    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+    fetch(`${apiUrl}/util/uploadfile`, {
       method: "POST",
       body: fd,
     }).then((res) => {
@@ -105,7 +121,8 @@ const StudentSignup = () => {
 
   const saveGoogleUser = async (googleObj) => {
     setAvatar(googleObj.picture);
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/user/add`, {
+    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+    const response = await fetch(`${apiUrl}/user/add`, {
       method: "POST",
       body: JSON.stringify({
         username: googleObj.name,
@@ -342,10 +359,24 @@ const StudentSignup = () => {
                     <button
                       className="btn btn-primary btn-block mb-5"
                       type="submit"
+                      disabled={studentsignupForm.isSubmitting}
                       style={{ borderRadius: "10px", marginLeft: "0px" }}
                     >
-                      Signup &nbsp;
-                      <i className="fas fa-arrow-right-to-bracket" />
+                      {studentsignupForm.isSubmitting ? (
+                        <>
+                          <span
+                            className="spinner-border spinner-border-sm me-2"
+                            role="status"
+                            aria-hidden="true"
+                          ></span>
+                          Регистрация...
+                        </>
+                      ) : (
+                        <>
+                          Signup &nbsp;
+                          <i className="fas fa-arrow-right-to-bracket" />
+                        </>
+                      )}
                     </button>
 
                     <div>

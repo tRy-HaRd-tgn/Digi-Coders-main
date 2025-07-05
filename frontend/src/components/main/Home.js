@@ -21,8 +21,9 @@ const Home = () => {
     onSubmit: async (values, { setSubmitting, resetForm }) => {
       values.emoji = selectedEmoji;
       console.log(values);
+      const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/contact/add`, {
+      const res = await fetch(`${apiUrl}/contact/add`, {
         method: "POST",
         body: JSON.stringify(values),
         headers: {

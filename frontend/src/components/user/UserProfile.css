@@ -1,0 +1,99 @@
+/* UserProfile.css */
+
+.user-profile-container {
+  min-height: 100vh;
+  padding-bottom: 80px; /* Отступ для фиксированного футера */
+}
+
+.profile-card {
+  transition: all 0.3s ease;
+}
+
+.profile-picture-container {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.profile-picture-container:hover {
+  transform: scale(1.05);
+}
+
+.camera-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.profile-picture-container:hover .camera-icon {
+  opacity: 1;
+}
+
+.form-control-icon {
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-55%);
+  color: #6c757d;
+}
+
+.form-group.has-icon {
+  position: relative;
+}
+
+.form-group.has-icon input {
+  padding-left: 50px;
+}
+
+.custom-link-hover:hover {
+  color: #007bff !important;
+  text-decoration: none;
+}
+
+/* Медиа-запросы */
+@media (max-width: 1200px) {
+  .col-lg-4.mx-2,
+  .col-xl-7.mx-2 {
+    width: 100% !important;
+    margin-bottom: 20px;
+  }
+
+  .user-profile-container {
+    padding-bottom: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-xl {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  .card-header {
+    font-size: 24px !important;
+  }
+
+  .profile-picture-container img {
+    width: 150px !important;
+    height: 150px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .card-header {
+    font-size: 20px !important;
+  }
+
+  .profile-picture-container img {
+    width: 120px !important;
+    height: 120px !important;
+  }
+
+  .form-control-lg {
+    font-size: 16px !important;
+  }
+}

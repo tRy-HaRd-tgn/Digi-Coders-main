@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
-import app_config from "../../config";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom";
+import "./UserProfile.css";
 
 const UserProfile = () => {
   const [selImage, setSelImage] = useState(null);
@@ -92,7 +92,7 @@ const UserProfile = () => {
   };
 
   return (
-    <div>
+    <div className="user-profile-container">
       <div className="container-xl px-5 mb-8 mt-5">
         <div className="row d-flex justify-content-center ">
           <div className="col-lg-4 mx-2" style={{ width: "36.5%" }}>
@@ -171,7 +171,7 @@ const UserProfile = () => {
                   <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 className="mb-0">Mobile No.</h6>
                     <span className="text-secondary">
-                      +91 {currentUser.mobile_no}
+                      {currentUser.mobile_no}
                     </span>
                   </li>
                 </ul>
@@ -274,17 +274,22 @@ const UserProfile = () => {
         </div>
       </div>
 
-      {/* Copyright */}
       <div
         className="text-center text-white p-4"
-        style={{ backgroundColor: "#1b1b1b" }}
+        style={{
+          backgroundColor: "#1b1b1b",
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          width: "100%",
+        }}
       >
         © 2023 Copyright :&nbsp;
         <NavLink className="text-reset fw-bold custom-link-hover" to="#">
           DigiCoders.com
         </NavLink>
       </div>
-      {/* Copyright */}
     </div>
   );
 };
