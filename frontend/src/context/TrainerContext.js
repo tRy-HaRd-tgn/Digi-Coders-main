@@ -4,20 +4,120 @@ import { useNavigate } from "react-router-dom";
 const TrainerContext = createContext();
 
 const TrainerProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(
-    JSON.parse(sessionStorage.getItem("trainer"))
-  );
+  const [currentUser, setCurrentUser] = useState(() => {
+    try {
+      // Проверяем все ключи в sessionStorage
+      console.log(
+        "TrainerContext - All sessionStorage keys:",
+        Object.keys(sessionStorage)
+      );
 
-  const [loggedIn, setLoggedIn] = useState(currentUser !== null);
+      // Сначала проверяем ключ "trainer"
+      let trainer = sessionStorage.getItem("trainer");
+      console.log("TrainerContext - Raw sessionStorage trainer:", trainer);
+
+      // Если нет данных тренера, проверяем ключ "user"
+      if (!trainer) {
+        const user = sessionStorage.getItem("user");
+        console.log("TrainerContext - Raw sessionStorage user:", user);
+
+        if (user) {
+          const parsedUser = JSON.parse(user);
+          // Проверяем, является ли пользователь тренером
+          if (
+            parsedUser.type === "trainer" ||
+            parsedUser.skills ||
+            parsedUser.certifications
+          ) {
+            console.log(
+              "TrainerContext - Found trainer in user data:",
+              parsedUser
+            );
+            trainer = user; // Используем данные пользователя как данные тренера
+          }
+        }
+      }
+
+      const parsedTrainer = trainer ? JSON.parse(trainer) : null;
+      console.log("TrainerContext - Initial currentUser:", parsedTrainer);
+      return parsedTrainer;
+    } catch (error) {
+      console.error("Error parsing trainer from sessionStorage:", error);
+      return null;
+    }
+  });
+
+  const [loggedIn, setLoggedIn] = useState(() => {
+    try {
+      const trainer = sessionStorage.getItem("trainer");
+      console.log(
+        "TrainerContext - Raw sessionStorage trainer (loggedIn):",
+        trainer
+      );
+      const parsedTrainer = trainer ? JSON.parse(trainer) : null;
+      const isLoggedIn = parsedTrainer !== null;
+      console.log("TrainerContext - Initial loggedIn:", isLoggedIn);
+      return isLoggedIn;
+    } catch (error) {
+      console.error("Error checking initial login status:", error);
+      return false;
+    }
+  });
 
   const navigate = useNavigate();
 
   // Слушаем изменения в sessionStorage
   useEffect(() => {
+    // Проверяем состояние при загрузке
+    const checkInitialState = () => {
+      try {
+        // Сначала проверяем ключ "trainer"
+        let trainer = sessionStorage.getItem("trainer");
+
+        // Если нет данных тренера, проверяем ключ "user"
+        if (!trainer) {
+          const user = sessionStorage.getItem("user");
+          if (user) {
+            const parsedUser = JSON.parse(user);
+            // Проверяем, является ли пользователь тренером
+            if (
+              parsedUser.type === "trainer" ||
+              parsedUser.skills ||
+              parsedUser.certifications
+            ) {
+              trainer = user;
+            }
+          }
+        }
+
+        const parsedTrainer = trainer ? JSON.parse(trainer) : null;
+        console.log(
+          "TrainerContext - useEffect checkInitialState:",
+          parsedTrainer
+        );
+        setCurrentUser(parsedTrainer);
+        setLoggedIn(parsedTrainer !== null);
+      } catch (error) {
+        console.error("Error checking initial state:", error);
+        setCurrentUser(null);
+        setLoggedIn(false);
+      }
+    };
+
+    // Проверяем состояние сразу при загрузке
+    checkInitialState();
+
     const handleStorageChange = () => {
-      const trainer = JSON.parse(sessionStorage.getItem("trainer"));
-      setCurrentUser(trainer);
-      setLoggedIn(trainer !== null);
+      try {
+        const trainer = sessionStorage.getItem("trainer");
+        const parsedTrainer = trainer ? JSON.parse(trainer) : null;
+        setCurrentUser(parsedTrainer);
+        setLoggedIn(parsedTrainer !== null);
+      } catch (error) {
+        console.error("Error parsing trainer from sessionStorage:", error);
+        setCurrentUser(null);
+        setLoggedIn(false);
+      }
     };
 
     // Слушаем события изменения storage
@@ -25,9 +125,16 @@ const TrainerProvider = ({ children }) => {
 
     // Слушаем кастомное событие для обновления контекста
     const handleTrainerUpdate = () => {
-      const trainer = JSON.parse(sessionStorage.getItem("trainer"));
-      setCurrentUser(trainer);
-      setLoggedIn(trainer !== null);
+      try {
+        const trainer = sessionStorage.getItem("trainer");
+        const parsedTrainer = trainer ? JSON.parse(trainer) : null;
+        setCurrentUser(parsedTrainer);
+        setLoggedIn(parsedTrainer !== null);
+      } catch (error) {
+        console.error("Error parsing trainer from sessionStorage:", error);
+        setCurrentUser(null);
+        setLoggedIn(false);
+      }
     };
 
     window.addEventListener("trainerUpdated", handleTrainerUpdate);
@@ -39,17 +146,35 @@ const TrainerProvider = ({ children }) => {
   }, []);
 
   const logout = () => {
-    sessionStorage.removeItem("trainer");
-    setCurrentUser(null);
-    setLoggedIn(false);
-    navigate("/main/home");
+    try {
+      sessionStorage.removeItem("trainer");
+      sessionStorage.removeItem("user");
+      setCurrentUser(null);
+      setLoggedIn(false);
+      navigate("/main/home");
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
   };
 
   const updateUser = (userData) => {
-    setCurrentUser(userData);
-    sessionStorage.setItem("trainer", JSON.stringify(userData));
-    // Отправляем кастомное событие для обновления контекста
-    window.dispatchEvent(new Event("trainerUpdated"));
+    try {
+      console.log("TrainerContext - updateUser called with:", userData);
+      setCurrentUser(userData);
+
+      // Сохраняем данные под ключом "trainer"
+      sessionStorage.setItem("trainer", JSON.stringify(userData));
+
+      // Также удаляем данные из ключа "user", если они там есть
+      sessionStorage.removeItem("user");
+
+      setLoggedIn(userData !== null);
+      console.log("TrainerContext - Updated loggedIn to:", userData !== null);
+      // Отправляем кастомное событие для обновления контекста
+      window.dispatchEvent(new Event("trainerUpdated"));
+    } catch (error) {
+      console.error("Error updating trainer user:", error);
+    }
   };
 
   return (
