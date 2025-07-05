@@ -30,23 +30,33 @@ const initBlocks = (data) => {
     kind: "categoryToolbox",
   };
   console.log(tempToolbox);
-  let preparedBlockStructure = {};
-  data.blockStructure.forEach((obj) => {
-    if (preparedBlockStructure[obj.category] === undefined)
-      preparedBlockStructure[obj.category] = [];
-    preparedBlockStructure[obj.category] = [
-      ...preparedBlockStructure[obj.category],
-      ...obj.blocks,
-    ];
-  });
-  console.log(preparedBlockStructure);
-  tempToolbox.contents.forEach((obj, index) => {
-    if (obj.name in preparedBlockStructure) {
-      let temp = obj;
-      temp.contents = preparedBlockStructure[obj.name];
-      myToolBox.contents.push(temp);
-    }
-  });
+
+  // Проверяем, есть ли данные о структуре блоков в базе данных
+  if (data.blockStructure && data.blockStructure.length > 0) {
+    // Если есть данные из базы, используем их
+    let preparedBlockStructure = {};
+    data.blockStructure.forEach((obj) => {
+      if (preparedBlockStructure[obj.category] === undefined)
+        preparedBlockStructure[obj.category] = [];
+      preparedBlockStructure[obj.category] = [
+        ...preparedBlockStructure[obj.category],
+        ...obj.blocks,
+      ];
+    });
+    console.log(preparedBlockStructure);
+    tempToolbox.contents.forEach((obj, index) => {
+      if (obj.name in preparedBlockStructure) {
+        let temp = obj;
+        temp.contents = preparedBlockStructure[obj.name];
+        myToolBox.contents.push(temp);
+      }
+    });
+  } else {
+    // Если данных из базы нет, используем статическую конфигурацию
+    console.log("Используем статическую конфигурацию toolbox");
+    myToolBox = tempToolbox;
+  }
+
   console.log(myToolBox);
   return myToolBox;
 };
