@@ -5,14 +5,15 @@ const Signup = () => {
   return (
     <>
       <div data-draggable="true" style={{ position: "relative" }}>
-        {/**/}
-        {/**/}
         <section
           draggable="false"
           className="container pt-5"
           data-v-271253ee=""
         >
-          <section className="heading mb-10 text-center">
+          <section
+            style={{ marginTop: "16vh" }}
+            className="heading mb-10 text-center"
+          >
             <h2 className="fw-bold mb-5">
               <span>Choose your account type</span>
             </h2>
@@ -27,7 +28,6 @@ const Signup = () => {
             </div>
 
             <div className="row gx-lg-5 mb-8 d-flex justify-content-center">
-              {/* First column */}
               <div className="col-lg-4">
                 <div className="hover-zoom">
                   <Link to="/main/studentsignup">
@@ -47,14 +47,12 @@ const Signup = () => {
                         <p className="h5 fw-bold mt-5">Student</p>
                       </Link>
                     </div>
-                    {/* Divider here */}
+
                     <hr className="hr hr-blurry"></hr>
                   </div>
                 </div>
               </div>
-              {/* First column */}
 
-              {/* second column */}
               <div className="col-lg-4">
                 <div className="hover-zoom">
                   <Link to="/main/trainersignup">
@@ -75,17 +73,13 @@ const Signup = () => {
                       </Link>
                     </div>
 
-                    {/* Divider here */}
                     <hr className="hr hr-blurry"></hr>
                   </div>
                 </div>
               </div>
-
-              {/* second column */}
             </div>
           </section>
         </section>
-        {/**/}
       </div>
     </>
   );
