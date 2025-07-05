@@ -320,7 +320,6 @@ const StudentSignup = () => {
                       value={studentsignupForm.values.mobile_no}
                       onChange={studentsignupForm.handleChange}
                     />
-                    {/* <span className='text-danger'>{studentsignupForm.errors.name}</span> */}
                   </div>
 
                   <div className="d-flex flex-row align-items-center mx-1 mb-4">
@@ -376,7 +375,6 @@ const StudentSignup = () => {
           </div>
         </div>
       </section>
-      {/*Student Signup Form*/}
     </motion.div>
   );
 };

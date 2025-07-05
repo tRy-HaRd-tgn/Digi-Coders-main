@@ -31,9 +31,9 @@ const StudentLogin = () => {
         `${process.env.REACT_APP_API_URL}/user/authenticate`,
         {
           method: "POST",
-          body: JSON.stringify(values), // this is used to convert js data in json formate
+          body: JSON.stringify(values),
           headers: {
-            "Content-Type": "application/json", // this used to inform the data in send in the form of json
+            "Content-Type": "application/json",
           },
         }
       );
@@ -75,7 +75,6 @@ const StudentLogin = () => {
       //   backgroundImage: `url('/images/bg-animation-img2.jpg`
       // }}
     >
-      {/*Student Login Form*/}
       <section className="form">
         <div className="">
           <div className="row g-0">
@@ -226,7 +225,6 @@ const StudentLogin = () => {
           </div>
         </div>
       </section>
-      {/*Student Login Form*/}
     </motion.div>
   );
 };

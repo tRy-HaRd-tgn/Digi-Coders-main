@@ -37,7 +37,7 @@ const TrainerLogin = () => {
           },
         }
       );
-      // hello f
+
       console.log(res.status);
       setSubmitting(false);
       if (res.status === 200) {
@@ -76,7 +76,6 @@ const TrainerLogin = () => {
       //   backgroundImage: `url('/images/bg-animation-img2.jpg`
       // }}
     >
-      {/*Student Login Form*/}
       <section className="form">
         <div className="">
           <div className="row g-0">
@@ -227,7 +226,6 @@ const TrainerLogin = () => {
           </div>
         </div>
       </section>
-      {/*Student Login Form*/}
     </motion.div>
   );
 };

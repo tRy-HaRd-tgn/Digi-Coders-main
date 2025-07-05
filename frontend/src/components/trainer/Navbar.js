@@ -11,11 +11,11 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Navbar */}
+     
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        {/* Container wrapper */}
+      
         <div className="container">
-          {/* Navbar brand */}
+         
           <NavLink className="navbar-brand me-2" to="/main/home">
             <img
               src="/logo/logo.png"
@@ -25,7 +25,7 @@ const Navbar = () => {
               style={{ marginTop: "-1px" }}
             />
           </NavLink>
-          {/* Toggle button */}
+         
           <button
             className="navbar-toggler"
             type="button"
@@ -37,12 +37,12 @@ const Navbar = () => {
           >
             <i className="fas fa-bars" />
           </button>
-          {/* Collapsible wrapper */}
+         
           <div
             className="collapse navbar-collapse justify-content-center"
             id="navbarButtonsExample"
           >
-            {/* Left links */}
+         
             <ul className="navbar-nav mb-2 mb-lg-0" style={{ fontSize: 18 }}>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/trainer/home">
@@ -67,9 +67,7 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          {/* Collapsible wrapper */}
-
-          {/* Left links */}
+          
           <div className="d-flex align-items-center">
             {!loggedIn ? (
               <>
@@ -133,9 +131,9 @@ const Navbar = () => {
             )}
           </div>
         </div>
-        {/* Container wrapper */}
+       
       </nav>
-      {/* Navbar */}
+   
     </>
   );
 };

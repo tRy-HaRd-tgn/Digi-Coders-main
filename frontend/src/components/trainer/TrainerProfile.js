@@ -46,9 +46,9 @@ const TrainerProfile = () => {
         `${process.env.REACT_APP_API_URL}/trainer/update/` + currentTrainer._id,
         {
           method: "PUT",
-          body: JSON.stringify(values), // this is used to convert js data in json formate
+          body: JSON.stringify(values),
           headers: {
-            "Content-Type": "application/json", // this used to inform the data in send in the form of json
+            "Content-Type": "application/json",
           },
         }
       );
@@ -129,12 +129,7 @@ const TrainerProfile = () => {
                         }}
                       />
                     )}
-                    {/* <img
-                                            src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                                            alt="Admin"
-                                            className="rounded-circle p-1 bg-primary"
-                                            style={{ width: "180px", backgroundSize: "cover" }}
-                                        /> */}
+
                     <input
                       type="file"
                       ref={inputRef}
@@ -154,10 +149,6 @@ const TrainerProfile = () => {
                     />
                   </div>
                   <button className="btn btn-primary mt-3">Upload Image</button>
-                  {/* <div className="mt-3">
-                                        <h4>Mohit Mishra</h4>
-                                        <p className="text-secondary">Full Stack Developer</p>
-                                    </div> */}
                 </div>
                 <hr className="my-3" />
                 <ul className="list-group list-group-flush">
@@ -197,7 +188,6 @@ const TrainerProfile = () => {
           </div>
 
           <div className="col-xl-7 mx-2">
-            {/* Account details card*/}
             <div className="card h-100 mb-4">
               <div
                 className="card-header text-center fw-bold text-uppercase mb-4"
@@ -294,17 +284,6 @@ const TrainerProfile = () => {
                       </span>
                     </div>
                   </div>
-
-                  {/* <div className='d-flex flex-row align-items-center mx-1 mb-4'>
-                                        <label htmlFor="chapter-img" className="btn btn-primary">
-                                            {' '}
-                                            <i class="fas fa-upload"></i> Upload Image
-                                        </label>
-                                        <span className='text-warning mx-3'>
-                                            {selImage ? selImage.name : 'No Image Selected'}
-                                        </span>
-                                        <input type="file" id="chapter-img" hidden onChange={uploadFile} />
-                                    </div> */}
 
                   <div className="pt-1 pb-1 ">
                     <button

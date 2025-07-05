@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import Swal from 'sweetalert2';
-import { Formik } from 'formik';
-import { useNavigate } from 'react-router-dom';
-import * as Yup from 'yup';
+import { useState } from "react";
+import Swal from "sweetalert2";
+import { Formik } from "formik";
+import { useNavigate } from "react-router-dom";
+import * as Yup from "yup";
 import { motion } from "framer-motion";
 
 const ResetPassword = () => {
   const [passVisible, setPassVisible] = useState(false);
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
 
-  const [otp, setOTP] = useState('');
+  const [otp, setOTP] = useState("");
   const [showReset, setShowReset] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const navigate = useNavigate();
@@ -21,11 +21,10 @@ const ResetPassword = () => {
   };
 
   const passwordForm = {
-    otp: '',
-    password: '',
-    confirm: ''
+    otp: "",
+    password: "",
+    confirm: "",
   };
-
 
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(!show);
@@ -33,26 +32,25 @@ const ResetPassword = () => {
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPassword = () => setShowPassword(!showPassword);
 
-
   const sendOTP = () => {
     fetch(`${process.env.REACT_APP_API_URL}/util/sendmail`, {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify({
         to: email,
-        subject: 'Password Reset',
-        text: 'This is your OTP for password reset ' + generateOTP()
+        subject: "Password Reset",
+        text: "This is your OTP for password reset " + generateOTP(),
       }),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        "Content-Type": "application/json",
+      },
     }).then((res) => {
       console.log(res.status);
       console.log(otp);
       if (res.status === 200) {
         Swal.fire({
-          icon: 'success',
-          title: 'Successful!!',
-          text: 'OTP Sent Successfully'
+          icon: "success",
+          title: "Successful!!",
+          text: "OTP Sent Successfully",
         });
       }
       return res.json();
@@ -67,10 +65,10 @@ const ResetPassword = () => {
       .then((data) => {
         console.log(data);
         if (!data) {
-          console.log('not found!!');
+          console.log("not found!!");
           Swal.fire({
-            icon: 'error',
-            title: 'Email not registered!!'
+            icon: "error",
+            title: "Email not registered!!",
           });
         } else {
           setCurrentUser(data);
@@ -83,32 +81,32 @@ const ResetPassword = () => {
   const verifyOTP = (formdata) => {
     console.log(formdata.otp, otp);
     if (otp == formdata.otp) {
-      console.log('otp matched');
+      console.log("otp matched");
       resetPassword(formdata);
     } else {
-      console.log('otp not matched');
+      console.log("otp not matched");
       Swal.fire({
-        icon: 'error',
-        title: 'Failed',
-        text: 'Enter Correct OTP'
+        icon: "error",
+        title: "Failed",
+        text: "Enter Correct OTP",
       });
     }
   };
   const resetPassword = ({ password }) => {
     console.log(password);
     fetch(`${process.env.REACT_APP_API_URL}/user/update` + currentUser._id, {
-      method: 'PUT',
+      method: "PUT",
       body: JSON.stringify({ password: password }),
-      headers: { 'Content-Type': 'application/json' }
+      headers: { "Content-Type": "application/json" },
     })
       .then((res) => {
-        console.log('reset');
+        console.log("reset");
         if (res.status === 200)
           Swal.fire({
-            icon: 'success',
-            title: 'Password Reset Successfully!!'
+            icon: "success",
+            title: "Password Reset Successfully!!",
           }).then(() => {
-            navigate('/main/login');
+            navigate("/main/login");
           });
         return res.json();
       })
@@ -122,10 +120,10 @@ const ResetPassword = () => {
       //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
       //     'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character'
       //   )
-      .required('Password is Required'),
+      .required("Password is Required"),
     confirm: Yup.string()
-      .oneOf([Yup.ref('password'), null], 'Passwords must match')
-      .required('Password Confirmation is Required')
+      .oneOf([Yup.ref("password"), null], "Passwords must match")
+      .required("Password Confirmation is Required"),
   });
 
   const showResetForm = () => {
@@ -188,15 +186,18 @@ const ResetPassword = () => {
             exit={{ opacity: 0.5, x: -300 }}
             transition={{ type: "spring" }}
             // className="vid-manage-bg"
-          // style={{
-          //   backgroundImage: `url('/images/bg-animation-img2.jpg`
-          // }}
+            // style={{
+            //   backgroundImage: `url('/images/bg-animation-img2.jpg`
+            // }}
           >
             <section className="reset-form">
               <div className="container">
                 <div className="row d-flex justify-content-center align-items-center">
                   <div className="col-lg-12 col-xl-11">
-                    <div className="card text-black my-5" style={{ borderRadius: 25 }}>
+                    <div
+                      className="card text-black my-5"
+                      style={{ borderRadius: 25 }}
+                    >
                       <div className="card-body">
                         {/* Grid row */}
                         <div className="row d-flex justify-content-center align-items-center">
@@ -218,13 +219,20 @@ const ResetPassword = () => {
                           <div className="col-lg-6">
                             <div className="">
                               <div className="mb-4">
-                                <h3 className="mx-5">
-                                  Reset Password ?
-                                </h3>
+                                <h3 className="mx-5">Reset Password ?</h3>
                               </div>
 
-                              <Formik initialValues={passwordForm} onSubmit={verifyOTP} validationSchema={validationSchema}>
-                                {({ values, handleSubmit, handleChange, errors }) => (
+                              <Formik
+                                initialValues={passwordForm}
+                                onSubmit={verifyOTP}
+                                validationSchema={validationSchema}
+                              >
+                                {({
+                                  values,
+                                  handleSubmit,
+                                  handleChange,
+                                  errors,
+                                }) => (
                                   <form
                                     className="mx-md-5 text-black"
                                     onSubmit={handleSubmit}
@@ -258,10 +266,20 @@ const ResetPassword = () => {
                                       <i className="fas fa-key fa-lg form-control-icon" />
                                       <div class="d-grid d-md-flex justify-content-md-end">
                                         <span
-                                          className='form-control-eye'
+                                          className="form-control-eye"
                                           onClick={handleShow}
                                         >
-                                          {show ? <i class="far fa-eye" style={{color: "#c5c5c5"}} /> : <i class="far fa-eye-slash" style={{color: "#c5c5c5"}} />}
+                                          {show ? (
+                                            <i
+                                              class="far fa-eye"
+                                              style={{ color: "#c5c5c5" }}
+                                            />
+                                          ) : (
+                                            <i
+                                              class="far fa-eye-slash"
+                                              style={{ color: "#c5c5c5" }}
+                                            />
+                                          )}
                                         </span>
                                       </div>
                                       <input
@@ -274,21 +292,37 @@ const ResetPassword = () => {
                                         value={values.password}
                                         onChange={handleChange}
                                       />
-                                      {errors.password && <div className="text-danger">{errors.password}</div>}
+                                      {errors.password && (
+                                        <div className="text-danger">
+                                          {errors.password}
+                                        </div>
+                                      )}
                                     </div>
 
                                     <div className="form-group has-icon mb-4">
                                       <i className="fas fa-key fa-lg form-control-icon" />
                                       <div class="d-grid  d-md-flex justify-content-md-end">
                                         <span
-                                          className='form-control-eye'
+                                          className="form-control-eye"
                                           onClick={handleShowPassword}
                                         >
-                                          {showPassword ? <i class="far fa-eye" style={{color: "#c5c5c5"}} /> : <i class="far fa-eye-slash" style={{color: "#c5c5c5"}} />}
+                                          {showPassword ? (
+                                            <i
+                                              class="far fa-eye"
+                                              style={{ color: "#c5c5c5" }}
+                                            />
+                                          ) : (
+                                            <i
+                                              class="far fa-eye-slash"
+                                              style={{ color: "#c5c5c5" }}
+                                            />
+                                          )}
                                         </span>
                                       </div>
                                       <input
-                                        type={showPassword ? "text" : "password"}
+                                        type={
+                                          showPassword ? "text" : "password"
+                                        }
                                         id="confirm"
                                         name="confirm"
                                         autoComplete="off"
@@ -297,7 +331,11 @@ const ResetPassword = () => {
                                         value={values.confirm}
                                         onChange={handleChange}
                                       />
-                                      {errors.confirm && <div className="text-danger">{errors.confirm}</div>}
+                                      {errors.confirm && (
+                                        <div className="text-danger">
+                                          {errors.confirm}
+                                        </div>
+                                      )}
                                     </div>
 
                                     {/* <div className="d-flex flex-row align-items-center mb-4">
@@ -325,7 +363,10 @@ const ResetPassword = () => {
                                       <button
                                         className="btn btn-primary btn-block"
                                         type="submit"
-                                        style={{ borderRadius: "10px", marginLeft: "0%" }}
+                                        style={{
+                                          borderRadius: "10px",
+                                          marginLeft: "0%",
+                                        }}
                                       >
                                         Change &nbsp;
                                         <i className="fas fa-arrow-right-to-bracket" />
@@ -336,9 +377,7 @@ const ResetPassword = () => {
                               </Formik>
                             </div>
                           </div>
-                          {/* Grid column */}
                         </div>
-                        {/* Grid row */}
                       </div>
                     </div>
                   </div>
@@ -380,45 +419,44 @@ const ResetPassword = () => {
         {showResetForm()}
       </div> */}
 
-
       <motion.div
         initial={{ opacity: 0, x: 300 }}
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0.5, x: -300 }}
         transition={{ type: "spring" }}
         className="vid-manage-bg"
-      // style={{
-      //   backgroundImage: `url('/images/bg-animation-img2.jpg`
-      // }}
+        // style={{
+        //   backgroundImage: `url('/images/bg-animation-img2.jpg`
+        // }}
       >
-
         <div className="reset-card">
           <section className="reset-form">
             <div className="container">
               <div className="row d-flex justify-content-center align-items-center">
                 <div className="col-lg-12 col-xl-11">
-                  <div className="card text-black my-5" style={{ borderRadius: 25 }}>
+                  <div
+                    className="card text-black my-5"
+                    style={{ borderRadius: 25 }}
+                  >
                     <div className="card-body">
                       {/* Grid row */}
                       <div className="row d-flex justify-content-center align-items-center">
-
                         {/* Grid column */}
                         <div className="col-lg-6">
                           <div className="">
                             <div className="mb-4">
-                              <h3 className="mx-5">
-                                Forgot Your Password ?
-                              </h3>
+                              <h3 className="mx-5">Forgot Your Password ?</h3>
                             </div>
-                            <div className='mb-4'>
-                              <p className='mx-5'>
-                                To reset your password, enter the registered email address and
-                                we will send you the OTP on your email to reset your password.
+                            <div className="mb-4">
+                              <p className="mx-5">
+                                To reset your password, enter the registered
+                                email address and we will send you the OTP on
+                                your email to reset your password.
                               </p>
                             </div>
                             <div
                               className="mx-md-5 text-black"
-                            // onSubmit={StudentLogin.handleSubmit}
+                              // onSubmit={StudentLogin.handleSubmit}
                             >
                               <div className="form-group has-icon mb-4">
                                 <i className="fas fa-envelope fa-lg form-control-icon" />
@@ -463,7 +501,10 @@ const ResetPassword = () => {
                                   className="btn btn-primary btn-block"
                                   type="submit"
                                   onClick={verifyUser}
-                                  style={{ borderRadius: "10px", marginLeft: "0%" }}
+                                  style={{
+                                    borderRadius: "10px",
+                                    marginLeft: "0%",
+                                  }}
                                 >
                                   Send &nbsp;
                                   <i className="fas fa-arrow-right-to-bracket" />
@@ -472,9 +513,7 @@ const ResetPassword = () => {
                             </div>
                           </div>
                         </div>
-                        {/* Grid column */}
 
-                        {/* Grid column */}
                         <div className="col-md-5 reset-img">
                           <img
                             src="/images/forgot.webp"
@@ -487,9 +526,7 @@ const ResetPassword = () => {
                             }}
                           />
                         </div>
-                        {/* Grid column */}
                       </div>
-                      {/* Grid row */}
                     </div>
                   </div>
                 </div>
@@ -498,8 +535,7 @@ const ResetPassword = () => {
           </section>
           {showResetForm()}
         </div>
-
-      </motion.div >
+      </motion.div>
     </>
   );
 };

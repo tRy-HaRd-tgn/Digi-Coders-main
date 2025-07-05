@@ -5,9 +5,7 @@ const Course = () => {
   return (
     <div>
       <>
-        {/*Page Header*/}
         <header className="mb-10">
-          {/* Background image */}
           <div
             id="intro"
             className="bg-image"
@@ -36,20 +34,14 @@ const Course = () => {
               </div>
             </div>
           </div>
-          {/* Background image */}
         </header>
-        {/*Page Header*/}
       </>
 
-      {/* Our Course*/}
       <div className="mb-8">
         <div data-draggable="true">
-          {/**/}
-          {/**/}
           <section draggable="false" className="container" data-v-271253ee="">
             <section>
               <div className="row text-center gx-lg-5 mb-6">
-                {/* First column */}
                 <div className="col-lg-4 col-md-12 mb-lg-0 hover-zoom">
                   <div className="card">
                     <div
@@ -87,7 +79,7 @@ const Course = () => {
                       <h6 className="mb-3">
                         Duration : <strong>2 Months</strong>
                       </h6>
-                      {/* Divider here */}
+
                       <hr className="hr hr-blurry" />
 
                       <p className="card-text">
@@ -103,8 +95,7 @@ const Course = () => {
                     </div>
                   </div>
                 </div>
-                {/* First column */}
-                {/* Second column */}
+
                 <div className="col-lg-4 col-md-12 mb-lg-0 hover-zoom">
                   <div className="card">
                     <div
@@ -142,7 +133,7 @@ const Course = () => {
                       <h6 className="mb-3">
                         Duration : <strong>3 Months</strong>
                       </h6>
-                      {/* Divider here */}
+
                       <hr className="hr hr-blurry" />
 
                       <p className="card-text">
@@ -160,8 +151,7 @@ const Course = () => {
                     </div>
                   </div>
                 </div>
-                {/* Second column */}
-                {/* Third column */}
+
                 <div className="col-lg-4 col-md-12 mb-lg-0 hover-zoom">
                   <div className="card">
                     <div
@@ -199,7 +189,7 @@ const Course = () => {
                       <h6 className="mb-3">
                         Duration : <strong>3 Months</strong>
                       </h6>
-                      {/* Divider here */}
+
                       <hr className="hr hr-blurry" />
 
                       <p className="card-text">
@@ -216,20 +206,14 @@ const Course = () => {
                     </div>
                   </div>
                 </div>
-                {/* Third column */}
               </div>
             </section>
           </section>
-          {/**/}
         </div>
       </div>
-      {/* Our Course*/}
 
-      {/* Our Upcoming Course*/}
       <div className="mb-8">
         <div data-draggable="true">
-          {/**/}
-          {/**/}
           <section draggable="false" className="container" data-v-271253ee="">
             <section>
               <div className="heading">
@@ -294,8 +278,7 @@ const Course = () => {
                     </div>
                   </div>
                 </div>
-                {/* First column */}
-                {/* Second column */}
+
                 <div className="col-lg-4 col-md-12 mb-lg-0 hover-zoom">
                   <div className="card">
                     <div
@@ -333,7 +316,7 @@ const Course = () => {
                       <h6 className="mb-3">
                         Duration : <strong>6 Months</strong>
                       </h6>
-                      {/* Divider here */}
+
                       <hr className="hr hr-blurry" />
 
                       <p className="card-text">
@@ -347,8 +330,7 @@ const Course = () => {
                     </div>
                   </div>
                 </div>
-                {/* Second column */}
-                {/* Third column */}
+
                 <div className="col-lg-4 col-md-12 mb-lg-0 hover-zoom">
                   <div className="card">
                     <div
@@ -400,14 +382,11 @@ const Course = () => {
                     </div>
                   </div>
                 </div>
-                {/* Third column */}
               </div>
             </section>
           </section>
-          {/**/}
         </div>
       </div>
-      {/* Our Upcoming Course*/}
     </div>
   );
 };

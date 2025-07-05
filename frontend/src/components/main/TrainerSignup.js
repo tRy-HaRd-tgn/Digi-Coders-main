@@ -107,7 +107,6 @@ const TrainerSignup = () => {
       //   backgroundImage: `url('/images/bg-animation-img2.jpg`
       // }}
     >
-      {/*Trainer Signup Form*/}
       <section className="form">
         <div className="">
           <div className="row g-0">
@@ -232,7 +231,6 @@ const TrainerSignup = () => {
                       value={trainersignupForm.values.mobile_no}
                       onChange={trainersignupForm.handleChange}
                     />
-                    {/* <span className='text-danger'>{studentsignupForm.errors.name}</span> */}
                   </div>
                   <div className="d-flex flex-row align-items-center mb-4">
                     <div className="form-group has-icon me-2">
@@ -331,7 +329,6 @@ const TrainerSignup = () => {
           </div>
         </div>
       </section>
-      {/*Trainer Signup Form*/}
     </motion.div>
   );
 };

@@ -7,13 +7,10 @@ import BlocklyComponent, {
   Mutation,
 } from "../../Blockly";
 
-// import "../../customBlocks";
 import "../../generator";
 import { useParams } from "react-router-dom";
-import app_config from "../../config";
 import { useBlockContext } from "../../context/BlockContext";
-import '../../customBlocks';
-import CustomBlock from "../../MyCustomBlocks";
+import "../../customBlocks";
 
 const Builder = () => {
   const { chapter_id } = useParams();
@@ -35,7 +32,9 @@ const Builder = () => {
 
   const fetchChapterData = async () => {
     setLoading(true);
-    const res = await fetch(`${process.env.REACT_APP_API_URL}/chapter/getbyid/${chapter_id}`);
+    const res = await fetch(
+      `${process.env.REACT_APP_API_URL}/chapter/getbyid/${chapter_id}`
+    );
     const data = await res.json();
     setChapterData(data.result);
     setLoading(false);
@@ -56,18 +55,21 @@ const Builder = () => {
   };
 
   const updateChapter = async () => {
-    const res = await fetch(`${process.env.REACT_APP_API_URL}/chapter/update/${chapterData._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        data: {
-          xml: xml,
-          blocks: addedBlocks,
+    const res = await fetch(
+      `${process.env.REACT_APP_API_URL}/chapter/update/${chapterData._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
         },
-      }),
-    });
+        body: JSON.stringify({
+          data: {
+            xml: xml,
+            blocks: addedBlocks,
+          },
+        }),
+      }
+    );
     const data = await res.json();
     console.log(data);
   };
@@ -124,12 +126,11 @@ const Builder = () => {
   const chapterUpdateForm = () => {};
 
   const toolboxCategories = {
-    // Include your custom block type in the desired category
     category: [
       {
-        type: 'myCustomBlock',
-        colour: '#A065A1',
-      }
+        type: "myCustomBlock",
+        colour: "#A065A1",
+      },
     ],
   };
 
@@ -143,7 +144,7 @@ const Builder = () => {
           Update Chapter
         </button>
         <BlocklyComponent
-          toolboxCategories={toolboxCategories} 
+          toolboxCategories={toolboxCategories}
           readOnly={false}
           trashcan={false}
           media={"media/"}
@@ -154,7 +155,6 @@ const Builder = () => {
           }}
           initialXml={xml}
           height="60vh"
-        // blocks={addedBlocks}
         >
           <Block type="controls_repeat_ext">
             <Value name="TIMES">
@@ -172,38 +172,41 @@ const Builder = () => {
             </Value>
           </Block>
           <Block type="test_react_field" />
-            <Block type="test_react_date_field" />
-            <Block type="controls_ifelse" />
-            <Block type="logic_compare" />
-            <Block type="logic_operation" />
-            <Block type="controls_repeat_ext">
-              <Value name="TIMES">
-                <Shadow type="math_number">
-                  <Field name="NUM">10</Field>
-                </Shadow>
-              </Value>
-            </Block>
-            <Block type="logic_operation" />
-            <Block type="logic_negate" />
-            <Block type="logic_boolean" />
-            <Block type="logic_null" disabled="true" />
-            <Block type="logic_ternary" />
-            <Block type="text_charAt">
-              <Value name="VALUE">
-                <Block type="variables_get">
-                  <Field name="VAR">text</Field>
-                </Block>
-              </Value>
-            </Block>
-
+          <Block type="test_react_date_field" />
+          <Block type="controls_ifelse" />
+          <Block type="logic_compare" />
+          <Block type="logic_operation" />
+          <Block type="controls_repeat_ext">
+            <Value name="TIMES">
+              <Shadow type="math_number">
+                <Field name="NUM">10</Field>
+              </Shadow>
+            </Value>
+          </Block>
+          <Block type="logic_operation" />
+          <Block type="logic_negate" />
+          <Block type="logic_boolean" />
+          <Block type="logic_null" disabled="true" />
+          <Block type="logic_ternary" />
+          <Block type="text_charAt">
+            <Value name="VALUE">
+              <Block type="variables_get">
+                <Field name="VAR">text</Field>
+              </Block>
+            </Value>
+          </Block>
         </BlocklyComponent>
 
         <Value name="TYPE">
-              <Shadow xmlns="http://www.w3.org/1999/xhtml" type="type_null" id="BLj0bOn$fER9KS;#`RU]"></Shadow>
-              <Block type="type_other" id="BI?PU:MKzgPw7A:7Jr@]">
-                <Field name="TYPE">header</Field>
-              </Block>
-            </Value>
+          <Shadow
+            xmlns="http://www.w3.org/1999/xhtml"
+            type="type_null"
+            id="BLj0bOn$fER9KS;#`RU]"
+          ></Shadow>
+          <Block type="type_other" id="BI?PU:MKzgPw7A:7Jr@]">
+            <Field name="TYPE">header</Field>
+          </Block>
+        </Value>
       </div>
     </div>
   );

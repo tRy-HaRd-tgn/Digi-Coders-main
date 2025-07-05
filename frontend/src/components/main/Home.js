@@ -54,10 +54,8 @@ const Home = () => {
 
   return (
     <div>
-      {/* Header */}
       <>
         <header>
-          {/* Background image */}
           <div
             className="p-5 mb-10 text-center bg-image"
             style={{
@@ -68,15 +66,11 @@ const Home = () => {
               backgroundColor: "rgba(0, 0, 0, 0)",
             }}
           ></div>
-          {/* Background image */}
         </header>
       </>
-      {/* Header */}
 
-      {/* Benefits */}
       <>
         <div className="container mb-8">
-          {/* Section */}
           <section>
             <div className="heading">
               <h2 className="mt-5 mb-3 text-center display-3">
@@ -88,9 +82,8 @@ const Home = () => {
                 <span>Empower your skills with us</span>
               </h4>
             </div>
-            {/* Grid row */}
+
             <div className="row">
-              {/* Grid column - 1 */}
               <div className="col-md-6 col-xl-3">
                 <div
                   className="card rounded-7 shadow-4-strong text-center text-white"
@@ -110,8 +103,7 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-              {/* Grid column -1 */}
-              {/* Grid column - 2 */}
+
               <div className="col-md-6 col-xl-3 mb-4">
                 <div
                   className="card rounded-7 shadow-4-strong text-center text-white"
@@ -131,8 +123,7 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-              {/* Grid column - 2 */}
-              {/* Grid column - 3 */}
+
               <div className="col-md-6 col-xl-3">
                 <div
                   className="card rounded-7 shadow-4-strong text-center text-white"
@@ -152,8 +143,7 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-              {/* Grid column - 3 */}
-              {/* Grid column - 4 */}
+
               <div className="col-md-6 col-xl-3 mb-4">
                 <div
                   className="card rounded-7 shadow-4-strong text-center text-white"
@@ -173,23 +163,16 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-              {/* Grid column - 4 */}
             </div>
-            {/* Grid row */}
           </section>
-          {/* Section */}
         </div>
       </>
-      {/* Benefits */}
 
-      {/* About Us */}
       <>
         <div className="mb-7">
           <div style={{ display: "none" }} />
           <div>
             <div data-draggable="true" style={{ position: "relative" }}>
-              {/**/}
-              {/**/}
               <section
                 draggable="false"
                 className="overflow-hidden pt-0"
@@ -197,7 +180,6 @@ const Home = () => {
               >
                 <section>
                   {" "}
-                  {/* Jumbotron */}
                   <div
                     className="py-2 text-center"
                     style={{ backgroundColor: "#f6feff" }}
@@ -250,7 +232,6 @@ const Home = () => {
                       </div>
                     </div>
                   </div>{" "}
-                  {/* Jumbotron */}
                 </section>
               </section>
               {/**/}
@@ -258,9 +239,7 @@ const Home = () => {
           </div>
         </div>
       </>
-      {/* About Us */}
 
-      {/* Feedback Form */}
       <div id="feedback-form-wrapper">
         <div id="floating-icon">
           <button
@@ -402,7 +381,7 @@ const Home = () => {
                         </div>
                         <div className="form-group has-icon mb-5">
                           <i className="fas fa-pencil-alt fa-lg form-control-icon" />
-                          {/* Text area fields */}
+
                           <textarea
                             className="form-control form-control-lg"
                             id="textarea"
@@ -430,13 +409,9 @@ const Home = () => {
           </div>
         </div>
       </div>
-      {/* Feedback Form */}
 
-      {/* Our Course*/}
       <div className="mb-10">
         <div data-draggable="true">
-          {/**/}
-          {/**/}
           <section draggable="false" className="container" data-v-271253ee="">
             <section>
               <div className="heading">
@@ -450,7 +425,6 @@ const Home = () => {
                 </h4>
               </div>
               <div className="row text-center gx-lg-5 mb-6">
-                {/* First column */}
                 <div className="col-lg-4 col-md-12 mb-lg-0 hover-zoom">
                   <div className="card">
                     <div
@@ -487,7 +461,7 @@ const Home = () => {
                       <h6 className="mb-3">
                         Duration : <strong>2 Weeks</strong>
                       </h6>
-                      {/* Divider here */}
+
                       <hr className="hr hr-blurry" />
 
                       <p className="card-text">
@@ -538,7 +512,7 @@ const Home = () => {
                       <h6 className="mb-3">
                         Duration : <strong>2 Weeks</strong>
                       </h6>
-                      {/* Divider here */}
+
                       <hr className="hr hr-blurry" />
 
                       <p className="card-text">
@@ -556,8 +530,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-                {/* Second column */}
-                {/* Third column */}
+
                 <div className="col-lg-4 col-md-12 mb-lg-0 hover-zoom">
                   <div className="card">
                     <div
@@ -611,23 +584,18 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-                {/* Third column */}
               </div>
             </section>
           </section>
           {/**/}
         </div>
       </div>
-      {/* Our Course*/}
 
-      {/* Start your coding journey*/}
       <>
         <div className="mb-10">
           <div style={{ display: "none" }} />
           <div>
             <div data-draggable="true" style={{ position: "relative" }}>
-              {/**/}
-              {/**/}
               <section
                 draggable="false"
                 className="overflow-hidden pt-0"
@@ -635,7 +603,6 @@ const Home = () => {
               >
                 <section className="overflow-hidden">
                   {" "}
-                  {/* Background image */}
                   <div
                     className="px-4 py-5 px-md-5 text-center bg-image"
                     style={{
@@ -698,21 +665,15 @@ const Home = () => {
                       color: "#fff",
                     }}
                   ></div>{" "}
-                  {/* Background image */}
                 </section>
               </section>
-              {/**/}
             </div>
           </div>
         </div>
       </>
-      {/* Start your coding journey*/}
 
-      {/* Why Coding Is Important */}
       <div className="mb-10">
         <div data-draggable="true">
-          {/**/}
-          {/**/}
           <section draggable="false" className="container" data-v-271253ee="">
             <section>
               <div className="heading">
@@ -726,7 +687,6 @@ const Home = () => {
                 </h4>
               </div>
 
-              {/* row - 1 */}
               <div className="row gx-lg-5 mb-5 align-items-center">
                 <div className="col-md-6 mb-4 mb-md-0">
                   {" "}
@@ -749,7 +709,6 @@ const Home = () => {
                   </p>
                 </div>
               </div>
-              {/* row - 1 */}
 
               {/* row - 2 */}
               <div className="row gx-lg-5 mb-5 flex-lg-row-reverse align-items-center">
@@ -774,9 +733,7 @@ const Home = () => {
                   </p>{" "}
                 </div>
               </div>
-              {/* row - 2 */}
 
-              {/* row - 3 */}
               <div className="row gx-lg-5 mb-5 align-items-center">
                 <div className="col-md-6 mb-4 mb-md-0">
                   {" "}
@@ -799,13 +756,11 @@ const Home = () => {
                   </p>{" "}
                 </div>
               </div>
-              {/* row - 3 */}
             </section>
           </section>
           {/**/}
         </div>
       </div>
-      {/* Why Coding Is Important */}
 
       <>
         <div className="mb-10">
@@ -826,14 +781,11 @@ const Home = () => {
               className="mask"
               style={{ backgroundColor: "rgba(35, 37, 45, 0.6)" }}
             >
-              {/**/}
-              {/**/}
               <section
                 draggable="false"
                 className="container pt-5"
                 data-v-271253ee=""
               >
-                {/* Section: Testimonials */}
                 <section>
                   <div className="main-heading">
                     <h2 className="mb-3 text-center display-3">
@@ -847,7 +799,6 @@ const Home = () => {
                   </div>
                   <div className="card-body">
                     <div className="row text-center gx-lg-5">
-                      {/* First column */}
                       <div className="col-lg-4 mb-5 mb-lg-0 hover-zoom">
                         <div>
                           <div
@@ -878,7 +829,6 @@ const Home = () => {
                               </li>
                             </ul>
 
-                            {/* Divider here */}
                             <hr className="hr hr-blurry"></hr>
 
                             <i
@@ -901,8 +851,7 @@ const Home = () => {
                           />
                         </div>
                       </div>
-                      {/* First column */}
-                      {/* Second column */}
+
                       <div className="col-lg-4 mb-5 mb-lg-0 hover-zoom">
                         <div>
                           <div
@@ -933,7 +882,6 @@ const Home = () => {
                               </li>
                             </ul>
 
-                            {/* Divider here */}
                             <hr className="hr hr-blurry"></hr>
 
                             <i
@@ -956,8 +904,7 @@ const Home = () => {
                           />
                         </div>
                       </div>
-                      {/* Second column */}
-                      {/* Third column */}
+
                       <div className="col-lg-4 mb-5 mb-lg-0 hover-zoom">
                         <div>
                           <div
@@ -990,7 +937,6 @@ const Home = () => {
                               </li>
                             </ul>
 
-                            {/* Divider here */}
                             <hr className="hr hr-blurry"></hr>
 
                             <i
@@ -1013,23 +959,17 @@ const Home = () => {
                           />
                         </div>
                       </div>
-
-                      {/* Third column */}
                     </div>
                   </div>
                 </section>
               </section>
-              {/**/}
             </div>
           </div>
         </div>
       </>
-      {/* Testimonials */}
 
-      {/* FAQ */}
       <>
         <div className="container mb-8">
-          {/*Section: Content*/}
           <section>
             <div className="heading">
               <h2 className="mb-3 text-center display-3">
@@ -1220,7 +1160,6 @@ const Home = () => {
           </section>
         </div>
       </>
-      {/* FAQ */}
     </div>
   );
 };
