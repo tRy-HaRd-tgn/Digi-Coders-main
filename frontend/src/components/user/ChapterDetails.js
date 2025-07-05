@@ -11,6 +11,7 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import HtmlGenerator from "../blockly/htmlGenerator";
 import { getPythonToolbox } from "../blockly/getPythonToolbox";
+import { pythonGenerator } from "blockly/python";
 
 const toolbox = getHTMLToolbox();
 
@@ -199,6 +200,13 @@ const ChapterDetails = () => {
     setGeneratedCode(code);
   };
 
+  const generatePythonCode = (workspace) => {
+    console.log("return python generator");
+    const code = pythonGenerator.workspaceToCode(workspace);
+    console.log(code);
+    setGeneratedCode(code);
+  };
+
   const executeCode = () => {
     eval(generatedCode);
   };
@@ -236,6 +244,7 @@ const ChapterDetails = () => {
   const codeGenerators = {
     html: generateHtmlCode,
     javascript: generateCode,
+    python: generatePythonCode,
   };
 
   const getGenerator = () => {
@@ -244,6 +253,8 @@ const ChapterDetails = () => {
       return generateHtmlCode;
     else if (chapterDetails.category.toLowerCase() === "javascript")
       return generateCode;
+    else if (chapterDetails.category.toLowerCase() === "python")
+      return generatePythonCode;
     else return generateCode;
   };
 
