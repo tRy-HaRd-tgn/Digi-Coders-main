@@ -23,7 +23,7 @@ const Navbar = () => {
               style={{ marginTop: "-1px" }}
             />
           </NavLink>
-          {/* Toggle button */}
+
           <button
             className="navbar-toggler"
             type="button"
@@ -35,12 +35,11 @@ const Navbar = () => {
           >
             <i className="fas fa-bars" />
           </button>
-          {/* Collapsible wrapper */}
+
           <div
             className="collapse navbar-collapse justify-content-center"
             id="navbarButtonsExample"
           >
-            {/* Left links */}
             <ul className="navbar-nav mb-2 mb-lg-0" style={{ fontSize: 18 }}>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/main/home">
@@ -111,9 +110,7 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          {/* Collapsible wrapper */}
 
-          {/* Left links */}
           <div className="d-flex align-items-center">
             {!loggedIn ? (
               <>
@@ -181,9 +178,7 @@ const Navbar = () => {
             )}
           </div>
         </div>
-        {/* Container wrapper */}
       </nav>
-      {/* Navbar */}
     </>
   );
 };

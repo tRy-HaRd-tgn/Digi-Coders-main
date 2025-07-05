@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
 * {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 :root {
@@ -47,11 +47,11 @@
   font-size: 18px;
 }
 
-.accordion-button::after{
+.accordion-button::after {
   background-image: url("https://static.thenounproject.com/png/261370-200.png");
 }
 
-.accordion-button:not(.collapsed)::after{
+.accordion-button:not(.collapsed)::after {
   background-image: url("https://static.vecteezy.com/system/resources/previews/009/267/401/original/minus-sign-icon-free-png.png");
 }
 
@@ -127,7 +127,7 @@
   color: var(--second-color);
 }
 
-.dropdown:hover>.dropdown-menu {
+.dropdown:hover > .dropdown-menu {
   display: block;
 }
 
@@ -211,6 +211,8 @@
   text-align: center;
   pointer-events: none;
   color: #000000;
+  top: 26%;
+  transform: translateY(-50%);
 }
 
 .form-control-eye {
@@ -325,10 +327,15 @@ textarea {
 }
 
 .vid-manage-bg {
-  background-image: linear-gradient(45deg, rgba(83, 174, 244, 0.806), rgb(255, 255, 255), rgba(198, 251, 255, 0.692));
+  background-image: linear-gradient(
+    45deg,
+    rgba(83, 174, 244, 0.806),
+    rgb(255, 255, 255),
+    rgba(198, 251, 255, 0.692)
+  );
 }
 
-select.mySelectArrow{
+select.mySelectArrow {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -345,7 +352,7 @@ select.mySelectArrow option {
   padding: 0 10px;
 }
 .select:after {
-  content: '\25BC';
+  content: "\25BC";
   position: absolute;
   top: 0;
   right: 0;
@@ -367,11 +374,11 @@ select.mySelectArrow option {
   width: 250px;
 }
 
-.border-end{
+.border-end {
   border-right: 2px solid #6c6c6c !important;
 }
 
-#feedback-form-wrapper #floating-icon>button {
+#feedback-form-wrapper #floating-icon > button {
   position: fixed;
   right: 0;
   top: 80%;
@@ -383,16 +390,19 @@ select.mySelectArrow option {
   display: none;
 }
 
-#feedback-form-wrapper .rating-input-wrapper input[type="radio"]~span {
+#feedback-form-wrapper .rating-input-wrapper input[type="radio"] ~ span {
   cursor: pointer;
 }
 
-#feedback-form-wrapper .rating-input-wrapper input[type="radio"]:checked~span {
+#feedback-form-wrapper
+  .rating-input-wrapper
+  input[type="radio"]:checked
+  ~ span {
   background-color: var(--second-color);
   color: #fff;
 }
 
-#feedback-form-wrapper .rating-labels>label {
+#feedback-form-wrapper .rating-labels > label {
   font-size: 14px;
   color: #777;
 }
@@ -427,7 +437,7 @@ select.mySelectArrow option {
   font-weight: 700;
 }
 
-.reset-img{
+.reset-img {
   background-color: #aedff3;
   height: 400px;
   position: relative;
@@ -435,7 +445,7 @@ select.mySelectArrow option {
   border-bottom-right-radius: 50%;
 }
 
-.reset-form h3{
+.reset-form h3 {
   text-transform: uppercase;
   font-size: 42px;
   color: var(--main-color);
@@ -449,29 +459,29 @@ select.mySelectArrow option {
   text-align: justify;
 }
 
-.page-link{
-color: var(--third-color);
-background-color: var(--second-color);
+.page-link {
+  color: var(--third-color);
+  background-color: var(--second-color);
 }
 
-.page-link:hover{
-color: var(--third-color);
-background-color: var(--main-color);
+.page-link:hover {
+  color: var(--third-color);
+  background-color: var(--main-color);
 }
 
-.nav-avatar{
+.nav-avatar {
   color: var(--second-color);
 }
 
-.nav-avatar:hover{
+.nav-avatar:hover {
   color: var(--main-color);
 }
 
-.btn-danger{
+.btn-danger {
   background-color: #ec0000;
 }
 
-.btn-danger:hover{
+.btn-danger:hover {
   background-color: var(--main-color);
 }
 
@@ -483,7 +493,7 @@ background-color: var(--main-color);
 }
 
 .timeline::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 50%;
   top: 0;
@@ -502,7 +512,7 @@ background-color: var(--main-color);
 }
 
 .timeline-element::before {
-  content: '';
+  content: "";
   position: absolute;
   right: -8px;
   top: 1.35rem;
@@ -580,5 +590,3 @@ background-color: var(--main-color);
     border-left: none !important;
   }
 }
-
-

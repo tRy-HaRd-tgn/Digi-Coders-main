@@ -147,7 +147,10 @@ const TrainerLogin = () => {
                       value={Trainerlogin.values.email}
                       onChange={Trainerlogin.handleChange}
                     />
-                    <span className="text-danger">
+                    <span
+                      className="text-danger"
+                      style={{ minHeight: 20, display: "block" }}
+                    >
                       {Trainerlogin.errors.email}
                     </span>
                   </div>
@@ -179,7 +182,10 @@ const TrainerLogin = () => {
                       value={Trainerlogin.values.password}
                       onChange={Trainerlogin.handleChange}
                     />
-                    <span className="text-danger">
+                    <span
+                      className="text-danger"
+                      style={{ minHeight: 20, display: "block" }}
+                    >
                       {Trainerlogin.errors.password}
                     </span>
                   </div>
