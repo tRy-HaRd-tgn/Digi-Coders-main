@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
+import { getAvatarUrl, handleImageError } from "../../utils/avatarHelper";
 import { useTrainerContext } from "../../context/TrainerContext";
 
 const Navbar = () => {
@@ -127,19 +128,12 @@ const Navbar = () => {
             ) : (
               <>
                 <img
-                  src={
-                    currentUser?.avatar
-                      ? `${process.env.REACT_APP_API_URL}/${currentUser.avatar}`
-                      : "https://www.bootdey.com/img/Content/avatar/avatar6.png"
-                  }
+                  src={getAvatarUrl(currentUser?.avatar)}
                   className="rounded-circle"
                   style={{ width: "50px", height: "50px", objectFit: "cover" }}
                   alt="User Avatar"
                   loading="lazy"
-                  onError={(e) => {
-                    e.target.src =
-                      "https://www.bootdey.com/img/Content/avatar/avatar6.png";
-                  }}
+                  onError={(e) => handleImageError(e)}
                 />
                 <div className="dropdown">
                   <NavLink

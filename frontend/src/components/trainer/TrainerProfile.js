@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import app_config from "../../config";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -12,6 +12,18 @@ const TrainerProfile = () => {
   const [currentTrainer, setCurrentTrainer] = useState(
     JSON.parse(sessionStorage.getItem("trainer"))
   );
+
+  // Обновляем тренера при изменении в sessionStorage
+  useEffect(() => {
+    const handleTrainerUpdate = () => {
+      const trainer = JSON.parse(sessionStorage.getItem("trainer"));
+      setCurrentTrainer(trainer);
+    };
+
+    window.addEventListener("trainerUpdated", handleTrainerUpdate);
+    return () =>
+      window.removeEventListener("trainerUpdated", handleTrainerUpdate);
+  }, []);
 
   const inputRef = useRef(null);
   const [image, setImage] = useState("");
@@ -184,7 +196,9 @@ const TrainerProfile = () => {
                           backgroundSize: "cover",
                         }}
                       />
-                    ) : currentTrainer.avatar ? (
+                    ) : currentTrainer?.avatar &&
+                      currentTrainer.avatar !== "undefined" &&
+                      currentTrainer.avatar !== "null" ? (
                       <img
                         src={`${process.env.REACT_APP_API_URL}/${currentTrainer.avatar}`}
                         alt="Admin"

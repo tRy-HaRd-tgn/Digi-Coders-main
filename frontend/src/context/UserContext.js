@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const UserContext = createContext();
@@ -12,6 +12,32 @@ const UserProvider = ({ children }) => {
 
   const navigate = useNavigate();
 
+  // Слушаем изменения в sessionStorage
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const user = JSON.parse(sessionStorage.getItem("user"));
+      setCurrentUser(user);
+      setLoggedIn(user !== null);
+    };
+
+    // Слушаем события изменения storage
+    window.addEventListener("storage", handleStorageChange);
+
+    // Слушаем кастомное событие для обновления контекста
+    const handleUserUpdate = () => {
+      const user = JSON.parse(sessionStorage.getItem("user"));
+      setCurrentUser(user);
+      setLoggedIn(user !== null);
+    };
+
+    window.addEventListener("userUpdated", handleUserUpdate);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("userUpdated", handleUserUpdate);
+    };
+  }, []);
+
   const logout = () => {
     sessionStorage.removeItem("user");
     setCurrentUser(null);
@@ -22,6 +48,8 @@ const UserProvider = ({ children }) => {
   const updateUser = (userData) => {
     setCurrentUser(userData);
     sessionStorage.setItem("user", JSON.stringify(userData));
+    // Отправляем кастомное событие для обновления контекста
+    window.dispatchEvent(new Event("userUpdated"));
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
@@ -18,6 +18,17 @@ const UserProfile = () => {
   // Отладочная информация
   console.log("currentUser from sessionStorage:", currentUser);
   console.log("currentUser.avatar:", currentUser?.avatar);
+
+  // Обновляем пользователя при изменении в sessionStorage
+  useEffect(() => {
+    const handleUserUpdate = () => {
+      const user = JSON.parse(sessionStorage.getItem("user"));
+      setCurrentUser(user);
+    };
+
+    window.addEventListener("userUpdated", handleUserUpdate);
+    return () => window.removeEventListener("userUpdated", handleUserUpdate);
+  }, []);
 
   const inputRef = useRef(null);
   const [image, setImage] = useState("");
@@ -192,7 +203,9 @@ const UserProfile = () => {
                           backgroundSize: "cover",
                         }}
                       />
-                    ) : currentUser.avatar ? (
+                    ) : currentUser?.avatar &&
+                      currentUser.avatar !== "undefined" &&
+                      currentUser.avatar !== "null" ? (
                       <img
                         src={`${process.env.REACT_APP_API_URL}/${currentUser.avatar}`}
                         alt="Admin"

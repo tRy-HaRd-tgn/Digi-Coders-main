@@ -51,7 +51,9 @@ const TrainerLogin = () => {
           const data = await res.json();
           sessionStorage.setItem("trainer", JSON.stringify(data));
           setLoggedIn(true);
-          console.log(data);
+          console.log("Trainer logged in:", data);
+          // Отправляем событие для обновления контекста
+          window.dispatchEvent(new Event("trainerUpdated"));
           navigate("/trainer/managechapter");
         } else {
           const errorData = await res.json();

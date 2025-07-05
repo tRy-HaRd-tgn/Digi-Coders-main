@@ -51,7 +51,9 @@ const StudentLogin = () => {
           const data = await res.json();
           sessionStorage.setItem("user", JSON.stringify(data));
           setLoggedIn(true);
-          console.log(data);
+          console.log("User logged in:", data);
+          // Отправляем событие для обновления контекста
+          window.dispatchEvent(new Event("userUpdated"));
           navigate("/main/course");
         } else {
           const errorData = await res.json();
