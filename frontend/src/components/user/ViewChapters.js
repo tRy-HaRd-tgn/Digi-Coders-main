@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useParams, useLocation } from "react-router-dom";
 
 const BrowseChapters = () => {
   const { chaptername } = useParams();
+  const location = useLocation();
 
   const [chapterList, setChapterList] = useState([]);
   const [masterList, setMasterList] = useState([]);
@@ -14,6 +15,12 @@ const BrowseChapters = () => {
   const trainerList = ["Prince Prajapati", "Mohit Mishra", "Rishabh Agnihotri"];
 
   const categoryList = ["HTML", "JavaScript", "Python"];
+
+  // Получаем параметр category из URL
+  const getCategoryFromURL = () => {
+    const urlParams = new URLSearchParams(location.search);
+    return urlParams.get("category");
+  };
 
   const sortChaptersAtoZ = () => {
     const sortedArray = [...chapterList].sort((a, b) =>
@@ -36,17 +43,28 @@ const BrowseChapters = () => {
     console.log(res.status);
     const data = await res.json();
     console.log(data);
+
+    let filteredData = data;
+
+    // Фильтрация по названию главы (если есть параметр chaptername)
     if (chaptername) {
-      setChapterList(
-        data.filter(
-          (chapter) => chapter.title.toLowerCase() === chaptername.toLowerCase()
-        )
+      filteredData = data.filter(
+        (chapter) => chapter.title.toLowerCase() === chaptername.toLowerCase()
       );
-    } else {
-      setChapterList(data);
     }
+
+    // Фильтрация по категории (если есть параметр category в URL)
+    const categoryFromURL = getCategoryFromURL();
+    if (categoryFromURL) {
+      filteredData = filteredData.filter(
+        (chapter) =>
+          chapter.category.toLowerCase() === categoryFromURL.toLowerCase()
+      );
+    }
+
+    setChapterList(filteredData);
     setMasterList(data);
-  }, [chaptername]);
+  }, [chaptername, location.search]);
 
   const displayChapters = () => {
     return chapterList
@@ -164,7 +182,11 @@ const BrowseChapters = () => {
           >
             <div className="container d-flex align-items-center justify-content-center text-center h-100">
               <div className="page-heading">
-                <h1 className="fw-bold mb-4">Digi Coders</h1>
+                <h1 className="fw-bold mb-4">
+                  {getCategoryFromURL()
+                    ? `${getCategoryFromURL()} Courses`
+                    : "Digi Coders"}
+                </h1>
 
                 <div className="input-group d-flex align-items-center justify-content-center">
                   <div
@@ -204,6 +226,7 @@ const BrowseChapters = () => {
                       <select
                         className="mySelectArrow w-100"
                         onChange={searchChapterByCategory}
+                        value={getCategoryFromURL() || ""}
                       >
                         <option value="">By Category</option>
                         {categoryList.map((category, index) => (

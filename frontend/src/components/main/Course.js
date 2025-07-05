@@ -1,7 +1,13 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Course = () => {
+  const navigate = useNavigate();
+
+  const handleCourseClick = (category) => {
+    navigate(`/user/viewchapters?category=${category}`);
+  };
+
   return (
     <div className="course-container">
       <>
@@ -54,14 +60,14 @@ const Course = () => {
                           className="img-fluid"
                           alt="HTML Course"
                         />
-                        <NavLink to="/user/viewchapters">
-                          <div
-                            className="mask"
-                            style={{
-                              backgroundColor: "rgba(251, 251, 251, 0.15)",
-                            }}
-                          />
-                        </NavLink>
+                        <div
+                          className="mask"
+                          style={{
+                            backgroundColor: "rgba(251, 251, 251, 0.15)",
+                            cursor: "pointer",
+                          }}
+                          onClick={() => handleCourseClick("HTML")}
+                        />
                       </div>
                       <div className="card-body">
                         <h4
@@ -88,12 +94,12 @@ const Course = () => {
                           of html programming and start writing code using
                           blocks.
                         </p>
-                        <NavLink
-                          to="/user/viewchapters"
+                        <button
                           className="btn btn-primary my-3"
+                          onClick={() => handleCourseClick("HTML")}
                         >
                           Learn More
-                        </NavLink>
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -109,14 +115,14 @@ const Course = () => {
                           className="img-fluid"
                           alt="JavaScript Course"
                         />
-                        <NavLink to="/user/viewchapters">
-                          <div
-                            className="mask"
-                            style={{
-                              backgroundColor: "rgba(251, 251, 251, 0.15)",
-                            }}
-                          />
-                        </NavLink>
+                        <div
+                          className="mask"
+                          style={{
+                            backgroundColor: "rgba(251, 251, 251, 0.15)",
+                            cursor: "pointer",
+                          }}
+                          onClick={() => handleCourseClick("JavaScript")}
+                        />
                       </div>
                       <div className="card-body">
                         <h4
@@ -144,12 +150,12 @@ const Course = () => {
                           blocks.
                         </p>
 
-                        <NavLink
-                          to="/user/viewchapters"
+                        <button
                           className="btn btn-primary my-3"
+                          onClick={() => handleCourseClick("JavaScript")}
                         >
                           Learn More
-                        </NavLink>
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -165,14 +171,14 @@ const Course = () => {
                           className="img-fluid"
                           alt="Python Course"
                         />
-                        <NavLink to="/user/viewchapters">
-                          <div
-                            className="mask"
-                            style={{
-                              backgroundColor: "rgba(251, 251, 251, 0.15)",
-                            }}
-                          />
-                        </NavLink>
+                        <div
+                          className="mask"
+                          style={{
+                            backgroundColor: "rgba(251, 251, 251, 0.15)",
+                            cursor: "pointer",
+                          }}
+                          onClick={() => handleCourseClick("Python")}
+                        />
                       </div>
                       <div className="card-body">
                         <h4
@@ -200,12 +206,12 @@ const Course = () => {
                           blocks.
                         </p>
 
-                        <NavLink
-                          to="/user/viewchapters"
+                        <button
                           className="btn btn-primary my-3"
+                          onClick={() => handleCourseClick("Python")}
                         >
                           Learn More
-                        </NavLink>
+                        </button>
                       </div>
                     </div>
                   </div>
