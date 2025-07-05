@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { NavLink, useParams } from "react-router-dom";
-import app_config from "../../config";
 
 const BrowseChapters = () => {
   const { chaptername } = useParams();
 
   const [chapterList, setChapterList] = useState([]);
   const [masterList, setMasterList] = useState([]);
-  const [selCategory, setSelCategory] = useState([]);
-  const [selTrainer, setSelTrainer] = useState([]);
 
   const maxElements = 3;
 
@@ -34,7 +31,7 @@ const BrowseChapters = () => {
     setChapterList(sortedArray);
   };
 
-  const fetchUserData = async () => {
+  const fetchUserData = useCallback(async () => {
     const res = await fetch(`${process.env.REACT_APP_API_URL}/chapter/getall`);
     console.log(res.status);
     const data = await res.json();
@@ -49,7 +46,7 @@ const BrowseChapters = () => {
       setChapterList(data);
     }
     setMasterList(data);
-  };
+  }, [chaptername]);
 
   const displayChapters = () => {
     return chapterList
@@ -115,7 +112,7 @@ const BrowseChapters = () => {
 
   useEffect(() => {
     fetchUserData();
-  }, []);
+  }, [fetchUserData]);
 
   const searchChapterByName = (e) => {
     const val = e.target.value;
@@ -272,9 +269,9 @@ const BrowseChapters = () => {
                       <option value=" ">A to Z</option>
                     </select> */}
 
-                    <div class="select">
+                    <div className="select">
                       <select
-                        class="mySelectArrow"
+                        className="mySelectArrow"
                         onChange={(e) => {
                           if (e.target.value === "A to Z") {
                             sortChaptersAtoZ();
