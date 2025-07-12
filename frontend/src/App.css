@@ -77,6 +77,14 @@
   opacity: 1;
 }
 
+.text-stroke {
+  color: #fff;
+  font-weight: bold;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000,
+    2px 2px 0 #000, 0px 2px 0 #000, 2px 0px 0 #000, 0px -2px 0 #000,
+    -2px 0px 0 #000;
+}
+
 @media (max-width: 1400px) {
   .chapter-card .content {
     width: calc(100% - 280px);

@@ -624,8 +624,7 @@ const Home = () => {
                         <div className="row d-flex justify-content-center align-items-center h-100">
                           <div className="col-lg-10">
                             <div className="content pb-5">
-                              <h1 className="mt-5 mb-6 display-3">
-                                {" "}
+                              <h1 className="mt-5 mb-6 display-3 text-stroke">
                                 <span>
                                   Start your coding journey today and make your
                                   dreams a reality!
