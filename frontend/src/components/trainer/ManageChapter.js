@@ -405,9 +405,38 @@ const ManageChapter = () => {
     <>
       <div
         className="about-section"
-        style={{ backgroundImage: "url(/images/background-img3.webp)" }}
+        style={{
+          backgroundImage: "url(/images/background-img3.webp)",
+          position: "relative",
+        }}
       >
-        <div className="about-content">
+        {/* Блюр-оверлей */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: 1,
+            filter: "blur(4px)",
+            backgroundImage: "inherit",
+            backgroundSize: "cover",
+            backgroundPosition: "50% 65%",
+          }}
+        />
+        {/* Затемнение overlay */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "rgba(30, 40, 60, 0.7)", // было 0.55, стало 0.7
+            zIndex: 2,
+          }}
+        />
+        <div
+          className="about-content"
+          style={{ position: "relative", zIndex: 3 }}
+        >
           <h1 className="about-title">MANAGE CHAPTERS</h1>
         </div>
       </div>
