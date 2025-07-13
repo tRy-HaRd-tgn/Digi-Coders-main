@@ -285,15 +285,17 @@ const ManageChapter = () => {
           <section className="d-md-flex justify-content-end">
             <nav aria-label="...">
               <ul className="pagination mt-3">
-                <li className="page-item me-2">
-                  <a
-                    className="page-link border"
-                    type="button"
-                    onClick={(e) => setCurrentPage(currentPage - 1)}
-                  >
-                    <i className="fas fa-angles-left" /> Previous
-                  </a>
-                </li>
+                {chapterList.length > 0 && (
+                  <li className="page-item me-2">
+                    <a
+                      className="page-link border"
+                      type="button"
+                      onClick={(e) => setCurrentPage(currentPage - 1)}
+                    >
+                      <i className="fas fa-angles-left" /> Previous
+                    </a>
+                  </li>
+                )}
                 {Array(Math.ceil(chapterList.length / itemPerPage))
                   .fill(1)
                   .map((item, index) => (
