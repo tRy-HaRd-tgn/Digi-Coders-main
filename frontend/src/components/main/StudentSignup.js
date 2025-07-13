@@ -379,26 +379,7 @@ const StudentSignup = () => {
                       )}
                     </button>
 
-                    <div>
-                      <div className="mb-4 text-center">
-                        <h6>or sign up with :</h6>
-                      </div>
-                      <div
-                        style={{ width: "100%" }}
-                        role="button"
-                        id="signInDiv"
-                      >
-                        <i
-                          className="fab fa-google"
-                          style={{ marginLeft: "6px" }}
-                        ></i>
-                      </div>
-                      {Object.keys(user).length !== 0 && (
-                        <button onClick={(e) => handleSignOut(e)}>
-                          Signout
-                        </button>
-                      )}
-                    </div>
+                    <div>{/* Социальные кнопки регистрации удалены */}</div>
                   </div>
                 </form>
               </div>

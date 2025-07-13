@@ -323,37 +323,7 @@ const TrainerSignup = () => {
                       )}
                     </button>
 
-                    <div>
-                      <div className="mb-4 text-center">
-                        <h6>or sign up with :</h6>
-                      </div>
-                      <div className="text-center">
-                        <button
-                          type="button"
-                          className="btn btn-primary btn-floating mx-1"
-                        >
-                          <i className="fab fa-facebook-f" />
-                        </button>
-                        <button
-                          type="button"
-                          className="btn btn-primary btn-floating mx-1"
-                        >
-                          <i className="fab fa-google" />
-                        </button>
-                        <button
-                          type="button"
-                          className="btn btn-primary btn-floating mx-1"
-                        >
-                          <i className="fab fa-twitter" />
-                        </button>
-                        <button
-                          type="button"
-                          className="btn btn-primary btn-floating mx-1"
-                        >
-                          <i className="fab fa-github" />
-                        </button>
-                      </div>
-                    </div>
+                    <div>{/* Социальные кнопки регистрации удалены */}</div>
                   </div>
                 </form>
               </div>
