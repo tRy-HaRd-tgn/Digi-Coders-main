@@ -403,30 +403,14 @@ const ManageChapter = () => {
 
   return (
     <>
-      <header>
-        <div
-          id="intro"
-          className="bg-image mb-5"
-          style={{
-            backgroundImage: "url(/images/background-img3.webp)",
-            height: 230,
-            backgroundSize: "cover",
-            backgroundPosition: "50% 65%",
-            position: "relative",
-          }}
-        >
-          <div
-            className="mask text-white"
-            style={{ backgroundColor: "rgba(35, 37, 45, 0.6)" }}
-          >
-            <div className="container d-flex align-items-center justify-content-center h-100">
-              <div className="page-heading">
-                <h1 className="fw-bold mb-3">Manage Chapters</h1>
-              </div>
-            </div>
-          </div>
+      <div
+        className="about-section"
+        style={{ backgroundImage: "url(/images/background-img3.webp)" }}
+      >
+        <div className="about-content">
+          <h1 className="about-title">MANAGE CHAPTERS</h1>
         </div>
-      </header>
+      </div>
 
       <section>
         <div className="container py-5">{displayChapters()}</div>
