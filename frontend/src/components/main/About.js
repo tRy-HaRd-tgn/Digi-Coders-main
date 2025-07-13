@@ -4,39 +4,23 @@ import { NavLink } from "react-router-dom";
 const About = () => {
   return (
     <div>
-      <>
-        <header className="">
-          <div
-            id="intro"
-            className="bg-image"
-            style={{
-              backgroundImage: "url(/images/background-img3.webp)",
-              height: 230,
-              backgroundSize: "cover",
-              backgroundPosition: "50% 65%",
-              position: "relative",
-            }}
-          >
-            <div
-              className="mask text-white"
-              style={{ backgroundColor: "rgba(35, 37, 45, 0.6)" }}
-            >
-              <div className="container d-flex align-items-center text-center h-100">
-                <div className="page-heading">
-                  <h1 className="fw-bold mb-3 about-title">About Us</h1>
-                  <p className="paragraph about-description">
-                    "Welcome to Digi Coders, where we believe that learning to
-                    code should be fun and exciting! Our team of expert
-                    educators and innovative teaching methods ensure that kids
-                    not only gain essential coding skills but also have a blast
-                    while doing it."
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
-      </>
+      {/* Новый современный блок About */}
+      <div
+        className="about-section"
+        style={{
+          backgroundImage: "url(/images/background-img3.webp)",
+        }}
+      >
+        <div className="about-content">
+          <h1 className="about-title">ABOUT US</h1>
+          <p className="about-description">
+            "Welcome to Digi Coders, where we believe that learning to code
+            should be fun and exciting! Our team of expert educators and
+            innovative teaching methods ensure that kids not only gain essential
+            coding skills but also have a blast while doing it."
+          </p>
+        </div>
+      </div>
 
       <>
         <div className="mb-7">
