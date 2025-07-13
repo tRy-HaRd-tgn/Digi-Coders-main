@@ -202,9 +202,7 @@ const ResetPassword = () => {
                       style={{ borderRadius: 25 }}
                     >
                       <div className="card-body">
-                        {/* Grid row */}
                         <div className="row d-flex justify-content-center align-items-center">
-                          {/* Grid column */}
                           <div className="col-md-5 reset-img">
                             <img
                               src="/images/forgot2.png"
@@ -217,8 +215,7 @@ const ResetPassword = () => {
                               }}
                             />
                           </div>
-                          {/* Grid column */}
-                          {/* Grid column */}
+
                           <div className="col-lg-6">
                             <div className="">
                               <div className="mb-4">

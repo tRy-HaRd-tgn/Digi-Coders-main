@@ -7,9 +7,7 @@ import { useTrainerContext } from "../../context/TrainerContext";
 const Navbar = () => {
   const { loggedIn, logout, currentUser } = useUserContext();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  // const tCOn = useTrainerContext();
 
-  // Обработчик для закрытия dropdown при клике вне его
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (!event.target.closest(".dropdown")) {
@@ -30,11 +28,11 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Navbar */}
+   
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        {/* Container wrapper */}
+       
         <div className="container">
-          {/* Navbar brand */}
+       
           <NavLink className="navbar-brand me-2" to="/main/home">
             <img
               src="/logo/logo.png"
@@ -73,7 +71,7 @@ const Navbar = () => {
                 </NavLink>
               </li>
 
-              {/* Navbar dropdown */}
+           
               <li className={`dropdown ${isDropdownOpen ? "show" : ""}`}>
                 <a
                   className="nav-link dropdown-toggle"
@@ -85,7 +83,7 @@ const Navbar = () => {
                 >
                   Courses
                 </a>
-                {/* Dropdown menu */}
+             
                 <ul
                   className={`dropdown-menu ${isDropdownOpen ? "show" : ""}`}
                   aria-labelledby="navbarDropdown"

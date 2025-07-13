@@ -1,10 +1,8 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 
 const About = () => {
   return (
     <div>
-      {/* Новый современный блок About */}
       <div
         className="about-section"
         style={{
@@ -12,7 +10,6 @@ const About = () => {
           position: "relative",
         }}
       >
-        {/* Блюр-оверлей */}
         <div
           style={{
             position: "absolute",
@@ -26,7 +23,7 @@ const About = () => {
             backgroundPosition: "50% 65%",
           }}
         />
-        {/* Затемнение overlay */}
+
         <div
           style={{
             position: "absolute",
@@ -118,7 +115,6 @@ const About = () => {
         </div>
       </>
 
-      {/* Mission Section */}
       <div className="container mb-5">
         <div className="mission-vision-section" style={{ background: "#fff" }}>
           <div className="mission-vision-image">
@@ -139,7 +135,6 @@ const About = () => {
         </div>
       </div>
 
-      {/* Vision Section */}
       <div className="container mb-10">
         <div
           className="mission-vision-section reverse"

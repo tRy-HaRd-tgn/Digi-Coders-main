@@ -1,7 +1,6 @@
 import { useFormik } from "formik";
 import React from "react";
 import Swal from "sweetalert2";
-import app_config from "../../config";
 import "./Contact.css";
 
 const Contact = () => {
@@ -45,7 +44,6 @@ const Contact = () => {
   });
   return (
     <>
-      {/* Новый современный блок Contact Us в стиле About */}
       <div
         className="about-section"
         style={{
@@ -53,7 +51,6 @@ const Contact = () => {
           position: "relative",
         }}
       >
-        {/* Блюр-оверлей */}
         <div
           style={{
             position: "absolute",
@@ -67,7 +64,7 @@ const Contact = () => {
             backgroundPosition: "50% 65%",
           }}
         />
-        {/* Затемнение overlay */}
+
         <div
           style={{
             position: "absolute",
@@ -240,7 +237,7 @@ const Contact = () => {
                             />
                           </div>
                         </div>
-                        {/* Text area fields */}
+
                         <div className="form-group has-icon mb-4">
                           <i className="fas fa-pencil-alt fa-lg form-control-icon" />
                           <div className="flex-fill mb-0">
@@ -274,7 +271,6 @@ const Contact = () => {
           </div>
         </div>
       </section>
-      {/*Contact Us*/}
     </>
   );
 };

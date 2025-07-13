@@ -236,7 +236,6 @@ const Course = () => {
                   </h4>
                 </div>
                 <div className="row text-center gx-lg-5 mb-6">
-                  {/* First column */}
                   <div className="col-lg-4 col-md-12 mb-lg-0 hover-zoom">
                     <div className="card">
                       <div
@@ -377,7 +376,7 @@ const Course = () => {
                         <h6 className="mb-3">
                           Duration : <strong>7 Months</strong>
                         </h6>
-                        {/* Divider here */}
+
                         <hr className="hr hr-blurry" />
 
                         <p className="card-text">
