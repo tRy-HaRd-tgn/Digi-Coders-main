@@ -294,15 +294,18 @@ const BrowseChapters = () => {
         <section className="d-md-flex justify-content-center">
           <nav aria-label="...">
             <ul className="pagination">
-              <li className="page-item">
-                <a
-                  className="page-link border"
-                  type="button"
-                  onClick={(e) => setCurrentPage(currentPage - 1)}
-                >
-                  <i className="fas fa-angles-left" /> Previous
-                </a>
-              </li>
+              {/* Previous button: показывать только если есть курсы и не на первой странице */}
+              {currentPage > 1 && chapterList.length > 0 && (
+                <li className="page-item">
+                  <a
+                    className="page-link border"
+                    type="button"
+                    onClick={(e) => setCurrentPage(currentPage - 1)}
+                  >
+                    <i className="fas fa-angles-left" /> Previous
+                  </a>
+                </li>
+              )}
               {Array(Math.ceil(chapterList.length / maxElements))
                 .fill(1)
                 .map((item, index) => (
@@ -338,16 +341,6 @@ const BrowseChapters = () => {
             </ul>
           </nav>
         </section>
-      </div>
-
-      <div
-        className="text-center text-white p-4"
-        style={{ backgroundColor: "#1b1b1b" }}
-      >
-        © 2023 Copyright :&nbsp;
-        <NavLink className="text-reset fw-bold custom-link-hover" to="#">
-          DigiCoders.com
-        </NavLink>
       </div>
     </div>
   );
