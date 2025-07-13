@@ -3,13 +3,24 @@ import { useFormik } from "formik";
 import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom";
 import app_config from "../../config";
+import * as Yup from "yup";
 
 const Home = () => {
   const [selectedEmoji, setSelectedEmoji] = useState("");
 
   const handleEmojiSelect = (emoji) => {
     setSelectedEmoji(emoji);
+    feedbackForm.setFieldValue("emoji", emoji);
   };
+
+  const feedbackValidationSchema = Yup.object().shape({
+    name: Yup.string().required("Пожалуйста, введите имя"),
+    email: Yup.string()
+      .email("Некорректный email")
+      .required("Пожалуйста, введите email"),
+    emoji: Yup.string().required("Пожалуйста, выберите оценку"),
+    message: Yup.string().required("Пожалуйста, введите сообщение"),
+  });
 
   const feedbackForm = useFormik({
     initialValues: {
@@ -18,6 +29,9 @@ const Home = () => {
       emoji: "",
       message: "",
     },
+    validationSchema: feedbackValidationSchema,
+    validateOnChange: true,
+    validateOnBlur: true,
     onSubmit: async (values, { setSubmitting, resetForm }) => {
       values.emoji = selectedEmoji;
       console.log(values);
@@ -294,7 +308,17 @@ const Home = () => {
                             placeholder="Enter Full Name"
                             value={feedbackForm.values.name}
                             onChange={feedbackForm.handleChange}
+                            onBlur={feedbackForm.handleBlur}
                           />
+                          {feedbackForm.touched.name &&
+                            feedbackForm.errors.name && (
+                              <div
+                                className="text-danger"
+                                style={{ fontSize: "0.9em" }}
+                              >
+                                {feedbackForm.errors.name}
+                              </div>
+                            )}
                         </div>
                         <div className="form-group has-icon mb-4">
                           <i className="fas fa-envelope fa-lg form-control-icon" />
@@ -306,7 +330,17 @@ const Home = () => {
                             placeholder="Enter Email Address"
                             value={feedbackForm.values.email}
                             onChange={feedbackForm.handleChange}
+                            onBlur={feedbackForm.handleBlur}
                           />
+                          {feedbackForm.touched.email &&
+                            feedbackForm.errors.email && (
+                              <div
+                                className="text-danger"
+                                style={{ fontSize: "0.9em" }}
+                              >
+                                {feedbackForm.errors.email}
+                              </div>
+                            )}
                         </div>
                         <div className="d-flex flex-row justify-content-center mb-4">
                           <div className="item">
@@ -380,6 +414,15 @@ const Home = () => {
                             </label>
                           </div>
                         </div>
+                        {feedbackForm.touched.emoji &&
+                          feedbackForm.errors.emoji && (
+                            <div
+                              className="text-danger text-center mb-2"
+                              style={{ fontSize: "0.9em" }}
+                            >
+                              {feedbackForm.errors.emoji}
+                            </div>
+                          )}
                         <div className="form-group has-icon mb-5">
                           <i className="fas fa-pencil-alt fa-lg form-control-icon" />
 
@@ -391,12 +434,25 @@ const Home = () => {
                             name="message"
                             value={feedbackForm.values.message}
                             onChange={feedbackForm.handleChange}
+                            onBlur={feedbackForm.handleBlur}
                           ></textarea>
+                          {feedbackForm.touched.message &&
+                            feedbackForm.errors.message && (
+                              <div
+                                className="text-danger"
+                                style={{ fontSize: "0.9em" }}
+                              >
+                                {feedbackForm.errors.message}
+                              </div>
+                            )}
                         </div>
                         <button
                           className="btn btn-primary btn-block"
                           type="submit"
                           style={{ borderRadius: "10px", marginLeft: "0px" }}
+                          disabled={
+                            feedbackForm.isSubmitting || !feedbackForm.isValid
+                          }
                         >
                           Send Your Feedback &nbsp;
                           <i className="far fa-paper-plane" />
