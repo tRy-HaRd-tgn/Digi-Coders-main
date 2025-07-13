@@ -49,7 +49,7 @@ export const Footer = () => {
 
         <section className="">
           <div className="container text-center text-md-start mt-5">
-            <div className="row mt-3">
+            <div className="row mt-3 test">
               <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                 <a className="navbar-brand me-2" href="#">
                   <img

@@ -603,3 +603,8 @@ select.mySelectArrow option {
     border-left: none !important;
   }
 }
+@media (max-width: 1000px) {
+  .mask {
+    position: relative !important;
+  }
+}

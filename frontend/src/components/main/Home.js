@@ -771,7 +771,8 @@ const Home = () => {
               backgroundImage: 'url("/images/background-img2.jpeg")',
               backgroundAttachment: "fixed",
               position: "relative",
-              height: 750,
+              minHeight: 750,
+              height: "auto",
               backgroundSize: "cover",
               backgroundPosition: "50% 50%",
             }}

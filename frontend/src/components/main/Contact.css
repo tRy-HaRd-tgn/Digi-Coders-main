@@ -1,3 +1,37 @@
 .form-control-iconB {
   transform: translateY(230%) translateX(15px) !important;
 }
+
+.about-title,
+.about-description {
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.mission-title {
+  color: #000;
+  text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff,
+    2px 2px 0 #fff, 0px 2px 0 #fff, 2px 0px 0 #fff, 0px -2px 0 #fff,
+    -2px 0px 0 #fff;
+}
+
+.mission-text {
+  color: #222;
+  text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff,
+    2px 2px 0 #fff, 0px 2px 0 #fff, 2px 0px 0 #fff, 0px -2px 0 #fff,
+    -2px 0px 0 #fff;
+}
+
+.vision-title {
+  color: #000;
+  text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff,
+    2px 2px 0 #fff, 0px 2px 0 #fff, 2px 0px 0 #fff, 0px -2px 0 #fff,
+    -2px 0px 0 #fff;
+}
+
+.vision-text {
+  color: #222;
+  text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff,
+    2px 2px 0 #fff, 0px 2px 0 #fff, 2px 0px 0 #fff, 0px -2px 0 #fff,
+    -2px 0px 0 #fff;
+}

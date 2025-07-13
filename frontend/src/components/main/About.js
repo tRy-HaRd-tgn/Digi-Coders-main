@@ -23,8 +23,8 @@ const About = () => {
             >
               <div className="container d-flex align-items-center text-center h-100">
                 <div className="page-heading">
-                  <h1 className="fw-bold mb-3">About Us</h1>
-                  <p className="paragraph">
+                  <h1 className="fw-bold mb-3 about-title">About Us</h1>
+                  <p className="paragraph about-description">
                     "Welcome to Digi Coders, where we believe that learning to
                     code should be fun and exciting! Our team of expert
                     educators and innovative teaching methods ensure that kids
@@ -120,11 +120,11 @@ const About = () => {
         >
           <div className="row">
             <div className="heading col-md-4 offset-md-7">
-              <h2 className="text-center fw-bold my-3">
+              <h2 className="text-center fw-bold my-3 mission-title">
                 <strong>Our Mission</strong>
               </h2>
               <div className="content">
-                <p className="text-center align-items-justify mb-4">
+                <p className="text-center align-items-justify mb-4 mission-text">
                   Our mission is to provide quality education in the field of
                   digital technology. We aim to equip our students with the
                   necessary skills and knowledge to succeed in the digital
@@ -150,11 +150,11 @@ const About = () => {
         >
           <div className="row">
             <div className="heading col-md-4 offset-md-1">
-              <h2 className="text-center fw-bold my-3">
+              <h2 className="text-center fw-bold my-3 vision-title">
                 <strong>Our Vision</strong>
               </h2>
               <div className="content">
-                <p className="text-center align-items-justify mb-4">
+                <p className="text-center align-items-justify mb-4 vision-text">
                   Our vision is to create a world where everyone has equal
                   access to high-quality education and technology. We strive to
                   empower individuals with digital skills and knowledge to
