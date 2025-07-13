@@ -145,6 +145,14 @@ const Navbar = () => {
               </>
             ) : (
               <>
+                <div className="d-flex align-items-center me-3">
+                  <span
+                    className="text-dark fw-bold me-2"
+                    style={{ fontSize: "16px" }}
+                  >
+                    {currentUser?.name || "Пользователь"}
+                  </span>
+                </div>
                 <img
                   src={getAvatarUrl(currentUser?.avatar)}
                   className="rounded-circle"

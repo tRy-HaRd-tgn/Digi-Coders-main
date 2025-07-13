@@ -76,6 +76,14 @@ const Navbar = () => {
               </>
             ) : (
               <>
+                <div className="d-flex align-items-center me-3">
+                  <span
+                    className="text-dark fw-bold me-2"
+                    style={{ fontSize: "16px" }}
+                  >
+                    {currentUser?.name || "Тренер"}
+                  </span>
+                </div>
                 <img
                   src={getAvatarUrl(
                     currentUser?.avatar,
@@ -101,10 +109,9 @@ const Navbar = () => {
                     data-mdb-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <NavLink className="nav-avatar align-items-center ms-2">
-                      {currentUser.name}
+                    <span className="nav-avatar align-items-center ms-2">
                       <i className="fas fa-caret-down ms-2" />
-                    </NavLink>
+                    </span>
                   </NavLink>
                   <ul
                     className="dropdown-menu dropdown-menu-end"
