@@ -7,6 +7,9 @@ const BrowseChapters = () => {
 
   const [chapterList, setChapterList] = useState([]);
   const [masterList, setMasterList] = useState([]);
+  const [searchValue, setSearchValue] = useState(""); // Добавляем состояние для input
+  const [selectedCategory, setSelectedCategory] = useState(""); // Добавляем состояние для категории
+  const [selectedTrainer, setSelectedTrainer] = useState(""); // Добавляем состояние для тренера
 
   const maxElements = 3;
 
@@ -60,6 +63,7 @@ const BrowseChapters = () => {
         (chapter) =>
           chapter.category.toLowerCase() === categoryFromURL.toLowerCase()
       );
+      setSelectedCategory(categoryFromURL); // Устанавливаем выбранную категорию
     }
 
     setChapterList(filteredData);
@@ -139,27 +143,104 @@ const BrowseChapters = () => {
 
   const searchChapterByName = (e) => {
     const val = e.target.value;
-    setChapterList(
-      masterList.filter((chapter) =>
+    setSearchValue(val); // Обновляем состояние input
+
+    // Применяем все фильтры
+    let filteredData = masterList;
+
+    // Фильтр по названию
+    if (val) {
+      filteredData = filteredData.filter((chapter) =>
         chapter.title.toLowerCase().includes(val.toLowerCase())
-      )
-    );
+      );
+    }
+
+    // Фильтр по категории
+    if (selectedCategory) {
+      filteredData = filteredData.filter(
+        (chapter) =>
+          chapter.category.toLowerCase() === selectedCategory.toLowerCase()
+      );
+    }
+
+    // Фильтр по тренеру
+    if (selectedTrainer) {
+      filteredData = filteredData.filter((chapter) =>
+        chapter.trainer.name
+          .toLowerCase()
+          .includes(selectedTrainer.toLowerCase())
+      );
+    }
+
+    setChapterList(filteredData);
+    setCurrentPage(1); // Сбрасываем страницу при изменении фильтров
   };
+
   const searchChapterByTrainer = (e) => {
     const val = e.target.value;
-    setChapterList(
-      masterList.filter((chapter) =>
+    setSelectedTrainer(val); // Обновляем состояние тренера
+
+    // Применяем все фильтры
+    let filteredData = masterList;
+
+    // Фильтр по названию
+    if (searchValue) {
+      filteredData = filteredData.filter((chapter) =>
+        chapter.title.toLowerCase().includes(searchValue.toLowerCase())
+      );
+    }
+
+    // Фильтр по категории
+    if (selectedCategory) {
+      filteredData = filteredData.filter(
+        (chapter) =>
+          chapter.category.toLowerCase() === selectedCategory.toLowerCase()
+      );
+    }
+
+    // Фильтр по тренеру
+    if (val) {
+      filteredData = filteredData.filter((chapter) =>
         chapter.trainer.name.toLowerCase().includes(val.toLowerCase())
-      )
-    );
+      );
+    }
+
+    setChapterList(filteredData);
+    setCurrentPage(1); // Сбрасываем страницу при изменении фильтров
   };
+
   const searchChapterByCategory = (e) => {
     const val = e.target.value;
-    setChapterList(
-      masterList.filter((chapter) =>
-        chapter.category.toLowerCase().includes(val.toLowerCase())
-      )
-    );
+    setSelectedCategory(val); // Обновляем состояние категории
+
+    // Применяем все фильтры
+    let filteredData = masterList;
+
+    // Фильтр по названию
+    if (searchValue) {
+      filteredData = filteredData.filter((chapter) =>
+        chapter.title.toLowerCase().includes(searchValue.toLowerCase())
+      );
+    }
+
+    // Фильтр по категории
+    if (val) {
+      filteredData = filteredData.filter(
+        (chapter) => chapter.category.toLowerCase() === val.toLowerCase()
+      );
+    }
+
+    // Фильтр по тренеру
+    if (selectedTrainer) {
+      filteredData = filteredData.filter((chapter) =>
+        chapter.trainer.name
+          .toLowerCase()
+          .includes(selectedTrainer.toLowerCase())
+      );
+    }
+
+    setChapterList(filteredData);
+    setCurrentPage(1); // Сбрасываем страницу при изменении фильтров
   };
 
   return (
@@ -200,6 +281,7 @@ const BrowseChapters = () => {
                       name="search"
                       className="form-control form-control-lg"
                       placeholder="Search"
+                      value={searchValue} // Добавляем value для контролируемого input
                       onChange={searchChapterByName}
                       style={{
                         backgroundColor: "#f4f4f4",
@@ -226,7 +308,7 @@ const BrowseChapters = () => {
                       <select
                         className="mySelectArrow w-100"
                         onChange={searchChapterByCategory}
-                        value={getCategoryFromURL() || ""}
+                        value={selectedCategory} // Используем состояние вместо getCategoryFromURL()
                       >
                         <option value="">By Category</option>
                         {categoryList.map((category, index) => (
@@ -244,7 +326,8 @@ const BrowseChapters = () => {
                     <div className="select w-100" style={{ maxWidth: "200px" }}>
                       <select
                         className="mySelectArrow w-100"
-                        onChange={searchChapterByName}
+                        onChange={searchChapterByTrainer} // Исправляем функцию
+                        value={selectedTrainer} // Добавляем value
                       >
                         <option value="">By Name</option>
                         {trainerList.map((trainer, index) => (

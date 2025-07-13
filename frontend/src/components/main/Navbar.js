@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
 import { getAvatarUrl, handleImageError } from "../../utils/avatarHelper";
@@ -6,7 +6,27 @@ import { useTrainerContext } from "../../context/TrainerContext";
 
 const Navbar = () => {
   const { loggedIn, logout, currentUser } = useUserContext();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   // const tCOn = useTrainerContext();
+
+  // Обработчик для закрытия dropdown при клике вне его
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest(".dropdown")) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  const toggleDropdown = (e) => {
+    e.preventDefault();
+    setIsDropdownOpen(!isDropdownOpen);
+  };
 
   return (
     <>
@@ -54,22 +74,27 @@ const Navbar = () => {
               </li>
 
               {/* Navbar dropdown */}
-              <li className="dropdown">
-                <NavLink
-                  className="nav-link dropdown"
-                  to="/main/course"
+              <li className={`dropdown ${isDropdownOpen ? "show" : ""}`}>
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
                   id="navbarDropdown"
                   role="button"
-                  aria-expanded="false"
+                  aria-expanded={isDropdownOpen}
+                  onClick={toggleDropdown}
                 >
                   Courses
-                </NavLink>
+                </a>
                 {/* Dropdown menu */}
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <ul
+                  className={`dropdown-menu ${isDropdownOpen ? "show" : ""}`}
+                  aria-labelledby="navbarDropdown"
+                >
                   <li>
                     <NavLink
                       className="dropdown-item"
                       to="/user/viewchapters?category=HTML"
+                      onClick={() => setIsDropdownOpen(false)}
                     >
                       HTML
                     </NavLink>
@@ -78,6 +103,7 @@ const Navbar = () => {
                     <NavLink
                       className="dropdown-item"
                       to="/user/viewchapters?category=JavaScript"
+                      onClick={() => setIsDropdownOpen(false)}
                     >
                       JavaScript
                     </NavLink>
@@ -86,6 +112,7 @@ const Navbar = () => {
                     <NavLink
                       className="dropdown-item"
                       to="/user/viewchapters?category=Python"
+                      onClick={() => setIsDropdownOpen(false)}
                     >
                       Python
                     </NavLink>
@@ -94,6 +121,7 @@ const Navbar = () => {
                     <NavLink
                       className="dropdown-item"
                       to="/user/viewchapters?category=Game Development"
+                      onClick={() => setIsDropdownOpen(false)}
                     >
                       Game Development
                     </NavLink>
@@ -102,6 +130,7 @@ const Navbar = () => {
                     <NavLink
                       className="dropdown-item"
                       to="/user/viewchapters?category=Web Development"
+                      onClick={() => setIsDropdownOpen(false)}
                     >
                       Web Development
                     </NavLink>
@@ -110,6 +139,7 @@ const Navbar = () => {
                     <NavLink
                       className="dropdown-item"
                       to="/user/viewchapters?category=Roblox"
+                      onClick={() => setIsDropdownOpen(false)}
                     >
                       Roblox
                     </NavLink>
