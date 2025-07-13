@@ -1,16 +1,18 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-import Navbar from './Navbar'
-import { Footer } from '../main/Footer'
+import React from "react";
+import { Outlet } from "react-router-dom";
+import Navbar from "./Navbar";
+import { Footer } from "../main/Footer";
 
 const Trainer = () => {
   return (
-    <div>
+    <div className="main-layout">
       <Navbar />
-      <Outlet />
+      <main className="main-content">
+        <Outlet />
+      </main>
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Trainer
+export default Trainer;

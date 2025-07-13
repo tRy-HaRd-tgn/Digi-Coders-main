@@ -7,6 +7,7 @@ import { useTrainerContext } from "../../context/TrainerContext";
 
 const TrainerProfile = () => {
   const [selImage, setSelImage] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
   const { updateUser } = useTrainerContext();
 
   const [currentTrainer, setCurrentTrainer] = useState(
@@ -25,6 +26,23 @@ const TrainerProfile = () => {
       window.removeEventListener("trainerUpdated", handleTrainerUpdate);
   }, []);
 
+  useEffect(() => {
+    const fetchTrainer = async () => {
+      if (currentTrainer?._id) {
+        const res = await fetch(
+          `${app_config.apiUrl}/trainer/${currentTrainer._id}`
+        );
+        if (res.ok) {
+          const freshTrainer = await res.json();
+          setCurrentTrainer(freshTrainer);
+          sessionStorage.setItem("trainer", JSON.stringify(freshTrainer));
+        }
+      }
+    };
+    fetchTrainer();
+    // eslint-disable-next-line
+  }, []);
+
   const inputRef = useRef(null);
   const [image, setImage] = useState("");
 
@@ -34,8 +52,11 @@ const TrainerProfile = () => {
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
-    console.log(file);
-    setImage(event.target.files[0]);
+    if (file) {
+      console.log(file);
+      setImage(file);
+      setSelImage(file);
+    }
   };
 
   const trainersignupSchema = Yup.object().shape({
@@ -55,42 +76,74 @@ const TrainerProfile = () => {
       certifications: "",
     },
     onSubmit: async (values, { setSubmitting }) => {
-      console.log(values);
-      const res = await fetch(
-        `${process.env.REACT_APP_API_URL}/trainer/update/` + currentTrainer._id,
-        {
-          method: "PUT",
-          body: JSON.stringify(values),
-          headers: {
-            "Content-Type": "application/json",
-          },
+      try {
+        console.log(values);
+        const res = await fetch(
+          `${app_config.apiUrl}/trainer/update/` + currentTrainer._id,
+          {
+            method: "PUT",
+            body: JSON.stringify(values),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        console.log(res.status);
+
+        if (res.status === 200) {
+          const data = await res.json();
+          console.log(data);
+          updateUser(data); // Обновляем тренера в контексте
+          setCurrentTrainer(data);
+          sessionStorage.setItem("trainer", JSON.stringify(data)); // Обновляем sessionStorage
+          window.dispatchEvent(new Event("trainerUpdated"));
+
+          Swal.fire({
+            icon: "success",
+            title: "Отлично!",
+            text: "Профиль успешно обновлен",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        } else {
+          const errorData = await res.json();
+          Swal.fire({
+            icon: "error",
+            title: "Ошибка!",
+            text: errorData.message || "Не удалось обновить профиль",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
-      );
-      console.log(res.status);
-      if (res.status === 200) {
-        const data = await res.json();
-        console.log(data);
-        updateUser(data); // Обновляем тренера в контексте
-        setCurrentTrainer(data);
-        Swal.fire({
-          icon: "success",
-          title: "Well Done!!",
-          text: "Profile Updated Successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      } else {
+      } catch (error) {
+        console.error("Update error:", error);
         Swal.fire({
           icon: "error",
-          title: "OOPS!",
-          text: "Profile Not Updated",
+          title: "Ошибка!",
+          text: "Произошла ошибка при обновлении профиля",
           showConfirmButton: false,
           timer: 1500,
         });
+      } finally {
+        setSubmitting(false);
       }
     },
     validationSchema: trainersignupSchema,
   });
+
+  useEffect(() => {
+    // Если есть актуальные данные тренера, заполняем форму
+    if (currentTrainer) {
+      trainerProfileForm.setValues({
+        name: currentTrainer.name || "",
+        email: currentTrainer.email || "",
+        mobile_no: currentTrainer.mobile_no || "",
+        skills: currentTrainer.skills || "",
+        certifications: currentTrainer.certifications || "",
+      });
+    }
+    // eslint-disable-next-line
+  }, [currentTrainer]);
 
   const uploadFile = async () => {
     if (!selImage) {
@@ -104,17 +157,15 @@ const TrainerProfile = () => {
       return;
     }
 
+    setIsUploading(true);
     const fd = new FormData();
     fd.append("myfile", selImage);
 
     try {
-      const res = await fetch(
-        `${process.env.REACT_APP_API_URL}/util/uploadfile`,
-        {
-          method: "POST",
-          body: fd,
-        }
-      );
+      const res = await fetch(`${app_config.apiUrl}/util/uploadfile`, {
+        method: "POST",
+        body: fd,
+      });
 
       if (res.status === 200) {
         const data = await res.json();
@@ -122,7 +173,7 @@ const TrainerProfile = () => {
 
         // Обновляем профиль тренера с новым изображением
         const updateRes = await fetch(
-          `${process.env.REACT_APP_API_URL}/trainer/update/${currentTrainer._id}`,
+          `${app_config.apiUrl}/trainer/update/${currentTrainer._id}`,
           {
             method: "PUT",
             body: JSON.stringify({
@@ -144,6 +195,7 @@ const TrainerProfile = () => {
           console.log("updatedTrainer from server:", updatedTrainer);
           updateUser(updatedTrainer); // Обновляем тренера в контексте
           setCurrentTrainer(updatedTrainer);
+          sessionStorage.setItem("trainer", JSON.stringify(updatedTrainer)); // Обновляем sessionStorage
           setImage(""); // Очищаем состояние image
           setSelImage(null); // Очищаем выбранное изображение
 
@@ -169,6 +221,8 @@ const TrainerProfile = () => {
         showConfirmButton: false,
         timer: 2000,
       });
+    } finally {
+      setIsUploading(false);
     }
   };
 
@@ -200,7 +254,7 @@ const TrainerProfile = () => {
                       currentTrainer.avatar !== "undefined" &&
                       currentTrainer.avatar !== "null" ? (
                       <img
-                        src={`${process.env.REACT_APP_API_URL}/${currentTrainer.avatar}`}
+                        src={`${app_config.apiUrl}/${currentTrainer.avatar}`}
                         alt="Admin"
                         className="img-fluid rounded-circle p-1 bg-primary"
                         style={{
@@ -248,8 +302,23 @@ const TrainerProfile = () => {
                       }}
                     />
                   </div>
-                  <button className="btn btn-primary mt-3" onClick={uploadFile}>
-                    Upload Image
+                  <button
+                    className="btn btn-primary mt-3"
+                    onClick={uploadFile}
+                    disabled={isUploading}
+                  >
+                    {isUploading ? (
+                      <>
+                        <span
+                          className="spinner-border spinner-border-sm me-2"
+                          role="status"
+                          aria-hidden="true"
+                        ></span>
+                        Загрузка...
+                      </>
+                    ) : (
+                      "Upload Image"
+                    )}
                   </button>
                 </div>
                 <hr className="my-3" />
@@ -269,7 +338,7 @@ const TrainerProfile = () => {
                   <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 className="mb-0">Mobile No.</h6>
                     <span className="text-secondary">
-                      +91 {currentTrainer.mobile_no}
+                      {currentTrainer.mobile_no}
                     </span>
                   </li>
                   <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
@@ -391,10 +460,24 @@ const TrainerProfile = () => {
                     <button
                       className="btn btn-primary btn-block"
                       type="submit"
+                      disabled={trainerProfileForm.isSubmitting}
                       style={{ borderRadius: "10px", marginLeft: "0px" }}
                     >
-                      Update &nbsp;
-                      <i className="fas fa-arrow-right-to-bracket" />
+                      {trainerProfileForm.isSubmitting ? (
+                        <>
+                          <span
+                            className="spinner-border spinner-border-sm me-2"
+                            role="status"
+                            aria-hidden="true"
+                          ></span>
+                          Обновление...
+                        </>
+                      ) : (
+                        <>
+                          Update &nbsp;
+                          <i className="fas fa-arrow-right-to-bracket" />
+                        </>
+                      )}
                     </button>
                   </div>
                 </form>

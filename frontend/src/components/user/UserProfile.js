@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
 import "./UserProfile.css";
+import app_config from "../../config";
 
 const UserProfile = () => {
   const [selImage, setSelImage] = useState(null);
@@ -47,7 +48,7 @@ const UserProfile = () => {
   const usersignupSchema = Yup.object().shape({
     name: Yup.string().required("Name is Required"),
     email: Yup.string().email("Invalid email").required("Email is Required"),
-    phone: Yup.string().required("Phone Number is Required"),
+    mobile_no: Yup.string().required("Phone Number is Required"),
   });
 
   const userProfileForm = useFormik({
@@ -57,39 +58,56 @@ const UserProfile = () => {
       mobile_no: currentUser?.mobile_no || "",
     },
     onSubmit: async (values, { setSubmitting }) => {
-      console.log(values);
-      const res = await fetch(
-        `${process.env.REACT_APP_API_URL}/user/update/${currentUser._id}`,
-        {
-          method: "PUT",
-          body: JSON.stringify(values),
-          headers: {
-            "Content-Type": "application/json",
-          },
+      try {
+        console.log(values);
+        const res = await fetch(
+          `${app_config.apiUrl}/user/update/${currentUser._id}`,
+          {
+            method: "PUT",
+            body: JSON.stringify(values),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        console.log(res.status);
+
+        if (res.status === 200) {
+          const data = await res.json();
+          console.log(data);
+          updateUser(data);
+          setCurrentUser(data);
+          sessionStorage.setItem("user", JSON.stringify(data));
+          window.dispatchEvent(new Event("userUpdated"));
+
+          Swal.fire({
+            icon: "success",
+            title: "Отлично!",
+            text: "Профиль успешно обновлен",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        } else {
+          const errorData = await res.json();
+          Swal.fire({
+            icon: "error",
+            title: "Ошибка!",
+            text: errorData.message || "Не удалось обновить профиль",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
-      );
-      console.log(res.status);
-      setSubmitting(false);
-      if (res.status === 200) {
-        const data = await res.json();
-        console.log(data);
-        updateUser(data);
-        setCurrentUser(data);
-        Swal.fire({
-          icon: "success",
-          title: "Well Done!!",
-          text: "Profile Updated successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      } else {
+      } catch (error) {
+        console.error("Update error:", error);
         Swal.fire({
           icon: "error",
-          title: "OOPS!",
-          text: "Profile Not Updated",
+          title: "Ошибка!",
+          text: "Произошла ошибка при обновлении профиля",
           showConfirmButton: false,
           timer: 1500,
         });
+      } finally {
+        setSubmitting(false);
       }
     },
     validationSchema: usersignupSchema,
@@ -112,13 +130,10 @@ const UserProfile = () => {
     fd.append("myfile", selImage);
 
     try {
-      const res = await fetch(
-        `${process.env.REACT_APP_API_URL}/util/uploadfile`,
-        {
-          method: "POST",
-          body: fd,
-        }
-      );
+      const res = await fetch(`${app_config.apiUrl}/util/uploadfile`, {
+        method: "POST",
+        body: fd,
+      });
 
       if (res.status === 200) {
         const data = await res.json();
@@ -126,7 +141,7 @@ const UserProfile = () => {
         console.log("currentUser before update:", currentUser);
 
         const updateRes = await fetch(
-          `${process.env.REACT_APP_API_URL}/user/update/${currentUser._id}`,
+          `${app_config.apiUrl}/user/update/${currentUser._id}`,
           {
             method: "PUT",
             body: JSON.stringify({
@@ -146,6 +161,7 @@ const UserProfile = () => {
           console.log("updatedUser from server:", updatedUser);
           updateUser(updatedUser);
           setCurrentUser(updatedUser);
+          sessionStorage.setItem("user", JSON.stringify(updatedUser));
           setImage("");
           setSelImage(null);
 
@@ -204,7 +220,7 @@ const UserProfile = () => {
                       currentUser.avatar !== "undefined" &&
                       currentUser.avatar !== "null" ? (
                       <img
-                        src={`${process.env.REACT_APP_API_URL}/${currentUser.avatar}`}
+                        src={`${app_config.apiUrl}/${currentUser.avatar}`}
                         alt="Admin"
                         className="img-fluid rounded-circle p-1 bg-primary"
                         style={{
@@ -252,8 +268,23 @@ const UserProfile = () => {
                       }}
                     />
                   </div>
-                  <button className="btn btn-primary my-4" onClick={uploadFile}>
-                    Upload Image
+                  <button
+                    className="btn btn-primary my-4"
+                    onClick={uploadFile}
+                    disabled={isUploading}
+                  >
+                    {isUploading ? (
+                      <>
+                        <span
+                          className="spinner-border spinner-border-sm me-2"
+                          role="status"
+                          aria-hidden="true"
+                        ></span>
+                        Загрузка...
+                      </>
+                    ) : (
+                      "Upload Image"
+                    )}
                   </button>
                 </div>
 
@@ -348,10 +379,24 @@ const UserProfile = () => {
                     <button
                       className="btn btn-primary btn-block mb-2"
                       type="submit"
+                      disabled={userProfileForm.isSubmitting}
                       style={{ borderRadius: "10px", marginLeft: "0px" }}
                     >
-                      Update &nbsp;
-                      <i className="fas fa-arrow-right-to-bracket" />
+                      {userProfileForm.isSubmitting ? (
+                        <>
+                          <span
+                            className="spinner-border spinner-border-sm me-2"
+                            role="status"
+                            aria-hidden="true"
+                          ></span>
+                          Обновление...
+                        </>
+                      ) : (
+                        <>
+                          Update &nbsp;
+                          <i className="fas fa-arrow-right-to-bracket" />
+                        </>
+                      )}
                     </button>
                   </div>
                 </form>

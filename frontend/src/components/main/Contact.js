@@ -112,7 +112,7 @@ const Contact = () => {
                         <div className="d-flex flex-row align-items-center mb-4">
                           <i className="form-icon fas fa-phone me-3 mb-4 fa-2x" />
                           <div className="flex-fill">
-                            <p>+91 9260964544</p>
+                            <p>9260964544</p>
                           </div>
                         </div>
                         <div className="d-flex flex-row align-items-center mb-8">

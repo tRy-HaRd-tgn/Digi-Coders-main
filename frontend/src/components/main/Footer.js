@@ -152,11 +152,11 @@ export const Footer = () => {
                 </p>
                 <p>
                   <i className="footer-icon fas fa-phone me-3" />
-                  +91 9260964544
+                  9260964544
                 </p>
                 <p>
                   <i className="footer-icon fas fa-print me-3" />
-                  +91 8948911871
+                  8948911871
                 </p>
               </div>
             </div>
