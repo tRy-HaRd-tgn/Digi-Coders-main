@@ -85,6 +85,101 @@
     -2px 0px 0 #000;
 }
 
+/* Mission & Vision Responsive Styles */
+.mission-vision-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  min-height: 350px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 24px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  margin-bottom: 40px;
+  overflow: hidden;
+}
+.mission-vision-section.reverse {
+  flex-direction: row-reverse;
+}
+.mission-vision-image {
+  flex: 1 1 60%;
+  min-width: 260px;
+  max-width: 60%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 24px 24px 32px;
+}
+.mission-vision-image img {
+  width: 100%;
+  height: 220px;
+  max-height: 320px;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+}
+.mission-vision-content {
+  flex: 1 1 60%;
+  padding: 32px 24px;
+  color: #222;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  margin: 24px 0;
+}
+.mission-vision-content h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.mission-vision-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+@media (max-width: 900px) {
+  .mission-vision-section {
+    flex-direction: column;
+    min-height: unset;
+    gap: 0;
+  }
+  .mission-vision-section.reverse {
+    flex-direction: column;
+  }
+  .mission-vision-image,
+  .mission-vision-content {
+    max-width: 100%;
+    width: 100%;
+    border-radius: 0;
+    margin: 0;
+    padding: 16px 4px;
+  }
+  .mission-vision-image img {
+    height: 180px;
+    max-height: 220px;
+  }
+  .mission-vision-content {
+    box-shadow: none;
+    background: rgba(255, 255, 255, 0.95);
+  }
+}
+@media (max-width: 600px) {
+  .mission-vision-content h2 {
+    font-size: 1.3rem;
+  }
+  .mission-vision-content p {
+    font-size: 0.98rem;
+  }
+  .mission-vision-content {
+    padding: 12px 4px;
+  }
+  .mission-vision-image img {
+    height: 120px;
+    max-height: 150px;
+  }
+}
+
 @media (max-width: 1400px) {
   .chapter-card .content {
     width: calc(100% - 280px);

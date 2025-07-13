@@ -107,65 +107,50 @@ const About = () => {
         </div>
       </>
 
+      {/* Mission Section */}
       <div className="container mb-5">
-        <section
-          className="text-center rounded-7 shadow-4-strong"
-          style={{
-            backgroundImage: "url(/images/background-img4.jpg)",
-            height: 350,
-            backgroundSize: "cover",
-            backgroundPosition: "50% 50%",
-            position: "relative",
-          }}
-        >
-          <div className="row">
-            <div className="heading col-md-4 offset-md-7">
-              <h2 className="text-center fw-bold my-3 mission-title">
-                <strong>Our Mission</strong>
-              </h2>
-              <div className="content">
-                <p className="text-center align-items-justify mb-4 mission-text">
-                  Our mission is to provide quality education in the field of
-                  digital technology. We aim to equip our students with the
-                  necessary skills and knowledge to succeed in the digital
-                  world. We strive to create a learning environment that fosters
-                  creativity, innovation, and collaboration.
-                </p>
-              </div>
-            </div>
+        <div className="mission-vision-section" style={{ background: "#fff" }}>
+          <div className="mission-vision-image">
+            <img src="/images/background-img4.jpg" alt="Mission" />
           </div>
-        </section>
+          <div className="mission-vision-content">
+            <h2>
+              <strong>OUR MISSION</strong>
+            </h2>
+            <p>
+              Our mission is to provide quality education in the field of
+              digital technology. We aim to equip our students with the
+              necessary skills and knowledge to succeed in the digital world. We
+              strive to create a learning environment that fosters creativity,
+              innovation, and collaboration.
+            </p>
+          </div>
+        </div>
       </div>
 
+      {/* Vision Section */}
       <div className="container mb-10">
-        <section
-          className="text-center rounded-7 shadow-4-strong"
-          style={{
-            backgroundImage: "url(/images/background-img5.jpg)",
-            height: 350,
-            backgroundSize: "cover",
-            backgroundPosition: "50% 50%",
-            position: "relative",
-          }}
+        <div
+          className="mission-vision-section reverse"
+          style={{ background: "#f6feff" }}
         >
-          <div className="row">
-            <div className="heading col-md-4 offset-md-1">
-              <h2 className="text-center fw-bold my-3 vision-title">
-                <strong>Our Vision</strong>
-              </h2>
-              <div className="content">
-                <p className="text-center align-items-justify mb-4 vision-text">
-                  Our vision is to create a world where everyone has equal
-                  access to high-quality education and technology. We strive to
-                  empower individuals with digital skills and knowledge to
-                  unlock their potential and achieve their dreams. Our goal is
-                  to bridge the digital divide and foster a more inclusive and
-                  connected global community.
-                </p>
-              </div>
-            </div>
+          <div className="mission-vision-image">
+            <img src="/images/background-img5.jpg" alt="Vision" />
           </div>
-        </section>
+          <div className="mission-vision-content">
+            <h2>
+              <strong>OUR VISION</strong>
+            </h2>
+            <p>
+              Our vision is to create a world where everyone has equal access to
+              high-quality education and technology. We strive to empower
+              individuals with digital skills and knowledge to unlock their
+              potential and achieve their dreams. Our goal is to bridge the
+              digital divide and foster a more inclusive and connected global
+              community.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
