@@ -1,9 +1,11 @@
 import { useFormik } from "formik";
-import React from "react";
+import React, { useState } from "react";
 import Swal from "sweetalert2";
 import app_config from "../../config";
+import * as Yup from "yup";
 
 const Contact = () => {
+  const [serverErrors, setServerErrors] = useState({});
   const contactForm = useFormik({
     initialValues: {
       name: "",
@@ -11,32 +13,68 @@ const Contact = () => {
       subject: "",
       message: "",
     },
-    onSubmit: async (values, { setSubmitting }) => {
-      console.log(values);
-
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/contact/add`, {
-        method: "POST",
-        body: JSON.stringify(values),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      console.log(res.status);
-      setSubmitting(false);
-      if (res.status === 200) {
-        Swal.fire({
-          icon: "success",
-          title: "Thank You!",
-          text: "Your message is successfully submitted",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      } else {
+    validationSchema: Yup.object({
+      name: Yup.string().required("Пожалуйста, введите имя"),
+      email: Yup.string()
+        .email("Некорректный email")
+        .min(10, "Email должен быть не короче 10 символов")
+        .required("Пожалуйста, введите email"),
+      subject: Yup.string().required("Пожалуйста, введите тему"),
+      message: Yup.string().required("Пожалуйста, введите сообщение"),
+    }),
+    validateOnMount: true,
+    onSubmit: async (values, { setSubmitting, resetForm, validateForm }) => {
+      setServerErrors({});
+      const errors = await validateForm();
+      if (Object.keys(errors).length > 0) {
+        setSubmitting(false);
+        return;
+      }
+      try {
+        const res = await fetch(
+          `${process.env.REACT_APP_API_URL}/contact/add`,
+          {
+            method: "POST",
+            body: JSON.stringify(values),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        setSubmitting(false);
+        if (res.status === 200) {
+          Swal.fire({
+            icon: "success",
+            title: "Thank You!",
+            text: "Your message is successfully submitted",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          resetForm();
+        } else {
+          const data = await res.json();
+          // Если сервер вернул ошибку по пустым полям, показываем ошибки под каждым input
+          if (data && data.error) {
+            const newErrors = {};
+            if (!values.name) newErrors.name = "Пожалуйста, введите имя";
+            if (!values.email) newErrors.email = "Пожалуйста, введите email";
+            if (!values.subject) newErrors.subject = "Пожалуйста, введите тему";
+            if (!values.message)
+              newErrors.message = "Пожалуйста, введите сообщение";
+            setServerErrors(newErrors);
+          }
+          Swal.fire({
+            icon: "error",
+            title: "Ошибка",
+            text: data.error || "Что-то пошло не так!",
+          });
+        }
+      } catch (e) {
+        setSubmitting(false);
         Swal.fire({
           icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
+          title: "Ошибка",
+          text: "Ошибка сети или сервера",
         });
       }
     },
@@ -194,7 +232,18 @@ const Contact = () => {
                               placeholder="Enter Full Name"
                               value={contactForm.values.name}
                               onChange={contactForm.handleChange}
+                              onBlur={contactForm.handleBlur}
                             />
+                            {(contactForm.touched.name &&
+                              contactForm.errors.name) ||
+                            serverErrors.name ? (
+                              <div
+                                className="text-danger"
+                                style={{ fontSize: "0.9em" }}
+                              >
+                                {contactForm.errors.name || serverErrors.name}
+                              </div>
+                            ) : null}
                           </div>
                         </div>
                         <div className="d-flex flex-row align-items-center mb-4">
@@ -208,7 +257,18 @@ const Contact = () => {
                               placeholder="Enter Email Address"
                               value={contactForm.values.email}
                               onChange={contactForm.handleChange}
+                              onBlur={contactForm.handleBlur}
                             />
+                            {(contactForm.touched.email &&
+                              contactForm.errors.email) ||
+                            serverErrors.email ? (
+                              <div
+                                className="text-danger"
+                                style={{ fontSize: "0.9em" }}
+                              >
+                                {contactForm.errors.email || serverErrors.email}
+                              </div>
+                            ) : null}
                           </div>
                         </div>
                         <div className="d-flex flex-row align-items-center mb-4">
@@ -222,7 +282,19 @@ const Contact = () => {
                               placeholder="Enter Subject"
                               value={contactForm.values.subject}
                               onChange={contactForm.handleChange}
+                              onBlur={contactForm.handleBlur}
                             />
+                            {(contactForm.touched.subject &&
+                              contactForm.errors.subject) ||
+                            serverErrors.subject ? (
+                              <div
+                                className="text-danger"
+                                style={{ fontSize: "0.9em" }}
+                              >
+                                {contactForm.errors.subject ||
+                                  serverErrors.subject}
+                              </div>
+                            ) : null}
                           </div>
                         </div>
                         {/* Text area fields */}
@@ -230,14 +302,26 @@ const Contact = () => {
                           <i class="fas fa-pencil-alt fa-lg me-3 mb-8 fa-fw"></i>
                           <div className="flex-fill mb-0">
                             <textarea
-                              class="form-control"
+                              className="form-control"
                               id="textarea"
                               rows="4"
                               placeholder="Enter message...."
                               name="message"
                               value={contactForm.values.message}
                               onChange={contactForm.handleChange}
+                              onBlur={contactForm.handleBlur}
                             ></textarea>
+                            {(contactForm.touched.message &&
+                              contactForm.errors.message) ||
+                            serverErrors.message ? (
+                              <div
+                                className="text-danger"
+                                style={{ fontSize: "0.9em" }}
+                              >
+                                {contactForm.errors.message ||
+                                  serverErrors.message}
+                              </div>
+                            ) : null}
                           </div>
                         </div>
                         <div className="pt-1 mx-4 mb-3 pb-1 ">
@@ -245,6 +329,9 @@ const Contact = () => {
                             className="btn btn-primary btn-block mb-3"
                             type="submit"
                             style={{ borderRadius: "10px" }}
+                            disabled={
+                              !contactForm.isValid || contactForm.isSubmitting
+                            }
                           >
                             Send &nbsp;
                             <i className="far fa-paper-plane ml-2" />
