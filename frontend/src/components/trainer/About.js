@@ -173,8 +173,6 @@ const About = () => {
       <>
         <div className="mb-10">
           <div data-draggable="true" style={{ position: "relative" }}>
-            {/**/}
-            {/**/}
             <section draggable="false" className="container" data-v-271253ee="">
               <section className="">
                 <div className="heading">

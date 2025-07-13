@@ -45,41 +45,50 @@ const Contact = () => {
   });
   return (
     <>
-      {/*Page Header*/}
-      <header>
-        {/* Background image */}
+      {/* Новый современный блок Contact Us в стиле About */}
+      <div
+        className="about-section"
+        style={{
+          backgroundImage: "url(/images/background-img3.webp)",
+          position: "relative",
+        }}
+      >
+        {/* Блюр-оверлей */}
         <div
-          id="intro"
-          className="bg-image"
           style={{
-            backgroundImage: "url(/images/background-img3.webp)",
-            height: 230,
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: 1,
+            filter: "blur(4px)",
+            backgroundImage: "inherit",
             backgroundSize: "cover",
             backgroundPosition: "50% 65%",
-            position: "relative",
           }}
+        />
+        {/* Затемнение overlay */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "rgba(30, 40, 60, 0.7)",
+            zIndex: 2,
+          }}
+        />
+        <div
+          className="about-content"
+          style={{ position: "relative", zIndex: 3 }}
         >
-          <div
-            className="mask text-white"
-            style={{ backgroundColor: "rgba(35, 37, 45, 0.6)" }}
-          >
-            <div className="container d-flex align-items-center text-center h-100">
-              <div className="page-heading">
-                <h1 className="fw-bold mb-3">Contact Us</h1>
-                <p className="paragraph">
-                  "We'd love to hear from you! Drop us a line and let's start a
-                  conversation about how we can help you and your child learn to
-                  code."
-                </p>
-              </div>
-            </div>
-          </div>
+          <h1 className="about-title">CONTACT US</h1>
+          <p className="about-description">
+            "We'd love to hear from you! Drop us a line and let's start a
+            conversation about how we can help you and your child learn to
+            code."
+          </p>
         </div>
-        {/* Background image */}
-      </header>
-      {/*Page Header*/}
+      </div>
 
-      {/*Contact Us*/}
       <section className="h-100 form my-5">
         <div className="container py-5 h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
@@ -122,7 +131,6 @@ const Contact = () => {
                           </div>
                         </div>
 
-                        {/* Divider here */}
                         <hr className="hr mb-4"></hr>
                         <div className="text-center">
                           <button

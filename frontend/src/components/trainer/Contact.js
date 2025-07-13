@@ -153,7 +153,6 @@ const Contact = () => {
                           </div>
                         </div>
 
-                        {/* Divider here */}
                         <hr className="hr mb-4"></hr>
                         <div className="text-center">
                           <button
