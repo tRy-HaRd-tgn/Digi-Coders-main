@@ -29,13 +29,30 @@ const TrainerProfile = () => {
   useEffect(() => {
     const fetchTrainer = async () => {
       if (currentTrainer?._id) {
-        const res = await fetch(
-          `${app_config.apiUrl}/trainer/${currentTrainer._id}`
-        );
-        if (res.ok) {
-          const freshTrainer = await res.json();
-          setCurrentTrainer(freshTrainer);
-          sessionStorage.setItem("trainer", JSON.stringify(freshTrainer));
+        try {
+          const res = await fetch(
+            `${app_config.apiUrl}/trainer/${currentTrainer._id}`
+          );
+          if (res.ok) {
+            const freshTrainer = await res.json();
+            console.log("Fetched fresh trainer data:", freshTrainer);
+
+            // Обновляем локальное состояние
+            setCurrentTrainer(freshTrainer);
+
+            // Обновляем sessionStorage
+            sessionStorage.setItem("trainer", JSON.stringify(freshTrainer));
+
+            // Обновляем контекст
+            updateUser(freshTrainer);
+
+            // Отправляем событие для обновления других компонентов
+            window.dispatchEvent(new Event("trainerUpdated"));
+          } else {
+            console.error("Failed to fetch trainer data:", res.status);
+          }
+        } catch (error) {
+          console.error("Error fetching trainer data:", error);
         }
       }
     };
@@ -77,9 +94,20 @@ const TrainerProfile = () => {
     },
     onSubmit: async (values, { setSubmitting }) => {
       try {
-        console.log(values);
+        if (!currentTrainer?._id) {
+          Swal.fire({
+            icon: "error",
+            title: "Ошибка!",
+            text: "Данные тренера не найдены. Пожалуйста, войдите в систему заново.",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+          return;
+        }
+
+        console.log("Updating trainer with values:", values);
         const res = await fetch(
-          `${app_config.apiUrl}/trainer/update/` + currentTrainer._id,
+          `${app_config.apiUrl}/trainer/update/${currentTrainer._id}`,
           {
             method: "PUT",
             body: JSON.stringify(values),
@@ -88,14 +116,22 @@ const TrainerProfile = () => {
             },
           }
         );
-        console.log(res.status);
+        console.log("Update response status:", res.status);
 
         if (res.status === 200) {
           const data = await res.json();
-          console.log(data);
-          updateUser(data); // Обновляем тренера в контексте
+          console.log("Updated trainer data:", data);
+
+          // Обновляем данные в контексте
+          updateUser(data);
+
+          // Обновляем локальное состояние
           setCurrentTrainer(data);
-          sessionStorage.setItem("trainer", JSON.stringify(data)); // Обновляем sessionStorage
+
+          // Обновляем sessionStorage
+          sessionStorage.setItem("trainer", JSON.stringify(data));
+
+          // Отправляем событие для обновления других компонентов
           window.dispatchEvent(new Event("trainerUpdated"));
 
           Swal.fire({
@@ -157,11 +193,23 @@ const TrainerProfile = () => {
       return;
     }
 
+    if (!currentTrainer?._id) {
+      Swal.fire({
+        icon: "error",
+        title: "Ошибка!",
+        text: "Данные тренера не найдены. Пожалуйста, войдите в систему заново.",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      return;
+    }
+
     setIsUploading(true);
     const fd = new FormData();
     fd.append("myfile", selImage);
 
     try {
+      // Загружаем файл
       const res = await fetch(`${app_config.apiUrl}/util/uploadfile`, {
         method: "POST",
         body: fd,
@@ -193,31 +241,46 @@ const TrainerProfile = () => {
         if (updateRes.status === 200) {
           const updatedTrainer = await updateRes.json();
           console.log("updatedTrainer from server:", updatedTrainer);
-          updateUser(updatedTrainer); // Обновляем тренера в контексте
+
+          // Обновляем данные в контексте
+          updateUser(updatedTrainer);
+
+          // Обновляем локальное состояние
           setCurrentTrainer(updatedTrainer);
-          sessionStorage.setItem("trainer", JSON.stringify(updatedTrainer)); // Обновляем sessionStorage
-          setImage(""); // Очищаем состояние image
-          setSelImage(null); // Очищаем выбранное изображение
+
+          // Обновляем sessionStorage
+          sessionStorage.setItem("trainer", JSON.stringify(updatedTrainer));
+
+          // Отправляем событие для обновления других компонентов
+          window.dispatchEvent(new Event("trainerUpdated"));
+
+          // Очищаем состояние изображения
+          setImage("");
+          setSelImage(null);
 
           Swal.fire({
             icon: "success",
             title: "Успешно!",
-            text: "Фотография профиля успешно загружена",
+            text: "Фотография профиля успешно загружена и обновлена",
             showConfirmButton: false,
             timer: 2000,
           });
         } else {
-          throw new Error("Failed to update profile");
+          const errorData = await updateRes.json();
+          throw new Error(errorData.message || "Failed to update profile");
         }
       } else {
-        throw new Error("Failed to upload file");
+        const errorData = await res.json();
+        throw new Error(errorData.message || "Failed to upload file");
       }
     } catch (error) {
       console.error("Upload error:", error);
       Swal.fire({
         icon: "error",
         title: "Ошибка!",
-        text: "Не удалось загрузить изображение. Попробуйте еще раз.",
+        text:
+          error.message ||
+          "Не удалось загрузить изображение. Попробуйте еще раз.",
         showConfirmButton: false,
         timer: 2000,
       });

@@ -160,6 +160,14 @@ const TrainerProvider = ({ children }) => {
   const updateUser = (userData) => {
     try {
       console.log("TrainerContext - updateUser called with:", userData);
+
+      if (!userData) {
+        console.error(
+          "TrainerContext - updateUser called with null/undefined data"
+        );
+        return;
+      }
+
       setCurrentUser(userData);
 
       // Сохраняем данные под ключом "trainer"
@@ -170,8 +178,11 @@ const TrainerProvider = ({ children }) => {
 
       setLoggedIn(userData !== null);
       console.log("TrainerContext - Updated loggedIn to:", userData !== null);
+
       // Отправляем кастомное событие для обновления контекста
       window.dispatchEvent(new Event("trainerUpdated"));
+
+      console.log("TrainerContext - User updated successfully");
     } catch (error) {
       console.error("Error updating trainer user:", error);
     }

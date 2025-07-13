@@ -30,10 +30,29 @@ router.get("/getall", (req, res) => {
     });
 });
 
-router.put("/update/:id", (req, res) => {
-  Model.findByIdAndUpdate(req.params.id, req.body)
+router.get("/:id", (req, res) => {
+  Model.findById(req.params.id)
     .then((result) => {
-      res.json(result);
+      if (result) {
+        res.json(result);
+      } else {
+        res.status(404).json({ message: "Trainer not found" });
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json(err);
+    });
+});
+
+router.put("/update/:id", (req, res) => {
+  Model.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    .then((result) => {
+      if (result) {
+        res.json(result);
+      } else {
+        res.status(404).json({ message: "Trainer not found" });
+      }
     })
     .catch((err) => {
       console.error(err);
