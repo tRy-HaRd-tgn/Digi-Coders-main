@@ -223,27 +223,65 @@ const ManageChapter = () => {
                 itemPerPage * (currentPage - 1),
                 itemPerPage * (currentPage - 1) + itemPerPage
               )
-              .map((chapter) => (
-                <tr>
+              .map((chapter, idx) => (
+                <tr key={chapter._id}>
                   <td className="align-middle">{chapter.title}</td>
                   <td className="align-middle">
                     <div className="">
                       <div
-                        class="bg-image hover-overlay ripple shadow-4-strong rounded-7 mx-2 my-2"
+                        className="bg-image hover-overlay ripple shadow-4-strong rounded-7 mx-2 my-2"
                         data-mdb-ripple-color="light"
                         style={{
-                          width: "200px",
-                          height: "110px",
-                          backgroundSize: "cover",
+                          display: "inline-block",
                           backgroundColor: "#e0e0e0",
+                          cursor: "pointer",
+                          position: "relative",
+                          // width и height убраны
                         }}
+                        onClick={() =>
+                          document
+                            .getElementById(`chapter-img-${chapter._id}`)
+                            .click()
+                        }
+                        title="Изменить иконку"
                       >
                         <img
                           src={
                             process.env.REACT_APP_API_URL + "/" + chapter.icon
                           }
                           className="img-fluid"
+                          style={{
+                            objectFit: "contain",
+                            width: "auto",
+                            height: "auto",
+                            maxWidth: "200px",
+                            maxHeight: "150px",
+                            borderRadius: "16px",
+                            display: "block",
+                          }}
+                          alt="chapter icon"
                         />
+                        <input
+                          type="file"
+                          accept=".jpg,.jpeg,.png"
+                          id={`chapter-img-${chapter._id}`}
+                          style={{ display: "none" }}
+                          onClick={(e) => e.stopPropagation()}
+                          onChange={(e) => handleChapterIconChange(e, chapter)}
+                        />
+                        <span
+                          style={{
+                            position: "absolute",
+                            bottom: 8,
+                            right: 8,
+                            background: "#fff8",
+                            borderRadius: 8,
+                            padding: "2px 6px",
+                            fontSize: 12,
+                          }}
+                        >
+                          Изменить
+                        </span>
                       </div>
                     </div>
                   </td>
@@ -401,6 +439,56 @@ const ManageChapter = () => {
         console.log("file uploaded");
       }
     });
+  };
+
+  // Добавить функцию для смены иконки главы
+  const handleChapterIconChange = async (e, chapter) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    // Загрузка файла
+    const fd = new FormData();
+    fd.append("myfile", file);
+    const uploadRes = await fetch(
+      `${process.env.REACT_APP_API_URL}/util/uploadfile`,
+      {
+        method: "POST",
+        body: fd,
+      }
+    );
+    if (uploadRes.status === 200) {
+      // Обновление главы с новым именем файла
+      const updateRes = await fetch(
+        `${process.env.REACT_APP_API_URL}/chapter/update/${chapter._id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            ...chapter,
+            icon: file.name,
+            updated_at: new Date(),
+          }),
+        }
+      );
+      if (updateRes.status === 200) {
+        Swal.fire({
+          icon: "success",
+          title: "Иконка обновлена!",
+          timer: 1200,
+          showConfirmButton: false,
+        });
+        fetchUserData();
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Ошибка при обновлении главы",
+        });
+      }
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Ошибка загрузки файла",
+      });
+    }
   };
 
   return (
