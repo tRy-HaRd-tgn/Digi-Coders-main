@@ -661,3 +661,22 @@ select.mySelectArrow option {
     position: relative !important;
   }
 }
+
+.chapter-edit-btn {
+  background: #29c1fe;
+  color: #fff;
+  border-radius: 8px;
+  padding: 6px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(41, 193, 254, 0.25);
+  cursor: pointer;
+  border: 2px solid #fff;
+  z-index: 2;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.chapter-edit-btn:hover {
+  background: #176b8a;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(41, 193, 254, 0.35);
+}

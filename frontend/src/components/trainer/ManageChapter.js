@@ -227,7 +227,14 @@ const ManageChapter = () => {
                 <tr key={chapter._id}>
                   <td className="align-middle">{chapter.title}</td>
                   <td className="align-middle">
-                    <div className="">
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
                       <div
                         className="bg-image hover-overlay ripple shadow-4-strong rounded-7 mx-2 my-2"
                         data-mdb-ripple-color="light"
@@ -236,7 +243,6 @@ const ManageChapter = () => {
                           backgroundColor: "#e0e0e0",
                           cursor: "pointer",
                           position: "relative",
-                          // width и height убраны
                         }}
                         onClick={() =>
                           document
@@ -269,20 +275,21 @@ const ManageChapter = () => {
                           onClick={(e) => e.stopPropagation()}
                           onChange={(e) => handleChapterIconChange(e, chapter)}
                         />
-                        <span
-                          style={{
-                            position: "absolute",
-                            bottom: 8,
-                            right: 8,
-                            background: "#fff8",
-                            borderRadius: 8,
-                            padding: "2px 6px",
-                            fontSize: 12,
-                          }}
-                        >
-                          Изменить
-                        </span>
                       </div>
+                      <span
+                        style={{
+                          marginTop: 8,
+                          color: "#176b8a",
+                          fontWeight: 500,
+                          fontSize: 13,
+                          maxWidth: 120,
+                          whiteSpace: "normal",
+                          lineHeight: 1.2,
+                          textAlign: "center",
+                        }}
+                      >
+                        Для изменения нажмите на фото
+                      </span>
                     </div>
                   </td>
                   <td className="align-middle">{chapter.category}</td>
