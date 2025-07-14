@@ -6,6 +6,7 @@ import { DEFAULT_OPTIONS } from "../blockly/defaults";
 import { getHTMLToolbox } from "../blockly/getHTMLToolbox";
 import "../blockly/htmlBlock";
 import { getJSToolbox } from "../blockly/getJSToolbox";
+import { getPythonToolbox } from "../blockly/getPythonToolbox";
 import XMLParser from "react-xml-parser";
 import Swal from "sweetalert2";
 
@@ -19,6 +20,7 @@ const getToolbox = (category) => {
     category.toLowerCase() === "JavaScript".toLowerCase()
   )
     return getJSToolbox();
+  else if (category.toLowerCase() === "python") return getPythonToolbox();
   else return getHTMLToolbox();
 };
 
@@ -42,7 +44,20 @@ const DesignChapter = () => {
     console.log(res.status);
     const data = await res.json();
     console.log(data);
-    setSelBlocks(data.blockStructure);
+
+    // Преобразуем массив в объект для удобства работы
+    if (data.blockStructure && Array.isArray(data.blockStructure)) {
+      const blockStructureObj = {};
+      data.blockStructure.forEach((item) => {
+        if (item.category && item.blocks) {
+          blockStructureObj[item.category] = item.blocks;
+        }
+      });
+      setSelBlocks(blockStructureObj);
+    } else {
+      setSelBlocks({});
+    }
+
     setChapterDetails(data);
     console.log(getHTMLToolbox());
     console.log(
@@ -56,6 +71,12 @@ const DesignChapter = () => {
   const updateChapter = async () => {
     console.log(selBlocks);
 
+    // Преобразуем объект в массив для совместимости с бэкендом
+    const blockStructureArray = Object.keys(selBlocks).map((category) => ({
+      category: category,
+      blocks: selBlocks[category],
+    }));
+
     const res = await fetch(
       `${process.env.REACT_APP_API_URL}/chapter/update/` + id,
       {
@@ -64,7 +85,7 @@ const DesignChapter = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          blockStructure: selBlocks,
+          blockStructure: blockStructureArray,
         }),
       }
     );
@@ -82,41 +103,33 @@ const DesignChapter = () => {
   };
 
   const updateSelBlocks = (block, category) => {
-    let obj = {};
     if (selBlocks[category] === undefined) {
-      obj = {
-        category: category,
-        blocks: [block],
-      };
+      setSelBlocks({
+        ...selBlocks,
+        [category]: [block],
+      });
     } else if (
       selBlocks[category].find(
         (b) => getBlockType(b) === getBlockType(block)
       ) === undefined
     ) {
-      obj = {
-        category: category,
-        blocks: [...selBlocks[category], block],
-      };
+      setSelBlocks({
+        ...selBlocks,
+        [category]: [...selBlocks[category], block],
+      });
     }
-
-    setSelBlocks([...selBlocks, obj]);
   };
 
   const removeBlock = (block, category) => {
-    let obj = {};
-    if (selBlocks[category] === undefined) {
-      obj = {
-        category: category,
-        blocks: [block],
-      };
-    } else {
-      obj = {
-        category: category,
-        blocks: [...selBlocks[category], block],
-      };
+    if (selBlocks[category] !== undefined) {
+      const updatedBlocks = selBlocks[category].filter(
+        (b) => getBlockType(b) !== getBlockType(block)
+      );
+      setSelBlocks({
+        ...selBlocks,
+        [category]: updatedBlocks,
+      });
     }
-
-    setSelBlocks([...selBlocks, obj]);
   };
 
   useEffect(() => {
@@ -173,16 +186,17 @@ const DesignChapter = () => {
                             <input
                               className="form-check-input"
                               type="checkbox"
-                              checked={selBlocks.find(
-                                (b) => getBlockType(b) === getBlockType(block)
-                              )}
+                              checked={
+                                selBlocks[category.name] &&
+                                selBlocks[category.name].find(
+                                  (b) => getBlockType(b) === getBlockType(block)
+                                )
+                              }
                               onChange={(e) => {
                                 if (e.target.checked) {
                                   updateSelBlocks(block, category.name);
-                                  // setSelBlocks([...selBlocks, block]);
                                   console.log(selBlocks);
                                 } else {
-                                  // setSelBlocks(selBlocks.filter((b) => getBlockType(b) !== getBlockType(block)));
                                   removeBlock(block, category.name);
                                   console.log(selBlocks);
                                 }
