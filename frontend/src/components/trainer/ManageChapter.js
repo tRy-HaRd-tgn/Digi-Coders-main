@@ -184,6 +184,14 @@ const ManageChapter = () => {
                       onChange={uploadFile}
                     />
                   </div>
+                  {imageError && (
+                    <div
+                      className="text-danger mb-2"
+                      style={{ fontWeight: 500 }}
+                    >
+                      {imageError}
+                    </div>
+                  )}
 
                   <button
                     className="btn btn-primary btn-block mt-5"
@@ -330,17 +338,20 @@ const ManageChapter = () => {
           <section className="d-md-flex justify-content-end">
             <nav aria-label="...">
               <ul className="pagination mt-3">
-                {chapterList.length > 0 && (
-                  <li className="page-item me-2">
-                    <a
-                      className="page-link border"
-                      type="button"
-                      onClick={(e) => setCurrentPage(currentPage - 1)}
-                    >
-                      <i className="fas fa-angles-left" /> Previous
-                    </a>
-                  </li>
-                )}
+                {/* Кнопка Previous */}
+                {Math.ceil(chapterList.length / itemPerPage) > 1 &&
+                  currentPage > 1 && (
+                    <li className="page-item me-2">
+                      <a
+                        className="page-link border"
+                        type="button"
+                        onClick={(e) => setCurrentPage(currentPage - 1)}
+                      >
+                        <i className="fas fa-angles-left" /> Previous
+                      </a>
+                    </li>
+                  )}
+                {/* Номера страниц */}
                 {Array(Math.ceil(chapterList.length / itemPerPage))
                   .fill(1)
                   .map((item, index) => (
@@ -349,6 +360,7 @@ const ManageChapter = () => {
                         currentPage === index + 1 ? "active" : " "
                       }`}
                       aria-current="page"
+                      key={index}
                     >
                       <a
                         className="page-link border me-2"
@@ -360,18 +372,19 @@ const ManageChapter = () => {
                       </a>
                     </li>
                   ))}
-                {Math.ceil(chapterList.length / itemPerPage) - currentPage >
-                  0 && (
-                  <li className="page-item">
-                    <a
-                      className="page-link border"
-                      type="button"
-                      onClick={(e) => setCurrentPage(currentPage + 1)}
-                    >
-                      Next <i className="fas fa-angles-right" />
-                    </a>
-                  </li>
-                )}
+                {/* Кнопка Next */}
+                {Math.ceil(chapterList.length / itemPerPage) > 1 &&
+                  currentPage < Math.ceil(chapterList.length / itemPerPage) && (
+                    <li className="page-item">
+                      <a
+                        className="page-link border"
+                        type="button"
+                        onClick={(e) => setCurrentPage(currentPage + 1)}
+                      >
+                        Next <i className="fas fa-angles-right" />
+                      </a>
+                    </li>
+                  )}
               </ul>
             </nav>
           </section>
@@ -385,6 +398,7 @@ const ManageChapter = () => {
   }, []);
 
   const [selImage, setSelImage] = useState(null);
+  const [imageError, setImageError] = useState("");
 
   const [currentTrainer, setCurrentTrainer] = useState(
     JSON.parse(sessionStorage.getItem("trainer"))
@@ -401,7 +415,13 @@ const ManageChapter = () => {
       updated_at: new Date(),
     },
 
-    onSubmit: async (values, { setSubmitting }) => {
+    onSubmit: async (values, { setSubmitting, resetForm }) => {
+      if (!selImage) {
+        setImageError("Пожалуйста, выберите изображение для главы.");
+        setSubmitting(false);
+        return;
+      }
+      setImageError("");
       values.icon = selImage.name;
       console.log(values);
 
@@ -423,6 +443,31 @@ const ManageChapter = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        resetForm();
+        setSelImage(null);
+        // Закрыть модалку программно
+        setTimeout(() => {
+          const modal = window.document.getElementById("staticBackdrop1");
+          if (modal) {
+            // Для MDB/Bootstrap 5
+            if (window.mdb && window.mdb.Modal) {
+              const modalInstance = window.mdb.Modal.getInstance(modal);
+              if (modalInstance) modalInstance.hide();
+            } else if (window.bootstrap && window.bootstrap.Modal) {
+              const modalInstance = window.bootstrap.Modal.getInstance(modal);
+              if (modalInstance) modalInstance.hide();
+            } else {
+              // Fallback: вручную убираем классы
+              modal.classList.remove("show");
+              modal.style.display = "none";
+              document.body.classList.remove("modal-open");
+              const backdrops =
+                document.getElementsByClassName("modal-backdrop");
+              while (backdrops[0])
+                backdrops[0].parentNode.removeChild(backdrops[0]);
+            }
+          }
+        }, 300);
       } else {
         Swal.fire({
           icon: "error",
