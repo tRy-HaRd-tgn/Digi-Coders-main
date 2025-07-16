@@ -33,6 +33,7 @@ const StudentSignup = () => {
       .required("Required"),
     email: Yup.string().email("Invalid email").required("Required"),
     password: Yup.string().required("Please Enter your password"),
+    mobile_no: Yup.string().required("Required"),
     // .matches(
     //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
     //   "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
@@ -337,6 +338,9 @@ const StudentSignup = () => {
                       value={studentsignupForm.values.mobile_no}
                       onChange={studentsignupForm.handleChange}
                     />
+                    <span className="text-danger">
+                      {studentsignupForm.errors.mobile_no}
+                    </span>
                   </div>
 
                   <div className="d-flex flex-row align-items-center mx-1 mb-4">
