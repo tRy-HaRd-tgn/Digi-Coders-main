@@ -36,12 +36,13 @@ const About = () => {
           className="about-content"
           style={{ position: "relative", zIndex: 3 }}
         >
-          <h1 className="about-title">ABOUT US</h1>
+          <h1 className="about-title">О НАС</h1>
           <p className="about-description">
-            "Welcome to Digi Coders, where we believe that learning to code
-            should be fun and exciting! Our team of expert educators and
-            innovative teaching methods ensure that kids not only gain essential
-            coding skills but also have a blast while doing it."
+            Добро пожаловать в Digi Coders! Мы верим, что обучение
+            программированию должно быть увлекательным и интересным. Наша
+            команда опытных педагогов и инновационные методики обучения помогают
+            детям не только освоить важные навыки программирования, но и
+            получать удовольствие от процесса.
           </p>
         </div>
       </div>
@@ -67,40 +68,42 @@ const About = () => {
                         <div className="header-text col-lg-10">
                           <div className="heading">
                             <h2 className="mt-5 mb-3 display-3">
-                              <span>Why Choose Us?</span>
+                              <span>Почему выбирают нас?</span>
                             </h2>
                           </div>
                           <div className="sub-heading">
                             <h4 className="mb-6">
-                              <span>Innovative Learning Approach</span>
+                              <span>Инновационный подход к обучению</span>
                             </h4>
                           </div>
                           <div className="content">
                             <p className="mb-3">
                               <span>
-                                Digi Coders is a block-based coding program for
-                                kids, where they can learn the basics of coding
-                                while having fun. Through interactive and
-                                engaging activities, kids can develop logical
-                                thinking, problem-solving, and other valuable
-                                skills that will prepare them for the future.
+                                Digi Coders — это программа блочного
+                                программирования для детей, где они могут
+                                изучать основы кода в игровой форме. Через
+                                интерактивные и увлекательные задания дети
+                                развивают логическое мышление, навыки решения
+                                проблем и другие важные умения, которые
+                                пригодятся им в будущем.
                               </span>
                             </p>
                             <p className="mb-3">
                               <span>
-                                At Digi Coders, we believe that every child has
-                                the potential to become a creator, innovator,
-                                and problem-solver. That's why we've created a
-                                fun and engaging platform for young coders to
-                                learn, create and explore the world of coding.
-                                Our program is designed to empower kids to
-                                unleash their creativity, build their own
-                                projects, and develop essential coding skills
-                                that will set them up for success in the future.
-                                With our experienced instructors, innovative
-                                curriculum, and supportive community, we're here
-                                to help kids discover their passion for coding
-                                and bring their ideas to life.
+                                В Digi Coders мы уверены, что каждый ребенок
+                                может стать создателем, новатором и решателем
+                                проблем. Именно поэтому мы создали интересную
+                                платформу для юных программистов, чтобы они
+                                могли учиться, создавать и исследовать мир
+                                программирования. Наша программа помогает детям
+                                раскрыть творческий потенциал, создавать
+                                собственные проекты и развивать важные навыки
+                                программирования для успешного будущего. С
+                                нашими опытными преподавателями, инновационной
+                                программой и поддерживающим сообществом мы
+                                помогаем детям открыть для себя увлекательный
+                                мир программирования и воплотить свои идеи в
+                                жизнь.
                               </span>
                             </p>
                           </div>
@@ -118,18 +121,18 @@ const About = () => {
       <div className="container mb-5">
         <div className="mission-vision-section" style={{ background: "#fff" }}>
           <div className="mission-vision-image">
-            <img src="/images/background-img4.jpg" alt="Mission" />
+            <img src="/images/background-img4.jpg" alt="Миссия" />
           </div>
           <div className="mission-vision-content">
             <h2>
-              <strong>OUR MISSION</strong>
+              <strong>НАША МИССИЯ</strong>
             </h2>
             <p>
-              Our mission is to provide quality education in the field of
-              digital technology. We aim to equip our students with the
-              necessary skills and knowledge to succeed in the digital world. We
-              strive to create a learning environment that fosters creativity,
-              innovation, and collaboration.
+              Наша миссия — предоставить качественное образование в области
+              цифровых технологий. Мы стремимся дать нашим ученикам необходимые
+              знания и навыки для успешной реализации в цифровом мире. Мы
+              создаём образовательную среду, способствующую развитию
+              креативности, инноваций и сотрудничества.
             </p>
           </div>
         </div>
@@ -141,19 +144,19 @@ const About = () => {
           style={{ background: "#f6feff" }}
         >
           <div className="mission-vision-image">
-            <img src="/images/background-img5.jpg" alt="Vision" />
+            <img src="/images/background-img5.jpg" alt="Видение" />
           </div>
           <div className="mission-vision-content">
             <h2>
-              <strong>OUR VISION</strong>
+              <strong>НАШЕ ВИДЕНИЕ</strong>
             </h2>
             <p>
-              Our vision is to create a world where everyone has equal access to
-              high-quality education and technology. We strive to empower
-              individuals with digital skills and knowledge to unlock their
-              potential and achieve their dreams. Our goal is to bridge the
-              digital divide and foster a more inclusive and connected global
-              community.
+              Наше видение — создать мир, где каждый имеет равный доступ к
+              качественному образованию и технологиям. Мы стремимся дать людям
+              цифровые навыки и знания, чтобы они могли раскрыть свой потенциал
+              и реализовать мечты. Наша цель — преодолеть цифровое неравенство и
+              способствовать формированию более инклюзивного и связанного
+              общества.
             </p>
           </div>
         </div>
