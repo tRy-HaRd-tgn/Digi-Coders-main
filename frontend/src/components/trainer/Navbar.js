@@ -1,148 +1,26 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
-import { useTrainerContext } from "../../context/TrainerContext";
-import { getAvatarUrl, handleImageError } from "../../utils/avatarHelper";
+import Navbar from "../common/Navbar";
 
-const Navbar = () => {
-  const { loggedIn, logout, currentUser } = useTrainerContext();
+/**
+ * Компонент навигации для тренера
+ * @return {JSX.Element} Компонент навигации
+ */
+const TrainerNavbar = () => {
+  const navItems = [
+    { label: "Главная", path: "/trainer/home" },
+    { label: "О нас", path: "/trainer/about" },
+    { label: "Управление главами", path: "/trainer/managechapter" },
+    { label: "Контакты", path: "/trainer/contact" },
+  ];
 
   return (
-    <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container">
-          <NavLink className="navbar-brand me-2" to="/main/home">
-            <img
-              src="/logo/logo.png"
-              height={50}
-              alt="Digi Coders Logo"
-              loading="lazy"
-              style={{ marginTop: "-1px" }}
-            />
-          </NavLink>
-
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-mdb-toggle="collapse"
-            data-mdb-target="#navbarButtonsExample"
-            aria-controls="navbarButtonsExample"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <i className="fas fa-bars" />
-          </button>
-
-          <div
-            className="collapse navbar-collapse justify-content-center"
-            id="navbarButtonsExample"
-          >
-            <ul className="navbar-nav mb-2 mb-lg-0" style={{ fontSize: 18 }}>
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/trainer/home">
-                  Главная
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/trainer/about">
-                  О нас
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/trainer/managechapter">
-                  Управление главами
-                </NavLink>
-              </li>
-
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/trainer/contact">
-                  Контакты
-                </NavLink>
-              </li>
-            </ul>
-          </div>
-
-          <div className="d-flex align-items-center">
-            {!loggedIn ? (
-              <>
-                <Link className="nav-btn btn-link" to="/main/signup">
-                  <i className="fas fa-user fa-lg me-1 fa-fw" />
-                  Регистрация
-                </Link>
-
-                <Link className="nav-btn btn-link" to="/main/login">
-                  <i className="fas fa-right-to-bracket fa-lg me-1 fa-fw" />
-                  Войти
-                </Link>
-              </>
-            ) : (
-              <>
-                <div className="d-flex align-items-center me-3">
-                  <span
-                    className="text-dark fw-bold me-2"
-                    style={{ fontSize: "16px" }}
-                  >
-                    {currentUser?.name || "Тренер"}
-                  </span>
-                </div>
-                <img
-                  src={getAvatarUrl(
-                    currentUser?.avatar,
-                    "https://bootdey.com/img/Content/avatar/avatar1.png"
-                  )}
-                  className="rounded-circle"
-                  style={{ width: "50px", height: "50px", objectFit: "cover" }}
-                  alt="Trainer Avatar"
-                  loading="lazy"
-                  onError={(e) =>
-                    handleImageError(
-                      e,
-                      "https://bootdey.com/img/Content/avatar/avatar1.png"
-                    )
-                  }
-                />
-                <div className="dropdown">
-                  <NavLink
-                    className="dropdown-toggle d-flex align-items-center hidden-arrow"
-                    to="#"
-                    id="navbarDropdownMenuAvatar"
-                    role="button"
-                    data-mdb-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <span className="nav-avatar align-items-center ms-2">
-                      <i className="fas fa-caret-down ms-2" />
-                    </span>
-                  </NavLink>
-                  <ul
-                    className="dropdown-menu dropdown-menu-end"
-                    aria-labelledby="navbarDropdownMenuAvatar"
-                  >
-                    <li>
-                      <NavLink
-                        className="dropdown-item"
-                        to="/trainer/trainerprofile"
-                      >
-                        Мой профиль
-                      </NavLink>
-                    </li>
-                    <li>
-                      <a
-                        className="dropdown-item"
-                        type="button"
-                        onClick={logout}
-                      >
-                        Выйти
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </>
-            )}
-          </div>
-        </div>
-      </nav>
-    </>
+    <Navbar
+      userType="trainer"
+      navItems={navItems}
+      profileRoute="/trainer/trainerprofile"
+      homeRoute="/trainer/home"
+    />
   );
 };
 
-export default Navbar;
+export default TrainerNavbar;
