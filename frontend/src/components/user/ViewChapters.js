@@ -37,15 +37,14 @@ const BrowseChapters = () => {
     const sortedArray = [...chapterList].sort((a, b) =>
       b.title.localeCompare(a.title)
     );
-  
+
     setChapterList(sortedArray);
   };
 
   const fetchUserData = useCallback(async () => {
     const res = await fetch(`${process.env.REACT_APP_API_URL}/chapter/getall`);
-   
+
     const data = await res.json();
-   
 
     let filteredData = data;
 
@@ -247,50 +246,52 @@ const BrowseChapters = () => {
     <div>
       <header className="">
         <div
-          id="intro"
-          className="bg-image"
+          className="about-section"
           style={{
             backgroundImage: "url(/images/background-img3.webp)",
-            height: 230,
-            backgroundSize: "cover",
-            backgroundPosition: "50% 65%",
             position: "relative",
           }}
         >
           <div
-            className="mask text-white"
-            style={{ backgroundColor: "rgba(35, 37, 45, 0.6)" }}
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "rgba(30, 40, 60, 0.55)",
+              zIndex: 1,
+            }}
+          ></div>
+          <div
+            className="about-content"
+            style={{ position: "relative", zIndex: 2 }}
           >
-            <div className="container d-flex align-items-center justify-content-center text-center h-100">
-              <div className="page-heading">
-                <h1 className="fw-bold mb-4">
-                  {getCategoryFromURL()
-                    ? `${getCategoryFromURL()} Courses`
-                    : "Digi Coders"}
-                </h1>
-
-                <div className="input-group d-flex align-items-center justify-content-center">
-                  <div
-                    className="form-group has-icon w-100"
-                    style={{ maxWidth: "800px" }}
-                  >
-                    <i className="fas fa-magnifying-glass fa-lg form-control-icon" />
-                    <input
-                      type="search"
-                      id="search"
-                      name="search"
-                      className="form-control form-control-lg"
-                      placeholder="Search"
-                      value={searchValue} // Добавляем value для контролируемого input
-                      onChange={searchChapterByName}
-                      style={{
-                        backgroundColor: "#f4f4f4",
-                        paddingRight: "10px",
-                        width: "100%",
-                      }}
-                    />
-                  </div>
-                </div>
+            <h1 className="about-title">
+              {getCategoryFromURL()
+                ? `${getCategoryFromURL()} КУРСЫ`
+                : "Digi Coders"}
+            </h1>
+            <p className="about-description mb-4">
+              Найдите интересующий вас курс или урок с помощью поиска ниже.
+            </p>
+            <div
+              className="input-group d-flex align-items-center justify-content-center"
+              style={{ maxWidth: 500, margin: "0 auto" }}
+            >
+              <div className="form-group has-icon w-100">
+                <i className="fas fa-magnifying-glass fa-lg form-control-icon" />
+                <input
+                  type="search"
+                  id="search"
+                  name="search"
+                  className="form-control form-control-lg"
+                  placeholder="Поиск"
+                  value={searchValue}
+                  onChange={searchChapterByName}
+                  style={{
+                    backgroundColor: "#f4f4f4",
+                    paddingRight: "10px",
+                    width: "100%",
+                  }}
+                />
               </div>
             </div>
           </div>
