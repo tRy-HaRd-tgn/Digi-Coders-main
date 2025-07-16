@@ -202,6 +202,7 @@
   overflow: hidden;
   background-size: cover;
   background-position: 50% 65%;
+  margin-bottom: 100px;
 }
 
 .about-section::before {

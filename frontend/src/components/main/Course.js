@@ -10,38 +10,47 @@ const Course = () => {
 
   return (
     <div className="course-container">
-      <>
-        <header className="mb-10">
-          <div
-            id="intro"
-            className="bg-image"
-            style={{
-              backgroundImage: "url(/images/background-img3.webp)",
-              height: 230,
-              backgroundSize: "cover",
-              backgroundPosition: "50% 65%",
-              position: "relative",
-            }}
-          >
-            <div
-              className="mask text-white"
-              style={{ backgroundColor: "rgba(35, 37, 45, 0.6)" }}
-            >
-              <div className="container d-flex align-items-center text-center h-100">
-                <div className="page-heading">
-                  <h1 className="fw-bold mb-3">Our Courses</h1>
-                  <p className="paragraph">
-                    "Give Your Child the Gift of Coding with Our Exciting and
-                    Engaging Courses! Our Curriculum is Designed to Help Kids
-                    Develop Strong Problem-Solving and Logical Reasoning Skills,
-                    While Building a Foundation for a Lifetime of Learning."
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
-      </>
+      <div
+        className="about-section"
+        style={{
+          backgroundImage: "url(/images/background-img3.webp)",
+          position: "relative",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: 1,
+            filter: "blur(4px)",
+            backgroundImage: "inherit",
+            backgroundSize: "cover",
+            backgroundPosition: "50% 65%",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "rgba(30, 40, 60, 0.7)",
+            zIndex: 2,
+          }}
+        />
+        <div
+          className="about-content"
+          style={{ position: "relative", zIndex: 3 }}
+        >
+          <h1 className="about-title">OUR COURSES</h1>
+          <p className="about-description">
+            "Give Your Child the Gift of Coding with Our Exciting and Engaging
+            Courses! Our Curriculum is Designed to Help Kids Develop Strong
+            Problem-Solving and Logical Reasoning Skills, While Building a
+            Foundation for a Lifetime of Learning."
+          </p>
+        </div>
+      </div>
 
       <div className="course-content">
         <div className="mb-8">

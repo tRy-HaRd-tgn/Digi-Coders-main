@@ -68,87 +68,15 @@ const Navbar = () => {
                 </NavLink>
               </li>
 
-              <li className={`dropdown ${isDropdownOpen ? "show" : ""}`}>
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  aria-expanded={isDropdownOpen}
-                  onClick={toggleDropdown}
-                >
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/main/course">
                   Курсы
-                </a>
-
-                <ul
-                  className={`dropdown-menu ${isDropdownOpen ? "show" : ""}`}
-                  aria-labelledby="navbarDropdown"
-                >
-                  <li>
-                    <NavLink
-                      className="dropdown-item"
-                      to="/user/viewchapters?category=HTML"
-                      onClick={() => setIsDropdownOpen(false)}
-                    >
-                      HTML
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      className="dropdown-item"
-                      to="/user/viewchapters?category=JavaScript"
-                      onClick={() => setIsDropdownOpen(false)}
-                    >
-                      JavaScript
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      className="dropdown-item"
-                      to="/user/viewchapters?category=Python"
-                      onClick={() => setIsDropdownOpen(false)}
-                    >
-                      Python
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      className="dropdown-item"
-                      to="/user/viewchapters?category=Game Development"
-                      onClick={() => setIsDropdownOpen(false)}
-                    >
-                      Разработка игр
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      className="dropdown-item"
-                      to="/user/viewchapters?category=Web Development"
-                      onClick={() => setIsDropdownOpen(false)}
-                    >
-                      Веб-разработка
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      className="dropdown-item"
-                      to="/user/viewchapters?category=Roblox"
-                      onClick={() => setIsDropdownOpen(false)}
-                    >
-                      Roblox
-                    </NavLink>
-                  </li>
-                </ul>
+                </NavLink>
               </li>
 
               <li className="nav-item">
                 <NavLink className="nav-link" to="/main/contact">
                   Контакты
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/trainer/trainerprofile">
-                  Тренер
                 </NavLink>
               </li>
             </ul>
