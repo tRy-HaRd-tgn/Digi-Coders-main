@@ -26,16 +26,16 @@ const Contact = () => {
       if (res.status === 200) {
         Swal.fire({
           icon: "success",
-          title: "Thank You!!",
-          text: "Your message is successfully submitted",
+          title: "Спасибо!",
+          text: "Ваше сообщение успешно отправлено",
           showConfirmButton: false,
           timer: 1500,
         });
       } else {
         Swal.fire({
           icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
+          title: "Упс...",
+          text: "Что-то пошло не так!",
         });
       }
     },
@@ -75,11 +75,10 @@ const Contact = () => {
           className="about-content"
           style={{ position: "relative", zIndex: 3 }}
         >
-          <h1 className="about-title">CONTACT US</h1>
+          <h1 className="about-title">СВЯЖИТЕСЬ С НАМИ</h1>
           <p className="about-description">
-            "We'd love to hear from you! Drop us a line and let's start a
-            conversation about how we can help you and your child learn to
-            code."
+            "Мы будем рады услышать вас! Напишите нам, и давайте обсудим, как мы
+            можем помочь вам и вашему ребенку изучать программирование."
           </p>
         </div>
       </div>
@@ -105,12 +104,12 @@ const Contact = () => {
                       style={{ backgroundColor: "rgba(92, 97, 115, 0.6)" }}
                     >
                       <div className="form px-3 py-4 p-md-5 mx-md-4">
-                        <h2 className="my-5 text-center">Get In Touch</h2>
+                        <h2 className="my-5 text-center">Связаться с нами</h2>
 
                         <div className="d-flex flex-row align-items-center mb-4">
                           <i className="form-icon fas fa-map-marker-alt me-3 mb-4 fa-2x" />
                           <div className="flex-fill">
-                            <p>Hazaratganj, Lucknow, Uttar Pradesh, India.</p>
+                            <p>Хазратгандж, Лакхнау, Уттар-Прадеш, Индия.</p>
                           </div>
                         </div>
                         <div className="d-flex flex-row align-items-center mb-4">
@@ -186,7 +185,7 @@ const Contact = () => {
                       <div className="text-center mb-5">
                         <h3 className="my-4">
                           <i className="fas fa-envelope pr-2 mr-1" />
-                          &nbsp; Write to us
+                          &nbsp; Напишите нам
                         </h3>
                       </div>
                       <form
@@ -201,7 +200,7 @@ const Contact = () => {
                               id="name"
                               name="name"
                               className="form-control form-control-lg"
-                              placeholder="Enter Full Name"
+                              placeholder="Введите полное имя"
                               value={contactForm.values.name}
                               onChange={contactForm.handleChange}
                             />
@@ -215,7 +214,7 @@ const Contact = () => {
                               id="email"
                               name="email"
                               className="form-control form-control-lg"
-                              placeholder="Enter Email Address"
+                              placeholder="Введите адрес электронной почты"
                               value={contactForm.values.email}
                               onChange={contactForm.handleChange}
                             />
@@ -229,7 +228,7 @@ const Contact = () => {
                               id="subject"
                               name="subject"
                               className="form-control form-control-lg"
-                              placeholder="Enter Subject"
+                              placeholder="Введите тему"
                               value={contactForm.values.subject}
                               onChange={contactForm.handleChange}
                             />
@@ -243,7 +242,7 @@ const Contact = () => {
                               className="form-control form-control-lg"
                               id="textarea"
                               rows="4"
-                              placeholder="Enter message...."
+                              placeholder="Введите сообщение..."
                               name="message"
                               value={contactForm.values.message}
                               onChange={contactForm.handleChange}
@@ -256,7 +255,7 @@ const Contact = () => {
                             type="submit"
                             style={{ borderRadius: "10px", marginLeft: "0px" }}
                           >
-                            Send &nbsp;
+                            Отправить &nbsp;
                             <i className="far fa-paper-plane ml-2" />
                           </button>
                         </div>
