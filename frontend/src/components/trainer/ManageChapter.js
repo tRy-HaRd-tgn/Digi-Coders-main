@@ -41,14 +41,14 @@ const ManageChapter = () => {
 
     if (data) {
       Swal.fire({
-        title: "Chapter Deleted Successfully",
+        title: "Глава успешно удалена",
         icon: "success",
         timer: 2000,
       });
       fetchUserData();
     } else {
       Swal.fire({
-        title: "Chapter Deletion Failed",
+        title: "Ошибка при удалении главы",
         icon: "error",
         timer: 2000,
       });
@@ -82,7 +82,7 @@ const ManageChapter = () => {
                           id="search"
                           name="search"
                           className="form-control form-control-lg"
-                          placeholder="Search"
+                          placeholder="Поиск глав..."
                           onChange={searchChapterByName}
                           style={{ paddingRight: "10px", width: "350px" }}
                         />
@@ -98,7 +98,7 @@ const ManageChapter = () => {
                         data-mdb-target="#staticBackdrop1"
                       >
                         <i className="fas fa-plus me-2" />
-                        Add New Chapters
+                        Добавить новую главу
                       </button>
                     </div>
                   </div>
@@ -119,7 +119,7 @@ const ManageChapter = () => {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLabel1">
-                  Create New Chapter
+                  Создать новую главу
                 </h5>
                 <button
                   type="button"
@@ -139,7 +139,7 @@ const ManageChapter = () => {
                     type="text"
                     id="title"
                     className="form-control mb-4"
-                    placeholder="Title"
+                    placeholder="Название главы"
                     value={managechapterForm.values.title}
                     onChange={managechapterForm.handleChange}
                   />
@@ -147,7 +147,7 @@ const ManageChapter = () => {
                     type="text"
                     id="category"
                     className="form-control mb-4"
-                    placeholder="Category"
+                    placeholder="Категория"
                     value={managechapterForm.values.category}
                     onChange={managechapterForm.handleChange}
                   >
@@ -163,7 +163,7 @@ const ManageChapter = () => {
                       className="form-control rounded-0 mb-4"
                       id="description"
                       rows={3}
-                      placeholder="Description.."
+                      placeholder="Описание главы..."
                       value={managechapterForm.values.description}
                       onChange={managechapterForm.handleChange}
                     />
@@ -172,10 +172,10 @@ const ManageChapter = () => {
                   <div className="d-flex flex-row align-items-center mx-1 mb-4">
                     <label htmlFor="chapter-img" className="btn btn-primary">
                       {" "}
-                      <i className="fas fa-upload"></i> Upload Image
+                      <i className="fas fa-upload"></i> Загрузить изображение
                     </label>
                     <span className="text-warning mx-3">
-                      {selImage ? selImage.name : "No Image Selected"}
+                      {selImage ? selImage.name : "Изображение не выбрано"}
                     </span>
                     <input
                       type="file"
@@ -199,7 +199,7 @@ const ManageChapter = () => {
                     type="submit"
                     style={{ marginLeft: "0px" }}
                   >
-                    SUBMIT
+                    СОЗДАТЬ
                   </button>
                 </form>
               </div>
@@ -215,14 +215,14 @@ const ManageChapter = () => {
         >
           <thead className="table-dark border-light text-center">
             <tr>
-              <th className="th-sm">Title</th>
-              <th className="th-sm">Icon</th>
-              <th className="th-sm">Category</th>
-              <th className="th-sm">Description</th>
-              <th className="th-sm">Created_at</th>
-              <th className="th-sm">Updated_at</th>
+              <th className="th-sm">Название</th>
+              <th className="th-sm">Иконка</th>
+              <th className="th-sm">Категория</th>
+              <th className="th-sm">Описание</th>
+              <th className="th-sm">Дата создания</th>
+              <th className="th-sm">Дата обновления</th>
               <th className="th-sm" colSpan={2}>
-                Actions
+                Действия
               </th>
             </tr>
           </thead>
@@ -348,7 +348,7 @@ const ManageChapter = () => {
                         type="button"
                         onClick={(e) => setCurrentPage(currentPage - 1)}
                       >
-                        <i className="fas fa-angles-left" /> Previous
+                        <i className="fas fa-angles-left" /> Предыдущая
                       </a>
                     </li>
                   )}
@@ -382,7 +382,7 @@ const ManageChapter = () => {
                         type="button"
                         onClick={(e) => setCurrentPage(currentPage + 1)}
                       >
-                        Next <i className="fas fa-angles-right" />
+                        Следующая <i className="fas fa-angles-right" />
                       </a>
                     </li>
                   )}
@@ -440,7 +440,7 @@ const ManageChapter = () => {
         fetchUserData();
         Swal.fire({
           icon: "success",
-          title: "Your work has been saved",
+          title: "Глава успешно создана",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -472,8 +472,8 @@ const ManageChapter = () => {
       } else {
         Swal.fire({
           icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
+          title: "Ошибка!",
+          text: "Что-то пошло не так!",
         });
       }
     },
@@ -589,7 +589,7 @@ const ManageChapter = () => {
           className="about-content"
           style={{ position: "relative", zIndex: 3 }}
         >
-          <h1 className="about-title">MANAGE CHAPTERS</h1>
+          <h1 className="about-title">УПРАВЛЕНИЕ ГЛАВАМИ</h1>
         </div>
       </div>
 
