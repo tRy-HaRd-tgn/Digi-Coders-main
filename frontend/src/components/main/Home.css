@@ -1,0 +1,196 @@
+/* FAQ Styles */
+.faq-section {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 4rem 0;
+  border-radius: 20px;
+  margin: 2rem 0;
+}
+
+.faq-title {
+  color: #2c3e50;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.faq-subtitle {
+  color: #29c1fe;
+  font-weight: 500;
+  margin-bottom: 3rem;
+}
+
+.accordion-item {
+  border: none;
+  margin-bottom: 1rem;
+  border-radius: 15px !important;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.accordion-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.accordion-button {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: none;
+  padding: 1.5rem 2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.accordion-button:not(.collapsed) {
+  background: linear-gradient(135deg, #29c1fe 0%, #1e88e5 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(41, 193, 254, 0.3);
+}
+
+.accordion-button:hover {
+  background: linear-gradient(135deg, #29c1fe 0%, #1e88e5 100%);
+  color: white;
+  transform: translateY(-1px);
+}
+
+.accordion-button:focus {
+  box-shadow: 0 0 0 0.25rem rgba(41, 193, 254, 0.25);
+}
+
+.accordion-button::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%232c3e50'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+  transition: all 0.3s ease;
+}
+
+.accordion-button:not(.collapsed)::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+  transform: rotate(180deg);
+}
+
+.accordion-collapse {
+  transition: all 0.3s ease-in-out;
+}
+
+.accordion-body {
+  background: #ffffff;
+  padding: 2rem;
+  color: #6c757d;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.accordion-body span {
+  color: #495057;
+  font-weight: 400;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .faq-section {
+    padding: 2rem 0;
+    margin: 1rem 0;
+  }
+
+  .accordion-button {
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .accordion-body {
+    padding: 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Animation for accordion items */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.accordion-collapse.show {
+  animation: slideDown 0.3s ease-out;
+}
+
+/* Progress bar styles */
+.progress {
+  background-color: #e9ecef;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, #29c1fe 0%, #1e88e5 100%);
+  box-shadow: 0 2px 4px rgba(41, 193, 254, 0.3);
+}
+
+/* FAQ section improvements */
+.faq-section {
+  position: relative;
+}
+
+.faq-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(41, 193, 254, 0.05) 0%,
+    rgba(30, 136, 229, 0.05) 100%
+  );
+  border-radius: 20px;
+  z-index: -1;
+}
+
+/* Button hover effects */
+.btn-outline-primary:hover {
+  background-color: #29c1fe;
+  border-color: #29c1fe;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(41, 193, 254, 0.3);
+}
+
+/* Stagger animation for FAQ items */
+.accordion-item {
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.accordion-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.accordion-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.accordion-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.accordion-item:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.accordion-item:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.accordion-item:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

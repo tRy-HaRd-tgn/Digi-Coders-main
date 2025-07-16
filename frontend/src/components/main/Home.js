@@ -4,14 +4,65 @@ import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom";
 import app_config from "../../config";
 import * as Yup from "yup";
+import "./Home.css";
 
 const Home = () => {
   const [selectedEmoji, setSelectedEmoji] = useState("");
+  const [openAccordion, setOpenAccordion] = useState(null);
+  const [faqProgress, setFaqProgress] = useState(0);
+  const [openedQuestions, setOpenedQuestions] = useState(new Set());
 
   const handleEmojiSelect = (emoji) => {
     setSelectedEmoji(emoji);
     feedbackForm.setFieldValue("emoji", emoji);
   };
+
+  const toggleAccordion = (index) => {
+    setOpenAccordion(openAccordion === index ? null : index);
+
+    // Обновляем прогресс при открытии FAQ
+    if (openAccordion !== index) {
+      setOpenedQuestions((prev) => {
+        const newSet = new Set(prev);
+        newSet.add(index);
+        return newSet;
+      });
+      setFaqProgress((prev) => Math.min(prev + 16.67, 100)); // 100% / 6 вопросов
+    }
+  };
+
+  const faqData = [
+    {
+      question: "Почему детям стоит учиться программированию?",
+      answer:
+        "Дети должны учиться программированию, потому что это развивает навыки решения проблем, творческое мышление, логическое мышление и готовит их к технологичному будущему. Кроме того, программирование учит настойчивости, работе в команде, вниманию к деталям и открывает карьерные возможности в различных сферах.",
+    },
+    {
+      question: "Мой ребенок новичок, нужен ли опыт программирования?",
+      answer:
+        "Нет, опыт программирования не требуется. Мы принимаем детей с любым уровнем подготовки, включая новичков. Наши курсы начинаются с основ и постепенно усложняются, чтобы каждый ребенок мог учиться в своем темпе.",
+    },
+    {
+      question: "С какого возраста можно начинать учиться программированию?",
+      answer:
+        "Рекомендуемый возраст для начала — от 5-6 лет с блочным программированием. По мере развития можно переходить к более сложным языкам и проектам. Но учиться никогда не поздно — программирование полезно людям любого возраста.",
+    },
+    {
+      question: "Какие курсы предлагает Digi Coders?",
+      answer:
+        "Digi Coders предлагает курсы блочного программирования для детей: Python, веб-разработка, разработка приложений, игр, искусственный интеллект и IoT. Курсы делают обучение программированию интересным и интерактивным, обучая важным навыкам.",
+    },
+    {
+      question: "Гибкое ли расписание курсов?",
+      answer:
+        "Да! Вы можете подобрать удобное время и дни для занятий, чтобы они вписывались в ваш график.",
+    },
+    {
+      question: "Какое устройство нужно для обучения?",
+      answer:
+        "Для обучения в Digi Coders нужен только компьютер/ноутбук с веб-камерой и стабильным интернетом.",
+    },
+  ];
 
   const feedbackValidationSchema = Yup.object().shape({
     name: Yup.string().required("Пожалуйста, введите имя"),
@@ -1062,201 +1113,87 @@ const Home = () => {
 
       <>
         <div className="container mb-8">
-          <section>
+          <section className="faq-section">
             <div className="heading">
-              <h2 className="mb-3 text-center display-3">
+              <h2 className="mb-3 text-center display-3 faq-title">
                 <span>Часто задаваемые вопросы</span>
               </h2>
             </div>
             <div className="sub-heading">
-              <h4 className="mb-8 text-center">
+              <h4 className="mb-8 text-center faq-subtitle">
+                <i className="fas fa-question-circle me-2"></i>
                 <span>FAQ</span>
               </h4>
+              <div className="text-center mb-4">
+                <div
+                  className="progress"
+                  style={{ height: "8px", borderRadius: "10px" }}
+                >
+                  <div
+                    className="progress-bar"
+                    role="progressbar"
+                    style={{
+                      width: `${faqProgress}%`,
+                      backgroundColor: "#29c1fe",
+                      transition: "width 0.5s ease",
+                    }}
+                    aria-valuenow={faqProgress}
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+                <small className="text-muted mt-2 d-block">
+                  Прогресс изучения: {Math.round(faqProgress)}% (
+                  {openedQuestions.size} из {faqData.length} вопросов)
+                  {faqProgress > 0 && (
+                    <button
+                      className="btn btn-sm btn-outline-primary ms-2"
+                      onClick={() => {
+                        setFaqProgress(0);
+                        setOpenedQuestions(new Set());
+                      }}
+                      style={{ fontSize: "0.75rem" }}
+                    >
+                      <i className="fas fa-redo me-1"></i>
+                      Сбросить
+                    </button>
+                  )}
+                </small>
+              </div>
             </div>
             <div className="accordion" id="basicAccordion">
-              <div className="accordion-item rounded-7 shadow-4-strong">
-                <h2 className="accordion-header" id="headingOne">
-                  <button
-                    className="accordion-button rounded-7 collapsed"
-                    type="button"
-                    data-mdb-toggle="collapse"
-                    data-mdb-target="#basicAccordionCollapseOne"
-                    aria-expanded="false"
-                    aria-controls="collapseOne"
-                  >
-                    <span>Почему детям стоит учиться программированию?</span>
-                  </button>
-                </h2>
+              {faqData.map((item, index) => (
                 <div
-                  id="basicAccordionCollapseOne"
-                  className="accordion-collapse collapse"
-                  aria-labelledby="headingOne"
-                  data-mdb-parent="#basicAccordion"
-                  style={{}}
+                  key={index}
+                  className="accordion-item rounded-7 shadow-4-strong"
                 >
-                  <div className="accordion-body">
-                    <span>
-                      Дети должны учиться программированию, потому что это
-                      развивает навыки решения проблем, творческое мышление,
-                      логическое мышление и готовит их к технологичному
-                      будущему. Кроме того, программирование учит настойчивости,
-                      работе в команде, вниманию к деталям и открывает карьерные
-                      возможности в различных сферах.
-                    </span>
+                  <h2 className="accordion-header" id={`heading${index + 1}`}>
+                    <button
+                      className={`accordion-button rounded-7 ${
+                        openAccordion === index ? "" : "collapsed"
+                      }`}
+                      type="button"
+                      onClick={() => toggleAccordion(index)}
+                      aria-expanded={openAccordion === index}
+                      aria-controls={`basicAccordionCollapse${index + 1}`}
+                    >
+                      <span>{item.question}</span>
+                    </button>
+                  </h2>
+                  <div
+                    id={`basicAccordionCollapse${index + 1}`}
+                    className={`accordion-collapse ${
+                      openAccordion === index ? "show" : "collapse"
+                    }`}
+                    aria-labelledby={`heading${index + 1}`}
+                    data-mdb-parent="#basicAccordion"
+                  >
+                    <div className="accordion-body">
+                      <span>{item.answer}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="accordion-item rounded-7 shadow-4-strong">
-                <h2 className="accordion-header" id="headingTwo">
-                  <button
-                    className="accordion-button rounded-7 collapsed"
-                    type="button"
-                    data-mdb-toggle="collapse"
-                    data-mdb-target="#basicAccordionCollapseTwo"
-                    aria-expanded="false"
-                    aria-controls="collapseTwo"
-                  >
-                    <span>
-                      Мой ребенок новичок, нужен ли опыт программирования?
-                    </span>
-                  </button>
-                </h2>
-                <div
-                  id="basicAccordionCollapseTwo"
-                  className="accordion-collapse collapse"
-                  aria-labelledby="headingTwo"
-                  data-mdb-parent="#basicAccordion"
-                  style={{}}
-                >
-                  <div className="accordion-body">
-                    <span>
-                      Нет, опыт программирования не требуется. Мы принимаем
-                      детей с любым уровнем подготовки, включая новичков. Наши
-                      курсы начинаются с основ и постепенно усложняются, чтобы
-                      каждый ребенок мог учиться в своем темпе.
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="accordion-item rounded-7 shadow-4-strong">
-                <h2 className="accordion-header" id="headingThree">
-                  <button
-                    className="accordion-button rounded-7 collapsed"
-                    type="button"
-                    data-mdb-toggle="collapse"
-                    data-mdb-target="#basicAccordionCollapseThree"
-                    aria-expanded="false"
-                    aria-controls="collapseThree"
-                  >
-                    <span>
-                      С какого возраста можно начинать учиться программированию?
-                    </span>
-                  </button>
-                </h2>
-                <div
-                  id="basicAccordionCollapseThree"
-                  className="accordion-collapse collapse"
-                  aria-labelledby="headingThree"
-                  data-mdb-parent="#basicAccordion"
-                  style={{}}
-                >
-                  <div className="accordion-body">
-                    <span>
-                      Рекомендуемый возраст для начала — от 5-6 лет с блочным
-                      программированием. По мере развития можно переходить к
-                      более сложным языкам и проектам. Но учиться никогда не
-                      поздно — программирование полезно людям любого возраста.
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="accordion-item rounded-7 shadow-4-strong">
-                <h2 className="accordion-header" id="headingFour">
-                  <button
-                    className="accordion-button rounded-7 collapsed"
-                    type="button"
-                    data-mdb-toggle="collapse"
-                    data-mdb-target="#basicAccordionCollapseFour"
-                    aria-expanded="false"
-                    aria-controls="collapseFour"
-                  >
-                    <span>Какие курсы предлагает Digi Coders?</span>
-                  </button>
-                </h2>
-                <div
-                  id="basicAccordionCollapseFour"
-                  className="accordion-collapse collapse"
-                  aria-labelledby="headingFour"
-                  data-mdb-parent="#basicAccordion"
-                  style={{}}
-                >
-                  <div className="accordion-body">
-                    <span>
-                      Digi Coders предлагает курсы блочного программирования для
-                      детей: Python, веб-разработка, разработка приложений, игр,
-                      искусственный интеллект и IoT. Курсы делают обучение
-                      программированию интересным и интерактивным, обучая важным
-                      навыкам.
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="accordion-item rounded-7 shadow-4-strong">
-                <h2 className="accordion-header" id="headingFive">
-                  <button
-                    className="accordion-button rounded-7 collapsed"
-                    type="button"
-                    data-mdb-toggle="collapse"
-                    data-mdb-target="#basicAccordionCollapseFive"
-                    aria-expanded="false"
-                    aria-controls="collapseFive"
-                  >
-                    <span>Гибкое ли расписание курсов?</span>
-                  </button>
-                </h2>
-                <div
-                  id="basicAccordionCollapseFive"
-                  className="accordion-collapse collapse"
-                  aria-labelledby="headingFive"
-                  data-mdb-parent="#basicAccordion"
-                  style={{}}
-                >
-                  <div className="accordion-body">
-                    <span>
-                      Да! Вы можете подобрать удобное время и дни для занятий,
-                      чтобы они вписывались в ваш график.
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="accordion-item rounded-7 shadow-4-strong">
-                <h2 className="accordion-header" id="headingSix">
-                  <button
-                    className="accordion-button rounded-7 collapsed"
-                    type="button"
-                    data-mdb-toggle="collapse"
-                    data-mdb-target="#basicAccordionCollapseSix"
-                    aria-expanded="false"
-                    aria-controls="collapseSix"
-                  >
-                    <span>Какое устройство нужно для обучения?</span>
-                  </button>
-                </h2>
-                <div
-                  id="basicAccordionCollapseSix"
-                  className="accordion-collapse collapse"
-                  aria-labelledby="headingSix"
-                  data-mdb-parent="#basicAccordion"
-                  style={{}}
-                >
-                  <div className="accordion-body">
-                    <span>
-                      Для обучения в Digi Coders нужен только компьютер/ноутбук
-                      с веб-камерой и стабильным интернетом.
-                    </span>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </section>
         </div>
