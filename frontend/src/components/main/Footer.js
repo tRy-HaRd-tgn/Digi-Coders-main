@@ -3,173 +3,466 @@ import { NavLink } from "react-router-dom";
 
 export const Footer = () => {
   return (
-    <>
-      <footer
-        className="text-center text-lg-start text-white"
-        style={{ backgroundColor: "#000" }}
-      >
-        <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-          <div className="me-5 d-none d-lg-block">
-            <span>Свяжитесь с нами в социальных сетях:</span>
-          </div>
+    <footer
+      className="modern-footer"
+      style={{
+        background: "linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)",
+        color: "white",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {/* Декоративные элементы */}
+      <div
+        className="footer-decoration"
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "4px",
+          background: "linear-gradient(90deg, #667eea, #764ba2, #667eea)",
+          backgroundSize: "200% 100%",
+          animation: "gradientShift 3s ease-in-out infinite",
+        }}
+      />
 
-          <div>
-            <button type="button" className="btn btn-floating text-white mx-1">
-              <a href="#" className="me-4 text-reset">
-                <i className="fab fa-facebook-f" />
-              </a>
-            </button>
-            <button type="button" className="btn btn-floating text-white mx-1">
-              <a href="#" className="me-4 text-reset">
-                <i className="fab fa-twitter" />
-              </a>
-            </button>
-            <button type="button" className="btn btn-floating text-white mx-1">
-              <a href="#" className="me-4 text-reset">
-                <i className="fab fa-google" />
-              </a>
-            </button>
-            <button type="button" className="btn btn-floating text-white mx-1">
-              <a href="#" className="me-4 text-reset">
-                <i className="fab fa-instagram" />
-              </a>
-            </button>
-            <button type="button" className="btn btn-floating text-white mx-1">
-              <a href="#" className="me-4 text-reset">
-                <i className="fab fa-linkedin" />
-              </a>
-            </button>
-            <button type="button" className="btn btn-floating text-white mx-1">
-              <a href="#" className="me-4 text-reset">
-                <i className="fab fa-github" />
-              </a>
-            </button>
-          </div>
-        </section>
+      <style>
+        {`
+          @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+          }
+          
+          .social-icon {
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 8px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+          }
+          
+          .social-icon:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+          }
+          
+          .footer-link {
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: relative;
+          }
+          
+          .footer-link:hover {
+            color: #667eea !important;
+            transform: translateX(5px);
+          }
+          
+          .footer-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+          }
+          
+          .footer-link:hover::after {
+            width: 100%;
+          }
+          
+          .contact-item {
+            transition: all 0.3s ease;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 12px;
+          }
+          
+          .contact-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+          }
+          
+          .footer-section {
+            position: relative;
+            padding: 60px 0 40px;
+          }
+          
+          .footer-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+          }
+        `}
+      </style>
 
-        <section className="">
-          <div className="container text-center text-md-start mt-5">
-            <div className="row mt-3 test">
-              <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                <a className="navbar-brand me-2" href="#">
-                  <img
-                    src="/logo/logo-white.png"
-                    height={40}
-                    alt="Digi Coders Logo"
-                    loading="lazy"
-                    style={{ marginBottom: "25px" }}
-                  />
+      {/* Верхняя секция с социальными сетями */}
+      <section className="footer-section">
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-lg-6 text-center text-lg-start mb-4 mb-lg-0">
+              <h5 className="fw-bold mb-0" style={{ fontSize: "1.2rem" }}>
+                <i
+                  className="fas fa-share-alt me-2"
+                  style={{ color: "#667eea" }}
+                />
+                Свяжитесь с нами в социальных сетях
+              </h5>
+            </div>
+            <div className="col-lg-6 text-center text-lg-end">
+              <div className="social-icons">
+                <a
+                  href="#"
+                  className="social-icon text-white text-decoration-none"
+                >
+                  <i className="fab fa-facebook-f fa-lg" />
                 </a>
-                <p className="text-justify">
-                  Digi Coders — это программа обучения детей основам
-                  программирования на блоках, где они могут учиться и получать
-                  удовольствие одновременно.
-                </p>
-              </div>
-
-              <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                <h6 className="text-uppercase fw-bold mb-4">Курсы</h6>
-                <p>
-                  <NavLink
-                    to="/user/viewchapters?category=HTML"
-                    className="text-reset custom-link-hover"
-                  >
-                    HTML
-                  </NavLink>
-                </p>
-                <p>
-                  <NavLink
-                    to="/user/viewchapters?category=JavaScript"
-                    className="text-reset custom-link-hover"
-                  >
-                    JavaScript
-                  </NavLink>
-                </p>
-                <p>
-                  <NavLink
-                    to="/user/viewchapters?category=Python"
-                    className="text-reset custom-link-hover"
-                  >
-                    Python
-                  </NavLink>
-                </p>
-                <p>
-                  <NavLink
-                    to="/main/course"
-                    className="text-reset custom-link-hover"
-                  >
-                    Новые курсы
-                  </NavLink>
-                </p>
-              </div>
-
-              <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                {/* Links */}
-                <h6 className="text-uppercase fw-bold mb-4">Полезные ссылки</h6>
-                <p>
-                  <NavLink
-                    to="/main/home"
-                    className="text-reset custom-link-hover"
-                  >
-                    Главная
-                  </NavLink>
-                </p>
-                <p>
-                  <NavLink
-                    to="/main/course"
-                    className="text-reset custom-link-hover"
-                  >
-                    Курсы
-                  </NavLink>
-                </p>
-                <p>
-                  <NavLink
-                    to="/main/about"
-                    className="text-reset custom-link-hover"
-                  >
-                    О нас
-                  </NavLink>
-                </p>
-                <p>
-                  <NavLink
-                    to="/main/contact"
-                    className="text-reset custom-link-hover"
-                  >
-                    Контакты
-                  </NavLink>
-                </p>
-              </div>
-
-              <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                <h6 className="text-uppercase fw-bold mb-4">Контакты</h6>
-                <p>
-                  <i className="footer-icon fas fa-home me-3" />
-                  Хазрат Гандж, Лакнау 226001, УП
-                </p>
-                <p>
-                  <i className="footer-icon fas fa-envelope me-3" />
-                  digicoders12@gmail.com
-                </p>
-                <p>
-                  <i className="footer-icon fas fa-phone me-3" />
-                  9260964544
-                </p>
-                <p>
-                  <i className="footer-icon fas fa-print me-3" />
-                  8948911871
-                </p>
+                <a
+                  href="#"
+                  className="social-icon text-white text-decoration-none"
+                >
+                  <i className="fab fa-twitter fa-lg" />
+                </a>
+                <a
+                  href="#"
+                  className="social-icon text-white text-decoration-none"
+                >
+                  <i className="fab fa-google fa-lg" />
+                </a>
+                <a
+                  href="#"
+                  className="social-icon text-white text-decoration-none"
+                >
+                  <i className="fab fa-instagram fa-lg" />
+                </a>
+                <a
+                  href="#"
+                  className="social-icon text-white text-decoration-none"
+                >
+                  <i className="fab fa-linkedin fa-lg" />
+                </a>
+                <a
+                  href="#"
+                  className="social-icon text-white text-decoration-none"
+                >
+                  <i className="fab fa-github fa-lg" />
+                </a>
               </div>
             </div>
           </div>
-        </section>
-
-        <div className="text-center p-4" style={{ backgroundColor: "#1b1b1b" }}>
-          © 2023 Все права защищены :&nbsp;
-          <NavLink className="text-reset fw-bold custom-link-hover" to="#">
-            DigiCoders.com
-          </NavLink>
         </div>
-      </footer>
-    </>
+      </section>
+
+      {/* Основная секция с контентом */}
+      <section className="footer-section" style={{ paddingTop: "40px" }}>
+        <div className="container">
+          <div className="row g-4">
+            {/* Логотип и описание */}
+            <div className="col-lg-4 col-md-6">
+              <div className="footer-brand mb-4">
+                <div className="d-flex align-items-center mb-3">
+                  <div>
+                    <h4 className="mb-0 fw-bold">
+                      <span className="text-white">DIGI</span>
+                      <span style={{ color: "#667eea" }}>CODERS</span>
+                    </h4>
+                    <small className="text-white-50">Fun With Coding</small>
+                  </div>
+                </div>
+                <p className="text-white-75" style={{ lineHeight: "1.6" }}>
+                  Digi Coders — это инновационная программа обучения детей
+                  основам программирования через визуальные блоки. Мы делаем
+                  обучение увлекательным и доступным для каждого ребенка.
+                </p>
+              </div>
+            </div>
+
+            {/* Курсы */}
+            <div className="col-lg-2 col-md-6">
+              <div className="footer-links">
+                <h6
+                  className="text-uppercase fw-bold mb-4"
+                  style={{ color: "#667eea" }}
+                >
+                  <i className="fas fa-graduation-cap me-2" />
+                  Курсы
+                </h6>
+                <ul className="list-unstyled">
+                  <li className="mb-2">
+                    <NavLink
+                      to="/user/viewchapters?category=HTML"
+                      className="footer-link text-white-75 text-decoration-none"
+                    >
+                      <i
+                        className="fab fa-html5 me-2"
+                        style={{ color: "#667eea" }}
+                      />
+                      HTML
+                    </NavLink>
+                  </li>
+                  <li className="mb-2">
+                    <NavLink
+                      to="/user/viewchapters?category=JavaScript"
+                      className="footer-link text-white-75 text-decoration-none"
+                    >
+                      <i
+                        className="fab fa-js-square me-2"
+                        style={{ color: "#667eea" }}
+                      />
+                      JavaScript
+                    </NavLink>
+                  </li>
+                  <li className="mb-2">
+                    <NavLink
+                      to="/user/viewchapters?category=Python"
+                      className="footer-link text-white-75 text-decoration-none"
+                    >
+                      <i
+                        className="fab fa-python me-2"
+                        style={{ color: "#667eea" }}
+                      />
+                      Python
+                    </NavLink>
+                  </li>
+                  <li className="mb-2">
+                    <NavLink
+                      to="/main/course"
+                      className="footer-link text-white-75 text-decoration-none"
+                    >
+                      <i
+                        className="fas fa-plus-circle me-2"
+                        style={{ color: "#667eea" }}
+                      />
+                      Новые курсы
+                    </NavLink>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Полезные ссылки */}
+            <div className="col-lg-2 col-md-6">
+              <div className="footer-links">
+                <h6
+                  className="text-uppercase fw-bold mb-4"
+                  style={{ color: "#667eea" }}
+                >
+                  <i className="fas fa-link me-2" />
+                  Полезные ссылки
+                </h6>
+                <ul className="list-unstyled">
+                  <li className="mb-2">
+                    <NavLink
+                      to="/main/home"
+                      className="footer-link text-white-75 text-decoration-none"
+                    >
+                      <i
+                        className="fas fa-home me-2"
+                        style={{ color: "#667eea" }}
+                      />
+                      Главная
+                    </NavLink>
+                  </li>
+                  <li className="mb-2">
+                    <NavLink
+                      to="/main/course"
+                      className="footer-link text-white-75 text-decoration-none"
+                    >
+                      <i
+                        className="fas fa-book me-2"
+                        style={{ color: "#667eea" }}
+                      />
+                      Курсы
+                    </NavLink>
+                  </li>
+                  <li className="mb-2">
+                    <NavLink
+                      to="/main/about"
+                      className="footer-link text-white-75 text-decoration-none"
+                    >
+                      <i
+                        className="fas fa-info-circle me-2"
+                        style={{ color: "#667eea" }}
+                      />
+                      О нас
+                    </NavLink>
+                  </li>
+                  <li className="mb-2">
+                    <NavLink
+                      to="/main/contact"
+                      className="footer-link text-white-75 text-decoration-none"
+                    >
+                      <i
+                        className="fas fa-envelope me-2"
+                        style={{ color: "#667eea" }}
+                      />
+                      Контакты
+                    </NavLink>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Контакты */}
+            <div className="col-lg-4 col-md-6">
+              <div className="footer-contact">
+                <h6
+                  className="text-uppercase fw-bold mb-4"
+                  style={{ color: "#667eea" }}
+                >
+                  <i className="fas fa-address-card me-2" />
+                  Контакты
+                </h6>
+                <div className="contact-items">
+                  <div className="contact-item">
+                    <div className="d-flex align-items-center">
+                      <div
+                        className="contact-icon me-3"
+                        style={{
+                          width: "40px",
+                          height: "40px",
+                          borderRadius: "50%",
+                          background:
+                            "linear-gradient(45deg, #667eea, #764ba2)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <i className="fas fa-map-marker-alt text-white" />
+                      </div>
+                      <div>
+                        <small className="text-white-50 d-block">Адрес</small>
+                        <span className="text-white">
+                          Хазрат Гандж, Лакнау 226001, УП
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="contact-item">
+                    <div className="d-flex align-items-center">
+                      <div
+                        className="contact-icon me-3"
+                        style={{
+                          width: "40px",
+                          height: "40px",
+                          borderRadius: "50%",
+                          background:
+                            "linear-gradient(45deg, #667eea, #764ba2)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <i className="fas fa-envelope text-white" />
+                      </div>
+                      <div>
+                        <small className="text-white-50 d-block">Email</small>
+                        <span className="text-white">
+                          digicoders12@gmail.com
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="contact-item">
+                    <div className="d-flex align-items-center">
+                      <div
+                        className="contact-icon me-3"
+                        style={{
+                          width: "40px",
+                          height: "40px",
+                          borderRadius: "50%",
+                          background:
+                            "linear-gradient(45deg, #667eea, #764ba2)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <i className="fas fa-phone text-white" />
+                      </div>
+                      <div>
+                        <small className="text-white-50 d-block">Телефон</small>
+                        <span className="text-white">+91 9260964544</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="contact-item">
+                    <div className="d-flex align-items-center">
+                      <div
+                        className="contact-icon me-3"
+                        style={{
+                          width: "40px",
+                          height: "40px",
+                          borderRadius: "50%",
+                          background:
+                            "linear-gradient(45deg, #667eea, #764ba2)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <i className="fas fa-fax text-white" />
+                      </div>
+                      <div>
+                        <small className="text-white-50 d-block">Факс</small>
+                        <span className="text-white">+91 8948911871</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Нижняя секция с копирайтом */}
+      <div
+        className="footer-bottom"
+        style={{
+          background: "rgba(0, 0, 0, 0.2)",
+          backdropFilter: "blur(10px)",
+          borderTop: "1px solid rgba(255, 255, 255, 0.1)",
+        }}
+      >
+        <div className="container">
+          <div className="row align-items-center py-4">
+            <div className="col-md-6 text-center text-md-start">
+              <p className="mb-0 text-white-75">© 2024 Все права защищены</p>
+            </div>
+            <div className="col-md-6 text-center text-md-end">
+              <NavLink
+                className="text-decoration-none fw-bold"
+                to="#"
+                style={{ color: "#667eea" }}
+              >
+                DigiCoders.com
+              </NavLink>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 };
