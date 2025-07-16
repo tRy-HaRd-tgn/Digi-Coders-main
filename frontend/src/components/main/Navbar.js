@@ -28,11 +28,8 @@ const Navbar = () => {
 
   return (
     <>
-   
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-       
         <div className="container">
-       
           <NavLink className="navbar-brand me-2" to="/main/home">
             <img
               src="/logo/logo.png"
@@ -62,16 +59,15 @@ const Navbar = () => {
             <ul className="navbar-nav mb-2 mb-lg-0" style={{ fontSize: 18 }}>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/main/home">
-                  Home
+                  Главная
                 </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/main/about">
-                  About
+                  О нас
                 </NavLink>
               </li>
 
-           
               <li className={`dropdown ${isDropdownOpen ? "show" : ""}`}>
                 <a
                   className="nav-link dropdown-toggle"
@@ -81,9 +77,9 @@ const Navbar = () => {
                   aria-expanded={isDropdownOpen}
                   onClick={toggleDropdown}
                 >
-                  Courses
+                  Курсы
                 </a>
-             
+
                 <ul
                   className={`dropdown-menu ${isDropdownOpen ? "show" : ""}`}
                   aria-labelledby="navbarDropdown"
@@ -121,7 +117,7 @@ const Navbar = () => {
                       to="/user/viewchapters?category=Game Development"
                       onClick={() => setIsDropdownOpen(false)}
                     >
-                      Game Development
+                      Разработка игр
                     </NavLink>
                   </li>
                   <li>
@@ -130,7 +126,7 @@ const Navbar = () => {
                       to="/user/viewchapters?category=Web Development"
                       onClick={() => setIsDropdownOpen(false)}
                     >
-                      Web Development
+                      Веб-разработка
                     </NavLink>
                   </li>
                   <li>
@@ -147,12 +143,12 @@ const Navbar = () => {
 
               <li className="nav-item">
                 <NavLink className="nav-link" to="/main/contact">
-                  Contact
+                  Контакты
                 </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/trainer/trainerprofile">
-                  Trainer
+                  Тренер
                 </NavLink>
               </li>
             </ul>
@@ -163,12 +159,12 @@ const Navbar = () => {
               <>
                 <Link className="nav-btn btn-link" to="/main/signup">
                   <i className="fas fa-user fa-lg me-1 fa-fw" />
-                  Sign Up
+                  Регистрация
                 </Link>
 
                 <Link className="nav-btn btn-link" to="/main/login">
                   <i className="fas fa-right-to-bracket fa-lg me-1 fa-fw" />
-                  Login
+                  Войти
                 </Link>
               </>
             ) : (
@@ -208,7 +204,7 @@ const Navbar = () => {
                   >
                     <li>
                       <NavLink className="dropdown-item" to="/user/userprofile">
-                        My profile
+                        Мой профиль
                       </NavLink>
                     </li>
                     <li>
@@ -217,7 +213,7 @@ const Navbar = () => {
                         type="button"
                         onClick={logout}
                       >
-                        Logout
+                        Выйти
                       </a>
                     </li>
                   </ul>

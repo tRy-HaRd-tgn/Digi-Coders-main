@@ -39,23 +39,23 @@ const Navbar = () => {
             <ul className="navbar-nav mb-2 mb-lg-0" style={{ fontSize: 18 }}>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/trainer/home">
-                  Home
+                  Главная
                 </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/trainer/about">
-                  About
+                  О нас
                 </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/trainer/managechapter">
-                  Manage Chapter
+                  Управление главами
                 </NavLink>
               </li>
 
               <li className="nav-item">
                 <NavLink className="nav-link" to="/trainer/contact">
-                  Contact
+                  Контакты
                 </NavLink>
               </li>
             </ul>
@@ -66,12 +66,12 @@ const Navbar = () => {
               <>
                 <Link className="nav-btn btn-link" to="/main/signup">
                   <i className="fas fa-user fa-lg me-1 fa-fw" />
-                  Sign Up
+                  Регистрация
                 </Link>
 
                 <Link className="nav-btn btn-link" to="/main/login">
                   <i className="fas fa-right-to-bracket fa-lg me-1 fa-fw" />
-                  Login
+                  Войти
                 </Link>
               </>
             ) : (
@@ -122,7 +122,7 @@ const Navbar = () => {
                         className="dropdown-item"
                         to="/trainer/trainerprofile"
                       >
-                        My profile
+                        Мой профиль
                       </NavLink>
                     </li>
                     <li>
@@ -131,7 +131,7 @@ const Navbar = () => {
                         type="button"
                         onClick={logout}
                       >
-                        Logout
+                        Выйти
                       </a>
                     </li>
                   </ul>
