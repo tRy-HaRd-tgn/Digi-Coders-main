@@ -70,7 +70,7 @@ const Login = () => {
                     >
                       <div className="signup-name">
                         <Link to="/main/trainerlogin">
-                          <p className="h5 fw-bold mt-5">Учитель</p>
+                          <p className="h5 fw-bold mt-5">Преподаватель</p>
                         </Link>
                       </div>
 

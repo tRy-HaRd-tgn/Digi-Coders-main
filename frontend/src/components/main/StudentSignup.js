@@ -28,15 +28,17 @@ const StudentSignup = () => {
 
   const StudentsignupSchema = Yup.object().shape({
     name: Yup.string()
-      .min(2, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Required"),
-    email: Yup.string().email("Invalid email").required("Required"),
-    password: Yup.string().required("Please Enter your password"),
-    mobile_no: Yup.string().required("Required"),
+      .min(2, "Слишком короткое имя!")
+      .max(50, "Слишком длинное имя!")
+      .required("Обязательное поле"),
+    email: Yup.string()
+      .email("Некорректный email")
+      .required("Обязательное поле"),
+    password: Yup.string().required("Пожалуйста, введите пароль"),
+    mobile_no: Yup.string().required("Обязательное поле"),
     // .matches(
     //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-    //   "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+    //   "Пароль должен содержать минимум 8 символов, одну заглавную, одну строчную букву, одну цифру и один специальный символ"
     // ),
   });
 
@@ -67,8 +69,8 @@ const StudentSignup = () => {
         if (res.status === 200) {
           Swal.fire({
             icon: "success",
-            title: "Congratulations",
-            text: "Your account has been successfully created",
+            title: "Поздравляем!",
+            text: "Ваш аккаунт успешно создан",
             showConfirmButton: false,
             timer: 1500,
           });
@@ -77,8 +79,8 @@ const StudentSignup = () => {
           const errorData = await res.json();
           Swal.fire({
             icon: "error",
-            title: "Oops...",
-            text: errorData.message || "Something went wrong!",
+            title: "Ошибка...",
+            text: errorData.message || "Что-то пошло не так!",
           });
         }
       } catch (error) {
@@ -173,10 +175,7 @@ const StudentSignup = () => {
     if (initializeGoogleSignIn(clientId, handleCallbackResponse)) {
       // Рендерим кнопку
       if (renderGoogleButton("signInDiv")) {
-        
       } else {
-      
-       
       }
     } else {
     }
@@ -199,16 +198,13 @@ const StudentSignup = () => {
           <div className="row g-0">
             <div className="col-lg-6 curve">
               <div className="pt-5" style={{ marginLeft: "285px" }}>
-                <h2 className="my-1">One of us ?</h2>
+                <h2 className="my-1">Уже с нами?</h2>
               </div>
 
               <div className="py-2" style={{ marginLeft: "100px" }}>
                 <div className="d-flex flex-row align-items-center">
                   <div className="flex-fill text-center mb-2 mx-5">
-                    <p>
-                      Access your account by signing in and continue where you
-                      left off.
-                    </p>
+                    <p>Войдите в свой аккаунт и продолжайте обучение!</p>
                   </div>
                 </div>
                 <div className="d-flex flex-row align-items-center">
@@ -217,7 +213,7 @@ const StudentSignup = () => {
                       to="/main/studentlogin"
                       className="btn btn-primary"
                     >
-                      Sign In
+                      Войти
                     </NavLink>
                   </div>
                 </div>
@@ -237,7 +233,7 @@ const StudentSignup = () => {
             <div className="col-lg-6">
               <div className="card-body p-md-5 mx-md-5">
                 <div className="text-center mb-5">
-                  <h3 className="my-2">Student Signup</h3>
+                  <h3 className="my-2">Регистрация ученика</h3>
                 </div>
                 <form
                   className="mx-md-5 text-black"
@@ -250,7 +246,7 @@ const StudentSignup = () => {
                       id="name"
                       name="name"
                       className="form-control form-control-lg"
-                      placeholder="Name"
+                      placeholder="Имя"
                       value={studentsignupForm.values.name}
                       onChange={studentsignupForm.handleChange}
                     />
@@ -267,7 +263,7 @@ const StudentSignup = () => {
                       name="email"
                       autoComplete="off"
                       className="form-control form-control-lg"
-                      placeholder="Email"
+                      placeholder="Электронная почта"
                       value={studentsignupForm.values.email}
                       onChange={studentsignupForm.handleChange}
                     />
@@ -299,7 +295,7 @@ const StudentSignup = () => {
                       name="password"
                       autoComplete="off"
                       className="form-control form-control-lg"
-                      placeholder="Password"
+                      placeholder="Пароль"
                       value={studentsignupForm.values.password}
                       onChange={studentsignupForm.handleChange}
                     />
@@ -314,7 +310,7 @@ const StudentSignup = () => {
                       id="mobile_no"
                       name="mobile_no"
                       className="form-control form-control-lg"
-                      placeholder="Mobile Number"
+                      placeholder="Мобильный номер"
                       value={studentsignupForm.values.mobile_no}
                       onChange={studentsignupForm.handleChange}
                     />
@@ -326,10 +322,10 @@ const StudentSignup = () => {
                   <div className="d-flex flex-row align-items-center mx-1 mb-4">
                     <label htmlFor="avatar-img" className="btn btn-primary">
                       {" "}
-                      <i className="fas fa-upload"></i> Upload Image
+                      <i className="fas fa-upload"></i> Загрузить изображение
                     </label>
                     <span className="text-warning mx-3">
-                      {selImage ? selImage.name : "No Image Selected"}
+                      {selImage ? selImage.name : "Изображение не выбрано"}
                     </span>
                     <input
                       type="file"
@@ -357,7 +353,7 @@ const StudentSignup = () => {
                         </>
                       ) : (
                         <>
-                          Signup &nbsp;
+                          Зарегистрироваться &nbsp;
                           <i className="fas fa-arrow-right-to-bracket" />
                         </>
                       )}

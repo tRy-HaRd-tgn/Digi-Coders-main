@@ -15,8 +15,10 @@ const StudentLogin = () => {
   const handleShow = () => setShow(!show);
 
   const studentLogin = Yup.object().shape({
-    email: Yup.string().email("Invalid email").required("Email is Required"),
-    password: Yup.string().required("Required"),
+    email: Yup.string()
+      .email("Некорректный email")
+      .required("Обязательное поле"),
+    password: Yup.string().required("Пароль обязателен."),
   });
 
   const StudentLogin = useFormik({
@@ -39,8 +41,8 @@ const StudentLogin = () => {
         if (res.status === 200) {
           Swal.fire({
             icon: "success",
-            title: "Well Done!!",
-            text: "login successfully",
+            title: "Отлично!",
+            text: "Вход выполнен успешно",
             showConfirmButton: false,
             timer: 1500,
           });
@@ -89,15 +91,15 @@ const StudentLogin = () => {
           <div className="row g-0">
             <div className="col-lg-6 curve">
               <div className="pt-5" style={{ marginLeft: "285px" }}>
-                <h2 className="my-1">New Here?</h2>
+                <h2 className="my-1">Впервые здесь?</h2>
               </div>
 
               <div className="py-2" style={{ marginLeft: "100px" }}>
                 <div className="d-flex flex-row align-items-center">
                   <div className="flex-fill text-center mb-2 mx-5">
                     <p>
-                      Start your journey with us by signing up and accessing
-                      exclusive benefits.
+                      Начните свой путь с нами — зарегистрируйтесь и получите
+                      доступ к эксклюзивным возможностям.
                     </p>
                   </div>
                 </div>
@@ -107,7 +109,7 @@ const StudentLogin = () => {
                       to="/main/studentsignup"
                       className="btn btn-primary"
                     >
-                      Sign Up
+                      Зарегистрироваться
                     </NavLink>
                   </div>
                 </div>
@@ -127,7 +129,7 @@ const StudentLogin = () => {
             <div className="col-lg-6">
               <div className="card-body p-md-5 mx-md-5">
                 <div className="text-center mb-5">
-                  <h3 className="my-5 text-center">Student Login</h3>
+                  <h3 className="my-5 text-center">Вход для ученика</h3>
                 </div>
                 <form
                   className="mx-md-5 text-black"
@@ -141,7 +143,7 @@ const StudentLogin = () => {
                       name="email"
                       autoComplete="off"
                       className="form-control form-control-lg"
-                      placeholder="Email"
+                      placeholder="Электронная почта"
                       value={StudentLogin.values.email}
                       onChange={StudentLogin.handleChange}
                     />
@@ -176,7 +178,7 @@ const StudentLogin = () => {
                       name="password"
                       autoComplete="off"
                       className="form-control form-control-lg"
-                      placeholder="Password"
+                      placeholder="Пароль"
                       value={StudentLogin.values.password}
                       onChange={StudentLogin.handleChange}
                     />
@@ -189,7 +191,7 @@ const StudentLogin = () => {
                   </div>
                   <div className="mb-4 text-center">
                     <NavLink className="nav-link" to="/main/resetpassword">
-                      Forget password?
+                      Забыли пароль?
                     </NavLink>
                   </div>
                   <div className="pt-1 pb-1 ">
@@ -210,7 +212,7 @@ const StudentLogin = () => {
                         </>
                       ) : (
                         <>
-                          Login &nbsp;
+                          Войти &nbsp;
                           <i className="fas fa-arrow-right-to-bracket" />
                         </>
                       )}

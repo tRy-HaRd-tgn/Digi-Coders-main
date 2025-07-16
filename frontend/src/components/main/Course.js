@@ -42,12 +42,12 @@ const Course = () => {
           className="about-content"
           style={{ position: "relative", zIndex: 3 }}
         >
-          <h1 className="about-title">OUR COURSES</h1>
+          <h1 className="about-title">НАШИ КУРСЫ</h1>
           <p className="about-description">
-            "Give Your Child the Gift of Coding with Our Exciting and Engaging
-            Courses! Our Curriculum is Designed to Help Kids Develop Strong
-            Problem-Solving and Logical Reasoning Skills, While Building a
-            Foundation for a Lifetime of Learning."
+            "Подарите вашему ребёнку возможность изучать программирование с
+            нашими увлекательными и интересными курсами! Наша программа помогает
+            детям развивать навыки решения задач и логического мышления,
+            закладывая фундамент для успешного будущего."
           </p>
         </div>
       </div>
@@ -90,24 +90,23 @@ const Course = () => {
                           <strong>HTML</strong>
                         </h4>
                         <h5 className="mb-3">
-                          <strong>20 Classes</strong>
+                          <strong>20 занятий</strong>
                         </h5>
                         <h6 className="mb-3">
-                          Duration : <strong>2 Months</strong>
+                          Длительность: <strong>2 месяца</strong>
                         </h6>
 
                         <hr className="hr hr-blurry" />
 
                         <p className="card-text">
-                          An ideal course to help kids quickly grasp the basics
-                          of html programming and start writing code using
-                          blocks.
+                          Идеальный курс, чтобы дети быстро освоили основы HTML
+                          и начали писать код с помощью блоков.
                         </p>
                         <button
                           className="btn btn-primary my-3"
                           onClick={() => handleCourseClick("HTML")}
                         >
-                          Learn More
+                          Подробнее
                         </button>
                       </div>
                     </div>
@@ -145,25 +144,24 @@ const Course = () => {
                           <strong>JavaScript</strong>
                         </h4>
                         <h5 className="mb-3">
-                          <strong>30 Classes</strong>
+                          <strong>30 занятий</strong>
                         </h5>
                         <h6 className="mb-3">
-                          Duration : <strong>3 Months</strong>
+                          Длительность: <strong>3 месяца</strong>
                         </h6>
 
                         <hr className="hr hr-blurry" />
 
                         <p className="card-text">
-                          An ideal course to help kids quickly grasp the basics
-                          of javascript programming and start writing code using
-                          blocks.
+                          Идеальный курс, чтобы дети быстро освоили основы
+                          JavaScript и начали писать код с помощью блоков.
                         </p>
 
                         <button
                           className="btn btn-primary my-3"
                           onClick={() => handleCourseClick("JavaScript")}
                         >
-                          Learn More
+                          Подробнее
                         </button>
                       </div>
                     </div>
@@ -201,25 +199,24 @@ const Course = () => {
                           <strong>Python</strong>
                         </h4>
                         <h5 className="mb-3">
-                          <strong>25 Classes</strong>
+                          <strong>25 занятий</strong>
                         </h5>
                         <h6 className="mb-3">
-                          Duration : <strong>3 Months</strong>
+                          Длительность: <strong>3 месяца</strong>
                         </h6>
 
                         <hr className="hr hr-blurry" />
 
                         <p className="card-text">
-                          An ideal course to help kids quickly grasp the basics
-                          of python programming and start writing code using
-                          blocks.
+                          Идеальный курс, чтобы дети быстро освоили основы
+                          Python и начали писать код с помощью блоков.
                         </p>
 
                         <button
                           className="btn btn-primary my-3"
                           onClick={() => handleCourseClick("Python")}
                         >
-                          Learn More
+                          Подробнее
                         </button>
                       </div>
                     </div>
@@ -236,12 +233,14 @@ const Course = () => {
               <section>
                 <div className="heading">
                   <h2 className="mb-3 text-center display-3">
-                    <span>Our Upcoming Courses</span>
+                    <span>Наши будущие курсы</span>
                   </h2>
                 </div>
                 <div className="sub-heading">
                   <h4 className="mb-8 text-center">
-                    <span>Discover a world of coding with our courses</span>
+                    <span>
+                      Откройте для себя мир программирования с нашими курсами
+                    </span>
                   </h4>
                 </div>
                 <div className="row text-center gx-lg-5 mb-6">
@@ -277,20 +276,21 @@ const Course = () => {
                           <strong>Game Development</strong>
                         </h4>
                         <h5 className="mb-3">
-                          <strong>50 Classes</strong>
+                          <strong>50 занятий</strong>
                         </h5>
                         <h6 className="mb-3">
-                          Duration : <strong>7 Months</strong>
+                          Длительность: <strong>7 месяцев</strong>
                         </h6>
                         {/* Divider here */}
                         <hr className="hr hr-blurry" />
 
                         <p className="card-text">
-                          A perfect course for kids who want to excel at coding
-                          and build complex games and applications.
+                          Идеальный курс для детей, которые хотят углубиться в
+                          программирование и создавать сложные игры и
+                          приложения.
                         </p>
                         <button className="btn btn-primary my-3">
-                          Learn More
+                          Подробнее
                         </button>
                       </div>
                     </div>
@@ -328,21 +328,22 @@ const Course = () => {
                           <strong>Web Development</strong>
                         </h4>
                         <h5 className="mb-3">
-                          <strong>40 Classes</strong>
+                          <strong>40 занятий</strong>
                         </h5>
                         <h6 className="mb-3">
-                          Duration : <strong>6 Months</strong>
+                          Длительность: <strong>6 месяцев</strong>
                         </h6>
 
                         <hr className="hr hr-blurry" />
 
                         <p className="card-text">
-                          A perfect course for kids who want to excel at coding
-                          and build complex games and applications.
+                          Идеальный курс для детей, которые хотят углубиться в
+                          программирование и создавать сложные игры и
+                          приложения.
                         </p>
 
                         <button className="btn btn-primary my-3">
-                          Learn More
+                          Подробнее
                         </button>
                       </div>
                     </div>
@@ -380,21 +381,22 @@ const Course = () => {
                           <strong>Roblox</strong>
                         </h4>
                         <h5 className="mb-3">
-                          <strong>50 Classes</strong>
+                          <strong>50 занятий</strong>
                         </h5>
                         <h6 className="mb-3">
-                          Duration : <strong>7 Months</strong>
+                          Длительность: <strong>7 месяцев</strong>
                         </h6>
 
                         <hr className="hr hr-blurry" />
 
                         <p className="card-text">
-                          A perfect course for kids who want to excel at coding
-                          and build complex games and applications.
+                          Идеальный курс для детей, которые хотят углубиться в
+                          программирование и создавать сложные игры и
+                          приложения.
                         </p>
 
                         <button className="btn btn-primary my-3">
-                          Learn More
+                          Подробнее
                         </button>
                       </div>
                     </div>

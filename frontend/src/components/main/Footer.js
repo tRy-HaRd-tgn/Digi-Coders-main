@@ -10,7 +10,7 @@ export const Footer = () => {
       >
         <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
           <div className="me-5 d-none d-lg-block">
-            <span>Get connected with us on social networks:</span>
+            <span>Свяжитесь с нами в социальных сетях:</span>
           </div>
 
           <div>
@@ -61,13 +61,14 @@ export const Footer = () => {
                   />
                 </a>
                 <p className="text-justify">
-                  Digi Coders is a block-based coding program for kids, where
-                  they can learn the basics of coding while having fun.
+                  Digi Coders — это программа обучения детей основам
+                  программирования на блоках, где они могут учиться и получать
+                  удовольствие одновременно.
                 </p>
               </div>
 
               <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                <h6 className="text-uppercase fw-bold mb-4">Courses</h6>
+                <h6 className="text-uppercase fw-bold mb-4">Курсы</h6>
                 <p>
                   <NavLink
                     to="/user/viewchapters?category=HTML"
@@ -97,20 +98,20 @@ export const Footer = () => {
                     to="/main/course"
                     className="text-reset custom-link-hover"
                   >
-                    Upcoming Courses
+                    Новые курсы
                   </NavLink>
                 </p>
               </div>
 
               <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                 {/* Links */}
-                <h6 className="text-uppercase fw-bold mb-4">Useful links</h6>
+                <h6 className="text-uppercase fw-bold mb-4">Полезные ссылки</h6>
                 <p>
                   <NavLink
                     to="/main/home"
                     className="text-reset custom-link-hover"
                   >
-                    Home
+                    Главная
                   </NavLink>
                 </p>
                 <p>
@@ -118,7 +119,7 @@ export const Footer = () => {
                     to="/main/course"
                     className="text-reset custom-link-hover"
                   >
-                    Courses
+                    Курсы
                   </NavLink>
                 </p>
                 <p>
@@ -126,7 +127,7 @@ export const Footer = () => {
                     to="/main/about"
                     className="text-reset custom-link-hover"
                   >
-                    About
+                    О нас
                   </NavLink>
                 </p>
                 <p>
@@ -134,16 +135,16 @@ export const Footer = () => {
                     to="/main/contact"
                     className="text-reset custom-link-hover"
                   >
-                    Contact
+                    Контакты
                   </NavLink>
                 </p>
               </div>
 
               <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                <h6 className="text-uppercase fw-bold mb-4">Contact</h6>
+                <h6 className="text-uppercase fw-bold mb-4">Контакты</h6>
                 <p>
                   <i className="footer-icon fas fa-home me-3" />
-                  Hazrat Ganj, Lucknow 226001, UP
+                  Хазрат Гандж, Лакнау 226001, УП
                 </p>
                 <p>
                   <i className="footer-icon fas fa-envelope me-3" />
@@ -163,7 +164,7 @@ export const Footer = () => {
         </section>
 
         <div className="text-center p-4" style={{ backgroundColor: "#1b1b1b" }}>
-          © 2023 Copyright :&nbsp;
+          © 2023 Все права защищены :&nbsp;
           <NavLink className="text-reset fw-bold custom-link-hover" to="#">
             DigiCoders.com
           </NavLink>
