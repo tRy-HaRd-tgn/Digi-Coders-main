@@ -75,11 +75,11 @@ const TrainerProfile = () => {
   };
 
   const trainersignupSchema = Yup.object().shape({
-    name: Yup.string().required("Name is Required"),
-    email: Yup.string().email("Invalid email").required("Email is Required"),
-    mobile_no: Yup.string().required("Mobile Number is Required"),
-    skills: Yup.string().required("Skills is Required"),
-    certifications: Yup.string().required("Certificate is Required"),
+    name: Yup.string().required("Имя обязательно"),
+    email: Yup.string().email("Неверный email").required("Email обязателен"),
+    mobile_no: Yup.string().required("Номер телефона обязателен"),
+    skills: Yup.string().required("Навыки обязательны"),
+    certifications: Yup.string().required("Сертификаты обязательны"),
   });
 
   const trainerProfileForm = useFormik({
@@ -364,14 +364,14 @@ const TrainerProfile = () => {
                         Загрузка...
                       </>
                     ) : (
-                      "Upload Image"
+                      "Загрузить фото"
                     )}
                   </button>
                 </div>
                 <hr className="my-3" />
                 <ul className="list-group list-group-flush">
                   <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 className="mb-0">Name</h6>
+                    <h6 className="mb-0">Имя</h6>
                     <span className="text-secondary">
                       {currentTrainer.name}
                     </span>
@@ -383,19 +383,19 @@ const TrainerProfile = () => {
                     </span>
                   </li>
                   <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 className="mb-0">Mobile No.</h6>
+                    <h6 className="mb-0">Номер телефона</h6>
                     <span className="text-secondary">
                       {currentTrainer.mobile_no}
                     </span>
                   </li>
                   <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 className="mb-0">Skills</h6>
+                    <h6 className="mb-0">Навыки</h6>
                     <span className="text-secondary">
                       {currentTrainer.skills}
                     </span>
                   </li>
                   <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 className="mb-0">Certificates</h6>
+                    <h6 className="mb-0">Сертификаты</h6>
                     <span className="text-secondary">
                       {currentTrainer.certifications}
                     </span>
@@ -415,7 +415,7 @@ const TrainerProfile = () => {
                   backgroundColor: "#f1f1f1",
                 }}
               >
-                Update Your Profile
+                Обновить профиль
               </div>
               <div className="card-body">
                 <form
@@ -429,7 +429,7 @@ const TrainerProfile = () => {
                       id="name"
                       name="name"
                       className="form-control form-control-lg"
-                      placeholder="Name"
+                      placeholder="Имя"
                       value={trainerProfileForm.values.name}
                       onChange={trainerProfileForm.handleChange}
                     />
@@ -462,7 +462,7 @@ const TrainerProfile = () => {
                       id="mobile_no"
                       name="mobile_no"
                       className="form-control form-control-lg"
-                      placeholder="Mobile Number"
+                      placeholder="Номер телефона"
                       value={trainerProfileForm.values.mobile_no}
                       onChange={trainerProfileForm.handleChange}
                     />
@@ -478,7 +478,7 @@ const TrainerProfile = () => {
                         id="skills"
                         autoComplete="off"
                         className="form-control form-control-lg"
-                        Placeholder="Skills"
+                        placeholder="Навыки"
                         value={trainerProfileForm.values.skills}
                         onChange={trainerProfileForm.handleChange}
                       />
@@ -493,7 +493,7 @@ const TrainerProfile = () => {
                         id="certifications"
                         autoComplete="off"
                         className="form-control form-control-lg"
-                        placeholder="Certificate"
+                        placeholder="Сертификаты"
                         value={trainerProfileForm.values.certifications}
                         onChange={trainerProfileForm.handleChange}
                       />
@@ -521,7 +521,7 @@ const TrainerProfile = () => {
                         </>
                       ) : (
                         <>
-                          Update &nbsp;
+                          Обновить &nbsp;
                           <i className="fas fa-arrow-right-to-bracket" />
                         </>
                       )}
