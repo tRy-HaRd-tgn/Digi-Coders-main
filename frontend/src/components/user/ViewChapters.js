@@ -29,7 +29,7 @@ const BrowseChapters = () => {
     const sortedArray = [...chapterList].sort((a, b) =>
       a.title.localeCompare(b.title)
     );
-    console.log(sortedArray);
+
     setChapterList(sortedArray);
   };
 
@@ -37,15 +37,15 @@ const BrowseChapters = () => {
     const sortedArray = [...chapterList].sort((a, b) =>
       b.title.localeCompare(a.title)
     );
-    console.log(sortedArray);
+  
     setChapterList(sortedArray);
   };
 
   const fetchUserData = useCallback(async () => {
     const res = await fetch(`${process.env.REACT_APP_API_URL}/chapter/getall`);
-    console.log(res.status);
+   
     const data = await res.json();
-    console.log(data);
+   
 
     let filteredData = data;
 

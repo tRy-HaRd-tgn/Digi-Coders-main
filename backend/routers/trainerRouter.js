@@ -4,13 +4,11 @@ const router = Router();
 
 //add user data
 router.post("/add", (req, res) => {
-  console.log("Получен запрос на регистрацию тренера:", req.body);
   // res.send('Respond from User Router');
 
   new Model(req.body)
     .save()
     .then((result) => {
-      console.log("Тренер успешно создан:", result);
       res.json(result);
     })
     .catch((err) => {

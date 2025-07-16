@@ -15,9 +15,9 @@ const ManageChapter = () => {
 
   const fetchUserData = async () => {
     const res = await fetch(`${process.env.REACT_APP_API_URL}/chapter/getall`);
-    console.log(res.status);
+
     const data = await res.json();
-    console.log(data);
+
     if (chaptername) {
       setChapterList(
         data.filter(
@@ -38,7 +38,7 @@ const ManageChapter = () => {
       }
     );
     const data = await res.json();
-    console.log(data);
+
     if (data) {
       Swal.fire({
         title: "Chapter Deleted Successfully",
@@ -152,7 +152,9 @@ const ManageChapter = () => {
                     onChange={managechapterForm.handleChange}
                   >
                     {app_config.courseCategories.map((category) => (
-                      <option value={category}>{category}</option>
+                      <option key={category} value={category}>
+                        {category}
+                      </option>
                     ))}
                   </select>
 
@@ -162,7 +164,6 @@ const ManageChapter = () => {
                       id="description"
                       rows={3}
                       placeholder="Description.."
-                      defaultValue={""}
                       value={managechapterForm.values.description}
                       onChange={managechapterForm.handleChange}
                     />
@@ -171,7 +172,7 @@ const ManageChapter = () => {
                   <div className="d-flex flex-row align-items-center mx-1 mb-4">
                     <label htmlFor="chapter-img" className="btn btn-primary">
                       {" "}
-                      <i class="fas fa-upload"></i> Upload Image
+                      <i className="fas fa-upload"></i> Upload Image
                     </label>
                     <span className="text-warning mx-3">
                       {selImage ? selImage.name : "No Image Selected"}
@@ -208,19 +209,19 @@ const ManageChapter = () => {
 
         <table
           id="dtBasicExample"
-          class="table table-striped table-bordered table-sm table-info border-light text-center"
-          cellspacing="0"
+          className="table table-striped table-bordered table-sm table-info border-light text-center"
+          cellSpacing="0"
           width="100%"
         >
           <thead className="table-dark border-light text-center">
             <tr>
-              <th class="th-sm">Title</th>
-              <th class="th-sm">Icon</th>
-              <th class="th-sm">Category</th>
-              <th class="th-sm">Description</th>
-              <th class="th-sm">Created_at</th>
-              <th class="th-sm">Updated_at</th>
-              <th class="th-sm" colSpan={2}>
+              <th className="th-sm">Title</th>
+              <th className="th-sm">Icon</th>
+              <th className="th-sm">Category</th>
+              <th className="th-sm">Description</th>
+              <th className="th-sm">Created_at</th>
+              <th className="th-sm">Updated_at</th>
+              <th className="th-sm" colSpan={2}>
                 Actions
               </th>
             </tr>
@@ -399,6 +400,7 @@ const ManageChapter = () => {
 
   const [selImage, setSelImage] = useState(null);
   const [imageError, setImageError] = useState("");
+  const [pendingSubmit, setPendingSubmit] = useState(false); // Новое состояние
 
   const [currentTrainer, setCurrentTrainer] = useState(
     JSON.parse(sessionStorage.getItem("trainer"))
@@ -418,12 +420,13 @@ const ManageChapter = () => {
     onSubmit: async (values, { setSubmitting, resetForm }) => {
       if (!selImage) {
         setImageError("Пожалуйста, выберите изображение для главы.");
+        setPendingSubmit(true); // Запоминаем, что была попытка отправки
         setSubmitting(false);
         return;
       }
       setImageError("");
+      setPendingSubmit(false); // Сброс
       values.icon = selImage.name;
-      console.log(values);
 
       const res = await fetch("http://localhost:5000/chapter/add", {
         method: "POST",
@@ -432,8 +435,6 @@ const ManageChapter = () => {
           "Content-Type": "application/json",
         },
       });
-
-      console.log(res.status);
 
       if (res.status === 200) {
         fetchUserData();
@@ -478,6 +479,16 @@ const ManageChapter = () => {
     },
   });
 
+  // Новый useEffect для автоматической отправки, если файл выбран после попытки submit
+  React.useEffect(() => {
+    if (pendingSubmit && selImage) {
+      setTimeout(() => {
+        managechapterForm.handleSubmit();
+      }, 0);
+    }
+    // eslint-disable-next-line
+  }, [selImage]);
+
   const uploadFile = (e) => {
     const file = e.target.files[0];
     const fd = new FormData();
@@ -488,7 +499,6 @@ const ManageChapter = () => {
       body: fd,
     }).then((res) => {
       if (res.status === 200) {
-        console.log("file uploaded");
       }
     });
   };

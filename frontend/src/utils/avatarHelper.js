@@ -27,7 +27,7 @@ export const handleImageError = (
   e,
   fallbackUrl = "https://www.bootdey.com/img/Content/avatar/avatar6.png"
 ) => {
-  console.log("Avatar load error, using fallback:", fallbackUrl);
+  
   e.target.src = fallbackUrl;
 };
 

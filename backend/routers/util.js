@@ -43,7 +43,7 @@ const sendMail = (to, subject, text) => {
       subject: subject,
     },
     (err, message) => {
-      console.log(err || message);
+    
     }
   );
 };
@@ -55,12 +55,9 @@ router.post("/sendmail", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  console.log(req.body);
-
   new Model(req.body)
     .save()
     .then((data) => {
-      console.log("Email Sent successfully..");
       res.status(200).json(data);
     })
     .catch((err) => {

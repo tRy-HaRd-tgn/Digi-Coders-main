@@ -4,13 +4,11 @@ const router = Router();
 
 //add user data
 router.post("/add", (req, res) => {
-  console.log("Получен запрос на регистрацию пользователя:", req.body);
   // res.send('Respond from User Router');
 
   new Model(req.body)
     .save()
     .then((result) => {
-      console.log("Пользователь успешно создан:", result);
       res.json(result);
     })
     .catch((err) => {
@@ -42,12 +40,8 @@ router.get("/getbyemail/:email", (req, res) => {
 });
 
 router.put("/update/:id", (req, res) => {
-  console.log("Updating user with ID:", req.params.id);
-  console.log("Update data:", req.body);
-
   Model.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then((result) => {
-      console.log("Updated user:", result);
       res.json(result);
     })
     .catch((err) => {
@@ -57,17 +51,15 @@ router.put("/update/:id", (req, res) => {
 });
 
 router.post("/authenticate", (req, res) => {
-  console.log(req.body);
   Model.findOne(req.body)
     .then((result) => {
-      console.log(result);
       if (result) {
         Model.findByIdAndUpdate(result._id, {
           lastLogin: new Date(),
           $inc: { timesLoggedin: 1 },
         })
           .then((result) => {
-            console.log(result);
+           
           })
           .catch((err) => {
             console.error(err);

@@ -34,7 +34,7 @@ const Home = () => {
     validateOnBlur: true,
     onSubmit: async (values, { setSubmitting, resetForm }) => {
       values.emoji = selectedEmoji;
-      console.log(values);
+      
       const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
       const res = await fetch(`${apiUrl}/contact/add`, {
@@ -45,7 +45,6 @@ const Home = () => {
         },
       });
 
-      console.log(res.status);
       if (res.status === 200) {
         Swal.fire({
           icon: "success",

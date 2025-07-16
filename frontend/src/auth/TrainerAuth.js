@@ -12,18 +12,10 @@ const TrainerAuth = ({ children }) => {
       try {
         // Сначала проверяем ключ "trainer"
         let sessionTrainer = sessionStorage.getItem("trainer");
-        console.log(
-          "TrainerAuth - useEffect checkAuth, sessionTrainer:",
-          sessionTrainer
-        );
 
         // Если нет данных тренера, проверяем ключ "user"
         if (!sessionTrainer) {
           const sessionUser = sessionStorage.getItem("user");
-          console.log(
-            "TrainerAuth - useEffect checkAuth, sessionUser:",
-            sessionUser
-          );
 
           if (sessionUser) {
             const parsedUser = JSON.parse(sessionUser);
@@ -33,10 +25,6 @@ const TrainerAuth = ({ children }) => {
               parsedUser.skills ||
               parsedUser.certifications
             ) {
-              console.log(
-                "TrainerAuth - Found trainer in user data:",
-                parsedUser
-              );
               sessionTrainer = sessionUser;
             }
           }
@@ -44,10 +32,7 @@ const TrainerAuth = ({ children }) => {
 
         if (sessionTrainer && !loggedIn) {
           const parsedTrainer = JSON.parse(sessionTrainer);
-          console.log(
-            "TrainerAuth - Found trainer in session, updating context:",
-            parsedTrainer
-          );
+
           updateUser(parsedTrainer);
         }
 
@@ -66,10 +51,6 @@ const TrainerAuth = ({ children }) => {
   // Дополнительная проверка sessionStorage
   const sessionTrainer = sessionStorage.getItem("trainer");
   const sessionUser = sessionStorage.getItem("user");
-  console.log("TrainerAuth - loggedIn:", loggedIn, "currentUser:", currentUser);
-  console.log("TrainerAuth - sessionStorage trainer:", sessionTrainer);
-  console.log("TrainerAuth - sessionStorage user:", sessionUser);
-  console.log("TrainerAuth - isChecking:", isChecking);
 
   if (isChecking) {
     return <div>Loading...</div>;
@@ -78,7 +59,7 @@ const TrainerAuth = ({ children }) => {
   if (loggedIn && currentUser !== null) {
     return children;
   } else {
-    console.log("TrainerAuth - Redirecting to login");
+   
     Swal.fire({
       icon: "error",
       title: "Oops...",

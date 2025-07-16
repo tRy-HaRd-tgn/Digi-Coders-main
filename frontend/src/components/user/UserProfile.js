@@ -16,9 +16,6 @@ const UserProfile = () => {
     JSON.parse(sessionStorage.getItem("user"))
   );
 
-  console.log("currentUser from sessionStorage:", currentUser);
-  console.log("currentUser.avatar:", currentUser?.avatar);
-
   useEffect(() => {
     const handleUserUpdate = () => {
       const user = JSON.parse(sessionStorage.getItem("user"));
@@ -39,7 +36,6 @@ const UserProfile = () => {
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      console.log(file);
       setImage(file);
       setSelImage(file);
     }
@@ -59,7 +55,6 @@ const UserProfile = () => {
     },
     onSubmit: async (values, { setSubmitting }) => {
       try {
-        console.log(values);
         const res = await fetch(
           `${app_config.apiUrl}/user/update/${currentUser._id}`,
           {
@@ -70,11 +65,10 @@ const UserProfile = () => {
             },
           }
         );
-        console.log(res.status);
 
         if (res.status === 200) {
           const data = await res.json();
-          console.log(data);
+
           updateUser(data);
           setCurrentUser(data);
           sessionStorage.setItem("user", JSON.stringify(data));
@@ -137,8 +131,6 @@ const UserProfile = () => {
 
       if (res.status === 200) {
         const data = await res.json();
-        console.log("file uploaded successfully", data);
-        console.log("currentUser before update:", currentUser);
 
         const updateRes = await fetch(
           `${app_config.apiUrl}/user/update/${currentUser._id}`,
@@ -158,7 +150,7 @@ const UserProfile = () => {
 
         if (updateRes.status === 200) {
           const updatedUser = await updateRes.json();
-          console.log("updatedUser from server:", updatedUser);
+
           updateUser(updatedUser);
           setCurrentUser(updatedUser);
           sessionStorage.setItem("user", JSON.stringify(updatedUser));
@@ -229,10 +221,6 @@ const UserProfile = () => {
                           backgroundSize: "cover",
                         }}
                         onError={(e) => {
-                          console.log(
-                            "Image load error for:",
-                            currentUser.avatar
-                          );
                           e.target.src =
                             "https://www.bootdey.com/img/Content/avatar/avatar6.png";
                         }}

@@ -4,7 +4,6 @@ const router = Router();
 
 //add user data
 router.post("/add", (req, res) => {
-  console.log(req.body);
   // Серверная валидация
   const { name, email, subject, message } = req.body;
   if (!name || !email || !subject || !message) {
@@ -37,10 +36,8 @@ router.get("/getall", (req, res) => {
 });
 
 router.post("/authenticate", (req, res) => {
-  console.log(req.body);
   Model.findOne(req.body)
     .then((result) => {
-      console.log(result);
       if (result) res.json(result);
       else res.status(401).json({ message: "Invalid Credentials" });
     })

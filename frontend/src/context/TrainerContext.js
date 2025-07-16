@@ -6,40 +6,26 @@ const TrainerContext = createContext();
 const TrainerProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(() => {
     try {
-      // Проверяем все ключи в sessionStorage
-      console.log(
-        "TrainerContext - All sessionStorage keys:",
-        Object.keys(sessionStorage)
-      );
-
-      // Сначала проверяем ключ "trainer"
       let trainer = sessionStorage.getItem("trainer");
-      console.log("TrainerContext - Raw sessionStorage trainer:", trainer);
 
-      // Если нет данных тренера, проверяем ключ "user"
       if (!trainer) {
         const user = sessionStorage.getItem("user");
-        console.log("TrainerContext - Raw sessionStorage user:", user);
 
         if (user) {
           const parsedUser = JSON.parse(user);
-          // Проверяем, является ли пользователь тренером
+
           if (
             parsedUser.type === "trainer" ||
             parsedUser.skills ||
             parsedUser.certifications
           ) {
-            console.log(
-              "TrainerContext - Found trainer in user data:",
-              parsedUser
-            );
-            trainer = user; // Используем данные пользователя как данные тренера
+            trainer = user;
           }
         }
       }
 
       const parsedTrainer = trainer ? JSON.parse(trainer) : null;
-      console.log("TrainerContext - Initial currentUser:", parsedTrainer);
+
       return parsedTrainer;
     } catch (error) {
       console.error("Error parsing trainer from sessionStorage:", error);
@@ -50,13 +36,10 @@ const TrainerProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(() => {
     try {
       const trainer = sessionStorage.getItem("trainer");
-      console.log(
-        "TrainerContext - Raw sessionStorage trainer (loggedIn):",
-        trainer
-      );
+
       const parsedTrainer = trainer ? JSON.parse(trainer) : null;
       const isLoggedIn = parsedTrainer !== null;
-      console.log("TrainerContext - Initial loggedIn:", isLoggedIn);
+
       return isLoggedIn;
     } catch (error) {
       console.error("Error checking initial login status:", error);
@@ -91,10 +74,7 @@ const TrainerProvider = ({ children }) => {
         }
 
         const parsedTrainer = trainer ? JSON.parse(trainer) : null;
-        console.log(
-          "TrainerContext - useEffect checkInitialState:",
-          parsedTrainer
-        );
+       
         setCurrentUser(parsedTrainer);
         setLoggedIn(parsedTrainer !== null);
       } catch (error) {
@@ -159,7 +139,7 @@ const TrainerProvider = ({ children }) => {
 
   const updateUser = (userData) => {
     try {
-      console.log("TrainerContext - updateUser called with:", userData);
+      
 
       if (!userData) {
         console.error(
@@ -177,12 +157,12 @@ const TrainerProvider = ({ children }) => {
       sessionStorage.removeItem("user");
 
       setLoggedIn(userData !== null);
-      console.log("TrainerContext - Updated loggedIn to:", userData !== null);
+      
 
       // Отправляем кастомное событие для обновления контекста
       window.dispatchEvent(new Event("trainerUpdated"));
 
-      console.log("TrainerContext - User updated successfully");
+     
     } catch (error) {
       console.error("Error updating trainer user:", error);
     }

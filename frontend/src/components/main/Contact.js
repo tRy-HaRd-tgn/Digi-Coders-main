@@ -12,7 +12,6 @@ const Contact = () => {
       message: "",
     },
     onSubmit: async (values, { setSubmitting }) => {
-      console.log(values);
       const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
       const res = await fetch(`${apiUrl}/contact/add`, {
@@ -23,7 +22,6 @@ const Contact = () => {
         },
       });
 
-      console.log(res.status);
       setSubmitting(false);
       if (res.status === 200) {
         Swal.fire({

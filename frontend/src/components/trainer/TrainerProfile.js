@@ -35,7 +35,6 @@ const TrainerProfile = () => {
           );
           if (res.ok) {
             const freshTrainer = await res.json();
-            console.log("Fetched fresh trainer data:", freshTrainer);
 
             // Обновляем локальное состояние
             setCurrentTrainer(freshTrainer);
@@ -70,7 +69,6 @@ const TrainerProfile = () => {
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      console.log(file);
       setImage(file);
       setSelImage(file);
     }
@@ -105,7 +103,6 @@ const TrainerProfile = () => {
           return;
         }
 
-        console.log("Updating trainer with values:", values);
         const res = await fetch(
           `${app_config.apiUrl}/trainer/update/${currentTrainer._id}`,
           {
@@ -116,11 +113,9 @@ const TrainerProfile = () => {
             },
           }
         );
-        console.log("Update response status:", res.status);
 
         if (res.status === 200) {
           const data = await res.json();
-          console.log("Updated trainer data:", data);
 
           // Обновляем данные в контексте
           updateUser(data);
@@ -217,7 +212,6 @@ const TrainerProfile = () => {
 
       if (res.status === 200) {
         const data = await res.json();
-        console.log("file uploaded successfully", data);
 
         // Обновляем профиль тренера с новым изображением
         const updateRes = await fetch(
@@ -240,21 +234,15 @@ const TrainerProfile = () => {
 
         if (updateRes.status === 200) {
           const updatedTrainer = await updateRes.json();
-          console.log("updatedTrainer from server:", updatedTrainer);
 
-          // Обновляем данные в контексте
           updateUser(updatedTrainer);
 
-          // Обновляем локальное состояние
           setCurrentTrainer(updatedTrainer);
 
-          // Обновляем sessionStorage
           sessionStorage.setItem("trainer", JSON.stringify(updatedTrainer));
 
-          // Отправляем событие для обновления других компонентов
           window.dispatchEvent(new Event("trainerUpdated"));
 
-          // Очищаем состояние изображения
           setImage("");
           setSelImage(null);
 
@@ -326,10 +314,6 @@ const TrainerProfile = () => {
                           backgroundSize: "cover",
                         }}
                         onError={(e) => {
-                          console.log(
-                            "Image load error for:",
-                            currentTrainer.avatar
-                          );
                           e.target.src =
                             "https://bootdey.com/img/Content/avatar/avatar1.png";
                         }}

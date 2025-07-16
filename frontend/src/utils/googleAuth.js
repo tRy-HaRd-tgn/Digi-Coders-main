@@ -58,16 +58,13 @@ export const promptGoogleSignIn = () => {
       try {
         google.accounts.id.prompt((notification) => {
           if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
-            console.log("Google Sign-In prompt not displayed or skipped");
           }
         });
         return true;
       } catch (error) {
-        console.log("FedCM not supported, skipping prompt:", error.message);
         return false;
       }
     } else {
-      console.log("Credentials API not supported, skipping prompt");
       return false;
     }
   } catch (error) {

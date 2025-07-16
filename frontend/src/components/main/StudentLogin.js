@@ -26,9 +26,7 @@ const StudentLogin = () => {
     },
     onSubmit: async (values, { setSubmitting }) => {
       try {
-        console.log(values);
         const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
-        console.log("API URL:", apiUrl);
 
         const res = await fetch(`${apiUrl}/user/authenticate`, {
           method: "POST",
@@ -38,7 +36,6 @@ const StudentLogin = () => {
           },
         });
 
-        console.log("Статус ответа:", res.status);
         if (res.status === 200) {
           Swal.fire({
             icon: "success",
@@ -51,8 +48,7 @@ const StudentLogin = () => {
           const data = await res.json();
           sessionStorage.setItem("user", JSON.stringify(data));
           setLoggedIn(true);
-          console.log("User logged in:", data);
-          // Отправляем событие для обновления контекста
+
           window.dispatchEvent(new Event("userUpdated"));
           navigate("/main/course");
         } else {

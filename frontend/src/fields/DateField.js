@@ -53,7 +53,7 @@ class ReactDateField extends BlocklyReactField {
     const blockTypes = Object.keys(Blockly.Blocks);
 
     // Log the block types
-    console.log(blockTypes);
+
     return (
       <DatePicker
         selected={this.value_}

@@ -13,7 +13,7 @@ import Swal from "sweetalert2";
 const toolbox = getHTMLToolbox();
 
 const getToolbox = (category) => {
-  console.log(getJSToolbox());
+
   if (category === "HTML") return getHTMLToolbox();
   else if (
     category === "JS" ||
@@ -41,9 +41,9 @@ const DesignChapter = () => {
     const res = await fetch(
       `${process.env.REACT_APP_API_URL}/chapter/getbyid/` + id
     );
-    console.log(res.status);
+  
     const data = await res.json();
-    console.log(data);
+ 
 
     // Преобразуем массив в объект для удобства работы
     if (data.blockStructure && Array.isArray(data.blockStructure)) {
@@ -59,19 +59,13 @@ const DesignChapter = () => {
     }
 
     setChapterDetails(data);
-    console.log(getHTMLToolbox());
-    console.log(
-      getHTMLToolbox().contents[0].contents.map(
-        (block) =>
-          new XMLParser().parseFromString(block.blockxml).attributes.type
-      )
-    );
+    
+   
   };
 
   const updateChapter = async () => {
-    console.log(selBlocks);
 
-    // Преобразуем объект в массив для совместимости с бэкендом
+
     const blockStructureArray = Object.keys(selBlocks).map((category) => ({
       category: category,
       blocks: selBlocks[category],
@@ -89,7 +83,7 @@ const DesignChapter = () => {
         }),
       }
     );
-    console.log(res.status);
+  
 
     if (res.status === 200) {
       Swal.fire({
@@ -99,7 +93,7 @@ const DesignChapter = () => {
       });
     }
     const data = await res.json();
-    console.log(data);
+  
   };
 
   const updateSelBlocks = (block, category) => {
@@ -195,10 +189,8 @@ const DesignChapter = () => {
                               onChange={(e) => {
                                 if (e.target.checked) {
                                   updateSelBlocks(block, category.name);
-                                  console.log(selBlocks);
                                 } else {
                                   removeBlock(block, category.name);
-                                  console.log(selBlocks);
                                 }
                               }}
                             />

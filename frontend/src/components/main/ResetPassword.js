@@ -45,8 +45,6 @@ const ResetPassword = () => {
         "Content-Type": "application/json",
       },
     }).then((res) => {
-      console.log(res.status);
-      console.log(otp);
       if (res.status === 200) {
         Swal.fire({
           icon: "success",
@@ -65,9 +63,7 @@ const ResetPassword = () => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         if (!data) {
-          console.log("not found!!");
           Swal.fire({
             icon: "error",
             title: "Email not registered!!",
@@ -81,12 +77,9 @@ const ResetPassword = () => {
   };
 
   const verifyOTP = (formdata) => {
-    console.log(formdata.otp, otp);
     if (otp == formdata.otp) {
-      console.log("otp matched");
       resetPassword(formdata);
     } else {
-      console.log("otp not matched");
       Swal.fire({
         icon: "error",
         title: "Failed",
@@ -95,7 +88,6 @@ const ResetPassword = () => {
     }
   };
   const resetPassword = ({ password }) => {
-    console.log(password);
     const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
     fetch(`${apiUrl}/user/update` + currentUser._id, {
       method: "PUT",
@@ -103,7 +95,6 @@ const ResetPassword = () => {
       headers: { "Content-Type": "application/json" },
     })
       .then((res) => {
-        console.log("reset");
         if (res.status === 200)
           Swal.fire({
             icon: "success",
@@ -114,7 +105,7 @@ const ResetPassword = () => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
+     
       });
   };
   const validationSchema = Yup.object().shape({

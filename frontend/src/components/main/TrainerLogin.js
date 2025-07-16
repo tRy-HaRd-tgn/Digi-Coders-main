@@ -26,9 +26,7 @@ const TrainerLogin = () => {
     },
     onSubmit: async (values, { setSubmitting }) => {
       try {
-        console.log(values);
         const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
-        console.log("API URL:", apiUrl);
 
         const res = await fetch(`${apiUrl}/trainer/authenticate`, {
           method: "POST",
@@ -38,7 +36,6 @@ const TrainerLogin = () => {
           },
         });
 
-        console.log("Статус ответа:", res.status);
         if (res.status === 200) {
           Swal.fire({
             icon: "success",
@@ -50,7 +47,7 @@ const TrainerLogin = () => {
 
           const data = await res.json();
           updateUser(data);
-          console.log("Trainer logged in:", data);
+
           navigate("/trainer/managechapter");
         } else {
           const errorData = await res.json();

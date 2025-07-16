@@ -51,7 +51,6 @@ const Builder = () => {
   const addBlock = (blockname) => {
     const blockToAdd = blockOptions[blockname];
     setAddedBlocks([...addedBlocks, blockToAdd]);
-    console.log(addedBlocks);
   };
 
   const updateChapter = async () => {
@@ -71,29 +70,8 @@ const Builder = () => {
       }
     );
     const data = await res.json();
-    console.log(data);
+    
   };
-
-  // const blockOptions = {
-  //   controls_repeat_ext: (
-  //     <Block type="controls_repeat_ext">
-  //       <Value name="TIMES">
-  //         <Shadow type="math_number">
-  //           <Field name="NUM">10</Field>
-  //         </Shadow>
-  //       </Value>
-  //     </Block>
-  //   ),
-  //   text_charAt: (
-  //     <Block type="text_charAt">
-  //       <Value name="VALUE">
-  //         <Block type="variables_get">
-  //           <Field name="VAR">text</Field>
-  //         </Block>
-  //       </Value>
-  //     </Block>
-  //   ),
-  // };
 
   const blockOptions = {
     controls_repeat_ext: {

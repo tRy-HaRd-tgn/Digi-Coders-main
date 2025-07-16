@@ -1,10 +1,9 @@
-const Model = require('../models/chapterModel');
-const { Router } = require('express');
+const Model = require("../models/chapterModel");
+const { Router } = require("express");
 const router = Router();
 
 //add user data
-router.post('/add', (req, res) => {
-  console.log(req.body);
+router.post("/add", (req, res) => {
   // res.send('Respond from User Router');
 
   new Model(req.body)
@@ -18,11 +17,11 @@ router.post('/add', (req, res) => {
     });
 });
 
-router.post('/authenticate', (req, res) => {
+router.post("/authenticate", (req, res) => {
   Model.findOne(req.body)
     .then((result) => {
       if (result) res.json(result);
-      else res.status(401).json({ message: 'Invalid Credentials' });
+      else res.status(401).json({ message: "Invalid Credentials" });
     })
     .catch((err) => {
       console.error(err);
@@ -30,13 +29,12 @@ router.post('/authenticate', (req, res) => {
     });
 });
 
-router.get('/getall', (req, res) => {
+router.get("/getall", (req, res) => {
   Model.find({})
-    .populate('trainer')
+    .populate("trainer")
     .then((result) => {
-      console.log(result);
       if (result) res.json(result);
-      else res.status(401).json({ message: 'Invalid Credentials' });
+      else res.status(401).json({ message: "Invalid Credentials" });
     })
     .catch((err) => {
       console.error(err);
@@ -44,13 +42,12 @@ router.get('/getall', (req, res) => {
     });
 });
 
-router.get('/getbyid/:id', (req, res) => {
+router.get("/getbyid/:id", (req, res) => {
   Model.findById(req.params.id)
-    .populate('trainer')
+    .populate("trainer")
     .then((result) => {
-      console.log(result);
       if (result) res.json(result);
-      else res.status(401).json({ message: 'Invalid Credentials' });
+      else res.status(401).json({ message: "Invalid Credentials" });
     })
     .catch((err) => {
       console.error(err);
@@ -58,13 +55,12 @@ router.get('/getbyid/:id', (req, res) => {
     });
 });
 
-router.put('/update/:id', (req, res) => {
+router.put("/update/:id", (req, res) => {
   Model.findByIdAndUpdate(req.params.id, req.body, { new: true })
-    .populate('trainer')
+    .populate("trainer")
     .then((result) => {
-      console.log(result);
       if (result) res.json(result);
-      else res.status(401).json({ message: 'Invalid Credentials' });
+      else res.status(401).json({ message: "Invalid Credentials" });
     })
     .catch((err) => {
       console.error(err);
@@ -72,12 +68,11 @@ router.put('/update/:id', (req, res) => {
     });
 });
 
-router.delete('/delete/:id', (req, res) => {
+router.delete("/delete/:id", (req, res) => {
   Model.findByIdAndDelete(req.params.id)
     .then((result) => {
-      console.log(result);
       if (result) res.json(result);
-      else res.status(401).json({ message: 'Invalid Credentials' });
+      else res.status(401).json({ message: "Invalid Credentials" });
     })
     .catch((err) => {
       console.error(err);
@@ -85,12 +80,11 @@ router.delete('/delete/:id', (req, res) => {
     });
 });
 
-router.get('/getbytrainer/:id', (req, res) => {
+router.get("/getbytrainer/:id", (req, res) => {
   Model.find({ trainer: req.params.id })
     .then((result) => {
-      console.log(result);
       if (result) res.json(result);
-      else res.status(401).json({ message: 'Invalid Credentials' });
+      else res.status(401).json({ message: "Invalid Credentials" });
     })
     .catch((err) => {
       console.error(err);

@@ -16,8 +16,6 @@ import { pythonGenerator } from "blockly/python";
 const toolbox = getHTMLToolbox();
 
 const getToolbox = (category) => {
-  // console.log(category);
-
   if (category === "HTML") return getHTMLToolbox();
   else if (category.toLowerCase() === "javascript") return getJSToolbox();
   else if (category.toLowerCase() === "python") return getPythonToolbox();
@@ -30,11 +28,8 @@ const initBlocks = (data) => {
     contents: [],
     kind: "categoryToolbox",
   };
-  console.log(tempToolbox);
 
-  // Проверяем, есть ли данные о структуре блоков в базе данных
   if (data.blockStructure && data.blockStructure.length > 0) {
-    // Если есть данные из базы, используем их
     let preparedBlockStructure = {};
     data.blockStructure.forEach((obj) => {
       if (preparedBlockStructure[obj.category] === undefined)
@@ -44,7 +39,7 @@ const initBlocks = (data) => {
         ...obj.blocks,
       ];
     });
-    console.log(preparedBlockStructure);
+
     tempToolbox.contents.forEach((obj, index) => {
       if (obj.name in preparedBlockStructure) {
         let temp = obj;
@@ -53,12 +48,9 @@ const initBlocks = (data) => {
       }
     });
   } else {
-    // Если данных из базы нет, используем статическую конфигурацию
-    console.log("Используем статическую конфигурацию toolbox");
     myToolBox = tempToolbox;
   }
 
-  console.log(myToolBox);
   return myToolBox;
 };
 
@@ -95,9 +87,9 @@ const ChapterDetails = () => {
     const res = await fetch(
       `${process.env.REACT_APP_API_URL}/chapter/getbyid/` + id
     );
-    console.log(res.status);
+
     const data = await res.json();
-    console.log(data);
+
     setChapterDetails(data);
     // initBlocks(data);
     setCurrentLanguage(getLangugage(data.category));
@@ -194,16 +186,14 @@ const ChapterDetails = () => {
   const showOutputButton = currentLanguage.toLowerCase() == "html";
 
   const generateCode = (workspace) => {
-    console.log("return js generator");
     const code = javascriptGenerator.workspaceToCode(workspace);
-    console.log(code);
+
     setGeneratedCode(code);
   };
 
   const generatePythonCode = (workspace) => {
-    console.log("return python generator");
     const code = pythonGenerator.workspaceToCode(workspace);
-    console.log(code);
+
     setGeneratedCode(code);
   };
 
@@ -212,30 +202,15 @@ const ChapterDetails = () => {
   };
 
   const generateHtmlCode = (workspace) => {
-    console.log("return html generator");
     const code = [];
     const blocks = workspace.getAllBlocks();
-    // console.log([`${HtmlGenerator[blocks[0].type](blocks[0])}`]);
-    // Iterate through all blocks
+
     const l = blocks.length ? 1 : 0;
-    console.log(l);
+
     for (let i = 0; i < l; i++) {
       const block = blocks[i];
-      // console.log(block);
-      // console.log(HtmlGenerator[block.type](block));
+
       code.push(`${HtmlGenerator[block.type](block)}`);
-      // console.log(code);
-      // setGeneratedCode(generateCode+code);
-      // Check block type
-
-      // Add more conditions for other HTML blocks
-
-      // Handle nested blocks recursively (if necessary)
-      // Example:
-      // if (block.type === 'html_container') {
-      //   const innerCode = generateHtmlCode(block.getInputTargetBlock('STACK'));
-      //   code.push(innerCode);
-      // }
     }
 
     setGeneratedCode(code.join("\n"));
@@ -248,7 +223,6 @@ const ChapterDetails = () => {
   };
 
   const getGenerator = () => {
-    console.log(chapterDetails.category.toLowerCase());
     if (chapterDetails.category.toLowerCase() === "html")
       return generateHtmlCode;
     else if (chapterDetails.category.toLowerCase() === "javascript")

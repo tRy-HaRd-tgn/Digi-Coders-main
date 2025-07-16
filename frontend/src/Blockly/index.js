@@ -21,47 +21,46 @@
  * @author samelh@google.com (Sam El-Husseini)
  */
 
-import React from 'react';
-import BlocklyComponent from './BlocklyComponent';
+import React from "react";
+import BlocklyComponent from "./BlocklyComponent";
 
 export default BlocklyComponent;
 
 const Block = (p) => {
-    // console.log(p);
-    const { children, ...props } = p;
-    props.is = "blockly";
-    // console.log(React.createElement("block", props, children));
-    return React.createElement("block", props, children);
+  const { children, ...props } = p;
+  props.is = "blockly";
+
+  return React.createElement("block", props, children);
 };
 
 const Category = (p) => {
-    const { children, ...props } = p;
-    props.is = "blockly";
-    return React.createElement("category", props, children);
+  const { children, ...props } = p;
+  props.is = "blockly";
+  return React.createElement("category", props, children);
 };
 
 const Value = (p) => {
-    const { children, ...props } = p;
-    props.is = "blockly";
-    return React.createElement("value", props, children);
+  const { children, ...props } = p;
+  props.is = "blockly";
+  return React.createElement("value", props, children);
 };
 
 const Field = (p) => {
-    const { children, ...props } = p;
-    props.is = "blockly";
-    return React.createElement("field", props, children);
+  const { children, ...props } = p;
+  props.is = "blockly";
+  return React.createElement("field", props, children);
 };
 
 const Shadow = (p) => {
-    const { children, ...props } = p;
-    props.is = "blockly";
-    return React.createElement("shadow", props, children);
+  const { children, ...props } = p;
+  props.is = "blockly";
+  return React.createElement("shadow", props, children);
 };
 
 const Mutation = (p) => {
-    const { children, ...props } = p;
-    props.is = "blockly";
-    return React.createElement("mutation", props, children);
+  const { children, ...props } = p;
+  props.is = "blockly";
+  return React.createElement("mutation", props, children);
 };
 
-export { Block, Category, Value, Field, Shadow, Mutation }
+export { Block, Category, Value, Field, Shadow, Mutation };

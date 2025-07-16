@@ -43,19 +43,16 @@ const TrainerSignup = () => {
       createdAt: "",
     },
 
-    // onSubmit: async (values, { setSubmitting }) => {
-    //   values.icon = selImage.name;
-    //   console.log(values);
+ 
 
     onSubmit: async (values, { setSubmitting }) => {
       try {
         values.avatar = selImage ? selImage.name : "";
         values.createdAt = new Date();
-        console.log(values);
+     
 
         const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
-        console.log("API URL:", apiUrl);
-        console.log("Отправка запроса на:", `${apiUrl}/trainer/add`);
+       
         const res = await fetch(`${apiUrl}/trainer/add`, {
           method: "POST",
           body: JSON.stringify(values),
@@ -64,7 +61,7 @@ const TrainerSignup = () => {
           },
         });
 
-        console.log("Статус ответа:", res.status);
+        
         if (res.status === 200) {
           Swal.fire({
             icon: "success",
@@ -107,7 +104,7 @@ const TrainerSignup = () => {
       body: fd,
     }).then((res) => {
       if (res.status === 200) {
-        console.log("file uploaded");
+       
       }
     });
   };
@@ -119,9 +116,7 @@ const TrainerSignup = () => {
       exit={{ opacity: 0.5, x: -300 }}
       transition={{ type: "spring" }}
       className="vid-manage-bg"
-      // style={{
-      //   backgroundImage: `url('/images/bg-animation-img2.jpg`
-      // }}
+     
     >
       <section className="form">
         <div className="">

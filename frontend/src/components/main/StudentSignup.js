@@ -53,11 +53,9 @@ const StudentSignup = () => {
       try {
         values.avatar = selImage ? selImage.name : "";
         values.createdAt = new Date();
-        console.log(values);
 
         const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
-        console.log("API URL:", apiUrl);
-        console.log("Отправка запроса на:", `${apiUrl}/user/add`);
+
         const res = await fetch(`${apiUrl}/user/add`, {
           method: "POST",
           body: JSON.stringify(values),
@@ -65,8 +63,6 @@ const StudentSignup = () => {
             "Content-Type": "application/json",
           },
         });
-
-        console.log("Статус ответа:", res.status);
 
         if (res.status === 200) {
           Swal.fire({
@@ -110,7 +106,6 @@ const StudentSignup = () => {
       body: fd,
     }).then((res) => {
       if (res.status === 200) {
-        console.log("file uploaded");
       }
     });
   };
@@ -135,8 +130,6 @@ const StudentSignup = () => {
       headers: { "Content-Type": "application/json" },
     });
 
-    console.log(response.status);
-
     if (response.status === 200) {
       const data = await response.json();
       sessionStorage.setItem("user", JSON.stringify(data));
@@ -151,12 +144,10 @@ const StudentSignup = () => {
         throw new Error("Invalid response from Google Sign-In");
       }
 
-      // console.log("Encoded jwt id token:" + response.credential);
       var userObject = jwt_decode(response.credential);
-      // console.log(userObject);
+
       setUser(userObject);
-      // setAvatar(userObject.picture);
-      //after signin the button of "signin with google" hides
+
       const signInDiv = document.getElementById("signInDiv");
       if (signInDiv) {
         signInDiv.hidden = true;
@@ -164,16 +155,6 @@ const StudentSignup = () => {
       sessionStorage.setItem("user", JSON.stringify(userObject));
 
       navigate("/main/course");
-
-      // const res = await fetch(url + "/user/checkemail/" + userObject.email);
-      // if (res.status === 200) {
-      //   const data = await res.json();
-      //   sessionStorage.setItem("user", JSON.stringify(data));
-      //   setLoggedIn(true);
-      //   navigate("/");
-      // } else {
-      //   saveGoogleUser(userObject);
-      // }
     } catch (error) {
       console.error("Error handling Google Sign-In response:", error);
       Swal.fire({
@@ -192,13 +173,12 @@ const StudentSignup = () => {
     if (initializeGoogleSignIn(clientId, handleCallbackResponse)) {
       // Рендерим кнопку
       if (renderGoogleButton("signInDiv")) {
-        console.log("Google Sign-In initialized successfully");
+        
       } else {
-        // Fallback если кнопка не отрендерилась
-        console.log("Google Sign-In button failed to render");
+      
+       
       }
     } else {
-      console.log("Google Sign-In initialization failed");
     }
   }, []);
 
