@@ -29,88 +29,117 @@ export const Footer = () => {
 
       <style>
         {`
-          @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-          }
-          
-          .social-icon {
-            transition: all 0.3s ease;
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 8px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-          }
-          
-          .social-icon:hover {
-            transform: translateY(-5px) scale(1.1);
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-          }
-          
-          .footer-link {
-            transition: all 0.3s ease;
-            display: inline-block;
-            position: relative;
-          }
-          
-          .footer-link:hover {
-            color: #667eea !important;
-            transform: translateX(5px);
-          }
-          
-          .footer-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            transition: width 0.3s ease;
-          }
-          
-          .footer-link:hover::after {
-            width: 100%;
-          }
-          
-          .contact-item {
-            transition: all 0.3s ease;
-            padding: 12px 16px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 12px;
-          }
-          
-          .contact-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateX(5px);
-          }
-          
-          .footer-section {
-            position: relative;
-            padding: 60px 0 40px;
-          }
-          
-          .footer-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-          }
-        `}
+           @keyframes gradientShift {
+             0%, 100% { background-position: 0% 50%; }
+             50% { background-position: 100% 50%; }
+           }
+           
+           .social-icon {
+             transition: all 0.3s ease;
+             border-radius: 50%;
+             width: 50px;
+             height: 50px;
+             display: inline-flex;
+             align-items: center;
+             justify-content: center;
+             margin: 0 10px;
+             background: rgba(255, 255, 255, 0.15);
+             backdrop-filter: blur(10px);
+             border: 2px solid rgba(255, 255, 255, 0.3);
+             font-size: 1.2rem;
+           }
+           
+           .social-icon:hover {
+             transform: translateY(-5px) scale(1.1);
+             background: linear-gradient(45deg, #667eea, #764ba2);
+             box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+             border-color: #667eea;
+           }
+           
+           .footer-link {
+             transition: all 0.3s ease;
+             display: inline-block;
+             position: relative;
+             font-size: 1rem;
+             font-weight: 500;
+             color: #ffffff !important;
+           }
+           
+           .footer-link:hover {
+             color: #667eea !important;
+             transform: translateX(5px);
+             text-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+           }
+           
+           .footer-link::after {
+             content: '';
+             position: absolute;
+             width: 0;
+             height: 2px;
+             bottom: -2px;
+             left: 0;
+             background: linear-gradient(45deg, #667eea, #764ba2);
+             transition: width 0.3s ease;
+           }
+           
+           .footer-link:hover::after {
+             width: 100%;
+           }
+           
+           .contact-item {
+             transition: all 0.3s ease;
+             padding: 16px 20px;
+             border-radius: 12px;
+             background: rgba(255, 255, 255, 0.1);
+             backdrop-filter: blur(10px);
+             border: 1px solid rgba(255, 255, 255, 0.2);
+             margin-bottom: 16px;
+             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+           }
+           
+           .contact-item:hover {
+             background: rgba(255, 255, 255, 0.15);
+             transform: translateX(5px);
+             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+           }
+           
+           .footer-section {
+             position: relative;
+             padding: 60px 0 40px;
+           }
+           
+           .footer-section::before {
+             content: '';
+             position: absolute;
+             top: 0;
+             left: 50%;
+             transform: translateX(-50%);
+             width: 80%;
+             height: 1px;
+             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+           }
+           
+           .footer-text {
+             color: #ffffff !important;
+             font-size: 1rem;
+             line-height: 1.6;
+             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+           }
+           
+           .footer-heading {
+             color: #ffffff !important;
+             font-size: 1.1rem;
+             font-weight: 700;
+             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+           }
+           
+           .footer-description {
+             color: #e8f4fd !important;
+             font-size: 1rem;
+             line-height: 1.7;
+             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+           }
+         `}
       </style>
 
       {/* Верхняя секция с социальными сетями */}
@@ -118,7 +147,10 @@ export const Footer = () => {
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-6 text-center text-lg-start mb-4 mb-lg-0">
-              <h5 className="fw-bold mb-0" style={{ fontSize: "1.2rem" }}>
+              <h5
+                className="fw-bold mb-0 footer-heading"
+                style={{ fontSize: "1.3rem" }}
+              >
                 <i
                   className="fas fa-share-alt me-2"
                   style={{ color: "#667eea" }}
@@ -179,14 +211,22 @@ export const Footer = () => {
               <div className="footer-brand mb-4">
                 <div className="d-flex align-items-center mb-3">
                   <div>
-                    <h4 className="mb-0 fw-bold">
+                    <h4
+                      className="mb-0 fw-bold footer-heading"
+                      style={{ fontSize: "1.5rem" }}
+                    >
                       <span className="text-white">DIGI</span>
                       <span style={{ color: "#667eea" }}>CODERS</span>
                     </h4>
-                    <small className="text-white-50">Fun With Coding</small>
+                    <small
+                      className="text-white-50"
+                      style={{ fontSize: "1rem" }}
+                    >
+                      Fun With Coding
+                    </small>
                   </div>
                 </div>
-                <p className="text-white-75" style={{ lineHeight: "1.6" }}>
+                <p className="footer-description">
                   Digi Coders — это инновационная программа обучения детей
                   основам программирования через визуальные блоки. Мы делаем
                   обучение увлекательным и доступным для каждого ребенка.
