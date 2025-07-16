@@ -15,14 +15,14 @@ const Signup = () => {
             className="heading mb-10 text-center"
           >
             <h2 className="fw-bold mb-5">
-              <span>Choose your account type</span>
+              <span>Выберите тип аккаунта</span>
             </h2>
 
             <div className="signup-link">
               <p className="text-center fw-bold mb-8">
-                Already have an account?{" "}
+                Уже есть аккаунт?{" "}
                 <Link to="/main/login" className="fw-bold text-body">
-                  <u>Login here</u>
+                  <u>Войти</u>
                 </Link>
               </p>
             </div>
@@ -44,7 +44,7 @@ const Signup = () => {
                   >
                     <div className="signup-name">
                       <Link to="/main/studentsignup">
-                        <p className="h5 fw-bold mt-5">Student</p>
+                        <p className="h5 fw-bold mt-5">Ученик</p>
                       </Link>
                     </div>
 
@@ -69,7 +69,7 @@ const Signup = () => {
                   >
                     <div className="signup-name">
                       <Link to="/main/trainersignup">
-                        <p className="h5 fw-bold mt-5">Teacher</p>
+                        <p className="h5 fw-bold mt-5">Преподаватель</p>
                       </Link>
                     </div>
 
