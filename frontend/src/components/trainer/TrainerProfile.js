@@ -8,6 +8,7 @@ import { useTrainerContext } from "../../context/TrainerContext";
 const TrainerProfile = () => {
   const [selImage, setSelImage] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
   const { updateUser } = useTrainerContext();
 
   const [currentTrainer, setCurrentTrainer] = useState(
@@ -200,15 +201,30 @@ const TrainerProfile = () => {
     }
 
     setIsUploading(true);
+    setUploadProgress(0);
     const fd = new FormData();
     fd.append("myfile", selImage);
 
     try {
+      // Симуляция прогресса загрузки
+      const progressInterval = setInterval(() => {
+        setUploadProgress((prev) => {
+          if (prev >= 90) {
+            clearInterval(progressInterval);
+            return 90;
+          }
+          return prev + 10;
+        });
+      }, 100);
+
       // Загружаем файл
       const res = await fetch(`${app_config.apiUrl}/util/uploadfile`, {
         method: "POST",
         body: fd,
       });
+
+      clearInterval(progressInterval);
+      setUploadProgress(100);
 
       if (res.status === 200) {
         const data = await res.json();
@@ -245,6 +261,7 @@ const TrainerProfile = () => {
 
           setImage("");
           setSelImage(null);
+          setUploadProgress(0);
 
           Swal.fire({
             icon: "success",
@@ -274,85 +291,161 @@ const TrainerProfile = () => {
       });
     } finally {
       setIsUploading(false);
+      setUploadProgress(0);
     }
   };
 
   return (
-    <div>
-      <div className="container-xl px-5 my-5">
-        <div className="row d-flex justify-content-center ">
-          <div className="col-lg-4 mx-2" style={{ width: "36.5%" }}>
-            <div className="card">
-              <div className="card-body">
-                <div className="d-flex flex-column align-items-center text-center">
-                  <div
-                    className="bg-image profile-picture-container hover-overlay ripple"
-                    data-mdb-ripple-color="light"
-                    onClick={handleImageClick}
-                  >
-                    {image ? (
-                      <img
-                        src={URL.createObjectURL(image)}
-                        alt="Admin"
-                        className="img-fluid rounded-circle p-1 bg-primary"
+    <div
+      className="trainer-profile-container"
+      style={{
+        minHeight: "100vh",
+        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        padding: "2rem 0",
+      }}
+    >
+      <div className="container">
+        {/* Заголовок */}
+        <div className="text-center mb-5">
+          <h1 className="display-4 text-white fw-bold mb-3">Профиль тренера</h1>
+          <p className="text-white-50 fs-5">
+            Управляйте своими данными и настройками
+          </p>
+        </div>
+
+        <div className="row g-4">
+          {/* Левая колонка - Информация профиля */}
+          <div className="col-lg-4">
+            <div
+              className="card border-0 shadow-lg"
+              style={{
+                borderRadius: "20px",
+                background: "linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)",
+                overflow: "hidden",
+              }}
+            >
+              <div className="card-body p-4">
+                {/* Аватар */}
+                <div className="text-center mb-4">
+                  <div className="position-relative d-inline-block">
+                    <div
+                      className="avatar-container"
+                      onClick={handleImageClick}
+                      style={{
+                        width: "180px",
+                        height: "180px",
+                        borderRadius: "50%",
+                        overflow: "hidden",
+                        cursor: "pointer",
+                        border: "4px solid #fff",
+                        boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
+                        transition: "all 0.3s ease",
+                        position: "relative",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.transform = "scale(1.05)";
+                        e.target.style.boxShadow =
+                          "0 15px 40px rgba(0,0,0,0.3)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.transform = "scale(1)";
+                        e.target.style.boxShadow =
+                          "0 10px 30px rgba(0,0,0,0.2)";
+                      }}
+                    >
+                      {image ? (
+                        <img
+                          src={URL.createObjectURL(image)}
+                          alt="Аватар"
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                          }}
+                        />
+                      ) : currentTrainer?.avatar &&
+                        currentTrainer.avatar !== "undefined" &&
+                        currentTrainer.avatar !== "null" ? (
+                        <img
+                          src={`${app_config.apiUrl}/${currentTrainer.avatar}`}
+                          alt="Аватар"
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                          }}
+                          onError={(e) => {
+                            e.target.src =
+                              "https://bootdey.com/img/Content/avatar/avatar1.png";
+                          }}
+                        />
+                      ) : (
+                        <img
+                          src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                          alt="Аватар"
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                          }}
+                        />
+                      )}
+
+                      {/* Оверлей с иконкой камеры */}
+                      <div
+                        className="camera-overlay"
                         style={{
-                          width: "180px",
-                          height: "180px",
-                          backgroundSize: "cover",
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          background: "rgba(0,0,0,0.5)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          opacity: 0,
+                          transition: "opacity 0.3s ease",
                         }}
-                      />
-                    ) : currentTrainer?.avatar &&
-                      currentTrainer.avatar !== "undefined" &&
-                      currentTrainer.avatar !== "null" ? (
-                      <img
-                        src={`${app_config.apiUrl}/${currentTrainer.avatar}`}
-                        alt="Admin"
-                        className="img-fluid rounded-circle p-1 bg-primary"
-                        style={{
-                          width: "180px",
-                          height: "180px",
-                          backgroundSize: "cover",
-                        }}
-                        onError={(e) => {
-                          e.target.src =
-                            "https://bootdey.com/img/Content/avatar/avatar1.png";
-                        }}
-                      />
-                    ) : (
-                      <img
-                        src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                        alt="Admin"
-                        className="img-fluid rounded-circle p-1 bg-primary"
-                        style={{
-                          width: "180px",
-                          height: "180px",
-                          backgroundSize: "cover",
-                        }}
-                      />
-                    )}
+                        onMouseEnter={(e) => (e.target.style.opacity = 1)}
+                        onMouseLeave={(e) => (e.target.style.opacity = 0)}
+                      >
+                        <i className="fas fa-camera fa-2x text-white" />
+                      </div>
+                    </div>
 
                     <input
                       type="file"
                       ref={inputRef}
                       onChange={handleImageChange}
                       style={{ display: "none" }}
-                    />
-                    <div className="camera-icon">
-                      <i className="fas fa-camera fa-lg" />
-                    </div>
-
-                    <div
-                      className="mask"
-                      style={{
-                        borderRadius: "50%",
-                        backgroundColor: "rgb(0 0 0 / 30%)",
-                      }}
+                      accept="image/*"
                     />
                   </div>
+
+                  {/* Кнопка загрузки */}
                   <button
-                    className="btn btn-primary mt-3"
+                    className="btn btn-primary btn-lg mt-3 px-4"
                     onClick={uploadFile}
                     disabled={isUploading}
+                    style={{
+                      background: "linear-gradient(45deg, #667eea, #764ba2)",
+                      border: "none",
+                      borderRadius: "50px",
+                      fontWeight: "600",
+                      transition: "all 0.3s ease",
+                      boxShadow: "0 5px 15px rgba(102, 126, 234, 0.4)",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.transform = "translateY(-2px)";
+                      e.target.style.boxShadow =
+                        "0 8px 25px rgba(102, 126, 234, 0.6)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.transform = "translateY(0)";
+                      e.target.style.boxShadow =
+                        "0 5px 15px rgba(102, 126, 234, 0.4)";
+                    }}
                   >
                     {isUploading ? (
                       <>
@@ -360,155 +453,515 @@ const TrainerProfile = () => {
                           className="spinner-border spinner-border-sm me-2"
                           role="status"
                           aria-hidden="true"
-                        ></span>
+                        />
                         Загрузка...
                       </>
                     ) : (
-                      "Загрузить фото"
+                      <>
+                        <i className="fas fa-upload me-2" />
+                        Загрузить фото
+                      </>
                     )}
                   </button>
+
+                  {/* Прогресс-бар загрузки */}
+                  {isUploading && (
+                    <div className="mt-3">
+                      <div
+                        className="progress"
+                        style={{ height: "8px", borderRadius: "10px" }}
+                      >
+                        <div
+                          className="progress-bar"
+                          role="progressbar"
+                          style={{
+                            width: `${uploadProgress}%`,
+                            background:
+                              "linear-gradient(45deg, #667eea, #764ba2)",
+                            borderRadius: "10px",
+                            transition: "width 0.3s ease",
+                          }}
+                        />
+                      </div>
+                      <small className="text-muted">{uploadProgress}%</small>
+                    </div>
+                  )}
                 </div>
-                <hr className="my-3" />
-                <ul className="list-group list-group-flush">
-                  <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 className="mb-0">Имя</h6>
-                    <span className="text-secondary">
-                      {currentTrainer.name}
-                    </span>
-                  </li>
-                  <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 className="mb-0">Email</h6>
-                    <span className="text-secondary">
-                      {currentTrainer.email}
-                    </span>
-                  </li>
-                  <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 className="mb-0">Номер телефона</h6>
-                    <span className="text-secondary">
-                      {currentTrainer.mobile_no}
-                    </span>
-                  </li>
-                  <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 className="mb-0">Навыки</h6>
-                    <span className="text-secondary">
-                      {currentTrainer.skills}
-                    </span>
-                  </li>
-                  <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 className="mb-0">Сертификаты</h6>
-                    <span className="text-secondary">
-                      {currentTrainer.certifications}
-                    </span>
-                  </li>
-                </ul>
+
+                {/* Информация профиля */}
+                <div className="profile-info">
+                  <div
+                    className="info-item mb-3 p-3"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)",
+                      borderRadius: "15px",
+                      border: "1px solid rgba(0,0,0,0.05)",
+                    }}
+                  >
+                    <div className="d-flex align-items-center">
+                      <div
+                        className="icon-wrapper me-3"
+                        style={{
+                          width: "40px",
+                          height: "40px",
+                          borderRadius: "50%",
+                          background:
+                            "linear-gradient(45deg, #667eea, #764ba2)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <i className="fas fa-user text-white" />
+                      </div>
+                      <div>
+                        <small className="text-muted d-block">Имя</small>
+                        <strong>{currentTrainer?.name || "Не указано"}</strong>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    className="info-item mb-3 p-3"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)",
+                      borderRadius: "15px",
+                      border: "1px solid rgba(0,0,0,0.05)",
+                    }}
+                  >
+                    <div className="d-flex align-items-center">
+                      <div
+                        className="icon-wrapper me-3"
+                        style={{
+                          width: "40px",
+                          height: "40px",
+                          borderRadius: "50%",
+                          background:
+                            "linear-gradient(45deg, #667eea, #764ba2)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <i className="fas fa-envelope text-white" />
+                      </div>
+                      <div>
+                        <small className="text-muted d-block">Email</small>
+                        <strong>{currentTrainer?.email || "Не указано"}</strong>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    className="info-item mb-3 p-3"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)",
+                      borderRadius: "15px",
+                      border: "1px solid rgba(0,0,0,0.05)",
+                    }}
+                  >
+                    <div className="d-flex align-items-center">
+                      <div
+                        className="icon-wrapper me-3"
+                        style={{
+                          width: "40px",
+                          height: "40px",
+                          borderRadius: "50%",
+                          background:
+                            "linear-gradient(45deg, #667eea, #764ba2)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <i className="fas fa-phone text-white" />
+                      </div>
+                      <div>
+                        <small className="text-muted d-block">Телефон</small>
+                        <strong>
+                          {currentTrainer?.mobile_no || "Не указано"}
+                        </strong>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    className="info-item mb-3 p-3"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)",
+                      borderRadius: "15px",
+                      border: "1px solid rgba(0,0,0,0.05)",
+                    }}
+                  >
+                    <div className="d-flex align-items-center">
+                      <div
+                        className="icon-wrapper me-3"
+                        style={{
+                          width: "40px",
+                          height: "40px",
+                          borderRadius: "50%",
+                          background:
+                            "linear-gradient(45deg, #667eea, #764ba2)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <i className="fas fa-cogs text-white" />
+                      </div>
+                      <div>
+                        <small className="text-muted d-block">Навыки</small>
+                        <strong>
+                          {currentTrainer?.skills || "Не указано"}
+                        </strong>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    className="info-item mb-3 p-3"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)",
+                      borderRadius: "15px",
+                      border: "1px solid rgba(0,0,0,0.05)",
+                    }}
+                  >
+                    <div className="d-flex align-items-center">
+                      <div
+                        className="icon-wrapper me-3"
+                        style={{
+                          width: "40px",
+                          height: "40px",
+                          borderRadius: "50%",
+                          background:
+                            "linear-gradient(45deg, #667eea, #764ba2)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <i className="fas fa-award text-white" />
+                      </div>
+                      <div>
+                        <small className="text-muted d-block">
+                          Сертификаты
+                        </small>
+                        <strong>
+                          {currentTrainer?.certifications || "Не указано"}
+                        </strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="col-xl-7 mx-2">
-            <div className="card h-100 mb-4">
+          {/* Правая колонка - Форма редактирования */}
+          <div className="col-lg-8">
+            <div
+              className="card border-0 shadow-lg"
+              style={{
+                borderRadius: "20px",
+                background: "linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)",
+                overflow: "hidden",
+              }}
+            >
               <div
-                className="card-header text-center fw-bold text-uppercase mb-4"
+                className="card-header border-0 p-4"
                 style={{
-                  fontSize: "30px",
-                  letterSpacing: "2px",
-                  backgroundColor: "#f1f1f1",
+                  background: "linear-gradient(45deg, #667eea, #764ba2)",
+                  color: "white",
                 }}
               >
-                Обновить профиль
+                <h3 className="mb-0 fw-bold">
+                  <i className="fas fa-edit me-2" />
+                  Редактировать профиль
+                </h3>
+                <p className="mb-0 mt-2 opacity-75">
+                  Обновите свои данные и настройки
+                </p>
               </div>
-              <div className="card-body">
-                <form
-                  className="mx-md-5 text-black"
-                  onSubmit={trainerProfileForm.handleSubmit}
-                >
-                  <div className="form-group has-icon mb-4">
-                    <i className="fas fa-user fa-lg form-control-icon" />
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      className="form-control form-control-lg"
-                      placeholder="Имя"
-                      value={trainerProfileForm.values.name}
-                      onChange={trainerProfileForm.handleChange}
-                    />
-                    <span className="text-danger">
-                      {trainerProfileForm.errors.name}
-                    </span>
-                  </div>
 
-                  <div className="form-group has-icon mb-4">
-                    <i className="fas fa-envelope fa-lg form-control-icon" />
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      autoComplete="off"
-                      className="form-control form-control-lg"
-                      placeholder="Email"
-                      value={trainerProfileForm.values.email}
-                      onChange={trainerProfileForm.handleChange}
-                    />
-                    <span className="text-danger">
-                      {trainerProfileForm.errors.email}
-                    </span>
-                  </div>
-
-                  <div className="form-group has-icon mb-4">
-                    <i className="fas fa-mobile-screen-button fa-lg form-control-icon" />
-                    <input
-                      type="text"
-                      id="mobile_no"
-                      name="mobile_no"
-                      className="form-control form-control-lg"
-                      placeholder="Номер телефона"
-                      value={trainerProfileForm.values.mobile_no}
-                      onChange={trainerProfileForm.handleChange}
-                    />
-                    <span className="text-danger">
-                      {trainerProfileForm.errors.mobile_no}
-                    </span>
-                  </div>
-                  <div className="d-flex flex-row align-items-center mb-5">
-                    <div className="form-group has-icon me-2">
-                      <i className="fas fa-gear fa-lg form-control-icon" />
-                      <input
-                        type="text"
-                        id="skills"
-                        autoComplete="off"
-                        className="form-control form-control-lg"
-                        placeholder="Навыки"
-                        value={trainerProfileForm.values.skills}
-                        onChange={trainerProfileForm.handleChange}
-                      />
-                      <span className="text-danger">
-                        {trainerProfileForm.errors.skills}
-                      </span>
+              <div className="card-body p-4">
+                <form onSubmit={trainerProfileForm.handleSubmit}>
+                  <div className="row g-4">
+                    {/* Имя */}
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <label className="form-label fw-bold mb-2">
+                          <i className="fas fa-user me-2 text-primary" />
+                          Имя
+                        </label>
+                        <div className="input-group">
+                          <span
+                            className="input-group-text"
+                            style={{
+                              background:
+                                "linear-gradient(45deg, #667eea, #764ba2)",
+                              border: "none",
+                              color: "white",
+                            }}
+                          >
+                            <i className="fas fa-user" />
+                          </span>
+                          <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            className={`form-control ${
+                              trainerProfileForm.errors.name &&
+                              trainerProfileForm.touched.name
+                                ? "is-invalid"
+                                : ""
+                            }`}
+                            placeholder="Введите ваше имя"
+                            value={trainerProfileForm.values.name}
+                            onChange={trainerProfileForm.handleChange}
+                            style={{
+                              border: "1px solid #e9ecef",
+                              borderRadius: "0 10px 10px 0",
+                              padding: "12px 15px",
+                            }}
+                          />
+                        </div>
+                        {trainerProfileForm.errors.name &&
+                          trainerProfileForm.touched.name && (
+                            <div className="invalid-feedback d-block">
+                              {trainerProfileForm.errors.name}
+                            </div>
+                          )}
+                      </div>
                     </div>
-                    <div className="form-group has-icon ms-2">
-                      <i className="fas fa-award fa-lg form-control-icon" />
-                      <input
-                        type="text"
-                        id="certifications"
-                        autoComplete="off"
-                        className="form-control form-control-lg"
-                        placeholder="Сертификаты"
-                        value={trainerProfileForm.values.certifications}
-                        onChange={trainerProfileForm.handleChange}
-                      />
-                      <span className="text-danger">
-                        {trainerProfileForm.errors.certifications}
-                      </span>
+
+                    {/* Email */}
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <label className="form-label fw-bold mb-2">
+                          <i className="fas fa-envelope me-2 text-primary" />
+                          Email
+                        </label>
+                        <div className="input-group">
+                          <span
+                            className="input-group-text"
+                            style={{
+                              background:
+                                "linear-gradient(45deg, #667eea, #764ba2)",
+                              border: "none",
+                              color: "white",
+                            }}
+                          >
+                            <i className="fas fa-envelope" />
+                          </span>
+                          <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            className={`form-control ${
+                              trainerProfileForm.errors.email &&
+                              trainerProfileForm.touched.email
+                                ? "is-invalid"
+                                : ""
+                            }`}
+                            placeholder="Введите ваш email"
+                            value={trainerProfileForm.values.email}
+                            onChange={trainerProfileForm.handleChange}
+                            style={{
+                              border: "1px solid #e9ecef",
+                              borderRadius: "0 10px 10px 0",
+                              padding: "12px 15px",
+                            }}
+                          />
+                        </div>
+                        {trainerProfileForm.errors.email &&
+                          trainerProfileForm.touched.email && (
+                            <div className="invalid-feedback d-block">
+                              {trainerProfileForm.errors.email}
+                            </div>
+                          )}
+                      </div>
+                    </div>
+
+                    {/* Телефон */}
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <label className="form-label fw-bold mb-2">
+                          <i className="fas fa-phone me-2 text-primary" />
+                          Номер телефона
+                        </label>
+                        <div className="input-group">
+                          <span
+                            className="input-group-text"
+                            style={{
+                              background:
+                                "linear-gradient(45deg, #667eea, #764ba2)",
+                              border: "none",
+                              color: "white",
+                            }}
+                          >
+                            <i className="fas fa-phone" />
+                          </span>
+                          <input
+                            type="text"
+                            id="mobile_no"
+                            name="mobile_no"
+                            className={`form-control ${
+                              trainerProfileForm.errors.mobile_no &&
+                              trainerProfileForm.touched.mobile_no
+                                ? "is-invalid"
+                                : ""
+                            }`}
+                            placeholder="Введите номер телефона"
+                            value={trainerProfileForm.values.mobile_no}
+                            onChange={trainerProfileForm.handleChange}
+                            style={{
+                              border: "1px solid #e9ecef",
+                              borderRadius: "0 10px 10px 0",
+                              padding: "12px 15px",
+                            }}
+                          />
+                        </div>
+                        {trainerProfileForm.errors.mobile_no &&
+                          trainerProfileForm.touched.mobile_no && (
+                            <div className="invalid-feedback d-block">
+                              {trainerProfileForm.errors.mobile_no}
+                            </div>
+                          )}
+                      </div>
+                    </div>
+
+                    {/* Навыки */}
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <label className="form-label fw-bold mb-2">
+                          <i className="fas fa-cogs me-2 text-primary" />
+                          Навыки
+                        </label>
+                        <div className="input-group">
+                          <span
+                            className="input-group-text"
+                            style={{
+                              background:
+                                "linear-gradient(45deg, #667eea, #764ba2)",
+                              border: "none",
+                              color: "white",
+                            }}
+                          >
+                            <i className="fas fa-cogs" />
+                          </span>
+                          <input
+                            type="text"
+                            id="skills"
+                            name="skills"
+                            className={`form-control ${
+                              trainerProfileForm.errors.skills &&
+                              trainerProfileForm.touched.skills
+                                ? "is-invalid"
+                                : ""
+                            }`}
+                            placeholder="Введите ваши навыки"
+                            value={trainerProfileForm.values.skills}
+                            onChange={trainerProfileForm.handleChange}
+                            style={{
+                              border: "1px solid #e9ecef",
+                              borderRadius: "0 10px 10px 0",
+                              padding: "12px 15px",
+                            }}
+                          />
+                        </div>
+                        {trainerProfileForm.errors.skills &&
+                          trainerProfileForm.touched.skills && (
+                            <div className="invalid-feedback d-block">
+                              {trainerProfileForm.errors.skills}
+                            </div>
+                          )}
+                      </div>
+                    </div>
+
+                    {/* Сертификаты */}
+                    <div className="col-12">
+                      <div className="form-group">
+                        <label className="form-label fw-bold mb-2">
+                          <i className="fas fa-award me-2 text-primary" />
+                          Сертификаты
+                        </label>
+                        <div className="input-group">
+                          <span
+                            className="input-group-text"
+                            style={{
+                              background:
+                                "linear-gradient(45deg, #667eea, #764ba2)",
+                              border: "none",
+                              color: "white",
+                            }}
+                          >
+                            <i className="fas fa-award" />
+                          </span>
+                          <input
+                            type="text"
+                            id="certifications"
+                            name="certifications"
+                            className={`form-control ${
+                              trainerProfileForm.errors.certifications &&
+                              trainerProfileForm.touched.certifications
+                                ? "is-invalid"
+                                : ""
+                            }`}
+                            placeholder="Введите ваши сертификаты"
+                            value={trainerProfileForm.values.certifications}
+                            onChange={trainerProfileForm.handleChange}
+                            style={{
+                              border: "1px solid #e9ecef",
+                              borderRadius: "0 10px 10px 0",
+                              padding: "12px 15px",
+                            }}
+                          />
+                        </div>
+                        {trainerProfileForm.errors.certifications &&
+                          trainerProfileForm.touched.certifications && (
+                            <div className="invalid-feedback d-block">
+                              {trainerProfileForm.errors.certifications}
+                            </div>
+                          )}
+                      </div>
                     </div>
                   </div>
 
-                  <div className="pt-1 pb-1 ">
+                  {/* Кнопка отправки */}
+                  <div className="text-center mt-5">
                     <button
-                      className="btn btn-primary btn-block"
+                      className="btn btn-primary btn-lg px-5 py-3"
                       type="submit"
                       disabled={trainerProfileForm.isSubmitting}
-                      style={{ borderRadius: "10px", marginLeft: "0px" }}
+                      style={{
+                        background: "linear-gradient(45deg, #667eea, #764ba2)",
+                        border: "none",
+                        borderRadius: "50px",
+                        fontWeight: "600",
+                        fontSize: "1.1rem",
+                        transition: "all 0.3s ease",
+                        boxShadow: "0 8px 25px rgba(102, 126, 234, 0.4)",
+                        minWidth: "200px",
+                      }}
+                      onMouseEnter={(e) => {
+                        if (!trainerProfileForm.isSubmitting) {
+                          e.target.style.transform = "translateY(-3px)";
+                          e.target.style.boxShadow =
+                            "0 12px 35px rgba(102, 126, 234, 0.6)";
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (!trainerProfileForm.isSubmitting) {
+                          e.target.style.transform = "translateY(0)";
+                          e.target.style.boxShadow =
+                            "0 8px 25px rgba(102, 126, 234, 0.4)";
+                        }
+                      }}
                     >
                       {trainerProfileForm.isSubmitting ? (
                         <>
@@ -516,13 +969,13 @@ const TrainerProfile = () => {
                             className="spinner-border spinner-border-sm me-2"
                             role="status"
                             aria-hidden="true"
-                          ></span>
+                          />
                           Обновление...
                         </>
                       ) : (
                         <>
-                          Обновить &nbsp;
-                          <i className="fas fa-arrow-right-to-bracket" />
+                          <i className="fas fa-save me-2" />
+                          Сохранить изменения
                         </>
                       )}
                     </button>
