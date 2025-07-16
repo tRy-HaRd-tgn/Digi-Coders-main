@@ -34,7 +34,7 @@ const Home = () => {
     validateOnBlur: true,
     onSubmit: async (values, { setSubmitting, resetForm }) => {
       values.emoji = selectedEmoji;
-      
+
       const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
       const res = await fetch(`${apiUrl}/contact/add`, {
@@ -88,91 +88,126 @@ const Home = () => {
           <section>
             <div className="heading">
               <h2 className="mt-5 mb-3 text-center display-3">
-                <span>Benefits of Choosing Us</span>
+                <span>Преимущества выбора нас</span>
               </h2>
             </div>
             <div className="sub-heading">
               <h4 className="mb-8 text-center">
-                <span>Empower your skills with us</span>
+                <span>Развивайте свои навыки вместе с нами</span>
               </h4>
             </div>
 
-            <div className="row">
-              <div className="col-md-6 col-xl-3">
+            <div className="row" style={{ display: "flex" }}>
+              <div className="col-md-6 col-xl-3" style={{ height: "100%" }}>
                 <div
-                  className="card rounded-7 shadow-4-strong text-center text-white"
-                  style={{ backgroundColor: "#29c1fe" }}
+                  className="card rounded-7 shadow-4-strong text-center text-white h-100"
+                  style={{
+                    backgroundColor: "#29c1fe",
+                    height: "100%",
+                    minHeight: "420px",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                  }}
                 >
                   <div className="card-body">
                     <p className="mt-4 pt-2">
                       <i className="fas fa-chalkboard-user fa-4x" />
                     </p>
                     <h5 className="font-weight-normal text-white my-4 py-2">
-                      Interactive Learning
+                      Интерактивное обучение
                     </h5>
                     <p className="mb-4">
-                      Hands-on approach to teaching kids coding concepts and
-                      encourages them to think critically and problem-solve.
+                      Практический подход к обучению детей основам
+                      программирования, развитие критического мышления и навыков
+                      решения задач.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="col-md-6 col-xl-3 mb-4">
+              <div
+                className="col-md-6 col-xl-3 mb-4"
+                style={{ height: "100%" }}
+              >
                 <div
-                  className="card rounded-7 shadow-4-strong text-center text-white"
-                  style={{ backgroundColor: "#000" }}
+                  className="card rounded-7 shadow-4-strong text-center text-white h-100"
+                  style={{
+                    backgroundColor: "#000",
+                    height: "100%",
+                    minHeight: "420px",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                  }}
                 >
                   <div className="card-body">
                     <p className="mt-4 pt-2">
                       <i className="fas fa-briefcase fa-4x" />
                     </p>
                     <h5 className="font-weight-normal text-white my-4 py-2">
-                      Personalized Curriculum
+                      Персонализированная программа
                     </h5>
                     <p className="mb-4">
-                      Tailored learning program for children based on their
-                      individual learning styles, interests, and abilities.
+                      Индивидуальная программа обучения для детей с учетом их
+                      стиля, интересов и способностей.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="col-md-6 col-xl-3">
+              <div className="col-md-6 col-xl-3" style={{ height: "100%" }}>
                 <div
-                  className="card rounded-7 shadow-4-strong text-center text-white"
-                  style={{ backgroundColor: "#29c1fe" }}
+                  className="card rounded-7 shadow-4-strong text-center text-white h-100"
+                  style={{
+                    backgroundColor: "#29c1fe",
+                    height: "100%",
+                    minHeight: "420px",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                  }}
                 >
                   <div className="card-body">
                     <p className="mt-4 pt-2">
                       <i className="fas fa-gamepad fa-4x" />
                     </p>
                     <h5 className="font-weight-normal text-white my-4 py-2">
-                      Game-Based Learning
+                      Обучение через игры
                     </h5>
                     <p className="mb-4">
-                      Game-based learning is an educational approach that uses
-                      games to teach new concepts and skills.
+                      Игровой подход к обучению новым концепциям и навыкам
+                      программирования.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="col-md-6 col-xl-3 mb-4">
+              <div
+                className="col-md-6 col-xl-3 mb-4"
+                style={{ height: "100%" }}
+              >
                 <div
-                  className="card rounded-7 shadow-4-strong text-center text-white"
-                  style={{ backgroundColor: "#000" }}
+                  className="card rounded-7 shadow-4-strong text-center text-white h-100"
+                  style={{
+                    backgroundColor: "#000",
+                    height: "100%",
+                    minHeight: "420px",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                  }}
                 >
                   <div className="card-body">
                     <p className="mt-4 pt-2">
                       <i className="fas fa-award fa-4x" />
                     </p>
                     <h5 className="font-weight-normal text-white my-4 py-2">
-                      Certificate of Completion
+                      Сертификат об окончании
                     </h5>
                     <p className="mb-4">
-                      Awarded to kids for their successfully completion of
-                      interactive learning course or program.
+                      Вручается детям за успешное завершение интерактивного
+                      курса или программы.
                     </p>
                   </div>
                 </div>
@@ -203,26 +238,26 @@ const Home = () => {
                         <div className="header-text col-lg-10">
                           <div className="heading">
                             <h2 className="mt-5 mb-3 display-3">
-                              <span>Why Choose Us?</span>
+                              <span>Почему выбирают нас?</span>
                             </h2>
                           </div>
                           <div className="sub-heading">
                             <h4 className="mb-6">
-                              <span>Innovative Learning Approach</span>
+                              <span>Инновационный подход к обучению</span>
                             </h4>
                           </div>
                           <div className="content">
                             <p className="mb-6">
                               <span>
-                                At Digi Coders, we believe that every child has
-                                the potential to become a creator, innovator,
-                                and problem-solver. That's why we've created a
-                                fun and engaging platform for young coders to
-                                learn, create and explore the world of coding.
-                                Our program is designed to empower kids to
-                                unleash their creativity, build their own
-                                projects, and develop essential coding skills
-                                that will set them up for success in the future.
+                                В Digi Coders мы верим, что каждый ребенок может
+                                стать создателем, новатором и решателем проблем.
+                                Поэтому мы создали увлекательную платформу для
+                                юных программистов, чтобы они могли учиться,
+                                создавать и исследовать мир программирования.
+                                Наша программа помогает детям раскрыть
+                                творческий потенциал, создавать собственные
+                                проекты и развивать важные навыки
+                                программирования для успешного будущего.
                               </span>
                             </p>
                           </div>
@@ -232,7 +267,7 @@ const Home = () => {
                             role="button"
                             aria-controls="#picker-editor"
                           >
-                            Get Started
+                            Начать обучение
                           </NavLink>{" "}
                           <NavLink
                             className="btn btn-primary py-3 px-5 mb-5 mb-md-3 me-md-2"
@@ -240,7 +275,7 @@ const Home = () => {
                             role="button"
                             aria-controls="#picker-editor"
                           >
-                            Learn more
+                            Подробнее
                           </NavLink>
                         </div>
                       </div>
@@ -295,7 +330,7 @@ const Home = () => {
                     <div className="d-flex flex-row align-items-center mb-5">
                       <div className="flex-fill mb-0">
                         <div className="mb-5">
-                          <h3>How helpful was this?</h3>
+                          <h3>Насколько это было полезно?</h3>
                         </div>
                         <div className="form-group has-icon mb-4">
                           <i className="fas fa-user fa-lg form-control-icon" />
@@ -304,7 +339,7 @@ const Home = () => {
                             id="name"
                             name="name"
                             className="form-control form-control-lg"
-                            placeholder="Enter Full Name"
+                            placeholder="Введите полное имя"
                             value={feedbackForm.values.name}
                             onChange={feedbackForm.handleChange}
                             onBlur={feedbackForm.handleBlur}
@@ -326,7 +361,7 @@ const Home = () => {
                             id="email"
                             name="email"
                             className="form-control form-control-lg"
-                            placeholder="Enter Email Address"
+                            placeholder="Введите адрес электронной почты"
                             value={feedbackForm.values.email}
                             onChange={feedbackForm.handleChange}
                             onBlur={feedbackForm.handleBlur}
@@ -429,7 +464,7 @@ const Home = () => {
                             className="form-control form-control-lg"
                             id="textarea"
                             rows="4"
-                            placeholder="Enter message...."
+                            placeholder="Введите сообщение..."
                             name="message"
                             value={feedbackForm.values.message}
                             onChange={feedbackForm.handleChange}
@@ -453,7 +488,7 @@ const Home = () => {
                             feedbackForm.isSubmitting || !feedbackForm.isValid
                           }
                         >
-                          Send Your Feedback &nbsp;
+                          Отправить отзыв &nbsp;
                           <i className="far fa-paper-plane" />
                         </button>
                       </div>
@@ -472,12 +507,14 @@ const Home = () => {
             <section>
               <div className="heading">
                 <h2 className="mb-3 text-center display-3">
-                  <span>Our Popular Courses</span>
+                  <span>Наши популярные курсы</span>
                 </h2>
               </div>
               <div className="sub-heading">
                 <h4 className="mb-8 text-center">
-                  <span>Discover a world of coding with our courses</span>
+                  <span>
+                    Откройте для себя мир программирования с нашими курсами
+                  </span>
                 </h4>
               </div>
               <div className="row text-center gx-lg-5 mb-6">
@@ -512,23 +549,23 @@ const Home = () => {
                         <strong>HTML</strong>
                       </h4>
                       <h5 className="mb-3">
-                        <strong>26 Classes</strong>
+                        <strong>26 занятий</strong>
                       </h5>
                       <h6 className="mb-3">
-                        Duration : <strong>2 Weeks</strong>
+                        Длительность: <strong>2 недели</strong>
                       </h6>
 
                       <hr className="hr hr-blurry" />
 
                       <p className="card-text">
-                        An ideal course to help kids quickly grasp the basics of
-                        html programming and start writing code using blocks.
+                        Идеальный курс, чтобы дети быстро освоили основы html и
+                        начали писать код с помощью блоков.
                       </p>
                       <NavLink
                         to="/user/viewchapters?category=HTML"
                         className="btn btn-primary my-3"
                       >
-                        Learn More
+                        Подробнее
                       </NavLink>
                     </div>
                   </div>
@@ -563,25 +600,24 @@ const Home = () => {
                         <strong>JavaScript</strong>
                       </h4>
                       <h5 className="mb-3">
-                        <strong>26 Classes</strong>
+                        <strong>26 занятий</strong>
                       </h5>
                       <h6 className="mb-3">
-                        Duration : <strong>2 Weeks</strong>
+                        Длительность: <strong>2 недели</strong>
                       </h6>
 
                       <hr className="hr hr-blurry" />
 
                       <p className="card-text">
-                        An ideal course to help kids quickly grasp the basics of
-                        javascript programming and start writing code using
-                        blocks.
+                        Идеальный курс, чтобы дети быстро освоили основы
+                        javascript и начали писать код с помощью блоков.
                       </p>
 
                       <NavLink
                         to="/user/viewchapters?category=JavaScript"
                         className="btn btn-primary my-3"
                       >
-                        Learn More
+                        Подробнее
                       </NavLink>
                     </div>
                   </div>
@@ -618,24 +654,24 @@ const Home = () => {
                         <strong>Python</strong>
                       </h4>
                       <h5 className="mb-3">
-                        <strong>26 Classes</strong>
+                        <strong>26 занятий</strong>
                       </h5>
                       <h6 className="mb-3">
-                        Duration : <strong>2 Weeks</strong>
+                        Длительность: <strong>2 недели</strong>
                       </h6>
                       {/* Divider here */}
                       <hr className="hr hr-blurry" />
 
                       <p className="card-text">
-                        An ideal course to help kids quickly grasp the basics of
-                        python programming and start writing code using blocks.
+                        Идеальный курс, чтобы дети быстро освоили основы python
+                        и начали писать код с помощью блоков.
                       </p>
 
                       <NavLink
                         to="/user/viewchapters?category=Python"
                         className="btn btn-primary my-3"
                       >
-                        Learn More
+                        Подробнее
                       </NavLink>
                     </div>
                   </div>
@@ -681,8 +717,8 @@ const Home = () => {
                             <div className="content pb-5">
                               <h1 className="mt-5 mb-6 display-3 text-stroke">
                                 <span>
-                                  Start your coding journey today and make your
-                                  dreams a reality!
+                                  Начните свой путь в программировании уже
+                                  сегодня и воплотите свои мечты в реальность!
                                 </span>{" "}
                                 <br />{" "}
                                 {/* <span className="">and</span> <br />{" "}
@@ -694,7 +730,7 @@ const Home = () => {
                                 role="button"
                                 aria-controls="#picker-editor"
                               >
-                                Get Started
+                                Начать обучение
                               </NavLink>{" "}
                               <NavLink
                                 className="btn btn-primary py-3 px-5 mb-5 mb-md-3 me-md-2"
@@ -702,7 +738,7 @@ const Home = () => {
                                 role="button"
                                 aria-controls="#picker-editor"
                               >
-                                Learn more
+                                Подробнее
                               </NavLink>
                             </div>
                           </div>
@@ -733,12 +769,12 @@ const Home = () => {
             <section>
               <div className="heading">
                 <h2 className="mb-3 text-center display-3">
-                  <span>Why Kids Should Learn to Code</span>
+                  <span>Почему детям стоит учиться программированию</span>
                 </h2>
               </div>
               <div className="sub-heading">
                 <h4 className="mb-8 text-center">
-                  <span>Coding : the language of the future</span>
+                  <span>Программирование — язык будущего</span>
                 </h4>
               </div>
 
@@ -754,13 +790,14 @@ const Home = () => {
                 </div>
                 <div className="content text-center col-md-6 mb-4 mb-md-0">
                   <h4 className="fw-bold mb-3">
-                    <strong>Prepares Them for the Future</strong>
+                    <strong>Готовит к будущему</strong>
                   </h4>
                   <p className="align-items-justify mb-4">
-                    In today's digital age, coding is becoming an essential
-                    skill for many jobs. By learning to code at a young age,
-                    kids are better prepared for the future and have a
-                    competitive edge in the job market.
+                    В современном цифровом мире программирование становится
+                    важным навыком для многих профессий. Осваивая
+                    программирование с раннего возраста, дети лучше подготовлены
+                    к будущему и получают конкурентное преимущество на рынке
+                    труда.
                   </p>
                 </div>
               </div>
@@ -778,13 +815,13 @@ const Home = () => {
                 </div>
                 <div className="content text-center col-md-6 mb-4 mb-md-0">
                   <h4 className="fw-bold mb-3">
-                    <strong>Enhances Logical Thinking</strong>
+                    <strong>Развивает логическое мышление</strong>
                   </h4>
                   <p className="align-items-justify mb-4">
-                    Coding helps kids to develop logical thinking skills. They
-                    learn to organize their thoughts and break down complex
-                    problems into simpler components. This skill is useful not
-                    only in coding but also in other areas of life.
+                    Программирование помогает детям развивать логическое
+                    мышление. Они учатся структурировать мысли и разбивать
+                    сложные задачи на простые части. Этот навык полезен не
+                    только в программировании, но и в жизни.
                   </p>{" "}
                 </div>
               </div>
@@ -801,13 +838,13 @@ const Home = () => {
                 </div>
                 <div className="content text-center col-md-6 mb-4 mb-md-0">
                   <h4 className="fw-bold mb-3">
-                    <strong>Develops Problem-Solving Skills</strong>
+                    <strong>Формирует навыки решения проблем</strong>
                   </h4>
                   <p className="align-items-justify mb-4">
-                    Learning to code helps kids to develop problem-solving
-                    skills, as they have to break down a problem into smaller
-                    components and then find a way to solve them using code.
-                    This skill is useful in various aspects of life.
+                    Обучение программированию помогает детям развивать навыки
+                    решения проблем, разбивать задачи на части и находить пути
+                    их решения с помощью кода. Этот навык полезен в разных
+                    сферах жизни.
                   </p>{" "}
                 </div>
               </div>
@@ -845,12 +882,12 @@ const Home = () => {
                 <section>
                   <div className="main-heading">
                     <h2 className="mb-3 text-center display-3">
-                      <span>Testimonials</span>
+                      <span>Отзывы</span>
                     </h2>
                   </div>
                   <div className="sub-heading">
                     <h4 className="mb-8 text-center">
-                      <span>What Client Says</span>
+                      <span>Что говорят клиенты</span>
                     </h4>
                   </div>
                   <div className="card-body">
@@ -862,7 +899,7 @@ const Home = () => {
                             style={{ backgroundColor: "hsl(218, 62.2%, 95%)" }}
                           >
                             <h6 className="text-muted fw-bold mt-4 mb-2">
-                              Parent
+                              Родитель
                             </h6>
                             <div className="name">
                               <p className="h5 fw-bold mb-1">Gauri Parulkar</p>
@@ -892,11 +929,10 @@ const Home = () => {
                               style={{ color: "#29c1fe" }}
                             ></i>
                             <p className="pb-4 mb-4">
-                              I'm so glad we found this website for our child.
-                              It's been amazing to watch their coding skills
-                              grow and develop, and they have so much fun with
-                              the interactive challenges. <br /> Highly
-                              recommend!
+                              Я очень рада, что мы нашли этот сайт для нашего
+                              ребенка. Приятно наблюдать, как развиваются его
+                              навыки программирования, и ему очень нравятся
+                              интерактивные задания. <br /> Очень рекомендую!
                             </p>
                           </div>
                           <img
@@ -915,7 +951,7 @@ const Home = () => {
                             style={{ backgroundColor: "hsl(218, 62.2%, 95%)" }}
                           >
                             <h6 className="text-muted fw-bold mt-4 mb-2">
-                              Student
+                              Ученик
                             </h6>
                             <div className="name">
                               <p className="h5 mb-1 fw-bold">Akash Vukoti</p>
@@ -945,11 +981,11 @@ const Home = () => {
                               style={{ color: "#29c1fe" }}
                             ></i>
                             <p className="pb-4 mb-4">
-                              I was intimidated by coding at first, but this
-                              website made it so much easier and fun! The
-                              interactive challenges and games helped me to
-                              understand coding concepts better, and I feel more
-                              confident in my abilities now.
+                              Сначала программирование казалось мне сложным, но
+                              этот сайт сделал обучение простым и увлекательным!
+                              Интерактивные задания и игры помогли мне лучше
+                              понять концепции программирования, и теперь я
+                              увереннее в своих силах.
                             </p>
                           </div>
                           <img
@@ -968,7 +1004,7 @@ const Home = () => {
                             style={{ backgroundColor: "hsl(218, 62.2%, 95%)" }}
                           >
                             <h6 className="text-muted fw-bold mt-4 mb-2">
-                              Parent
+                              Родитель
                             </h6>
                             <div className="name">
                               <p className="h5 mb-1 fw-bold">
@@ -1000,11 +1036,11 @@ const Home = () => {
                               style={{ color: "#29c1fe" }}
                             ></i>
                             <p className="pb-4 mb-4">
-                              As a parent, I love seeing my child engaged and
-                              excited about learning, and this website has done
-                              just that. They love the game-based approach to
-                              coding and I'm amazed at how much they've learned
-                              in such a short time.
+                              Как родитель, я рад видеть, что мой ребенок с
+                              интересом учится, и этот сайт этому способствует.
+                              Ему очень нравится игровой подход к
+                              программированию, и я поражен, сколько он уже
+                              освоил за короткое время.
                             </p>
                           </div>
                           <img
@@ -1029,12 +1065,12 @@ const Home = () => {
           <section>
             <div className="heading">
               <h2 className="mb-3 text-center display-3">
-                <span>FAQ</span>
+                <span>Часто задаваемые вопросы</span>
               </h2>
             </div>
             <div className="sub-heading">
               <h4 className="mb-8 text-center">
-                <span>Frequently Asked Questions</span>
+                <span>FAQ</span>
               </h4>
             </div>
             <div className="accordion" id="basicAccordion">
@@ -1048,7 +1084,7 @@ const Home = () => {
                     aria-expanded="false"
                     aria-controls="collapseOne"
                   >
-                    Why should kids learn to code?
+                    <span>Почему детям стоит учиться программированию?</span>
                   </button>
                 </h2>
                 <div
@@ -1059,12 +1095,14 @@ const Home = () => {
                   style={{}}
                 >
                   <div className="accordion-body">
-                    Kids should learn to code because it helps develop
-                    problem-solving skills, enhances creativity, boosts logical
-                    thinking, and prepares them for a tech-driven future.
-                    Additionally, coding teaches persistence, collaboration, and
-                    attention to detail, and opens up career opportunities in a
-                    wide range of fields.
+                    <span>
+                      Дети должны учиться программированию, потому что это
+                      развивает навыки решения проблем, творческое мышление,
+                      логическое мышление и готовит их к технологичному
+                      будущему. Кроме того, программирование учит настойчивости,
+                      работе в команде, вниманию к деталям и открывает карьерные
+                      возможности в различных сферах.
+                    </span>
                   </div>
                 </div>
               </div>
@@ -1078,8 +1116,9 @@ const Home = () => {
                     aria-expanded="false"
                     aria-controls="collapseTwo"
                   >
-                    My child is a beginner, is previous coding experience
-                    required?
+                    <span>
+                      Мой ребенок новичок, нужен ли опыт программирования?
+                    </span>
                   </button>
                 </h2>
                 <div
@@ -1090,11 +1129,12 @@ const Home = () => {
                   style={{}}
                 >
                   <div className="accordion-body">
-                    No, previous coding experience is not required for our
-                    courses. We welcome children of all skill levels, including
-                    beginners. Our courses are designed to start with the basics
-                    and gradually increase in difficulty to ensure that every
-                    child can learn and progress at their own pace.
+                    <span>
+                      Нет, опыт программирования не требуется. Мы принимаем
+                      детей с любым уровнем подготовки, включая новичков. Наши
+                      курсы начинаются с основ и постепенно усложняются, чтобы
+                      каждый ребенок мог учиться в своем темпе.
+                    </span>
                   </div>
                 </div>
               </div>
@@ -1108,7 +1148,9 @@ const Home = () => {
                     aria-expanded="false"
                     aria-controls="collapseThree"
                   >
-                    What is the recommended age for my child to start coding?
+                    <span>
+                      С какого возраста можно начинать учиться программированию?
+                    </span>
                   </button>
                 </h2>
                 <div
@@ -1119,12 +1161,12 @@ const Home = () => {
                   style={{}}
                 >
                   <div className="accordion-body">
-                    The recommended age for a child to start coding varies, but
-                    generally, children as young as 5 or 6 can start with basic
-                    block-based programming. As they progress, they can move on
-                    to more advanced languages and projects. However, it's never
-                    too late to start learning how to code, and people of all
-                    ages can benefit from the skills and knowledge it provides.
+                    <span>
+                      Рекомендуемый возраст для начала — от 5-6 лет с блочным
+                      программированием. По мере развития можно переходить к
+                      более сложным языкам и проектам. Но учиться никогда не
+                      поздно — программирование полезно людям любого возраста.
+                    </span>
                   </div>
                 </div>
               </div>
@@ -1138,7 +1180,7 @@ const Home = () => {
                     aria-expanded="false"
                     aria-controls="collapseFour"
                   >
-                    What courses does Digi Coders offer?
+                    <span>Какие курсы предлагает Digi Coders?</span>
                   </button>
                 </h2>
                 <div
@@ -1149,12 +1191,13 @@ const Home = () => {
                   style={{}}
                 >
                   <div className="accordion-body">
-                    Digi Coders offers block-based coding courses for kids. Some
-                    of the courses they offer include Python programming, Web
-                    Development, App Development, Game Development, A.I. and
-                    IOT. These courses are designed to make coding fun and
-                    interactive for kids while teaching them important coding
-                    concepts and skills.
+                    <span>
+                      Digi Coders предлагает курсы блочного программирования для
+                      детей: Python, веб-разработка, разработка приложений, игр,
+                      искусственный интеллект и IoT. Курсы делают обучение
+                      программированию интересным и интерактивным, обучая важным
+                      навыкам.
+                    </span>
                   </div>
                 </div>
               </div>
@@ -1168,7 +1211,7 @@ const Home = () => {
                     aria-expanded="false"
                     aria-controls="collapseFive"
                   >
-                    Is the coding course schedule flexible?
+                    <span>Гибкое ли расписание курсов?</span>
                   </button>
                 </h2>
                 <div
@@ -1179,8 +1222,10 @@ const Home = () => {
                   style={{}}
                 >
                   <div className="accordion-body">
-                    Yes! You can work the classes around your child's schedule
-                    by selecting any time and any day that works for you.
+                    <span>
+                      Да! Вы можете подобрать удобное время и дни для занятий,
+                      чтобы они вписывались в ваш график.
+                    </span>
                   </div>
                 </div>
               </div>
@@ -1194,8 +1239,7 @@ const Home = () => {
                     aria-expanded="false"
                     aria-controls="collapseSix"
                   >
-                    What kind of device does my child need to start learning to
-                    code?
+                    <span>Какое устройство нужно для обучения?</span>
                   </button>
                 </h2>
                 <div
@@ -1206,9 +1250,10 @@ const Home = () => {
                   style={{}}
                 >
                   <div className="accordion-body">
-                    All that is needed to learn coding with Digi Coders is a
-                    laptop/computer with a webcam and a stable internet
-                    connection.
+                    <span>
+                      Для обучения в Digi Coders нужен только компьютер/ноутбук
+                      с веб-камерой и стабильным интернетом.
+                    </span>
                   </div>
                 </div>
               </div>
