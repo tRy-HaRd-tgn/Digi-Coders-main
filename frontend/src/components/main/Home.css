@@ -21,10 +21,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 60px 5vw 40px 5vw;
-  min-height: 480px;
-  gap: 40px;
-  background: linear-gradient(120deg, #29c1fe 0%, #a1c4fd 100%);
+  padding: 80px 5vw 60px 5vw;
+  min-height: 600px;
+  gap: 60px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-radius: 0 0 48px 48px;
   margin-bottom: 48px;
   position: relative;
@@ -34,37 +34,73 @@
   flex: 1 1 50%;
   z-index: 2;
 }
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+  backdrop-filter: blur(10px);
+}
 .hero-title {
-  font-size: 3.5rem;
+  font-size: 4rem;
   font-weight: 900;
-  color: #222;
+  color: #fff;
   margin-bottom: 18px;
   letter-spacing: 2px;
-  text-shadow: 0 2px 16px rgba(41, 193, 254, 0.08);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 .hero-subtitle {
-  font-size: 1.5rem;
-  color: #1e88e5;
+  font-size: 1.6rem;
+  color: rgba(255, 255, 255, 0.9);
   margin-bottom: 32px;
   font-weight: 500;
+  line-height: 1.4;
+}
+.hero-features {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+.hero-feature {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  font-weight: 500;
+}
+.hero-feature i {
+  color: #4ade80;
+  font-size: 1.1rem;
 }
 .hero-btns {
   display: flex;
   gap: 18px;
+  margin-bottom: 40px;
 }
 .btn-glass,
 .btn-glass-outline {
-  padding: 12px 32px;
+  padding: 14px 32px;
   border-radius: 16px;
   font-size: 1.1rem;
   font-weight: 700;
   border: none;
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: 0 2px 12px rgba(41, 193, 254, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   background: linear-gradient(90deg, #29c1fe 0%, #1e88e5 100%);
   color: #fff;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 .btn-glass:hover {
   background: linear-gradient(90deg, #1e88e5 0%, #29c1fe 100%);
@@ -72,12 +108,34 @@
 }
 .btn-glass-outline {
   background: transparent;
-  color: #1e88e5;
-  border: 2px solid #1e88e5;
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.3);
 }
 .btn-glass-outline:hover {
-  background: #1e88e5;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.hero-stats {
+  display: flex;
+  gap: 32px;
+}
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.hero-stat-number {
+  font-size: 2rem;
+  font-weight: 900;
   color: #fff;
+  line-height: 1;
+}
+.hero-stat-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  margin-top: 4px;
 }
 .hero-image-wrap {
   flex: 1 1 40%;
@@ -85,11 +143,76 @@
   align-items: center;
   justify-content: center;
 }
-.hero-image {
-  width: 340px;
-  max-width: 100%;
-  border-radius: 32px;
-  box-shadow: 0 8px 32px rgba(41, 193, 254, 0.18);
+.hero-image-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 32px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+.hero-image-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.hero-image-header h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1e88e5;
+  margin-bottom: 8px;
+}
+.hero-image-header p {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.4;
+}
+.hero-image-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.code-blocks {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.code-block {
+  background: linear-gradient(90deg, #29c1fe 0%, #1e88e5 100%);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.child-illustration {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+.child-avatar {
+  font-size: 2rem;
+}
+.laptop-screen {
+  flex: 1;
+  background: #2d3748;
+  border-radius: 8px;
+  padding: 12px;
+  min-height: 60px;
+}
+.screen-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.code-line {
+  font-family: "Courier New", monospace;
+  font-size: 0.7rem;
+  color: #4ade80;
+  line-height: 1.2;
 }
 
 /* Features Modern */

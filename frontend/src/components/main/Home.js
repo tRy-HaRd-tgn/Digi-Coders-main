@@ -116,25 +116,80 @@ const Home = () => {
       {/* Hero Section */}
       <section className="hero-section glassmorphism">
         <div className="hero-content">
+          <div className="hero-badge">
+            <span>🚀</span> Инновационное обучение
+          </div>
           <h1 className="hero-title fade-in">Digi Coders</h1>
           <p className="hero-subtitle fade-in-delay">
             Программирование для детей — легко, интересно, современно!
           </p>
+          <div className="hero-features fade-in-delay-2">
+            <div className="hero-feature">
+              <i className="fas fa-check-circle"></i>
+              <span>Интерактивные уроки</span>
+            </div>
+            <div className="hero-feature">
+              <i className="fas fa-check-circle"></i>
+              <span>Игровой подход</span>
+            </div>
+            <div className="hero-feature">
+              <i className="fas fa-check-circle"></i>
+              <span>Сертификаты</span>
+            </div>
+          </div>
           <div className="hero-btns fade-in-delay-2">
             <NavLink className="btn-glass" to="/main/signup">
+              <i className="fas fa-rocket"></i>
               Начать обучение
             </NavLink>
             <NavLink className="btn-glass-outline" to="/main/about">
+              <i className="fas fa-info-circle"></i>
               Подробнее
             </NavLink>
           </div>
+          <div className="hero-stats fade-in-delay-2">
+            <div className="hero-stat">
+              <span className="hero-stat-number">500+</span>
+              <span className="hero-stat-label">Учеников</span>
+            </div>
+            <div className="hero-stat">
+              <span className="hero-stat-number">50+</span>
+              <span className="hero-stat-label">Курсов</span>
+            </div>
+            <div className="hero-stat">
+              <span className="hero-stat-number">95%</span>
+              <span className="hero-stat-label">Успех</span>
+            </div>
+          </div>
         </div>
         <div className="hero-image-wrap">
-          <img
-            src="/images/banner.gif"
-            alt="Digi Coders Banner"
-            className="hero-image"
-          />
+          <div className="hero-image-card glassmorphism">
+            <div className="hero-image-content">
+              <div className="hero-image-header">
+                <h3>DIGI CODERS</h3>
+                <p>Платформа для обучения программированию детей от 5 лет</p>
+              </div>
+              <div className="hero-image-visual">
+                <div className="code-blocks">
+                  <div className="code-block">HTML</div>
+                  <div className="code-block">CSS</div>
+                  <div className="code-block">JavaScript</div>
+                  <div className="code-block">Python</div>
+                </div>
+                <div className="child-illustration">
+                  <div className="child-avatar">👨‍💻</div>
+                  <div className="laptop-screen">
+                    <div className="screen-content">
+                      <div className="code-line">print("Hello World!")</div>
+                      <div className="code-line">
+                        console.log("Digi Coders")
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
