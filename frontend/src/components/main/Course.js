@@ -176,24 +176,15 @@ const Course = () => {
                 <p className="course-modern-description">
                   {course.description}
                 </p>
-                <div className="course-modern-progress">
-                  <div className="course-modern-progress-bar">
-                    <div
-                      className="course-modern-progress-fill"
-                      style={{ width: "0%" }}
-                    ></div>
-                  </div>
-                  <span className="course-modern-progress-text">
-                    0% завершено
-                  </span>
+                <div className="course-modern-actions">
+                  <button
+                    className="btn-glass"
+                    onClick={() => handleCourseClick(course.category)}
+                  >
+                    <i className="fas fa-play"></i>
+                    Начать обучение
+                  </button>
                 </div>
-                <button
-                  className="btn-glass"
-                  onClick={() => handleCourseClick(course.category)}
-                >
-                  <i className="fas fa-play"></i>
-                  Начать обучение
-                </button>
               </div>
             </div>
           ))}
@@ -238,8 +229,8 @@ const Course = () => {
                 <p className="course-modern-description">
                   {course.description}
                 </p>
-                <div className="course-modern-notify">
-                  <button className="btn-glass-outline">
+                <div className="course-modern-actions">
+                  <button className="btn-glass">
                     <i className="fas fa-bell"></i>
                     Уведомить о запуске
                   </button>
