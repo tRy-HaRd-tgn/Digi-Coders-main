@@ -283,3 +283,377 @@
     max-width: 95vw;
   }
 }
+
+/* --- Современная секция: Почему детям стоит учиться программированию --- */
+.why-learn-section {
+  max-width: 1200px;
+  margin: 0 auto 4rem auto;
+  padding: 3rem 1rem 4rem 1rem;
+  background: linear-gradient(135deg, #fafdff 0%, #e9f4fb 100%);
+  border-radius: 2rem;
+  box-shadow: 0 8px 32px rgba(41, 193, 254, 0.08);
+}
+.why-learn-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+.why-learn-header h2 {
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: #222;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+.why-learn-header p {
+  color: #29c1fe;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+.why-learn-cards {
+  display: flex;
+  gap: 2.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.why-learn-card {
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px rgba(41, 193, 254, 0.1);
+  padding: 2.2rem 1.5rem 1.5rem 1.5rem;
+  max-width: 350px;
+  min-width: 270px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.25s, box-shadow 0.25s;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInUp 0.7s cubic-bezier(0.23, 1.01, 0.32, 1) forwards;
+}
+.why-learn-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 40px rgba(41, 193, 254, 0.18);
+}
+.why-learn-img-wrap {
+  width: 110px;
+  height: 110px;
+  margin-bottom: 1.2rem;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(41, 193, 254, 0.13);
+  background: #e9f4fb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.why-learn-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.why-learn-content h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1e88e5;
+  margin-bottom: 0.7rem;
+  text-align: center;
+}
+.why-learn-content p {
+  color: #444;
+  font-size: 1.05rem;
+  text-align: center;
+  margin-bottom: 0;
+}
+.fade-in-up {
+  animation: fadeInUp 0.7s cubic-bezier(0.23, 1.01, 0.32, 1) forwards;
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 900px) {
+  .why-learn-cards {
+    gap: 1.2rem;
+  }
+  .why-learn-card {
+    max-width: 95vw;
+    min-width: 0;
+  }
+}
+@media (max-width: 600px) {
+  .why-learn-section {
+    padding: 1.5rem 0.2rem 2rem 0.2rem;
+    border-radius: 1rem;
+  }
+  .why-learn-header h2 {
+    font-size: 1.5rem;
+  }
+  .why-learn-cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .why-learn-card {
+    padding: 1.2rem 0.7rem 1rem 0.7rem;
+  }
+  .why-learn-img-wrap {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* --- Why Choose Us Modern Section --- */
+.why-choose-us-section {
+  max-width: 900px;
+  margin: 60px auto 40px auto;
+  padding: 48px 32px 40px 32px;
+  background: linear-gradient(135deg, #f6feff 60%, #e3f0ff 100%);
+  border-radius: 32px;
+  box-shadow: 0 8px 32px rgba(41, 193, 254, 0.1),
+    0 1.5px 8px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fade-in-up 1s cubic-bezier(0.23, 1.01, 0.32, 1) both;
+}
+.why-choose-us-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  text-align: center;
+  color: #222;
+}
+.why-choose-us-subtitle {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #29c1fe;
+  margin-bottom: 24px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+.why-choose-us-text {
+  font-size: 1.13rem;
+  color: #444;
+  text-align: center;
+  margin-bottom: 32px;
+  line-height: 1.7;
+  max-width: 700px;
+}
+.why-choose-us-btns {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.why-choose-us-btn {
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 14px 36px;
+  border-radius: 14px;
+  border: none;
+  background: #29c1fe;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(41, 193, 254, 0.1);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, border 0.2s;
+  text-decoration: none;
+  margin-bottom: 0;
+  outline: none;
+  cursor: pointer;
+}
+.why-choose-us-btn.btn-outline {
+  background: #fff;
+  color: #29c1fe;
+  border: 2px solid #29c1fe;
+}
+.why-choose-us-btn:hover,
+.why-choose-us-btn:focus {
+  background: #1a9fd6;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(41, 193, 254, 0.18);
+}
+.why-choose-us-btn.btn-outline:hover,
+.why-choose-us-btn.btn-outline:focus {
+  background: #29c1fe;
+  color: #fff;
+}
+@media (max-width: 700px) {
+  .why-choose-us-section {
+    padding: 28px 8px 24px 8px;
+    border-radius: 18px;
+  }
+  .why-choose-us-title {
+    font-size: 2rem;
+  }
+  .why-choose-us-text {
+    font-size: 1rem;
+  }
+  .why-choose-us-btn {
+    font-size: 1rem;
+    padding: 12px 20px;
+  }
+}
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Features Section Modernized --- */
+.features-section {
+  width: 100%;
+  max-width: 1400px;
+  margin: 60px auto 40px auto;
+  padding: 48px 0 40px 0;
+  background: linear-gradient(120deg, #f6feff 60%, #e3f0ff 100%);
+  border-radius: 32px;
+  box-shadow: 0 8px 32px rgba(41, 193, 254, 0.1),
+    0 1.5px 8px rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.features-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  text-align: center;
+  color: #111;
+}
+.features-subtitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #29c1fe;
+  margin-bottom: 36px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+.features-cards {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1200px;
+}
+.feature-card {
+  flex: 1 1 240px;
+  min-width: 260px;
+  max-width: 300px;
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 4px 24px rgba(41, 193, 254, 0.1),
+    0 1.5px 8px rgba(0, 0, 0, 0.04);
+  padding: 36px 24px 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.22s cubic-bezier(0.23, 1.01, 0.32, 1),
+    box-shadow 0.22s;
+  cursor: pointer;
+  opacity: 0;
+  animation: fade-in-up 0.8s cubic-bezier(0.23, 1.01, 0.32, 1) forwards;
+}
+.feature-card--blue {
+  background: linear-gradient(135deg, #29c1fe 80%, #6ee7ff 100%);
+  color: #fff;
+}
+.feature-card--black {
+  background: #111;
+  color: #fff;
+}
+.feature-card:hover {
+  transform: translateY(-10px) scale(1.04);
+  box-shadow: 0 8px 32px rgba(41, 193, 254, 0.18),
+    0 2px 12px rgba(0, 0, 0, 0.08);
+}
+.feature-icon {
+  font-size: 2.8rem;
+  margin-bottom: 18px;
+  color: #fff;
+  background: linear-gradient(135deg, #29c1fe 60%, #6ee7ff 100%);
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(41, 193, 254, 0.1);
+}
+.feature-card--black .feature-icon {
+  background: linear-gradient(135deg, #222 60%, #444 100%);
+  color: #fff;
+}
+.feature-card h5 {
+  font-size: 1.18rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+.feature-card p {
+  font-size: 1rem;
+  color: #eaf6fa;
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+.feature-card--black p {
+  color: #e0e0e0;
+}
+@media (max-width: 900px) {
+  .features-cards {
+    gap: 18px;
+  }
+  .feature-card {
+    min-width: 220px;
+    max-width: 100%;
+    padding: 28px 12px 24px 12px;
+  }
+}
+@media (max-width: 700px) {
+  .features-section {
+    padding: 24px 0 18px 0;
+    border-radius: 18px;
+  }
+  .features-title {
+    font-size: 2rem;
+  }
+  .features-cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .feature-card {
+    min-width: 0;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+/* Анимация появления карточек */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

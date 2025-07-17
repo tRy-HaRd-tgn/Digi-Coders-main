@@ -135,209 +135,67 @@ const Home = () => {
       </>
 
       <>
-        <div className="container mb-8">
-          <section>
-            <div className="heading">
-              <h2 className="mt-5 mb-3 text-center display-3">
-                <span>Преимущества выбора нас</span>
-              </h2>
+        {/* Features Section Modernized */}
+        <section className="features-section">
+          <h2 className="features-title">ПРЕИМУЩЕСТВА ВЫБОРА НАС</h2>
+          <h4 className="features-subtitle">
+            РАЗВИВАЙТЕ СВОИ НАВЫКИ ВМЕСТЕ С НАМИ
+          </h4>
+          <div className="features-cards">
+            <div
+              className="feature-card feature-card--blue fade-in-up"
+              style={{ animationDelay: "0.05s" }}
+            >
+              <div className="feature-icon">
+                <i className="fas fa-chalkboard-user" />
+              </div>
+              <h5>ИНТЕРАКТИВНОЕ ОБУЧЕНИЕ</h5>
+              <p>
+                Практический подход к обучению детей основам программирования,
+                развитие критического мышления и навыков решения задач.
+              </p>
             </div>
-            <div className="sub-heading">
-              <h4 className="mb-8 text-center">
-                <span>Развивайте свои навыки вместе с нами</span>
-              </h4>
+            <div
+              className="feature-card feature-card--black fade-in-up"
+              style={{ animationDelay: "0.15s" }}
+            >
+              <div className="feature-icon">
+                <i className="fas fa-briefcase" />
+              </div>
+              <h5>ПЕРСОНАЛИЗИРОВАННАЯ ПРОГРАММА</h5>
+              <p>
+                Индивидуальная программа обучения для детей с учетом их стиля,
+                интересов и способностей.
+              </p>
             </div>
-
-            <div className="row" style={{ display: "flex" }}>
-              <div className="col-md-6 col-xl-3" style={{ height: "100%" }}>
-                <div
-                  className="card rounded-7 shadow-4-strong text-center text-white h-100"
-                  style={{
-                    backgroundColor: "#29c1fe",
-                    height: "100%",
-                    minHeight: "420px",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                  }}
-                >
-                  <div className="card-body">
-                    <p className="mt-4 pt-2">
-                      <i className="fas fa-chalkboard-user fa-4x" />
-                    </p>
-                    <h5 className="font-weight-normal text-white my-4 py-2">
-                      Интерактивное обучение
-                    </h5>
-                    <p className="mb-4">
-                      Практический подход к обучению детей основам
-                      программирования, развитие критического мышления и навыков
-                      решения задач.
-                    </p>
-                  </div>
-                </div>
+            <div
+              className="feature-card feature-card--blue fade-in-up"
+              style={{ animationDelay: "0.25s" }}
+            >
+              <div className="feature-icon">
+                <i className="fas fa-gamepad" />
               </div>
-
-              <div
-                className="col-md-6 col-xl-3 mb-4"
-                style={{ height: "100%" }}
-              >
-                <div
-                  className="card rounded-7 shadow-4-strong text-center text-white h-100"
-                  style={{
-                    backgroundColor: "#000",
-                    height: "100%",
-                    minHeight: "420px",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                  }}
-                >
-                  <div className="card-body">
-                    <p className="mt-4 pt-2">
-                      <i className="fas fa-briefcase fa-4x" />
-                    </p>
-                    <h5 className="font-weight-normal text-white my-4 py-2">
-                      Персонализированная программа
-                    </h5>
-                    <p className="mb-4">
-                      Индивидуальная программа обучения для детей с учетом их
-                      стиля, интересов и способностей.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-md-6 col-xl-3" style={{ height: "100%" }}>
-                <div
-                  className="card rounded-7 shadow-4-strong text-center text-white h-100"
-                  style={{
-                    backgroundColor: "#29c1fe",
-                    height: "100%",
-                    minHeight: "420px",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                  }}
-                >
-                  <div className="card-body">
-                    <p className="mt-4 pt-2">
-                      <i className="fas fa-gamepad fa-4x" />
-                    </p>
-                    <h5 className="font-weight-normal text-white my-4 py-2">
-                      Обучение через игры
-                    </h5>
-                    <p className="mb-4">
-                      Игровой подход к обучению новым концепциям и навыкам
-                      программирования.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                className="col-md-6 col-xl-3 mb-4"
-                style={{ height: "100%" }}
-              >
-                <div
-                  className="card rounded-7 shadow-4-strong text-center text-white h-100"
-                  style={{
-                    backgroundColor: "#000",
-                    height: "100%",
-                    minHeight: "420px",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                  }}
-                >
-                  <div className="card-body">
-                    <p className="mt-4 pt-2">
-                      <i className="fas fa-award fa-4x" />
-                    </p>
-                    <h5 className="font-weight-normal text-white my-4 py-2">
-                      Сертификат об окончании
-                    </h5>
-                    <p className="mb-4">
-                      Вручается детям за успешное завершение интерактивного
-                      курса или программы.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <h5>ОБУЧЕНИЕ ЧЕРЕЗ ИГРЫ</h5>
+              <p>
+                Игровой подход к обучению новым концепциям и навыкам
+                программирования.
+              </p>
             </div>
-          </section>
-        </div>
-      </>
-
-      <>
-        <div className="mb-7">
-          <div style={{ display: "none" }} />
-          <div>
-            <div data-draggable="true" style={{ position: "relative" }}>
-              <section
-                draggable="false"
-                className="overflow-hidden pt-0"
-                data-v-271253ee=""
-              >
-                <section>
-                  {" "}
-                  <div
-                    className="py-2 text-center"
-                    style={{ backgroundColor: "#f6feff" }}
-                  >
-                    <div className="container pb-md-5">
-                      <div className="row d-flex justify-content-center">
-                        <div className="header-text col-lg-10">
-                          <div className="heading">
-                            <h2 className="mt-5 mb-3 display-3">
-                              <span>Почему выбирают нас?</span>
-                            </h2>
-                          </div>
-                          <div className="sub-heading">
-                            <h4 className="mb-6">
-                              <span>Инновационный подход к обучению</span>
-                            </h4>
-                          </div>
-                          <div className="content">
-                            <p className="mb-6">
-                              <span>
-                                В Digi Coders мы верим, что каждый ребенок может
-                                стать создателем, новатором и решателем проблем.
-                                Поэтому мы создали увлекательную платформу для
-                                юных программистов, чтобы они могли учиться,
-                                создавать и исследовать мир программирования.
-                                Наша программа помогает детям раскрыть
-                                творческий потенциал, создавать собственные
-                                проекты и развивать важные навыки
-                                программирования для успешного будущего.
-                              </span>
-                            </p>
-                          </div>
-                          <NavLink
-                            className="btn btn-primary py-3 px-5 mb-5 mb-md-3 me-md-2"
-                            to="/main/signup"
-                            role="button"
-                            aria-controls="#picker-editor"
-                          >
-                            Начать обучение
-                          </NavLink>{" "}
-                          <NavLink
-                            className="btn btn-primary py-3 px-5 mb-5 mb-md-3 me-md-2"
-                            to="/main/about"
-                            role="button"
-                            aria-controls="#picker-editor"
-                          >
-                            Подробнее
-                          </NavLink>
-                        </div>
-                      </div>
-                    </div>
-                  </div>{" "}
-                </section>
-              </section>
-              {/**/}
+            <div
+              className="feature-card feature-card--black fade-in-up"
+              style={{ animationDelay: "0.35s" }}
+            >
+              <div className="feature-icon">
+                <i className="fas fa-award" />
+              </div>
+              <h5>СЕРТИФИКАТ ОБ ОКОНЧАНИИ</h5>
+              <p>
+                Вручается детям за успешное завершение интерактивного курса или
+                программы.
+              </p>
             </div>
           </div>
-        </div>
+        </section>
       </>
 
       <div id="feedback-form-wrapper">
@@ -814,96 +672,75 @@ const Home = () => {
         </div>
       </>
 
-      <div className="mb-10">
-        <div data-draggable="true">
-          <section draggable="false" className="container" data-v-271253ee="">
-            <section>
-              <div className="heading">
-                <h2 className="mb-3 text-center display-3">
-                  <span>Почему детям стоит учиться программированию</span>
-                </h2>
-              </div>
-              <div className="sub-heading">
-                <h4 className="mb-8 text-center">
-                  <span>Программирование — язык будущего</span>
-                </h4>
-              </div>
-
-              <div className="row gx-lg-5 mb-5 align-items-center">
-                <div className="col-md-6 mb-4 mb-md-0">
-                  {" "}
-                  <img
-                    src="/images/img4.jpg"
-                    className="w-100 shadow-4-strong rounded-7 mb-4"
-                    alt=""
-                    aria-controls="#picker-editor"
-                  />{" "}
-                </div>
-                <div className="content text-center col-md-6 mb-4 mb-md-0">
-                  <h4 className="fw-bold mb-3">
-                    <strong>Готовит к будущему</strong>
-                  </h4>
-                  <p className="align-items-justify mb-4">
-                    В современном цифровом мире программирование становится
-                    важным навыком для многих профессий. Осваивая
-                    программирование с раннего возраста, дети лучше подготовлены
-                    к будущему и получают конкурентное преимущество на рынке
-                    труда.
-                  </p>
-                </div>
-              </div>
-
-              {/* row - 2 */}
-              <div className="row gx-lg-5 mb-5 flex-lg-row-reverse align-items-center">
-                <div className="col-md-6 mb-4 mb-md-0">
-                  {" "}
-                  <img
-                    src="/images/img7.jpg"
-                    className="w-100 shadow-4-strong rounded-7 mb-4"
-                    alt=""
-                    aria-controls="#picker-editor"
-                  />{" "}
-                </div>
-                <div className="content text-center col-md-6 mb-4 mb-md-0">
-                  <h4 className="fw-bold mb-3">
-                    <strong>Развивает логическое мышление</strong>
-                  </h4>
-                  <p className="align-items-justify mb-4">
-                    Программирование помогает детям развивать логическое
-                    мышление. Они учатся структурировать мысли и разбивать
-                    сложные задачи на простые части. Этот навык полезен не
-                    только в программировании, но и в жизни.
-                  </p>{" "}
-                </div>
-              </div>
-
-              <div className="row gx-lg-5 mb-5 align-items-center">
-                <div className="col-md-6 mb-4 mb-md-0">
-                  {" "}
-                  <img
-                    src="/images/img3.jpg"
-                    className="w-100 shadow-4-strong rounded-7 mb-4"
-                    alt=""
-                    aria-controls="#picker-editor"
-                  />{" "}
-                </div>
-                <div className="content text-center col-md-6 mb-4 mb-md-0">
-                  <h4 className="fw-bold mb-3">
-                    <strong>Формирует навыки решения проблем</strong>
-                  </h4>
-                  <p className="align-items-justify mb-4">
-                    Обучение программированию помогает детям развивать навыки
-                    решения проблем, разбивать задачи на части и находить пути
-                    их решения с помощью кода. Этот навык полезен в разных
-                    сферах жизни.
-                  </p>{" "}
-                </div>
-              </div>
-            </section>
-          </section>
-          {/**/}
+      {/* --- СОВРЕМЕННАЯ СЕКЦИЯ: Почему детям стоит учиться программированию --- */}
+      <section className="why-learn-section">
+        <div className="why-learn-header">
+          <h2>Почему детям стоит учиться программированию</h2>
+          <p>Программирование — язык будущего</p>
         </div>
-      </div>
+        <div className="why-learn-cards">
+          <div className="why-learn-card fade-in-up">
+            <div className="why-learn-img-wrap">
+              <img
+                src="/images/img4.jpg"
+                alt="Готовит к будущему"
+                className="why-learn-img"
+              />
+            </div>
+            <div className="why-learn-content">
+              <h3>Готовит к будущему</h3>
+              <p>
+                В современном цифровом мире программирование становится важным
+                навыком для многих профессий. Осваивая программирование с
+                раннего возраста, дети лучше подготовлены к будущему и получают
+                конкурентное преимущество на рынке труда.
+              </p>
+            </div>
+          </div>
+          <div
+            className="why-learn-card fade-in-up"
+            style={{ animationDelay: "0.15s" }}
+          >
+            <div className="why-learn-img-wrap">
+              <img
+                src="/images/img7.jpg"
+                alt="Развивает логическое мышление"
+                className="why-learn-img"
+              />
+            </div>
+            <div className="why-learn-content">
+              <h3>Развивает логическое мышление</h3>
+              <p>
+                Программирование помогает детям развивать логическое мышление.
+                Они учатся структурировать мысли и разбивать сложные задачи на
+                простые части. Этот навык полезен не только в программировании,
+                но и в жизни.
+              </p>
+            </div>
+          </div>
+          <div
+            className="why-learn-card fade-in-up"
+            style={{ animationDelay: "0.3s" }}
+          >
+            <div className="why-learn-img-wrap">
+              <img
+                src="/images/img3.jpg"
+                alt="Формирует навыки решения проблем"
+                className="why-learn-img"
+              />
+            </div>
+            <div className="why-learn-content">
+              <h3>Формирует навыки решения проблем</h3>
+              <p>
+                Обучение программированию помогает детям развивать навыки
+                решения проблем, разбивать задачи на части и находить пути их
+                решения с помощью кода. Этот навык полезен в разных сферах
+                жизни.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <>
         <div className="mb-10">
