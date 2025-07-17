@@ -8,405 +8,303 @@ const Course = () => {
     navigate(`/user/viewchapters?category=${category}`);
   };
 
+  const currentCourses = [
+    {
+      id: "html",
+      title: "HTML",
+      lessons: 26,
+      duration: "2 недели",
+      image: "/images/course-html.jpg",
+      description:
+        "Идеальный курс, чтобы дети быстро освоили основы HTML и начали писать код с помощью блоков.",
+      category: "HTML",
+      status: "active",
+    },
+    {
+      id: "javascript",
+      title: "JavaScript",
+      lessons: 26,
+      duration: "2 недели",
+      image: "/images/course-js.jpg",
+      description:
+        "Изучение основ JS и практическое программирование с помощью интерактивных блоков.",
+      category: "JavaScript",
+      status: "active",
+    },
+    {
+      id: "python",
+      title: "Python",
+      lessons: 26,
+      duration: "2 недели",
+      image: "/images/course-python.jpg",
+      description:
+        "Первые шаги в Python и решение задач с помощью блоков. Отличный старт для детей.",
+      category: "Python",
+      status: "active",
+    },
+  ];
+
+  const upcomingCourses = [
+    {
+      id: "game-dev",
+      title: "Game Development",
+      lessons: 50,
+      duration: "7 месяцев",
+      image: "/images/course-upcomming1.jpg",
+      description:
+        "Создание игр с помощью программирования. Дети научатся создавать собственные игры и приложения.",
+      status: "upcoming",
+    },
+    {
+      id: "web-dev",
+      title: "Web Development",
+      lessons: 40,
+      duration: "6 месяцев",
+      image: "/images/course-upcomming2.jpg",
+      description:
+        "Полный курс веб-разработки для детей. Создание современных веб-сайтов и приложений.",
+      status: "upcoming",
+    },
+    {
+      id: "roblox",
+      title: "Roblox",
+      lessons: 50,
+      duration: "7 месяцев",
+      image: "/images/course-upcomming3.jpg",
+      description:
+        "Программирование в Roblox Studio. Создание игр и виртуальных миров для платформы Roblox.",
+      status: "upcoming",
+    },
+  ];
+
   return (
-    <div className="course-container">
-      <div
-        className="about-section"
-        style={{
-          backgroundImage: "url(/images/background-img3.webp)",
-          position: "relative",
-        }}
-      >
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            zIndex: 1,
-            filter: "blur(4px)",
-            backgroundImage: "inherit",
-            backgroundSize: "cover",
-            backgroundPosition: "50% 65%",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background: "rgba(30, 40, 60, 0.7)",
-            zIndex: 2,
-          }}
-        />
-        <div
-          className="about-content"
-          style={{ position: "relative", zIndex: 3 }}
-        >
-          <h1 className="about-title">НАШИ КУРСЫ</h1>
-          <p className="about-description">
-            "Подарите вашему ребёнку возможность изучать программирование с
+    <div className="course-modern-bg">
+      {/* Hero Section */}
+      <section className="course-hero-section glassmorphism">
+        <div className="course-hero-content">
+          <div className="course-hero-badge">
+            <span>📚</span> Образовательные курсы
+          </div>
+          <h1 className="course-hero-title fade-in">Наши курсы</h1>
+          <p className="course-hero-subtitle fade-in-delay">
+            Подарите вашему ребёнку возможность изучать программирование с
             нашими увлекательными и интересными курсами! Наша программа помогает
             детям развивать навыки решения задач и логического мышления,
-            закладывая фундамент для успешного будущего."
+            закладывая фундамент для успешного будущего.
           </p>
-        </div>
-      </div>
-
-      <div className="course-content">
-        <div className="mb-8">
-          <div data-draggable="true">
-            <section draggable="false" className="container" data-v-271253ee="">
-              <section>
-                <div className="row text-center gx-lg-5 mb-6">
-                  <div className="col-lg-4 col-md-12 mb-lg-0 hover-zoom">
-                    <div className="card">
-                      <div
-                        className="mt-n3 bg-image hover-overlay ripple mx-3 shadow-4-strong rounded-6"
-                        data-mdb-ripple-color="light"
-                      >
-                        <img
-                          src="/images/course-html.jpg"
-                          className="img-fluid"
-                          alt="HTML Course"
-                        />
-                        <div
-                          className="mask"
-                          style={{
-                            backgroundColor: "rgba(251, 251, 251, 0.15)",
-                            cursor: "pointer",
-                          }}
-                          onClick={() => handleCourseClick("HTML")}
-                        />
-                      </div>
-                      <div className="card-body">
-                        <h4
-                          className="card-tittle my-3"
-                          style={{
-                            backgroundColor: "#f1f1f1",
-                            fontSize: "32px",
-                            letterSpacing: "1px",
-                          }}
-                        >
-                          <strong>HTML</strong>
-                        </h4>
-                        <h5 className="mb-3">
-                          <strong>20 занятий</strong>
-                        </h5>
-                        <h6 className="mb-3">
-                          Длительность: <strong>2 месяца</strong>
-                        </h6>
-
-                        <hr className="hr hr-blurry" />
-
-                        <p className="card-text">
-                          Идеальный курс, чтобы дети быстро освоили основы HTML
-                          и начали писать код с помощью блоков.
-                        </p>
-                        <button
-                          className="btn btn-primary my-3"
-                          onClick={() => handleCourseClick("HTML")}
-                        >
-                          Подробнее
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="col-lg-4 col-md-12 mb-lg-0 hover-zoom">
-                    <div className="card">
-                      <div
-                        className="mt-n3 bg-image hover-overlay ripple mx-3 shadow-4-strong rounded-6"
-                        data-mdb-ripple-color="light"
-                      >
-                        <img
-                          src="/images/course-js.jpg"
-                          className="img-fluid"
-                          alt="JavaScript Course"
-                        />
-                        <div
-                          className="mask"
-                          style={{
-                            backgroundColor: "rgba(251, 251, 251, 0.15)",
-                            cursor: "pointer",
-                          }}
-                          onClick={() => handleCourseClick("JavaScript")}
-                        />
-                      </div>
-                      <div className="card-body">
-                        <h4
-                          className="card-tittle my-3"
-                          style={{
-                            backgroundColor: "#f1f1f1",
-                            fontSize: "32px",
-                            letterSpacing: "1px",
-                          }}
-                        >
-                          <strong>JavaScript</strong>
-                        </h4>
-                        <h5 className="mb-3">
-                          <strong>30 занятий</strong>
-                        </h5>
-                        <h6 className="mb-3">
-                          Длительность: <strong>3 месяца</strong>
-                        </h6>
-
-                        <hr className="hr hr-blurry" />
-
-                        <p className="card-text">
-                          Идеальный курс, чтобы дети быстро освоили основы
-                          JavaScript и начали писать код с помощью блоков.
-                        </p>
-
-                        <button
-                          className="btn btn-primary my-3"
-                          onClick={() => handleCourseClick("JavaScript")}
-                        >
-                          Подробнее
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="col-lg-4 col-md-12 mb-lg-0 hover-zoom">
-                    <div className="card">
-                      <div
-                        className="mt-n3 bg-image hover-overlay ripple mx-3 shadow-4-strong rounded-6"
-                        data-mdb-ripple-color="light"
-                      >
-                        <img
-                          src="/images/course-python.jpg"
-                          className="img-fluid"
-                          alt="Python Course"
-                        />
-                        <div
-                          className="mask"
-                          style={{
-                            backgroundColor: "rgba(251, 251, 251, 0.15)",
-                            cursor: "pointer",
-                          }}
-                          onClick={() => handleCourseClick("Python")}
-                        />
-                      </div>
-                      <div className="card-body">
-                        <h4
-                          className="card-tittle my-3"
-                          style={{
-                            backgroundColor: "#f1f1f1",
-                            fontSize: "32px",
-                            letterSpacing: "1px",
-                          }}
-                        >
-                          <strong>Python</strong>
-                        </h4>
-                        <h5 className="mb-3">
-                          <strong>25 занятий</strong>
-                        </h5>
-                        <h6 className="mb-3">
-                          Длительность: <strong>3 месяца</strong>
-                        </h6>
-
-                        <hr className="hr hr-blurry" />
-
-                        <p className="card-text">
-                          Идеальный курс, чтобы дети быстро освоили основы
-                          Python и начали писать код с помощью блоков.
-                        </p>
-
-                        <button
-                          className="btn btn-primary my-3"
-                          onClick={() => handleCourseClick("Python")}
-                        >
-                          Подробнее
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            </section>
+          <div className="course-hero-stats fade-in-delay-2">
+            <div className="course-hero-stat">
+              <span className="course-hero-stat-number">6+</span>
+              <span className="course-hero-stat-label">Курсов</span>
+            </div>
+            <div className="course-hero-stat">
+              <span className="course-hero-stat-number">200+</span>
+              <span className="course-hero-stat-label">Уроков</span>
+            </div>
+            <div className="course-hero-stat">
+              <span className="course-hero-stat-number">95%</span>
+              <span className="course-hero-stat-label">Успех</span>
+            </div>
           </div>
         </div>
-
-        <div className="mb-8">
-          <div data-draggable="true">
-            <section draggable="false" className="container" data-v-271253ee="">
-              <section>
-                <div className="heading">
-                  <h2 className="mb-3 text-center display-3">
-                    <span>Наши будущие курсы</span>
-                  </h2>
+        <div className="course-hero-image-wrap">
+          <div className="course-hero-image-card glassmorphism">
+            <div className="course-hero-image-content">
+              <div className="course-hero-image-header">
+                <h3>DIGI CODERS</h3>
+                <p>Программирование для детей от 5 лет</p>
+              </div>
+              <div className="course-hero-image-visual">
+                <div className="course-blocks">
+                  <div className="course-block">HTML</div>
+                  <div className="course-block">CSS</div>
+                  <div className="course-block">JS</div>
+                  <div className="course-block">Python</div>
                 </div>
-                <div className="sub-heading">
-                  <h4 className="mb-8 text-center">
-                    <span>
-                      Откройте для себя мир программирования с нашими курсами
+                <div className="course-illustration">
+                  <div className="course-avatar">👨‍💻</div>
+                  <div className="course-laptop">
+                    <div className="course-screen">
+                      <div className="course-code-line">&lt;html&gt;</div>
+                      <div className="course-code-line">&lt;body&gt;</div>
+                      <div className="course-code-line">&lt;/body&gt;</div>
+                      <div className="course-code-line">&lt;/html&gt;</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Current Courses Section */}
+      <section className="courses-current-section">
+        <h2 className="section-title">Доступные курсы</h2>
+        <p className="section-subtitle">
+          Начните обучение прямо сейчас с нашими активными курсами
+        </p>
+        <div className="courses-modern-grid">
+          {currentCourses.map((course, index) => (
+            <div
+              key={course.id}
+              className="course-modern-card glassmorphism fade-in-up"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <div className="course-modern-image-wrap">
+                <img
+                  src={course.image}
+                  alt={course.title}
+                  className="course-modern-img"
+                />
+                <div className="course-modern-overlay">
+                  <div className="course-modern-status active">Активный</div>
+                </div>
+              </div>
+              <div className="course-modern-content">
+                <div className="course-modern-header">
+                  <h3 className="course-modern-title">{course.title}</h3>
+                  <div className="course-modern-meta">
+                    <span className="course-modern-lessons">
+                      <i className="fas fa-book"></i> {course.lessons} занятий
                     </span>
-                  </h4>
-                </div>
-                <div className="row text-center gx-lg-5 mb-6">
-                  <div className="col-lg-4 col-md-12 mb-lg-0 hover-zoom">
-                    <div className="card">
-                      <div
-                        className="mt-n3 bg-image hover-overlay ripple mx-3 shadow-4-strong rounded-6"
-                        data-mdb-ripple-color="light"
-                      >
-                        <img
-                          src="/images/course-upcomming1.jpg"
-                          className="img-fluid"
-                          alt="Game Development Course"
-                        />
-                        <NavLink to="#">
-                          <div
-                            className="mask"
-                            style={{
-                              backgroundColor: "rgba(251, 251, 251, 0.15)",
-                            }}
-                          />
-                        </NavLink>
-                      </div>
-                      <div className="card-body">
-                        <h4
-                          className="card-tittle my-3"
-                          style={{
-                            backgroundColor: "#f1f1f1",
-                            fontSize: "30px",
-                            letterSpacing: "1px",
-                          }}
-                        >
-                          <strong>Game Development</strong>
-                        </h4>
-                        <h5 className="mb-3">
-                          <strong>50 занятий</strong>
-                        </h5>
-                        <h6 className="mb-3">
-                          Длительность: <strong>7 месяцев</strong>
-                        </h6>
-                        {/* Divider here */}
-                        <hr className="hr hr-blurry" />
-
-                        <p className="card-text">
-                          Идеальный курс для детей, которые хотят углубиться в
-                          программирование и создавать сложные игры и
-                          приложения.
-                        </p>
-                        <button className="btn btn-primary my-3">
-                          Подробнее
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="col-lg-4 col-md-12 mb-lg-0 hover-zoom">
-                    <div className="card">
-                      <div
-                        className="mt-n3 bg-image hover-overlay ripple mx-3 shadow-4-strong rounded-6"
-                        data-mdb-ripple-color="light"
-                      >
-                        <img
-                          src="/images/course-upcomming2.jpg"
-                          className="img-fluid"
-                          alt="Web Development Course"
-                        />
-                        <NavLink to="#">
-                          <div
-                            className="mask"
-                            style={{
-                              backgroundColor: "rgba(251, 251, 251, 0.15)",
-                            }}
-                          />
-                        </NavLink>
-                      </div>
-                      <div className="card-body">
-                        <h4
-                          className="card-tittle my-3"
-                          style={{
-                            backgroundColor: "#f1f1f1",
-                            fontSize: "32px",
-                            letterSpacing: "1px",
-                          }}
-                        >
-                          <strong>Web Development</strong>
-                        </h4>
-                        <h5 className="mb-3">
-                          <strong>40 занятий</strong>
-                        </h5>
-                        <h6 className="mb-3">
-                          Длительность: <strong>6 месяцев</strong>
-                        </h6>
-
-                        <hr className="hr hr-blurry" />
-
-                        <p className="card-text">
-                          Идеальный курс для детей, которые хотят углубиться в
-                          программирование и создавать сложные игры и
-                          приложения.
-                        </p>
-
-                        <button className="btn btn-primary my-3">
-                          Подробнее
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="col-lg-4 col-md-12 mb-lg-0 hover-zoom">
-                    <div className="card">
-                      <div
-                        className="mt-n3 bg-image hover-overlay ripple mx-3 shadow-4-strong rounded-6"
-                        data-mdb-ripple-color="light"
-                      >
-                        <img
-                          src="/images/course-upcomming3.jpg"
-                          className="img-fluid"
-                          alt="Roblox Course"
-                        />
-                        <NavLink to="#">
-                          <div
-                            className="mask"
-                            style={{
-                              backgroundColor: "rgba(251, 251, 251, 0.15)",
-                            }}
-                          />
-                        </NavLink>
-                      </div>
-                      <div className="card-body">
-                        <h4
-                          className="card-tittle my-3"
-                          style={{
-                            backgroundColor: "#f1f1f1",
-                            fontSize: "32px",
-                            letterSpacing: "1px",
-                          }}
-                        >
-                          <strong>Roblox</strong>
-                        </h4>
-                        <h5 className="mb-3">
-                          <strong>50 занятий</strong>
-                        </h5>
-                        <h6 className="mb-3">
-                          Длительность: <strong>7 месяцев</strong>
-                        </h6>
-
-                        <hr className="hr hr-blurry" />
-
-                        <p className="card-text">
-                          Идеальный курс для детей, которые хотят углубиться в
-                          программирование и создавать сложные игры и
-                          приложения.
-                        </p>
-
-                        <button className="btn btn-primary my-3">
-                          Подробнее
-                        </button>
-                      </div>
-                    </div>
+                    <span className="course-modern-duration">
+                      <i className="fas fa-clock"></i> {course.duration}
+                    </span>
                   </div>
                 </div>
-              </section>
-            </section>
+                <p className="course-modern-description">
+                  {course.description}
+                </p>
+                <div className="course-modern-progress">
+                  <div className="course-modern-progress-bar">
+                    <div
+                      className="course-modern-progress-fill"
+                      style={{ width: "0%" }}
+                    ></div>
+                  </div>
+                  <span className="course-modern-progress-text">
+                    0% завершено
+                  </span>
+                </div>
+                <button
+                  className="btn-glass"
+                  onClick={() => handleCourseClick(course.category)}
+                >
+                  <i className="fas fa-play"></i>
+                  Начать обучение
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Upcoming Courses Section */}
+      <section className="courses-upcoming-section">
+        <h2 className="section-title">Будущие курсы</h2>
+        <p className="section-subtitle">
+          Откройте для себя мир программирования с нашими новыми курсами
+        </p>
+        <div className="courses-modern-grid">
+          {upcomingCourses.map((course, index) => (
+            <div
+              key={course.id}
+              className="course-modern-card glassmorphism fade-in-up upcoming"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <div className="course-modern-image-wrap">
+                <img
+                  src={course.image}
+                  alt={course.title}
+                  className="course-modern-img"
+                />
+                <div className="course-modern-overlay">
+                  <div className="course-modern-status upcoming">Скоро</div>
+                </div>
+              </div>
+              <div className="course-modern-content">
+                <div className="course-modern-header">
+                  <h3 className="course-modern-title">{course.title}</h3>
+                  <div className="course-modern-meta">
+                    <span className="course-modern-lessons">
+                      <i className="fas fa-book"></i> {course.lessons} занятий
+                    </span>
+                    <span className="course-modern-duration">
+                      <i className="fas fa-clock"></i> {course.duration}
+                    </span>
+                  </div>
+                </div>
+                <p className="course-modern-description">
+                  {course.description}
+                </p>
+                <div className="course-modern-notify">
+                  <button className="btn-glass-outline">
+                    <i className="fas fa-bell"></i>
+                    Уведомить о запуске
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Course Features Section */}
+      <section className="course-features-section">
+        <h2 className="section-title">Почему наши курсы эффективны?</h2>
+        <div className="course-features-grid">
+          <div className="course-feature-card glassmorphism fade-in-up">
+            <div className="course-feature-icon">
+              <i className="fas fa-puzzle-piece"></i>
+            </div>
+            <h4>Блочное программирование</h4>
+            <p>
+              Дети учатся программировать с помощью визуальных блоков, что
+              делает процесс понятным и увлекательным.
+            </p>
+          </div>
+          <div
+            className="course-feature-card glassmorphism fade-in-up"
+            style={{ animationDelay: "0.1s" }}
+          >
+            <div className="course-feature-icon">
+              <i className="fas fa-gamepad"></i>
+            </div>
+            <h4>Игровой подход</h4>
+            <p>
+              Обучение через игры и интерактивные задания, которые мотивируют
+              детей к изучению программирования.
+            </p>
+          </div>
+          <div
+            className="course-feature-card glassmorphism fade-in-up"
+            style={{ animationDelay: "0.2s" }}
+          >
+            <div className="course-feature-icon">
+              <i className="fas fa-users"></i>
+            </div>
+            <h4>Персональный подход</h4>
+            <p>
+              Каждый ребенок получает индивидуальное внимание и может учиться в
+              своем темпе.
+            </p>
+          </div>
+          <div
+            className="course-feature-card glassmorphism fade-in-up"
+            style={{ animationDelay: "0.3s" }}
+          >
+            <div className="course-feature-icon">
+              <i className="fas fa-certificate"></i>
+            </div>
+            <h4>Сертификаты</h4>
+            <p>
+              По окончании курса дети получают сертификат, подтверждающий их
+              достижения.
+            </p>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
