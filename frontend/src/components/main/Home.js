@@ -941,167 +941,79 @@ const Home = () => {
                       <span>Что говорят клиенты</span>
                     </h4>
                   </div>
-                  <div className="card-body">
-                    <div className="row text-center gx-lg-5">
-                      <div className="col-lg-4 mb-5 mb-lg-0 hover-zoom">
-                        <div>
-                          <div
-                            className="rounded-7 p-4 shadow-3"
-                            style={{ backgroundColor: "hsl(218, 62.2%, 95%)" }}
-                          >
-                            <h6 className="text-muted fw-bold mt-4 mb-2">
-                              Родитель
-                            </h6>
-                            <div className="name">
-                              <p className="h5 fw-bold mb-1">Gauri Parulkar</p>
-                            </div>
-                            <ul className="list-unstyled d-flex justify-content-center text-warning mb-2">
-                              <li>
-                                <i className="fas fa-star fa-sm" />
-                              </li>
-                              <li>
-                                <i className="fas fa-star fa-sm" />
-                              </li>
-                              <li>
-                                <i className="fas fa-star fa-sm" />
-                              </li>
-                              <li>
-                                <i className="fas fa-star fa-sm" />
-                              </li>
-                              <li>
-                                <i className="far fa-star fa-sm" />
-                              </li>
-                            </ul>
-
-                            <hr className="hr hr-blurry"></hr>
-
-                            <i
-                              className="fa-solid fa-quote-left fa-sm"
-                              style={{ color: "#29c1fe" }}
-                            ></i>
-                            <p className="pb-4 mb-4">
-                              Я очень рада, что мы нашли этот сайт для нашего
-                              ребенка. Приятно наблюдать, как развиваются его
-                              навыки программирования, и ему очень нравятся
-                              интерактивные задания. <br /> Очень рекомендую!
-                            </p>
-                          </div>
-                          <img
-                            src="/images/review1.jpg"
-                            className="w-100 rounded-circle mt-n5 shadow-5-strong"
-                            style={{ maxWidth: 100 }}
-                            alt="Avatar"
-                          />
+                  <div className="reviews-flex">
+                    {/* Отзыв 1 */}
+                    <div className="review-card">
+                      <div className="review-card-content">
+                        <div className="review-role">Родитель</div>
+                        <div className="review-name">GAURI PARULKAR</div>
+                        <div className="review-stars">
+                          {[1, 2, 3, 4].map((i) => (
+                            <i key={i} className="fas fa-star fa-sm" />
+                          ))}
+                          <i className="far fa-star fa-sm" />
+                        </div>
+                        <div className="review-quote">
+                          “Я очень рада, что мы нашли этот сайт для нашего
+                          ребенка. Приятно наблюдать, как развиваются его навыки
+                          программирования, и ему очень нравятся интерактивные
+                          задания. Очень рекомендую!”
                         </div>
                       </div>
-
-                      <div className="col-lg-4 mb-5 mb-lg-0 hover-zoom">
-                        <div>
-                          <div
-                            className="rounded-7 p-4 shadow-3"
-                            style={{ backgroundColor: "hsl(218, 62.2%, 95%)" }}
-                          >
-                            <h6 className="text-muted fw-bold mt-4 mb-2">
-                              Ученик
-                            </h6>
-                            <div className="name">
-                              <p className="h5 mb-1 fw-bold">Akash Vukoti</p>
-                            </div>
-                            <ul className="list-unstyled d-flex justify-content-center text-warning mb-2">
-                              <li>
-                                <i className="fas fa-star fa-sm" />
-                              </li>
-                              <li>
-                                <i className="fas fa-star fa-sm" />
-                              </li>
-                              <li>
-                                <i className="fas fa-star fa-sm" />
-                              </li>
-                              <li>
-                                <i className="fas fa-star fa-sm" />
-                              </li>
-                              <li>
-                                <i className="far fa-star fa-sm" />
-                              </li>
-                            </ul>
-
-                            <hr className="hr hr-blurry"></hr>
-
-                            <i
-                              className="fa-solid fa-quote-left fa-sm"
-                              style={{ color: "#29c1fe" }}
-                            ></i>
-                            <p className="pb-4 mb-4">
-                              Сначала программирование казалось мне сложным, но
-                              этот сайт сделал обучение простым и увлекательным!
-                              Интерактивные задания и игры помогли мне лучше
-                              понять концепции программирования, и теперь я
-                              увереннее в своих силах.
-                            </p>
-                          </div>
-                          <img
-                            src="/images/review2.jpg"
-                            className="w-100 rounded-circle mt-n5 shadow-5-strong"
-                            style={{ maxWidth: 100 }}
-                            alt="Avatar"
-                          />
+                      <img
+                        src="/images/review1.jpg"
+                        className="review-avatar"
+                        alt="Gauri Parulkar"
+                      />
+                    </div>
+                    {/* Отзыв 2 */}
+                    <div className="review-card">
+                      <div className="review-card-content">
+                        <div className="review-role">Ученик</div>
+                        <div className="review-name">AKASH VUKOTI</div>
+                        <div className="review-stars">
+                          {[1, 2, 3, 4].map((i) => (
+                            <i key={i} className="fas fa-star fa-sm" />
+                          ))}
+                          <i className="far fa-star fa-sm" />
+                        </div>
+                        <div className="review-quote">
+                          “Сначала программирование казалось мне сложным, но
+                          этот сайт сделал обучение простым и увлекательным!
+                          Интерактивные задания и игры помогли мне лучше понять
+                          концепции программирования, и теперь я увереннее в
+                          своих силах.”
                         </div>
                       </div>
-
-                      <div className="col-lg-4 mb-5 mb-lg-0 hover-zoom">
-                        <div>
-                          <div
-                            className="rounded-7 p-4 shadow-3"
-                            style={{ backgroundColor: "hsl(218, 62.2%, 95%)" }}
-                          >
-                            <h6 className="text-muted fw-bold mt-4 mb-2">
-                              Родитель
-                            </h6>
-                            <div className="name">
-                              <p className="h5 mb-1 fw-bold">
-                                Abhijeet Gawande
-                              </p>
-                            </div>
-                            <ul className="list-unstyled d-flex justify-content-center text-warning mb-2">
-                              <li>
-                                <i className="fas fa-star fa-sm" />
-                              </li>
-                              <li>
-                                <i className="fas fa-star fa-sm" />
-                              </li>
-                              <li>
-                                <i className="fas fa-star fa-sm" />
-                              </li>
-                              <li>
-                                <i className="fas fa-star fa-sm" />
-                              </li>
-                              <li>
-                                <i className="far fa-star fa-sm" />
-                              </li>
-                            </ul>
-
-                            <hr className="hr hr-blurry"></hr>
-
-                            <i
-                              className="fa-solid fa-quote-left fa-sm"
-                              style={{ color: "#29c1fe" }}
-                            ></i>
-                            <p className="pb-4 mb-4">
-                              Как родитель, я рад видеть, что мой ребенок с
-                              интересом учится, и этот сайт этому способствует.
-                              Ему очень нравится игровой подход к
-                              программированию, и я поражен, сколько он уже
-                              освоил за короткое время.
-                            </p>
-                          </div>
-                          <img
-                            src="/images/review3.jpg"
-                            className="w-100 rounded-circle mt-n5 shadow-5-strong"
-                            style={{ maxWidth: 100 }}
-                            alt="Avatar"
-                          />
+                      <img
+                        src="/images/review2.jpg"
+                        className="review-avatar"
+                        alt="Akash Vukoti"
+                      />
+                    </div>
+                    {/* Отзыв 3 */}
+                    <div className="review-card">
+                      <div className="review-card-content">
+                        <div className="review-role">Родитель</div>
+                        <div className="review-name">ABHIJEET GAWANDE</div>
+                        <div className="review-stars">
+                          {[1, 2, 3, 4].map((i) => (
+                            <i key={i} className="fas fa-star fa-sm" />
+                          ))}
+                          <i className="far fa-star fa-sm" />
+                        </div>
+                        <div className="review-quote">
+                          “Как родитель, я рад видеть, что мой ребенок с
+                          интересом учится, и этот сайт этому способствует. Ему
+                          очень нравится игровой подход к программированию, и я
+                          поражен, сколько он уже освоил за короткое время.”
                         </div>
                       </div>
+                      <img
+                        src="/images/review3.jpg"
+                        className="review-avatar"
+                        alt="Abhijeet Gawande"
+                      />
                     </div>
                   </div>
                 </section>
