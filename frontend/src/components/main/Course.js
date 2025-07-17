@@ -44,39 +44,6 @@ const Course = () => {
     },
   ];
 
-  const upcomingCourses = [
-    {
-      id: "game-dev",
-      title: "Game Development",
-      lessons: 50,
-      duration: "7 месяцев",
-      image: "/images/course-upcomming1.jpg",
-      description:
-        "Создание игр с помощью программирования. Дети научатся создавать собственные игры и приложения.",
-      status: "upcoming",
-    },
-    {
-      id: "web-dev",
-      title: "Web Development",
-      lessons: 40,
-      duration: "6 месяцев",
-      image: "/images/course-upcomming2.jpg",
-      description:
-        "Полный курс веб-разработки для детей. Создание современных веб-сайтов и приложений.",
-      status: "upcoming",
-    },
-    {
-      id: "roblox",
-      title: "Roblox",
-      lessons: 50,
-      duration: "7 месяцев",
-      image: "/images/course-upcomming3.jpg",
-      description:
-        "Программирование в Roblox Studio. Создание игр и виртуальных миров для платформы Roblox.",
-      status: "upcoming",
-    },
-  ];
-
   return (
     <div className="course-modern-bg">
       {/* Hero Section */}
@@ -183,56 +150,6 @@ const Course = () => {
                   >
                     <i className="fas fa-play"></i>
                     Начать обучение
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Upcoming Courses Section */}
-      <section className="courses-upcoming-section">
-        <h2 className="section-title">Будущие курсы</h2>
-        <p className="section-subtitle">
-          Откройте для себя мир программирования с нашими новыми курсами
-        </p>
-        <div className="courses-modern-grid">
-          {upcomingCourses.map((course, index) => (
-            <div
-              key={course.id}
-              className="course-modern-card glassmorphism fade-in-up upcoming"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="course-modern-image-wrap">
-                <img
-                  src={course.image}
-                  alt={course.title}
-                  className="course-modern-img"
-                />
-                <div className="course-modern-overlay">
-                  <div className="course-modern-status upcoming">Скоро</div>
-                </div>
-              </div>
-              <div className="course-modern-content">
-                <div className="course-modern-header">
-                  <h3 className="course-modern-title">{course.title}</h3>
-                  <div className="course-modern-meta">
-                    <span className="course-modern-lessons">
-                      <i className="fas fa-book"></i> {course.lessons} занятий
-                    </span>
-                    <span className="course-modern-duration">
-                      <i className="fas fa-clock"></i> {course.duration}
-                    </span>
-                  </div>
-                </div>
-                <p className="course-modern-description">
-                  {course.description}
-                </p>
-                <div className="course-modern-actions">
-                  <button className="btn-glass">
-                    <i className="fas fa-bell"></i>
-                    Уведомить о запуске
                   </button>
                 </div>
               </div>
