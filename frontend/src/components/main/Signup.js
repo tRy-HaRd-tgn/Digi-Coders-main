@@ -1,87 +1,113 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./Home.css";
 
 const Signup = () => {
   return (
-    <>
-      <div data-draggable="true" style={{ position: "relative" }}>
-        <section
-          draggable="false"
-          className="container pt-5"
-          data-v-271253ee=""
-        >
-          <section
-            style={{ marginTop: "16vh" }}
-            className="heading mb-10 text-center"
-          >
-            <h2 className="fw-bold mb-5">
-              <span>Выберите тип аккаунта</span>
-            </h2>
+    <div className="signup-modern-bg">
+      <section className="signup-hero-section glassmorphism">
+        <div className="signup-hero-content">
+          <div className="signup-hero-badge">
+            <span>🚀</span> Присоединяйтесь к нам
+          </div>
+          <h1 className="signup-hero-title fade-in">Выберите тип аккаунта</h1>
+          <p className="signup-hero-subtitle fade-in-delay">
+            Присоединяйтесь к сообществу Digi Coders и начните свой путь в
+            программировании
+          </p>
+          <div className="signup-login-link fade-in-delay-2">
+            <p>
+              Уже есть аккаунт?{" "}
+              <Link to="/main/login" className="signup-login-text">
+                Войти
+              </Link>
+            </p>
+          </div>
+        </div>
+      </section>
 
-            <div className="signup-link">
-              <p className="text-center fw-bold mb-8">
-                Уже есть аккаунт?{" "}
-                <Link to="/main/login" className="fw-bold text-body">
-                  <u>Войти</u>
-                </Link>
+      <section className="signup-cards-section">
+        <div className="signup-cards-container">
+          <div className="signup-card glassmorphism fade-in-up">
+            <div className="signup-card-image">
+              <img
+                src="/icons/student_icon.jpg"
+                alt="Ученик"
+                className="signup-card-avatar"
+              />
+            </div>
+            <div className="signup-card-content">
+              <h3 className="signup-card-title">Ученик</h3>
+              <p className="signup-card-description">
+                Начните изучение программирования с интерактивных уроков и
+                игровых заданий
               </p>
-            </div>
-
-            <div className="row gx-lg-5 mb-8 d-flex justify-content-center">
-              <div className="col-lg-4">
-                <div className="hover-zoom">
-                  <Link to="/main/studentsignup">
-                    <img
-                      src="/icons/student_icon.jpg"
-                      className="card-signup w-100 mb-n5 shadow-5-strong"
-                      style={{ maxWidth: 100 }}
-                      alt="Avatar"
-                    />
-                  </Link>
-                  <div
-                    className="card-signup p-4 shadow-3"
-                    style={{ backgroundColor: "hsl(218, 62.2%, 95%)" }}
-                  >
-                    <div className="signup-name">
-                      <Link to="/main/studentsignup">
-                        <p className="h5 fw-bold mt-5">Ученик</p>
-                      </Link>
-                    </div>
-
-                    <hr className="hr hr-blurry"></hr>
-                  </div>
+              <div className="signup-card-features">
+                <div className="signup-card-feature">
+                  <i className="fas fa-gamepad"></i>
+                  <span>Игровое обучение</span>
+                </div>
+                <div className="signup-card-feature">
+                  <i className="fas fa-certificate"></i>
+                  <span>Сертификаты</span>
+                </div>
+                <div className="signup-card-feature">
+                  <i className="fas fa-users"></i>
+                  <span>Сообщество</span>
                 </div>
               </div>
+              <Link
+                to="/main/studentsignup"
+                className="btn-glass signup-card-btn"
+              >
+                <i className="fas fa-rocket"></i>
+                Стать учеником
+              </Link>
+            </div>
+          </div>
 
-              <div className="col-lg-4">
-                <div className="hover-zoom">
-                  <Link to="/main/trainersignup">
-                    <img
-                      src="/icons/teacher_icon.jpg"
-                      className="card-signup w-100 mb-n5 shadow-5-strong"
-                      style={{ maxWidth: 100 }}
-                      alt="Avatar"
-                    />
-                  </Link>
-                  <div
-                    className="card-signup p-4 shadow-3"
-                    style={{ backgroundColor: "hsl(218, 62.2%, 95%)" }}
-                  >
-                    <div className="signup-name">
-                      <Link to="/main/trainersignup">
-                        <p className="h5 fw-bold mt-5">Преподаватель</p>
-                      </Link>
-                    </div>
-
-                    <hr className="hr hr-blurry"></hr>
-                  </div>
+          <div
+            className="signup-card glassmorphism fade-in-up"
+            style={{ animationDelay: "0.1s" }}
+          >
+            <div className="signup-card-image">
+              <img
+                src="/icons/teacher_icon.jpg"
+                alt="Преподаватель"
+                className="signup-card-avatar"
+              />
+            </div>
+            <div className="signup-card-content">
+              <h3 className="signup-card-title">Преподаватель</h3>
+              <p className="signup-card-description">
+                Создавайте курсы и делитесь знаниями с будущими программистами
+              </p>
+              <div className="signup-card-features">
+                <div className="signup-card-feature">
+                  <i className="fas fa-chalkboard-teacher"></i>
+                  <span>Создание курсов</span>
+                </div>
+                <div className="signup-card-feature">
+                  <i className="fas fa-chart-line"></i>
+                  <span>Аналитика</span>
+                </div>
+                <div className="signup-card-feature">
+                  <i className="fas fa-star"></i>
+                  <span>Рейтинг</span>
                 </div>
               </div>
+              <Link
+                to="/main/trainersignup"
+                className="btn-glass signup-card-btn"
+              >
+                <i className="fas fa-graduation-cap"></i>
+                Стать преподавателем
+              </Link>
             </div>
-          </section>
-        </section>
-      </div>
-    </>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 
