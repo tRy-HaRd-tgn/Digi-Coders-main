@@ -36,6 +36,7 @@ const StudentSignup = () => {
       .required("Обязательное поле"),
     password: Yup.string().required("Пожалуйста, введите пароль"),
     mobile_no: Yup.string().required("Обязательное поле"),
+    avatar: Yup.string().required("Обязательное поле"),
     // .matches(
     //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
     //   "Пароль должен содержать минимум 8 символов, одну заглавную, одну строчную букву, одну цифру и один специальный символ"
@@ -53,7 +54,17 @@ const StudentSignup = () => {
     },
     onSubmit: async (values, { setSubmitting }) => {
       try {
-        values.avatar = selImage ? selImage.name : "";
+        // Убеждаемся, что avatar установлен
+        if (!selImage) {
+          Swal.fire({
+            icon: "error",
+            title: "Ошибка",
+            text: "Пожалуйста, загрузите изображение",
+          });
+          return;
+        }
+
+        values.avatar = selImage.name;
         values.createdAt = new Date();
 
         const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
@@ -102,6 +113,12 @@ const StudentSignup = () => {
     const fd = new FormData();
     setSelImage(file);
     fd.append("myfile", file);
+
+    // Устанавливаем значение для поля avatar в форме
+    if (file) {
+      studentsignupForm.setFieldValue("avatar", file.name);
+    }
+
     const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
     fetch(`${apiUrl}/util/uploadfile`, {
       method: "POST",
@@ -704,6 +721,20 @@ const StudentSignup = () => {
                       >
                         {selImage ? selImage.name : "Изображение не выбрано"}
                       </span>
+                      {studentsignupForm.errors.avatar && (
+                        <motion.span
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          style={{
+                            color: "#dc3545",
+                            fontSize: "0.875rem",
+                            marginTop: "0.25rem",
+                            display: "block",
+                          }}
+                        >
+                          {studentsignupForm.errors.avatar}
+                        </motion.span>
+                      )}
                     </motion.div>
 
                     <motion.div
