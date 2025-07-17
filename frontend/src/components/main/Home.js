@@ -317,62 +317,68 @@ const Home = () => {
         <h2 className="section-title">Отзывы</h2>
         <div className="reviews-modern-cards">
           <div className="review-modern-card glassmorphism fade-in-up">
-            <img
-              src="https://randomuser.me/api/portraits/women/44.jpg"
-              alt="Ирина Смирнова"
-              className="review-modern-avatar"
-            />
-            <div>
-              <div className="review-modern-role">Родитель</div>
-              <div className="review-modern-name">ИРИНА СМИРНОВА</div>
-              <div className="review-modern-stars">★★★★☆</div>
-              <div className="review-modern-quote">
-                “Я очень рада, что мы нашли этот сайт для нашего ребенка.
-                Приятно наблюдать, как развиваются его навыки программирования,
-                и ему очень нравятся интерактивные задания. Очень рекомендую!”
+            <div className="review-modern-header">
+              <img
+                src="https://randomuser.me/api/portraits/women/44.jpg"
+                alt="Ирина Смирнова"
+                className="review-modern-avatar"
+              />
+              <div className="review-modern-info">
+                <div className="review-modern-role">Родитель</div>
+                <div className="review-modern-name">ИРИНА СМИРНОВА</div>
+                <div className="review-modern-stars">★★★★☆</div>
               </div>
+            </div>
+            <div className="review-modern-quote">
+              "Я очень рада, что мы нашли этот сайт для нашего ребенка. Приятно
+              наблюдать, как развиваются его навыки программирования, и ему
+              очень нравятся интерактивные задания. Очень рекомендую!"
             </div>
           </div>
           <div
             className="review-modern-card glassmorphism fade-in-up"
             style={{ animationDelay: "0.1s" }}
           >
-            <img
-              src="https://randomuser.me/api/portraits/men/32.jpg"
-              alt="Артём Иванов"
-              className="review-modern-avatar"
-            />
-            <div>
-              <div className="review-modern-role">Ученик</div>
-              <div className="review-modern-name">АРТЁМ ИВАНОВ</div>
-              <div className="review-modern-stars">★★★★☆</div>
-              <div className="review-modern-quote">
-                “Сначала программирование казалось мне сложным, но этот сайт
-                сделал обучение простым и увлекательным! Интерактивные задания и
-                игры помогли мне лучше понять концепции программирования, и
-                теперь я увереннее в своих силах.”
+            <div className="review-modern-header">
+              <img
+                src="https://randomuser.me/api/portraits/men/32.jpg"
+                alt="Артём Иванов"
+                className="review-modern-avatar"
+              />
+              <div className="review-modern-info">
+                <div className="review-modern-role">Ученик</div>
+                <div className="review-modern-name">АРТЁМ ИВАНОВ</div>
+                <div className="review-modern-stars">★★★★☆</div>
               </div>
+            </div>
+            <div className="review-modern-quote">
+              "Сначала программирование казалось мне сложным, но этот сайт
+              сделал обучение простым и увлекательным! Интерактивные задания и
+              игры помогли мне лучше понять концепции программирования, и теперь
+              я увереннее в своих силах."
             </div>
           </div>
           <div
             className="review-modern-card glassmorphism fade-in-up"
             style={{ animationDelay: "0.2s" }}
           >
-            <img
-              src="https://randomuser.me/api/portraits/men/45.jpg"
-              alt="Алексей Петров"
-              className="review-modern-avatar"
-            />
-            <div>
-              <div className="review-modern-role">Родитель</div>
-              <div className="review-modern-name">АЛЕКСЕЙ ПЕТРОВ</div>
-              <div className="review-modern-stars">★★★★☆</div>
-              <div className="review-modern-quote">
-                “Как родитель, я рад видеть, что мой ребенок с интересом учится,
-                и этот сайт этому способствует. Ему очень нравится игровой
-                подход к программированию, и я поражен, сколько он уже освоил за
-                короткое время.”
+            <div className="review-modern-header">
+              <img
+                src="https://randomuser.me/api/portraits/men/45.jpg"
+                alt="Алексей Петров"
+                className="review-modern-avatar"
+              />
+              <div className="review-modern-info">
+                <div className="review-modern-role">Родитель</div>
+                <div className="review-modern-name">АЛЕКСЕЙ ПЕТРОВ</div>
+                <div className="review-modern-stars">★★★★☆</div>
               </div>
+            </div>
+            <div className="review-modern-quote">
+              "Как родитель, я рад видеть, что мой ребенок с интересом учится, и
+              этот сайт этому способствует. Ему очень нравится игровой подход к
+              программированию, и я поражен, сколько он уже освоил за короткое
+              время."
             </div>
           </div>
         </div>
