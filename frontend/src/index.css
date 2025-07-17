@@ -634,14 +634,7 @@ select.mySelectArrow option {
 }
 
 .timeline::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  margin-left: -1px;
-  background-color: #50a1ff;
+  content: none;
 }
 
 .timeline-element {
@@ -653,21 +646,11 @@ select.mySelectArrow option {
 }
 
 .timeline-element::before {
-  content: "";
-  position: absolute;
-  right: -8px;
-  top: 1.35rem;
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  border: 2px solid #50a1ff;
-  background-color: #fff;
+  content: none;
 }
 
 .timeline-element:nth-child(even)::before {
-  right: auto;
-  left: -8px;
+  content: none;
 }
 
 .timeline-element:nth-child(even) {
