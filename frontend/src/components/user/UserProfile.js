@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
 import "./UserProfile.css";
 import app_config from "../../config";
+import { motion } from "framer-motion";
 
 const UserProfile = () => {
   const [selImage, setSelImage] = useState(null);
@@ -42,9 +43,11 @@ const UserProfile = () => {
   };
 
   const usersignupSchema = Yup.object().shape({
-    name: Yup.string().required("Name is Required"),
-    email: Yup.string().email("Invalid email").required("Email is Required"),
-    mobile_no: Yup.string().required("Phone Number is Required"),
+    name: Yup.string().required("Имя обязательно"),
+    email: Yup.string()
+      .email("Неверный формат email")
+      .required("Email обязателен"),
+    mobile_no: Yup.string().required("Номер телефона обязателен"),
   });
 
   const userProfileForm = useFormik({
@@ -185,27 +188,48 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="user-profile-container">
+    <div
+      className="user-profile-container"
+      style={{
+        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        minHeight: "100vh",
+        padding: "2rem 0",
+        fontFamily: "'Inter', sans-serif",
+      }}
+    >
       <div className="container-xl px-5 mb-8 mt-5">
-        <div className="row d-flex justify-content-center ">
+        <motion.div
+          className="row d-flex justify-content-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
           <div className="col-lg-4 mx-2" style={{ width: "36.5%" }}>
-            <div className="card">
+            <motion.div
+              className="card glass-card"
+              whileHover={{ y: -5 }}
+              transition={{ duration: 0.3 }}
+            >
               <div className="card-body">
                 <div className="d-flex flex-column align-items-center text-center">
-                  <div
+                  <motion.div
                     className="bg-image profile-picture-container hover-overlay ripple"
                     data-mdb-ripple-color="light"
                     onClick={handleImageClick}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
                   >
                     {image ? (
                       <img
                         src={URL.createObjectURL(image)}
-                        alt="Admin"
+                        alt="Профиль"
                         className="img-fluid rounded-circle p-1 bg-primary"
                         style={{
                           width: "180px",
                           height: "180px",
                           backgroundSize: "cover",
+                          border: "4px solid rgba(255, 255, 255, 0.3)",
+                          boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
                         }}
                       />
                     ) : currentUser?.avatar &&
@@ -213,12 +237,14 @@ const UserProfile = () => {
                       currentUser.avatar !== "null" ? (
                       <img
                         src={`${app_config.apiUrl}/${currentUser.avatar}`}
-                        alt="Admin"
+                        alt="Профиль"
                         className="img-fluid rounded-circle p-1 bg-primary"
                         style={{
                           width: "180px",
                           height: "180px",
                           backgroundSize: "cover",
+                          border: "4px solid rgba(255, 255, 255, 0.3)",
+                          boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
                         }}
                         onError={(e) => {
                           e.target.src =
@@ -228,12 +254,14 @@ const UserProfile = () => {
                     ) : (
                       <img
                         src="https://www.bootdey.com/img/Content/avatar/avatar6.png"
-                        alt="Admin"
+                        alt="Профиль"
                         className="img-fluid rounded-circle p-1 bg-primary"
                         style={{
                           width: "180px",
                           height: "180px",
                           backgroundSize: "cover",
+                          border: "4px solid rgba(255, 255, 255, 0.3)",
+                          boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
                         }}
                       />
                     )}
@@ -255,11 +283,14 @@ const UserProfile = () => {
                         backgroundColor: "rgb(0 0 0 / 30%)",
                       }}
                     />
-                  </div>
-                  <button
-                    className="btn btn-primary my-4"
+                  </motion.div>
+                  <motion.button
+                    className="btn btn-primary my-4 modern-btn"
                     onClick={uploadFile}
                     disabled={isUploading}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
                   >
                     {isUploading ? (
                       <>
@@ -271,15 +302,15 @@ const UserProfile = () => {
                         Загрузка...
                       </>
                     ) : (
-                      "Upload Image"
+                      "Загрузить фото"
                     )}
-                  </button>
+                  </motion.button>
                 </div>
 
                 <hr className="my-3" />
                 <ul className="list-group list-group-flush">
                   <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 className="mb-0">Name</h6>
+                    <h6 className="mb-0">Имя</h6>
                     <span className="text-secondary">{currentUser.name}</span>
                   </li>
                   <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
@@ -287,27 +318,35 @@ const UserProfile = () => {
                     <span className="text-secondary">{currentUser.email}</span>
                   </li>
                   <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 className="mb-0">Mobile No.</h6>
+                    <h6 className="mb-0">Телефон</h6>
                     <span className="text-secondary">
                       {currentUser.mobile_no}
                     </span>
                   </li>
                 </ul>
               </div>
-            </div>
+            </motion.div>
           </div>
 
           <div className="col-xl-7 mx-2">
-            <div className="card h-100 mb-4">
+            <motion.div
+              className="card h-100 mb-4 glass-card"
+              whileHover={{ y: -5 }}
+              transition={{ duration: 0.3 }}
+            >
               <div
                 className="card-header text-center fw-bold text-uppercase mb-5"
                 style={{
                   fontSize: "30px",
                   letterSpacing: "2px",
-                  backgroundColor: "#f1f1f1",
+                  backgroundColor: "rgba(255, 255, 255, 0.95)",
+                  backdropFilter: "blur(10px)",
+                  border: "none",
+                  color: "#333",
+                  fontWeight: "700",
                 }}
               >
-                Update Your Profile
+                Обновить профиль
               </div>
               <div className="card-body">
                 <form
@@ -320,14 +359,16 @@ const UserProfile = () => {
                       type="text"
                       id="name"
                       name="name"
-                      className="form-control form-control-lg"
-                      placeholder="Name"
+                      className="form-control form-control-lg modern-input"
+                      placeholder="Имя"
                       value={userProfileForm.values.name}
                       onChange={userProfileForm.handleChange}
                     />
-                    <span className="text-danger">
-                      {userProfileForm.errors.name}
-                    </span>
+                    {userProfileForm.errors.name && (
+                      <span className="text-danger error-message">
+                        {userProfileForm.errors.name}
+                      </span>
+                    )}
                   </div>
 
                   <div className="form-group has-icon mb-4">
@@ -337,14 +378,16 @@ const UserProfile = () => {
                       id="email"
                       name="email"
                       autoComplete="off"
-                      className="form-control form-control-lg"
+                      className="form-control form-control-lg modern-input"
                       placeholder="Email"
                       value={userProfileForm.values.email}
                       onChange={userProfileForm.handleChange}
                     />
-                    <span className="text-danger">
-                      {userProfileForm.errors.email}
-                    </span>
+                    {userProfileForm.errors.email && (
+                      <span className="text-danger error-message">
+                        {userProfileForm.errors.email}
+                      </span>
+                    )}
                   </div>
 
                   <div className="form-group has-icon mb-5">
@@ -353,22 +396,27 @@ const UserProfile = () => {
                       type="text"
                       id="mobile_no"
                       name="mobile_no"
-                      className="form-control form-control-lg"
-                      placeholder="Mobile Number"
+                      className="form-control form-control-lg modern-input"
+                      placeholder="Номер телефона"
                       value={userProfileForm.values.mobile_no}
                       onChange={userProfileForm.handleChange}
                     />
-                    <span className="text-danger">
-                      {userProfileForm.errors.mobile_no}
-                    </span>
+                    {userProfileForm.errors.mobile_no && (
+                      <span className="text-danger error-message">
+                        {userProfileForm.errors.mobile_no}
+                      </span>
+                    )}
                   </div>
 
-                  <div className="pt-1 pb-1 ">
-                    <button
-                      className="btn btn-primary btn-block mb-2"
+                  <div className="pt-1 pb-1">
+                    <motion.button
+                      className="btn btn-primary btn-block mb-2 modern-btn"
                       type="submit"
                       disabled={userProfileForm.isSubmitting}
                       style={{ borderRadius: "10px", marginLeft: "0px" }}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{ duration: 0.2 }}
                     >
                       {userProfileForm.isSubmitting ? (
                         <>
@@ -381,23 +429,24 @@ const UserProfile = () => {
                         </>
                       ) : (
                         <>
-                          Update &nbsp;
+                          Обновить &nbsp;
                           <i className="fas fa-arrow-right-to-bracket" />
                         </>
                       )}
-                    </button>
+                    </motion.button>
                   </div>
                 </form>
               </div>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       <div
         className="text-center text-white p-4"
         style={{
-          backgroundColor: "#1b1b1b",
+          backgroundColor: "rgba(27, 27, 27, 0.9)",
+          backdropFilter: "blur(10px)",
           position: "fixed",
           bottom: 0,
           left: 0,
