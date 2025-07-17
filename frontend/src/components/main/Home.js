@@ -946,7 +946,7 @@ const Home = () => {
                     <div className="review-card">
                       <div className="review-card-content">
                         <div className="review-role">Родитель</div>
-                        <div className="review-name">GAURI PARULKAR</div>
+                        <div className="review-name">ИРИНА СМИРНОВА</div>
                         <div className="review-stars">
                           {[1, 2, 3, 4].map((i) => (
                             <i key={i} className="fas fa-star fa-sm" />
@@ -961,16 +961,16 @@ const Home = () => {
                         </div>
                       </div>
                       <img
-                        src="/images/review1.jpg"
+                        src="https://randomuser.me/api/portraits/women/44.jpg"
                         className="review-avatar"
-                        alt="Gauri Parulkar"
+                        alt="Ирина Смирнова"
                       />
                     </div>
                     {/* Отзыв 2 */}
                     <div className="review-card">
                       <div className="review-card-content">
                         <div className="review-role">Ученик</div>
-                        <div className="review-name">AKASH VUKOTI</div>
+                        <div className="review-name">АРТЁМ ИВАНОВ</div>
                         <div className="review-stars">
                           {[1, 2, 3, 4].map((i) => (
                             <i key={i} className="fas fa-star fa-sm" />
@@ -986,16 +986,16 @@ const Home = () => {
                         </div>
                       </div>
                       <img
-                        src="/images/review2.jpg"
+                        src="https://randomuser.me/api/portraits/men/32.jpg"
                         className="review-avatar"
-                        alt="Akash Vukoti"
+                        alt="Артём Иванов"
                       />
                     </div>
                     {/* Отзыв 3 */}
                     <div className="review-card">
                       <div className="review-card-content">
                         <div className="review-role">Родитель</div>
-                        <div className="review-name">ABHIJEET GAWANDE</div>
+                        <div className="review-name">АЛЕКСЕЙ ПЕТРОВ</div>
                         <div className="review-stars">
                           {[1, 2, 3, 4].map((i) => (
                             <i key={i} className="fas fa-star fa-sm" />
@@ -1010,9 +1010,9 @@ const Home = () => {
                         </div>
                       </div>
                       <img
-                        src="/images/review3.jpg"
+                        src="https://randomuser.me/api/portraits/men/45.jpg"
                         className="review-avatar"
-                        alt="Abhijeet Gawande"
+                        alt="Алексей Петров"
                       />
                     </div>
                   </div>
