@@ -586,58 +586,314 @@
 }
 
 /* Адаптивность */
+@media (max-width: 1200px) {
+  .hero-section {
+    padding: 60px 4vw 40px 4vw;
+    gap: 40px;
+  }
+  .hero-title {
+    font-size: 3.5rem;
+  }
+  .hero-subtitle {
+    font-size: 1.4rem;
+  }
+  .features-modern-section,
+  .courses-modern-section,
+  .why-learn-modern-section,
+  .reviews-modern-section {
+    max-width: 1200px;
+    padding: 0 4vw;
+  }
+}
+
 @media (max-width: 900px) {
-  .hero-section,
+  .hero-section {
+    flex-direction: column;
+    padding: 40px 3vw 30px 3vw;
+    gap: 30px;
+    text-align: center;
+  }
+  .hero-content {
+    flex: 1 1 100%;
+  }
+  .hero-title {
+    font-size: 3rem;
+  }
+  .hero-subtitle {
+    font-size: 1.3rem;
+  }
+  .hero-features {
+    justify-content: center;
+    gap: 20px;
+  }
+  .hero-btns {
+    justify-content: center;
+  }
+  .hero-stats {
+    justify-content: center;
+  }
+  .hero-image-wrap {
+    flex: 1 1 100%;
+  }
+  .hero-image-card {
+    max-width: 350px;
+  }
+
+  /* Grid layouts */
+  .features-modern-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .courses-modern-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .why-learn-modern-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .reviews-modern-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  /* Section adjustments */
+  .features-modern-section,
+  .courses-modern-section,
+  .why-learn-modern-section,
+  .reviews-modern-section {
+    margin: 40px auto 30px auto;
+    padding: 0 3vw;
+  }
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 30px 2vw 20px 2vw;
+    min-height: 500px;
+    border-radius: 0 0 24px 24px;
+  }
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+  .hero-features {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-btns {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .btn-glass,
+  .btn-glass-outline {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+  .hero-stats {
+    gap: 20px;
+  }
+  .hero-stat-number {
+    font-size: 1.5rem;
+  }
+  .hero-stat-label {
+    font-size: 0.8rem;
+  }
+
+  /* Single column layouts */
   .features-modern-cards,
   .courses-modern-cards,
   .why-learn-modern-cards,
   .reviews-modern-cards {
-    flex-direction: column;
-    gap: 24px;
-    align-items: center;
-  }
-  .hero-section {
-    padding: 40px 2vw 24px 2vw;
-  }
-  .why-learn-modern-cards {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 20px;
   }
-}
-@media (max-width: 600px) {
-  .hero-title {
-    font-size: 2.1rem;
-  }
-  .section-title {
-    font-size: 1.3rem;
-  }
-  .hero-section {
-    flex-direction: column;
-    padding: 24px 1vw 12px 1vw;
-    border-radius: 0 0 24px 24px;
-  }
-  .hero-image {
-    width: 100%;
-    border-radius: 18px;
-  }
-  .glassmorphism,
+
+  /* Card adjustments */
   .feature-modern-card,
   .course-modern-card,
   .why-learn-modern-card,
   .review-modern-card {
-    border-radius: 12px;
-    padding: 18px 8px;
+    min-width: 0;
+    max-width: 100%;
+    padding: 24px 20px 20px 20px;
+  }
+
+  /* Section adjustments */
+  .features-modern-section,
+  .courses-modern-section,
+  .why-learn-modern-section,
+  .reviews-modern-section {
+    margin: 30px auto 20px auto;
+    padding: 0 2vw;
+  }
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  /* FAQ adjustments */
+  .faq-modern-section {
+    margin: 30px auto 20px auto;
+    padding: 0 2vw;
+  }
+  .faq-modern-question {
+    font-size: 1rem;
+    padding: 16px 20px;
+  }
+  .faq-modern-answer {
+    font-size: 0.9rem;
+    padding: 0 20px;
+  }
+  .faq-modern-answer.show {
+    padding: 12px 20px 16px 20px;
+  }
+
+  /* Feedback adjustments */
+  .feedback-modern-float {
+    right: 16px;
+    bottom: 16px;
+  }
+  .btn-glass-float {
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 20px 1vw 15px 1vw;
+    min-height: 400px;
+  }
+  .hero-title {
+    font-size: 2rem;
+    margin-bottom: 12px;
+  }
+  .hero-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+  }
+  .hero-badge {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    margin-bottom: 16px;
+  }
+  .hero-features {
+    margin-bottom: 20px;
+  }
+  .hero-feature {
+    font-size: 0.9rem;
+  }
+  .hero-btns {
+    margin-bottom: 24px;
   }
   .btn-glass,
-  .btn-glass-outline,
-  .btn-glass-sm,
-  .btn-glass-float {
-    font-size: 0.95rem;
-    padding: 8px 16px;
-    border-radius: 8px;
+  .btn-glass-outline {
+    padding: 12px 24px;
+    font-size: 1rem;
   }
+  .hero-stats {
+    gap: 16px;
+  }
+  .hero-stat-number {
+    font-size: 1.3rem;
+  }
+  .hero-stat-label {
+    font-size: 0.7rem;
+  }
+
+  /* Card adjustments */
+  .feature-modern-card,
+  .course-modern-card,
+  .why-learn-modern-card,
+  .review-modern-card {
+    padding: 20px 16px 16px 16px;
+    border-radius: 16px;
+  }
+
+  /* Section adjustments */
+  .features-modern-section,
+  .courses-modern-section,
+  .why-learn-modern-section,
+  .reviews-modern-section {
+    margin: 20px auto 15px auto;
+    padding: 0 1vw;
+  }
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+  }
+
+  /* Image adjustments */
+  .course-modern-img {
+    height: 160px;
+  }
+  .why-learn-modern-img {
+    height: 120px;
+  }
+  .review-modern-avatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  /* FAQ adjustments */
+  .faq-modern-section {
+    margin: 20px auto 15px auto;
+    padding: 0 1vw;
+  }
+  .faq-modern-question {
+    font-size: 0.9rem;
+    padding: 14px 16px;
+  }
+  .faq-modern-answer {
+    font-size: 0.85rem;
+    padding: 0 16px;
+  }
+  .faq-modern-answer.show {
+    padding: 10px 16px 14px 16px;
+  }
+
+  /* Feedback adjustments */
   .feedback-modern-float {
     right: 12px;
     bottom: 12px;
+  }
+  .btn-glass-float {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  /* Hero image adjustments */
+  .hero-image-card {
+    padding: 20px;
+  }
+  .hero-image-header h3 {
+    font-size: 1.2rem;
+  }
+  .hero-image-header p {
+    font-size: 0.8rem;
+  }
+  .code-block {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+  }
+  .child-avatar {
+    font-size: 1.5rem;
+  }
+  .laptop-screen {
+    padding: 8px;
+    min-height: 50px;
+  }
+  .code-line {
+    font-size: 0.6rem;
   }
 }
