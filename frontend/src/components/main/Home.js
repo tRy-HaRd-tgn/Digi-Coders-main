@@ -410,187 +410,104 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="mb-10">
-        <div data-draggable="true">
-          <section draggable="false" className="container" data-v-271253ee="">
-            <section>
-              <div className="heading">
-                <h2 className="mb-3 text-center display-3">
-                  <span>Наши популярные курсы</span>
-                </h2>
-              </div>
-              <div className="sub-heading">
-                <h4 className="mb-8 text-center">
+      <>
+        {/* Popular Courses Modern Section */}
+        <section className="popular-courses-section">
+          <h2 className="popular-courses-title">НАШИ ПОПУЛЯРНЫЕ КУРСЫ</h2>
+          <h4 className="popular-courses-subtitle">
+            ОТКРОЙТЕ ДЛЯ СЕБЯ МИР ПРОГРАММИРОВАНИЯ С НАШИМИ КУРСАМИ
+          </h4>
+          <div className="popular-courses-cards">
+            <div
+              className="course-card fade-in-up"
+              style={{ animationDelay: "0.05s" }}
+            >
+              <img
+                src="/images/course-html.jpg"
+                className="course-card-img"
+                alt="HTML"
+              />
+              <div className="course-card-content">
+                <div className="course-card-header">HTML</div>
+                <div className="course-card-info">
+                  <span>26 ЗАНЯТИЙ</span>
                   <span>
-                    Откройте для себя мир программирования с нашими курсами
+                    ДЛИТЕЛЬНОСТЬ: <b>2 НЕДЕЛИ</b>
                   </span>
-                </h4>
+                </div>
+                <div className="course-card-desc">
+                  Идеальный курс, чтобы дети быстро освоили основы html и начали
+                  писать код с помощью блоков.
+                </div>
+                <NavLink
+                  to="/user/viewchapters?category=HTML"
+                  className="course-card-btn"
+                >
+                  ПОДРОБНЕЕ
+                </NavLink>
               </div>
-              <div className="row text-center gx-lg-5 mb-6">
-                <div className="col-lg-4 col-md-12 mb-lg-0 hover-zoom">
-                  <div className="card">
-                    <div
-                      className="mt-n3 bg-image hover-overlay ripple mx-3 shadow-4-strong rounded-6"
-                      data-mdb-ripple-color="light"
-                    >
-                      <img
-                        src="/images/course-html.jpg"
-                        className="img-fluid"
-                      />
-                      <NavLink to="/user/viewchapters?category=HTML">
-                        <div
-                          className="mask"
-                          style={{
-                            backgroundColor: "rgba(251, 251, 251, 0.15)",
-                          }}
-                        />
-                      </NavLink>
-                    </div>
-                    <div className="card-body">
-                      <h4
-                        className="card-tittle my-3"
-                        style={{
-                          backgroundColor: "#f1f1f1",
-                          fontSize: "32px",
-                          letterSpacing: "1px",
-                        }}
-                      >
-                        <strong>HTML</strong>
-                      </h4>
-                      <h5 className="mb-3">
-                        <strong>26 занятий</strong>
-                      </h5>
-                      <h6 className="mb-3">
-                        Длительность: <strong>2 недели</strong>
-                      </h6>
-
-                      <hr className="hr hr-blurry" />
-
-                      <p className="card-text">
-                        Идеальный курс, чтобы дети быстро освоили основы html и
-                        начали писать код с помощью блоков.
-                      </p>
-                      <NavLink
-                        to="/user/viewchapters?category=HTML"
-                        className="btn btn-primary my-3"
-                      >
-                        Подробнее
-                      </NavLink>
-                    </div>
-                  </div>
+            </div>
+            <div
+              className="course-card fade-in-up"
+              style={{ animationDelay: "0.15s" }}
+            >
+              <img
+                src="/images/course-js.jpg"
+                className="course-card-img"
+                alt="JavaScript"
+              />
+              <div className="course-card-content">
+                <div className="course-card-header">JAVASCRIPT</div>
+                <div className="course-card-info">
+                  <span>26 ЗАНЯТИЙ</span>
+                  <span>
+                    ДЛИТЕЛЬНОСТЬ: <b>2 НЕДЕЛИ</b>
+                  </span>
                 </div>
-                {/* First column */}
-                {/* Second column */}
-                <div className="col-lg-4 col-md-12 mb-lg-0 hover-zoom">
-                  <div className="card">
-                    <div
-                      className="mt-n3 bg-image hover-overlay ripple mx-3 shadow-4-strong rounded-6"
-                      data-mdb-ripple-color="light"
-                    >
-                      <img src="/images/course-js.jpg" className="img-fluid" />
-                      <NavLink to="/user/viewchapters?category=JavaScript">
-                        <div
-                          className="mask"
-                          style={{
-                            backgroundColor: "rgba(251, 251, 251, 0.15)",
-                          }}
-                        />
-                      </NavLink>
-                    </div>
-                    <div className="card-body">
-                      <h4
-                        className="card-tittle my-3"
-                        style={{
-                          backgroundColor: "#f1f1f1",
-                          fontSize: "32px",
-                          letterSpacing: "1px",
-                        }}
-                      >
-                        <strong>JavaScript</strong>
-                      </h4>
-                      <h5 className="mb-3">
-                        <strong>26 занятий</strong>
-                      </h5>
-                      <h6 className="mb-3">
-                        Длительность: <strong>2 недели</strong>
-                      </h6>
-
-                      <hr className="hr hr-blurry" />
-
-                      <p className="card-text">
-                        Идеальный курс, чтобы дети быстро освоили основы
-                        javascript и начали писать код с помощью блоков.
-                      </p>
-
-                      <NavLink
-                        to="/user/viewchapters?category=JavaScript"
-                        className="btn btn-primary my-3"
-                      >
-                        Подробнее
-                      </NavLink>
-                    </div>
-                  </div>
+                <div className="course-card-desc">
+                  Идеальный курс, чтобы дети быстро освоили основы javascript и
+                  начали писать код с помощью блоков.
                 </div>
-
-                <div className="col-lg-4 col-md-12 mb-lg-0 hover-zoom">
-                  <div className="card">
-                    <div
-                      className="mt-n3 bg-image hover-overlay ripple mx-3 shadow-4-strong rounded-6"
-                      data-mdb-ripple-color="light"
-                    >
-                      <img
-                        src="/images/course-python.jpg"
-                        className="img-fluid"
-                      />
-                      <NavLink to="/user/viewchapters?category=Python">
-                        <div
-                          className="mask"
-                          style={{
-                            backgroundColor: "rgba(251, 251, 251, 0.15)",
-                          }}
-                        />
-                      </NavLink>
-                    </div>
-                    <div className="card-body">
-                      <h4
-                        className="card-tittle my-3"
-                        style={{
-                          backgroundColor: "#f1f1f1",
-                          fontSize: "32px",
-                          letterSpacing: "1px",
-                        }}
-                      >
-                        <strong>Python</strong>
-                      </h4>
-                      <h5 className="mb-3">
-                        <strong>26 занятий</strong>
-                      </h5>
-                      <h6 className="mb-3">
-                        Длительность: <strong>2 недели</strong>
-                      </h6>
-                      {/* Divider here */}
-                      <hr className="hr hr-blurry" />
-
-                      <p className="card-text">
-                        Идеальный курс, чтобы дети быстро освоили основы python
-                        и начали писать код с помощью блоков.
-                      </p>
-
-                      <NavLink
-                        to="/user/viewchapters?category=Python"
-                        className="btn btn-primary my-3"
-                      >
-                        Подробнее
-                      </NavLink>
-                    </div>
-                  </div>
-                </div>
+                <NavLink
+                  to="/user/viewchapters?category=JavaScript"
+                  className="course-card-btn"
+                >
+                  ПОДРОБНЕЕ
+                </NavLink>
               </div>
-            </section>
-          </section>
-          {/**/}
-        </div>
-      </div>
+            </div>
+            <div
+              className="course-card fade-in-up"
+              style={{ animationDelay: "0.25s" }}
+            >
+              <img
+                src="/images/course-python.jpg"
+                className="course-card-img"
+                alt="Python"
+              />
+              <div className="course-card-content">
+                <div className="course-card-header">PYTHON</div>
+                <div className="course-card-info">
+                  <span>26 ЗАНЯТИЙ</span>
+                  <span>
+                    ДЛИТЕЛЬНОСТЬ: <b>2 НЕДЕЛИ</b>
+                  </span>
+                </div>
+                <div className="course-card-desc">
+                  Идеальный курс, чтобы дети быстро освоили основы python и
+                  начали писать код с помощью блоков.
+                </div>
+                <NavLink
+                  to="/user/viewchapters?category=Python"
+                  className="course-card-btn"
+                >
+                  ПОДРОБНЕЕ
+                </NavLink>
+              </div>
+            </div>
+          </div>
+        </section>
+      </>
 
       <>
         <div className="mb-10">
