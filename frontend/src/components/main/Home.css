@@ -989,7 +989,7 @@
   .why-learn-modern-section,
   .reviews-modern-section {
     margin: 30px auto 20px auto;
-    padding: 0 2vw;
+    padding: 0 4vw;
   }
   .section-title {
     font-size: 1.8rem;
@@ -999,7 +999,7 @@
   /* FAQ adjustments */
   .faq-modern-section {
     margin: 30px auto 20px auto;
-    padding: 0 2vw;
+    padding: 0 4vw;
   }
   .faq-modern-question {
     font-size: 1rem;
@@ -1088,7 +1088,7 @@
   .why-learn-modern-section,
   .reviews-modern-section {
     margin: 20px auto 15px auto;
-    padding: 0 1vw;
+    padding: 0 3vw;
   }
   .section-title {
     font-size: 1.5rem;
@@ -1110,7 +1110,7 @@
   /* FAQ adjustments */
   .faq-modern-section {
     margin: 20px auto 15px auto;
-    padding: 0 1vw;
+    padding: 0 3vw;
   }
   .faq-modern-question {
     font-size: 0.9rem;
@@ -2583,5 +2583,1252 @@
   .contact-social-grid {
     grid-template-columns: repeat(2, 1fr);
     max-width: 200px;
+  }
+}
+
+/* --- Улучшенные стили для мобильной версии популярных курсов --- */
+
+@media (max-width: 768px) {
+  /* Улучшенные стили для секции популярных курсов */
+  .courses-modern-section {
+    margin: 30px auto 20px auto;
+    padding: 0 4vw;
+  }
+
+  .courses-modern-cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 100%;
+  }
+
+  .course-modern-card {
+    min-width: 0;
+    max-width: 100%;
+    margin: 0 auto;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(41, 193, 254, 0.12);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .course-modern-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(41, 193, 254, 0.2);
+  }
+
+  .course-modern-img {
+    height: 180px;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .course-modern-content {
+    padding: 24px 20px 20px 20px;
+    text-align: center;
+  }
+
+  .course-modern-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    color: #1e293b;
+    font-weight: 700;
+  }
+
+  .course-modern-content p {
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+    color: #64748b;
+    font-weight: 500;
+  }
+
+  .course-modern-content span {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #475569;
+    margin-bottom: 18px;
+    display: block;
+  }
+
+  .btn-glass-sm {
+    padding: 12px 24px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    min-width: 140px;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #29c1fe 0%, #1e88e5 100%);
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-block;
+    text-align: center;
+  }
+
+  .btn-glass-sm:hover {
+    background: linear-gradient(90deg, #1e88e5 0%, #29c1fe 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(41, 193, 254, 0.3);
+  }
+}
+
+@media (max-width: 480px) {
+  /* Стили для очень маленьких экранов */
+  .courses-modern-section {
+    margin: 20px auto 15px auto;
+    padding: 0 3vw;
+  }
+
+  .courses-modern-cards {
+    gap: 16px;
+  }
+
+  .course-modern-card {
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(41, 193, 254, 0.1);
+  }
+
+  .course-modern-card:hover {
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 8px 24px rgba(41, 193, 254, 0.15);
+  }
+
+  .course-modern-img {
+    height: 160px;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .course-modern-content {
+    padding: 20px 16px 16px 16px;
+  }
+
+  .course-modern-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+  }
+
+  .course-modern-content p {
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+  }
+
+  .course-modern-content span {
+    font-size: 0.8rem;
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+
+  .btn-glass-sm {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    min-width: 120px;
+    border-radius: 10px;
+  }
+
+  .btn-glass-sm:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(41, 193, 254, 0.25);
+  }
+}
+
+@media (max-width: 360px) {
+  /* Стили для экстремально маленьких экранов */
+  .courses-modern-section {
+    padding: 0 2vw;
+  }
+
+  .course-modern-card {
+    border-radius: 12px;
+  }
+
+  .course-modern-img {
+    height: 140px;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .course-modern-content {
+    padding: 16px 12px 12px 12px;
+  }
+
+  .course-modern-content h3 {
+    font-size: 1.1rem;
+  }
+
+  .course-modern-content p {
+    font-size: 0.8rem;
+  }
+
+  .course-modern-content span {
+    font-size: 0.75rem;
+  }
+
+  .btn-glass-sm {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    min-width: 100px;
+  }
+}
+
+/* --- Дополнительные улучшения для планшетов --- */
+@media (min-width: 481px) and (max-width: 768px) {
+  .courses-modern-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .course-modern-card {
+    min-width: 0;
+    max-width: none;
+  }
+}
+
+/* --- Улучшения для ландшафтной ориентации на мобильных --- */
+@media (max-width: 768px) and (orientation: landscape) {
+  .courses-modern-section {
+    margin: 20px auto 15px auto;
+  }
+
+  .courses-modern-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .course-modern-img {
+    height: 120px;
+  }
+
+  .course-modern-content {
+    padding: 16px 12px 12px 12px;
+  }
+
+  .course-modern-content h3 {
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+  }
+
+  .course-modern-content p {
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+  }
+
+  .course-modern-content span {
+    font-size: 0.75rem;
+    margin-bottom: 12px;
+  }
+
+  .btn-glass-sm {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    min-width: 100px;
+  }
+}
+
+/* --- Улучшенные стили для мобильной версии страницы Course --- */
+
+@media (max-width: 768px) {
+  /* Hero секция для Course страницы */
+  .course-hero-section {
+    flex-direction: column;
+    padding: 30px 4vw 20px 4vw;
+    min-height: auto;
+    gap: 24px;
+    text-align: center;
+  }
+
+  .course-hero-content {
+    flex: 1 1 100%;
+    order: 1;
+  }
+
+  .course-hero-badge {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+    margin-bottom: 12px;
+  }
+
+  .course-hero-title {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+  }
+
+  .course-hero-subtitle {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  .course-hero-stats {
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .course-hero-stat-number {
+    font-size: 1.4rem;
+  }
+
+  .course-hero-stat-label {
+    font-size: 0.75rem;
+  }
+
+  .course-hero-image-wrap {
+    flex: 1 1 100%;
+    order: 2;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .course-hero-image-card {
+    max-width: 100%;
+    padding: 16px;
+  }
+
+  .course-hero-image-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .course-hero-image-header p {
+    font-size: 0.75rem;
+  }
+
+  .course-blocks {
+    gap: 4px;
+  }
+
+  .course-block {
+    padding: 3px 6px;
+    font-size: 0.65rem;
+  }
+
+  .course-illustration {
+    padding: 10px;
+  }
+
+  .course-avatar {
+    font-size: 1.2rem;
+  }
+
+  .course-laptop {
+    padding: 6px;
+  }
+
+  .course-screen {
+    padding: 4px;
+  }
+
+  .course-code-line {
+    font-size: 0.65rem;
+  }
+
+  /* Секции курсов */
+  .courses-current-section,
+  .course-features-section {
+    padding: 30px 4vw;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+  }
+
+  .section-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+  }
+
+  .courses-modern-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .course-modern-card {
+    min-width: 0;
+    max-width: 100%;
+    border-radius: 16px;
+  }
+
+  .course-modern-img {
+    height: 180px;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .course-modern-content {
+    padding: 20px 16px 16px 16px;
+  }
+
+  .course-modern-title {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+
+  .course-modern-meta {
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .course-modern-lessons,
+  .course-modern-duration {
+    font-size: 0.85rem;
+  }
+
+  .course-modern-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .course-modern-actions .btn-glass {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 0.95rem;
+  }
+
+  /* Секция особенностей */
+  .course-features-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .course-feature-card {
+    padding: 24px 20px;
+    border-radius: 16px;
+  }
+
+  .course-feature-icon {
+    font-size: 2rem;
+    margin-bottom: 16px;
+  }
+
+  .course-feature-card h4 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+
+  .course-feature-card p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Стили для очень маленьких экранов */
+  .course-hero-section {
+    padding: 20px 3vw 15px 3vw;
+    gap: 20px;
+  }
+
+  .course-hero-badge {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+
+  .course-hero-title {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+  }
+
+  .course-hero-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+  }
+
+  .course-hero-stats {
+    gap: 16px;
+  }
+
+  .course-hero-stat-number {
+    font-size: 1.2rem;
+  }
+
+  .course-hero-stat-label {
+    font-size: 0.7rem;
+  }
+
+  .course-hero-image-wrap {
+    max-width: 240px;
+  }
+
+  .course-hero-image-card {
+    padding: 12px;
+  }
+
+  .course-hero-image-header h3 {
+    font-size: 1rem;
+  }
+
+  .course-hero-image-header p {
+    font-size: 0.7rem;
+  }
+
+  .course-blocks {
+    gap: 3px;
+  }
+
+  .course-block {
+    padding: 2px 4px;
+    font-size: 0.6rem;
+  }
+
+  .course-illustration {
+    padding: 8px;
+  }
+
+  .course-avatar {
+    font-size: 1rem;
+  }
+
+  .course-laptop {
+    padding: 4px;
+  }
+
+  .course-screen {
+    padding: 3px;
+  }
+
+  .course-code-line {
+    font-size: 0.6rem;
+  }
+
+  /* Секции курсов */
+  .courses-current-section,
+  .course-features-section {
+    padding: 20px 3vw;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+  }
+
+  .section-subtitle {
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+  }
+
+  .courses-modern-grid {
+    gap: 16px;
+  }
+
+  .course-modern-card {
+    border-radius: 12px;
+  }
+
+  .course-modern-img {
+    height: 160px;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .course-modern-content {
+    padding: 16px 12px 12px 12px;
+  }
+
+  .course-modern-title {
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+  }
+
+  .course-modern-meta {
+    margin-bottom: 10px;
+  }
+
+  .course-modern-lessons,
+  .course-modern-duration {
+    font-size: 0.8rem;
+  }
+
+  .course-modern-description {
+    font-size: 0.85rem;
+    margin-bottom: 14px;
+  }
+
+  .course-modern-actions .btn-glass {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+
+  /* Секция особенностей */
+  .course-features-grid {
+    gap: 16px;
+  }
+
+  .course-feature-card {
+    padding: 20px 16px;
+    border-radius: 12px;
+  }
+
+  .course-feature-icon {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+  }
+
+  .course-feature-card h4 {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+  }
+
+  .course-feature-card p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 360px) {
+  /* Стили для экстремально маленьких экранов */
+  .course-hero-section {
+    padding: 15px 2vw 10px 2vw;
+  }
+
+  .course-hero-title {
+    font-size: 1.6rem;
+  }
+
+  .course-hero-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .course-hero-stats {
+    gap: 12px;
+  }
+
+  .course-hero-stat-number {
+    font-size: 1.1rem;
+  }
+
+  .course-hero-image-wrap {
+    max-width: 200px;
+  }
+
+  .course-hero-image-card {
+    padding: 10px;
+  }
+
+  .course-blocks {
+    gap: 2px;
+  }
+
+  .course-block {
+    padding: 2px 3px;
+    font-size: 0.55rem;
+  }
+
+  .course-illustration {
+    padding: 6px;
+  }
+
+  .course-avatar {
+    font-size: 0.9rem;
+  }
+
+  .course-code-line {
+    font-size: 0.55rem;
+  }
+
+  /* Секции курсов */
+  .courses-current-section,
+  .course-features-section {
+    padding: 15px 2vw;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.75rem;
+  }
+
+  .course-modern-img {
+    height: 140px;
+  }
+
+  .course-modern-content {
+    padding: 12px 10px 10px 10px;
+  }
+
+  .course-modern-title {
+    font-size: 1.1rem;
+  }
+
+  .course-modern-description {
+    font-size: 0.8rem;
+  }
+
+  .course-modern-actions .btn-glass {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+
+  /* Секция особенностей */
+  .course-feature-card {
+    padding: 16px 12px;
+  }
+
+  .course-feature-icon {
+    font-size: 1.6rem;
+  }
+
+  .course-feature-card h4 {
+    font-size: 1rem;
+  }
+
+  .course-feature-card p {
+    font-size: 0.8rem;
+  }
+}
+
+/* --- Дополнительные улучшения для планшетов --- */
+@media (min-width: 481px) and (max-width: 768px) {
+  .course-hero-section {
+    padding: 25px 4vw 20px 4vw;
+  }
+
+  .course-hero-title {
+    font-size: 2.5rem;
+  }
+
+  .course-hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .courses-modern-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .course-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+/* --- Улучшения для ландшафтной ориентации на мобильных --- */
+@media (max-width: 768px) and (orientation: landscape) {
+  .course-hero-section {
+    flex-direction: row;
+    padding: 20px 4vw;
+    gap: 20px;
+    text-align: left;
+  }
+
+  .course-hero-content {
+    order: 1;
+  }
+
+  .course-hero-image-wrap {
+    order: 2;
+    max-width: 200px;
+  }
+
+  .course-hero-title {
+    font-size: 1.8rem;
+  }
+
+  .course-hero-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .course-hero-stats {
+    justify-content: flex-start;
+    gap: 16px;
+  }
+
+  .courses-modern-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .course-modern-img {
+    height: 120px;
+  }
+
+  .course-modern-content {
+    padding: 12px 10px 10px 10px;
+  }
+
+  .course-modern-title {
+    font-size: 1.1rem;
+  }
+
+  .course-modern-description {
+    font-size: 0.8rem;
+  }
+
+  .course-modern-actions .btn-glass {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+
+  .course-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .course-feature-card {
+    padding: 16px 12px;
+  }
+
+  .course-feature-icon {
+    font-size: 1.6rem;
+  }
+
+  .course-feature-card h4 {
+    font-size: 1rem;
+  }
+
+  .course-feature-card p {
+    font-size: 0.8rem;
+  }
+}
+
+/* --- Улучшенные стили для мобильной версии страницы Signup --- */
+
+@media (max-width: 768px) {
+  /* Hero секция для Signup страницы */
+  .signup-hero-section {
+    padding: 40px 4vw 30px 4vw;
+    min-height: 300px;
+    text-align: center;
+  }
+
+  .signup-hero-content {
+    max-width: 100%;
+  }
+
+  .signup-hero-badge {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+    margin-bottom: 16px;
+  }
+
+  .signup-hero-title {
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+  }
+
+  .signup-hero-subtitle {
+    font-size: 1rem;
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+
+  .signup-login-link {
+    margin-top: 20px;
+  }
+
+  .signup-login-link p {
+    font-size: 1rem;
+  }
+
+  /* Секция карточек */
+  .signup-cards-section {
+    margin: 40px auto 30px auto;
+    padding: 0 4vw;
+  }
+
+  .signup-cards-container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .signup-card {
+    padding: 32px 24px;
+    border-radius: 20px;
+    margin-bottom: 0;
+  }
+
+  .signup-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  }
+
+  .signup-card-image {
+    margin-bottom: 20px;
+  }
+
+  .signup-card-avatar {
+    width: 100px;
+    height: 100px;
+    border: 3px solid rgba(41, 193, 254, 0.2);
+  }
+
+  .signup-card-title {
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+  }
+
+  .signup-card-description {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  .signup-card-features {
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .signup-card-feature {
+    font-size: 0.9rem;
+    gap: 10px;
+  }
+
+  .signup-card-feature i {
+    font-size: 1rem;
+    width: 18px;
+  }
+
+  .signup-card-btn {
+    padding: 14px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Стили для очень маленьких экранов */
+  .signup-hero-section {
+    padding: 30px 3vw 20px 3vw;
+    min-height: 250px;
+  }
+
+  .signup-hero-badge {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+  }
+
+  .signup-hero-title {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+  }
+
+  .signup-hero-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+
+  .signup-login-link {
+    margin-top: 16px;
+  }
+
+  .signup-login-link p {
+    font-size: 0.9rem;
+  }
+
+  /* Секция карточек */
+  .signup-cards-section {
+    margin: 30px auto 20px auto;
+    padding: 0 3vw;
+  }
+
+  .signup-cards-container {
+    gap: 20px;
+  }
+
+  .signup-card {
+    padding: 24px 20px;
+    border-radius: 16px;
+  }
+
+  .signup-card-image {
+    margin-bottom: 16px;
+  }
+
+  .signup-card-avatar {
+    width: 80px;
+    height: 80px;
+    border: 2px solid rgba(41, 193, 254, 0.2);
+  }
+
+  .signup-card-title {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
+
+  .signup-card-description {
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+  }
+
+  .signup-card-features {
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .signup-card-feature {
+    font-size: 0.85rem;
+    gap: 8px;
+  }
+
+  .signup-card-feature i {
+    font-size: 0.9rem;
+    width: 16px;
+  }
+
+  .signup-card-btn {
+    padding: 12px 16px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 360px) {
+  /* Стили для экстремально маленьких экранов */
+  .signup-hero-section {
+    padding: 20px 2vw 15px 2vw;
+    min-height: 200px;
+  }
+
+  .signup-hero-badge {
+    font-size: 0.75rem;
+    padding: 5px 10px;
+  }
+
+  .signup-hero-title {
+    font-size: 1.6rem;
+  }
+
+  .signup-hero-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .signup-login-link p {
+    font-size: 0.85rem;
+  }
+
+  /* Секция карточек */
+  .signup-cards-section {
+    margin: 20px auto 15px auto;
+    padding: 0 2vw;
+  }
+
+  .signup-cards-container {
+    gap: 16px;
+  }
+
+  .signup-card {
+    padding: 20px 16px;
+    border-radius: 12px;
+  }
+
+  .signup-card-image {
+    margin-bottom: 12px;
+  }
+
+  .signup-card-avatar {
+    width: 70px;
+    height: 70px;
+  }
+
+  .signup-card-title {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+
+  .signup-card-description {
+    font-size: 0.85rem;
+    margin-bottom: 14px;
+  }
+
+  .signup-card-features {
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .signup-card-feature {
+    font-size: 0.8rem;
+    gap: 6px;
+  }
+
+  .signup-card-feature i {
+    font-size: 0.85rem;
+    width: 14px;
+  }
+
+  .signup-card-btn {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+}
+
+/* --- Дополнительные улучшения для планшетов --- */
+@media (min-width: 481px) and (max-width: 768px) {
+  .signup-hero-section {
+    padding: 50px 4vw 40px 4vw;
+  }
+
+  .signup-hero-title {
+    font-size: 2.8rem;
+  }
+
+  .signup-hero-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .signup-cards-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .signup-card {
+    padding: 28px 20px;
+  }
+
+  .signup-card-avatar {
+    width: 90px;
+    height: 90px;
+  }
+
+  .signup-card-title {
+    font-size: 1.5rem;
+  }
+
+  .signup-card-description {
+    font-size: 0.95rem;
+  }
+}
+
+/* --- Улучшения для ландшафтной ориентации на мобильных --- */
+@media (max-width: 768px) and (orientation: landscape) {
+  .signup-hero-section {
+    padding: 20px 4vw;
+    min-height: 200px;
+  }
+
+  .signup-hero-title {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+  }
+
+  .signup-hero-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+  }
+
+  .signup-login-link {
+    margin-top: 12px;
+  }
+
+  .signup-login-link p {
+    font-size: 0.9rem;
+  }
+
+  .signup-cards-section {
+    margin: 20px auto 15px auto;
+  }
+
+  .signup-cards-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .signup-card {
+    padding: 20px 16px;
+  }
+
+  .signup-card-image {
+    margin-bottom: 12px;
+  }
+
+  .signup-card-avatar {
+    width: 70px;
+    height: 70px;
+  }
+
+  .signup-card-title {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+
+  .signup-card-description {
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+  }
+
+  .signup-card-features {
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .signup-card-feature {
+    font-size: 0.8rem;
+    gap: 6px;
+  }
+
+  .signup-card-feature i {
+    font-size: 0.85rem;
+    width: 14px;
+  }
+
+  .signup-card-btn {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+}
+
+/* --- Улучшения для больших планшетов --- */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .signup-hero-section {
+    padding: 60px 5vw 50px 5vw;
+  }
+
+  .signup-hero-title {
+    font-size: 3rem;
+  }
+
+  .signup-hero-subtitle {
+    font-size: 1.3rem;
+  }
+
+  .signup-cards-container {
+    gap: 32px;
+  }
+
+  .signup-card {
+    padding: 36px 28px;
+  }
+
+  .signup-card-avatar {
+    width: 110px;
+    height: 110px;
+  }
+
+  .signup-card-title {
+    font-size: 1.8rem;
+  }
+
+  .signup-card-description {
+    font-size: 1.05rem;
+  }
+}
+
+/* --- Улучшения для очень больших экранов --- */
+@media (min-width: 1025px) {
+  .signup-hero-section {
+    padding: 100px 5vw 80px 5vw;
+  }
+
+  .signup-hero-title {
+    font-size: 4rem;
+  }
+
+  .signup-hero-subtitle {
+    font-size: 1.5rem;
+  }
+
+  .signup-cards-container {
+    gap: 48px;
+  }
+
+  .signup-card {
+    padding: 48px 36px;
+  }
+
+  .signup-card-avatar {
+    width: 130px;
+    height: 130px;
+  }
+
+  .signup-card-title {
+    font-size: 2.2rem;
+  }
+
+  .signup-card-description {
+    font-size: 1.15rem;
   }
 }

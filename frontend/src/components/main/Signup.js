@@ -5,7 +5,12 @@ import "./Home.css";
 const Signup = () => {
   return (
     <div className="signup-modern-bg">
-      <section className="signup-hero-section glassmorphism">
+      <section
+        className="signup-hero-section glassmorphism"
+        style={{
+          borderRadius: "0px",
+        }}
+      >
         <div className="signup-hero-content">
           <div className="signup-hero-badge">
             <span>🚀</span> Присоединяйтесь к нам
