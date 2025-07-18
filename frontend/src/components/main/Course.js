@@ -47,7 +47,10 @@ const Course = () => {
   return (
     <div className="course-modern-bg">
       {/* Hero Section */}
-      <section className="course-hero-section glassmorphism">
+      <section
+        className="course-hero-section glassmorphism"
+        style={{ borderRadius: "0px" }}
+      >
         <div className="course-hero-content">
           <div className="course-hero-badge">
             <span>📚</span> Образовательные курсы

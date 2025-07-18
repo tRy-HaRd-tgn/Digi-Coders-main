@@ -118,7 +118,10 @@ const About = () => {
   return (
     <div className="home-modern-bg">
       {/* Hero Section */}
-      <section className="hero-section glassmorphism">
+      <section
+        className="hero-section glassmorphism"
+        style={{ borderRadius: "0px" }}
+      >
         <div className="hero-content">
           <div className="hero-badge">
             <span>🌟</span> О нашей команде

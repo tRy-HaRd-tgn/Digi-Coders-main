@@ -441,24 +441,6 @@ const UserProfile = () => {
           </div>
         </motion.div>
       </div>
-
-      <div
-        className="text-center text-white p-4"
-        style={{
-          backgroundColor: "rgba(27, 27, 27, 0.9)",
-          backdropFilter: "blur(10px)",
-          position: "fixed",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          width: "100%",
-        }}
-      >
-        © 2023 Copyright :&nbsp;
-        <NavLink className="text-reset fw-bold custom-link-hover" to="#">
-          DigiCoders.com
-        </NavLink>
-      </div>
     </div>
   );
 };

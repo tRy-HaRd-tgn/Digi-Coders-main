@@ -89,8 +89,10 @@ const Contact = () => {
 
   return (
     <div className="contact-modern-bg">
-      {/* Hero Section */}
-      <section className="contact-hero-section glassmorphism">
+      <section
+        className="contact-hero-section glassmorphism"
+        style={{ borderRadius: "0px" }}
+      >
         <div className="contact-hero-content">
           <div className="contact-hero-badge">
             <span>📞</span> Свяжитесь с нами
