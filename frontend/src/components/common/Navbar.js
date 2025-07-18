@@ -28,6 +28,7 @@ const Navbar = ({
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const dropdownRef = useRef(null);
   const mobileMenuRef = useRef(null);
   const location = useLocation();
@@ -37,6 +38,19 @@ const Navbar = ({
   const trainerContext = useTrainerContext();
   const context = userType === "trainer" ? trainerContext : userContext;
   const { loggedIn, logout, currentUser } = context;
+
+  /**
+   * Обработчик скролла для изменения стилей navbar
+   */
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 20;
+      setScrolled(isScrolled);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   /**
    * Обработчик клика вне dropdown
@@ -112,24 +126,66 @@ const Navbar = ({
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <nav
+      className={`navbar navbar-expand-lg fixed-top ${
+        scrolled ? "navbar-scrolled" : "navbar-transparent"
+      }`}
+      style={{
+        background: scrolled
+          ? "rgba(255, 255, 255, 0.95)"
+          : "rgba(255, 255, 255, 0.98)",
+        backdropFilter: "blur(20px)",
+        transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+        borderBottom: scrolled
+          ? "1px solid rgba(0, 0, 0, 0.08)"
+          : "1px solid rgba(0, 0, 0, 0.05)",
+        boxShadow: scrolled
+          ? "0 8px 32px rgba(0, 0, 0, 0.12)"
+          : "0 4px 20px rgba(0, 0, 0, 0.08)",
+        zIndex: 1030,
+      }}
+    >
       <div className="container">
         {/* Логотип */}
         <NavLink
           className="navbar-brand d-flex align-items-center"
           to={homeRoute}
+          style={{
+            textDecoration: "none",
+            transition: "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = "scale(1.02)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = "scale(1)";
+          }}
         >
           <div className="d-flex flex-column">
             <span
-              className="fw-bold text-dark"
-              style={{ fontSize: "1.2rem", lineHeight: "1" }}
+              className="fw-bold"
+              style={{
+                fontSize: "1.4rem",
+                lineHeight: "1",
+                background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                fontWeight: "800",
+                letterSpacing: "0.5px",
+              }}
             >
-              <span className="text-dark">DIGI</span>
-              <span className="text-primary">CODERS</span>
+              DIGI<span style={{ color: "#667eea" }}>CODERS</span>
             </span>
             <small
               className="text-muted"
-              style={{ fontSize: "0.7rem", lineHeight: "1" }}
+              style={{
+                fontSize: "0.75rem",
+                lineHeight: "1.2",
+                fontWeight: "400",
+                opacity: "0.8",
+                marginTop: "2px",
+              }}
             >
               Весело с программированием
             </small>
@@ -143,6 +199,21 @@ const Navbar = ({
           onClick={toggleMobileMenu}
           aria-expanded={isMobileMenuOpen}
           aria-label="Toggle navigation"
+          style={{
+            padding: "0.5rem",
+            borderRadius: "12px",
+            transition: "all 0.3s ease",
+            background: "rgba(102, 126, 234, 0.1)",
+            border: "1px solid rgba(102, 126, 234, 0.2)",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = "rgba(102, 126, 234, 0.15)";
+            e.currentTarget.style.transform = "scale(1.05)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = "rgba(102, 126, 234, 0.1)";
+            e.currentTarget.style.transform = "scale(1)";
+          }}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -160,10 +231,45 @@ const Navbar = ({
                 <NavLink
                   className="nav-link position-relative px-3"
                   to={item.path}
-                  style={{ fontSize: "1rem", fontWeight: "500" }}
+                  style={{
+                    fontSize: "1rem",
+                    fontWeight: "500",
+                    color: "#495057",
+                    padding: "0.75rem 1.25rem",
+                    borderRadius: "12px",
+                    margin: "0 0.25rem",
+                    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                    position: "relative",
+                    overflow: "hidden",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background =
+                      "rgba(102, 126, 234, 0.1)";
+                    e.currentTarget.style.color = "#667eea";
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "transparent";
+                    e.currentTarget.style.color = "#495057";
+                    e.currentTarget.style.transform = "translateY(0)";
+                  }}
                 >
                   {item.label}
-                  <span className="nav-link-underline"></span>
+                  <span
+                    className="nav-link-underline"
+                    style={{
+                      position: "absolute",
+                      bottom: "0",
+                      left: "50%",
+                      width: "0",
+                      height: "3px",
+                      background:
+                        "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                      transform: "translateX(-50%)",
+                      borderRadius: "2px",
+                    }}
+                  ></span>
                 </NavLink>
               </li>
             ))}
@@ -172,21 +278,72 @@ const Navbar = ({
           {/* Правая часть навигации */}
           <div className="d-flex align-items-center">
             {!loggedIn ? (
-              <div className="d-flex gap-2">
+              <div className="d-flex gap-3">
                 <Link
-                  className="btn btn-outline-primary btn-sm"
+                  className="btn btn-outline-primary"
                   to="/main/signup"
-                  style={{ fontSize: "0.9rem" }}
+                  style={{
+                    fontSize: "0.9rem",
+                    fontWeight: "600",
+                    padding: "0.75rem 1.5rem",
+                    borderRadius: "12px",
+                    border: "2px solid #667eea",
+                    color: "#667eea",
+                    background: "transparent",
+                    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                    textDecoration: "none",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "#667eea";
+                    e.currentTarget.style.color = "white";
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                    e.currentTarget.style.boxShadow =
+                      "0 8px 25px rgba(102, 126, 234, 0.3)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "transparent";
+                    e.currentTarget.style.color = "#667eea";
+                    e.currentTarget.style.transform = "translateY(0)";
+                    e.currentTarget.style.boxShadow = "none";
+                  }}
                 >
-                  <i className="fas fa-user me-1"></i>
+                  <i className="fas fa-user-plus"></i>
                   Регистрация
                 </Link>
                 <Link
-                  className="btn btn-primary btn-sm"
+                  className="btn btn-primary"
                   to="/main/login"
-                  style={{ fontSize: "0.9rem" }}
+                  style={{
+                    fontSize: "0.9rem",
+                    fontWeight: "600",
+                    padding: "0.75rem 1.5rem",
+                    borderRadius: "12px",
+                    background:
+                      "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                    border: "none",
+                    color: "white",
+                    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                    textDecoration: "none",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    boxShadow: "0 4px 15px rgba(102, 126, 234, 0.3)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                    e.currentTarget.style.boxShadow =
+                      "0 8px 25px rgba(102, 126, 234, 0.4)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "translateY(0)";
+                    e.currentTarget.style.boxShadow =
+                      "0 4px 15px rgba(102, 126, 234, 0.3)";
+                  }}
                 >
-                  <i className="fas fa-right-to-bracket me-1"></i>
+                  <i className="fas fa-sign-in-alt"></i>
                   Войти
                 </Link>
               </div>
@@ -198,11 +355,16 @@ const Navbar = ({
                 {/* Информация о пользователе */}
                 <div className="d-none d-md-flex align-items-center me-3">
                   <span
-                    className="text-dark fw-medium"
+                    className="fw-medium"
                     style={{
-                      fontSize: "0.9rem",
+                      fontSize: "0.95rem",
                       color: "#495057",
-                      fontWeight: "500",
+                      fontWeight: "600",
+                      background:
+                        "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
                     }}
                   >
                     {getUserDisplayName()}
@@ -213,23 +375,33 @@ const Navbar = ({
                 <div className="position-relative">
                   <img
                     src={getAvatarSrc()}
-                    className="rounded-circle border border-2 border-light shadow-sm"
+                    className="rounded-circle border border-3"
                     style={{
-                      width: "45px",
-                      height: "45px",
+                      width: "48px",
+                      height: "48px",
                       objectFit: "cover",
                       cursor: "pointer",
-                      transition: "transform 0.2s ease",
+                      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                      border: "3px solid rgba(102, 126, 234, 0.2)",
+                      boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)",
                     }}
                     alt="User Avatar"
                     loading="lazy"
                     onError={handleAvatarError}
                     onClick={toggleDropdown}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = "scale(1.05)";
+                      e.currentTarget.style.transform = "scale(1.1)";
+                      e.currentTarget.style.boxShadow =
+                        "0 8px 25px rgba(102, 126, 234, 0.3)";
+                      e.currentTarget.style.borderColor =
+                        "rgba(102, 126, 234, 0.5)";
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.transform = "scale(1)";
+                      e.currentTarget.style.boxShadow =
+                        "0 4px 15px rgba(0, 0, 0, 0.1)";
+                      e.currentTarget.style.borderColor =
+                        "rgba(102, 126, 234, 0.2)";
                     }}
                   />
 
@@ -237,29 +409,33 @@ const Navbar = ({
                   <button
                     className="btn btn-link p-0 position-absolute"
                     style={{
-                      bottom: "-5px",
-                      right: "-5px",
-                      width: "20px",
-                      height: "20px",
+                      bottom: "-3px",
+                      right: "-3px",
+                      width: "22px",
+                      height: "22px",
                       borderRadius: "50%",
-                      backgroundColor: "#007bff",
-                      border: "2px solid white",
+                      background:
+                        "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                      border: "3px solid white",
                       color: "white",
                       fontSize: "0.7rem",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      transition: "all 0.2s ease",
-                      boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+                      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                      boxShadow: "0 4px 12px rgba(102, 126, 234, 0.3)",
+                      cursor: "pointer",
                     }}
                     onClick={toggleDropdown}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = "scale(1.1)";
-                      e.currentTarget.style.backgroundColor = "#0056b3";
+                      e.currentTarget.style.transform = "scale(1.15)";
+                      e.currentTarget.style.boxShadow =
+                        "0 6px 20px rgba(102, 126, 234, 0.4)";
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.transform = "scale(1)";
-                      e.currentTarget.style.backgroundColor = "#007bff";
+                      e.currentTarget.style.boxShadow =
+                        "0 4px 12px rgba(102, 126, 234, 0.3)";
                     }}
                   >
                     <i
@@ -273,98 +449,105 @@ const Navbar = ({
                 {/* Dropdown меню */}
                 {isDropdownOpen && (
                   <div
-                    className="dropdown-menu show position-absolute end-0 mt-2 shadow-lg border-0 rounded-3"
+                    className="dropdown-menu show position-absolute end-0 mt-3"
                     style={{
-                      minWidth: "220px",
-                      maxWidth: "280px",
-                      backgroundColor: "white",
-                      boxShadow: "0 10px 30px rgba(0, 0, 0, 0.15)",
-                      border: "1px solid rgba(0, 0, 0, 0.08)",
+                      minWidth: "250px",
+                      maxWidth: "300px",
+                      background: "rgba(255, 255, 255, 0.95)",
+                      backdropFilter: "blur(20px)",
+                      border: "1px solid rgba(102, 126, 234, 0.1)",
+                      borderRadius: "16px",
+                      boxShadow: "0 20px 60px rgba(0, 0, 0, 0.15)",
                       zIndex: 1050,
                       overflow: "hidden",
+                      animation:
+                        "dropdownSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                     }}
                   >
                     <div
-                      className="dropdown-header py-3 px-3 border-bottom"
+                      className="dropdown-header py-3 px-4"
                       style={{
-                        backgroundColor: "transparent",
-                        borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
+                        background:
+                          "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                        color: "white",
+                        borderBottom: "1px solid rgba(255, 255, 255, 0.2)",
                       }}
                     >
                       <div
-                        className="fw-bold text-dark"
-                        style={{ fontSize: "1.1rem", marginBottom: "2px" }}
+                        className="fw-bold"
+                        style={{ fontSize: "1.1rem", marginBottom: "4px" }}
                       >
                         {getUserDisplayName()}
                       </div>
-                      <small
-                        className="text-muted"
-                        style={{ fontSize: "0.85rem" }}
-                      >
+                      <small style={{ fontSize: "0.85rem", opacity: "0.9" }}>
                         {userType === "trainer" ? "Тренер" : "Студент"}
                       </small>
                     </div>
                     <NavLink
-                      className="dropdown-item py-2 px-3 d-flex align-items-center"
+                      className="dropdown-item py-3 px-4 d-flex align-items-center"
                       to={profileRoute}
                       onClick={() => setIsDropdownOpen(false)}
                       style={{
                         fontSize: "0.95rem",
                         color: "#495057",
                         textDecoration: "none",
-                        transition: "all 0.2s ease",
+                        transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                         borderRadius: "0",
+                        fontWeight: "500",
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = "#f8f9fa";
-                        e.currentTarget.style.color = "#007bff";
-                        e.currentTarget.style.transform = "translateX(2px)";
+                        e.currentTarget.style.background =
+                          "rgba(102, 126, 234, 0.1)";
+                        e.currentTarget.style.color = "#667eea";
+                        e.currentTarget.style.transform = "translateX(5px)";
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = "transparent";
+                        e.currentTarget.style.background = "transparent";
                         e.currentTarget.style.color = "#495057";
                         e.currentTarget.style.transform = "translateX(0)";
                       }}
                     >
                       <i
-                        className="fas fa-user me-2"
-                        style={{ color: "#6c757d", width: "16px" }}
+                        className="fas fa-user me-3"
+                        style={{ color: "#667eea", width: "16px" }}
                       ></i>
                       Мой профиль
                     </NavLink>
                     <div
                       className="dropdown-divider"
                       style={{
-                        margin: "0.5rem 0",
-                        borderColor: "rgba(0, 0, 0, 0.1)",
+                        margin: "0.5rem 1rem",
+                        borderColor: "rgba(102, 126, 234, 0.1)",
                       }}
                     ></div>
                     <button
-                      className="dropdown-item py-2 px-3 d-flex align-items-center"
+                      className="dropdown-item py-3 px-4 d-flex align-items-center"
                       onClick={handleLogout}
                       style={{
                         fontSize: "0.95rem",
                         color: "#dc3545",
-                        backgroundColor: "transparent",
+                        background: "transparent",
                         border: "none",
                         width: "100%",
                         textAlign: "left",
-                        transition: "all 0.2s ease",
+                        transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                         borderRadius: "0",
+                        fontWeight: "500",
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = "#fff5f5";
+                        e.currentTarget.style.background =
+                          "rgba(220, 53, 69, 0.1)";
                         e.currentTarget.style.color = "#c82333";
-                        e.currentTarget.style.transform = "translateX(2px)";
+                        e.currentTarget.style.transform = "translateX(5px)";
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = "transparent";
+                        e.currentTarget.style.background = "transparent";
                         e.currentTarget.style.color = "#dc3545";
                         e.currentTarget.style.transform = "translateX(0)";
                       }}
                     >
                       <i
-                        className="fas fa-sign-out-alt me-2"
+                        className="fas fa-sign-out-alt me-3"
                         style={{ width: "16px" }}
                       ></i>
                       Выйти
@@ -376,6 +559,67 @@ const Navbar = ({
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes dropdownSlideIn {
+          from {
+            opacity: 0;
+            transform: translateY(-10px) scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+
+        .navbar-transparent {
+          background: rgba(255, 255, 255, 0.98) !important;
+        }
+
+        .navbar-scrolled {
+          background: rgba(255, 255, 255, 0.95) !important;
+        }
+
+        @media (max-width: 991.98px) {
+          .navbar-collapse {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            margin-top: 1rem;
+            padding: 1rem;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+          }
+
+          .navbar-nav {
+            text-align: center;
+          }
+
+          .nav-link {
+            margin: 0.5rem 0;
+            padding: 1rem 1.5rem !important;
+            border-radius: 12px;
+          }
+
+          .d-flex.align-items-center {
+            justify-content: center;
+            margin-top: 1rem;
+            flex-direction: column;
+            gap: 1rem;
+          }
+
+          .dropdown-menu {
+            position: static !important;
+            transform: none !important;
+            width: 100%;
+            margin-top: 1rem;
+            box-shadow: none;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+          }
+        }
+      `}</style>
     </nav>
   );
 };

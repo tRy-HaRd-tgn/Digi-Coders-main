@@ -971,3 +971,1039 @@ input::-webkit-scrollbar-thumb {
   border: 1px solid transparent;
   background-clip: content-box;
 }
+
+/* Современные стили для navbar */
+.navbar {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.navbar-brand {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar-brand:hover {
+  transform: scale(1.02);
+}
+
+.nav-link {
+  position: relative;
+  color: var(--main-color) !important;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0.75rem 1.25rem !important;
+  border-radius: 12px;
+  margin: 0 0.25rem;
+  overflow: hidden;
+}
+
+.nav-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.1) 0%,
+    rgba(118, 75, 162, 0.1) 100%
+  );
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.nav-link:hover::before {
+  left: 0;
+}
+
+.nav-link:hover {
+  color: var(--second-color) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+}
+
+.nav-link.active {
+  color: var(--second-color) !important;
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.15) 0%,
+    rgba(118, 75, 162, 0.15) 100%
+  );
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.25);
+}
+
+/* Анимация подчеркивания для активных ссылок */
+.nav-link-underline {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.nav-link:hover .nav-link-underline,
+.nav-link.active .nav-link-underline {
+  width: 80%;
+}
+
+/* Стили для кнопок авторизации */
+.btn-outline-primary {
+  border: 2px solid var(--second-color);
+  color: var(--second-color);
+  background: transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 12px;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-outline-primary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--second-color) 0%, #764ba2 100%);
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.btn-outline-primary:hover::before {
+  left: 0;
+}
+
+.btn-outline-primary:hover {
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  border-color: var(--second-color);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--second-color) 0%, #764ba2 100%);
+  border: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, #5a6fd8 0%, #6a4c93 100%);
+}
+
+/* Улучшенные стили для dropdown */
+.dropdown-menu {
+  border: none;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+  padding: 0;
+  min-width: 250px;
+  animation: dropdownSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(102, 126, 234, 0.1);
+  overflow: hidden;
+}
+
+@keyframes dropdownSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.dropdown-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 16px 16px 0 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1.5rem 1.5rem 1rem 1.5rem;
+}
+
+.dropdown-item {
+  padding: 1rem 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 0;
+  margin: 0;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.dropdown-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(102, 126, 234, 0.1);
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.dropdown-item:hover::before {
+  left: 0;
+}
+
+.dropdown-item:hover {
+  color: var(--second-color);
+  transform: translateX(5px);
+}
+
+.dropdown-item.text-danger:hover {
+  background: rgba(220, 53, 69, 0.1);
+  color: #c82333;
+}
+
+.dropdown-divider {
+  margin: 0.5rem 1rem;
+  border-color: rgba(102, 126, 234, 0.1);
+}
+
+/* Стили для иконок в dropdown */
+.dropdown-item i {
+  width: 16px;
+  text-align: center;
+  margin-right: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+
+.dropdown-item:hover i {
+  transform: scale(1.1);
+}
+
+/* Стили для аватара в навигации */
+.navbar .rounded-circle {
+  border: 3px solid rgba(102, 126, 234, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar .rounded-circle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  border-color: rgba(102, 126, 234, 0.5);
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid rgba(102, 126, 234, 0.1);
+  }
+
+  .navbar-nav {
+    text-align: center;
+  }
+
+  .nav-link {
+    margin: 0.5rem 0;
+    padding: 1rem 1.5rem !important;
+    border-radius: 12px;
+  }
+
+  .d-flex.align-items-center {
+    justify-content: center;
+    margin-top: 1rem;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* Стили для dropdown на мобильных устройствах */
+  .dropdown-menu {
+    position: static !important;
+    transform: none !important;
+    width: 100%;
+    margin-top: 1rem;
+    box-shadow: none;
+    border: 1px solid rgba(102, 126, 234, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .dropdown-header {
+    border-radius: 12px 12px 0 0;
+    padding: 1.5rem;
+  }
+
+  .dropdown-item {
+    margin: 0;
+    border-radius: 0;
+    padding: 1rem 1.5rem;
+  }
+
+  .dropdown-item:last-child {
+    border-radius: 0 0 12px 12px;
+  }
+}
+
+/* Анимации для кнопки мобильного меню */
+.navbar-toggler {
+  border: none;
+  padding: 0.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 12px;
+  background: rgba(102, 126, 234, 0.1);
+  border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.navbar-toggler:hover {
+  background: rgba(102, 126, 234, 0.15);
+  transform: scale(1.05);
+}
+
+/* Стили для аватара */
+.rounded-circle {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rounded-circle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+/* Эффект стеклянного фона */
+.navbar-glass {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+/* Анимация появления navbar при скролле */
+.navbar-scroll-animation {
+  animation: navbarSlideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes navbarSlideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Улучшенные стили для активных ссылок */
+.nav-link.active {
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.15) 0%,
+    rgba(118, 75, 162, 0.15) 100%
+  );
+  color: var(--second-color) !important;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Эффект пульсации для уведомлений */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.navbar-notification {
+  animation: pulse 2s infinite;
+}
+
+/* Стили для поиска в navbar */
+.navbar-search {
+  position: relative;
+  max-width: 300px;
+}
+
+.navbar-search input {
+  border: 2px solid rgba(102, 126, 234, 0.2);
+  border-radius: 25px;
+  padding: 0.75rem 1rem 0.75rem 3rem;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar-search input:focus {
+  border-color: var(--second-color);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+  transform: translateY(-1px);
+}
+
+.navbar-search .search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--second-color);
+  z-index: 2;
+}
+
+/* Отступ для фиксированного navbar */
+body {
+  padding-top: 80px; /* Высота navbar + дополнительный отступ */
+}
+
+/* Адаптивный отступ для мобильных устройств */
+@media (max-width: 991.98px) {
+  body {
+    padding-top: 70px;
+  }
+}
+
+/* Плавный переход для контента */
+.content-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Улучшенные стили для секций */
+.section-modern {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.section-modern::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(102, 126, 234, 0.3),
+    transparent
+  );
+}
+
+/* Стили для карточек */
+.card-modern {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+.card-modern:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+/* Стили для кнопок */
+.btn-modern {
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-modern::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+}
+
+.btn-modern:hover::before {
+  left: 0;
+}
+
+.btn-modern:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+/* Стили для форм */
+.form-modern {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  border: 1px solid rgba(102, 126, 234, 0.1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.form-control-modern {
+  border: 2px solid rgba(102, 126, 234, 0.2);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.form-control-modern:focus {
+  border-color: var(--second-color);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+  transform: translateY(-1px);
+}
+
+/* Стили для таблиц */
+.table-modern {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+.table-modern thead {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.table-modern tbody tr {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.table-modern tbody tr:hover {
+  background: rgba(102, 126, 234, 0.05);
+  transform: translateY(-1px);
+}
+
+/* Стили для модальных окон */
+.modal-modern .modal-content {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+}
+
+.modal-modern .modal-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 16px 16px 0 0;
+  border: none;
+}
+
+/* Стили для алертов */
+.alert-modern {
+  border: none;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.alert-success-modern {
+  background: rgba(40, 167, 69, 0.1);
+  border-left: 4px solid #28a745;
+  color: #155724;
+}
+
+.alert-danger-modern {
+  background: rgba(220, 53, 69, 0.1);
+  border-left: 4px solid #dc3545;
+  color: #721c24;
+}
+
+.alert-warning-modern {
+  background: rgba(255, 193, 7, 0.1);
+  border-left: 4px solid #ffc107;
+  color: #856404;
+}
+
+.alert-info-modern {
+  background: rgba(23, 162, 184, 0.1);
+  border-left: 4px solid #17a2b8;
+  color: #0c5460;
+}
+
+/* Стили для спиннеров */
+.spinner-modern {
+  border: 3px solid rgba(102, 126, 234, 0.2);
+  border-top: 3px solid var(--second-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Стили для прогресс-баров */
+.progress-modern {
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(102, 126, 234, 0.1);
+  overflow: hidden;
+}
+
+.progress-bar-modern {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 4px;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Стили для бейджей */
+.badge-modern {
+  border-radius: 20px;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.badge-modern:hover {
+  transform: scale(1.05);
+}
+
+/* Стили для тултипов */
+.tooltip-modern {
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Стили для попапов */
+.popover-modern {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+}
+
+/* Стили для карусели */
+.carousel-modern .carousel-item {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-modern .carousel-control-prev,
+.carousel-modern .carousel-control-next {
+  background: rgba(102, 126, 234, 0.8);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: auto 1rem;
+  backdrop-filter: blur(10px);
+}
+
+/* Стили для пагинации */
+.pagination-modern .page-link {
+  border: none;
+  border-radius: 8px;
+  margin: 0 0.25rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+}
+
+.pagination-modern .page-link:hover {
+  background: rgba(102, 126, 234, 0.1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+}
+
+.pagination-modern .page-item.active .page-link {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* Стили для аккордеона */
+.accordion-modern .accordion-item {
+  border: none;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.accordion-modern .accordion-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion-modern .accordion-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.accordion-modern .accordion-button:not(.collapsed) {
+  background: linear-gradient(135deg, #5a6fd8 0%, #6a4c93 100%);
+}
+
+/* Стили для табов */
+.nav-tabs-modern {
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 0.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nav-tabs-modern .nav-link {
+  border: none;
+  border-radius: 8px;
+  margin: 0 0.25rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #495057;
+}
+
+.nav-tabs-modern .nav-link:hover {
+  background: rgba(102, 126, 234, 0.1);
+  color: var(--second-color);
+}
+
+.nav-tabs-modern .nav-link.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* Стили для списков */
+.list-group-modern .list-group-item {
+  border: none;
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.list-group-modern .list-group-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+}
+
+/* Стили для хлебных крошек */
+.breadcrumb-modern {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.breadcrumb-modern .breadcrumb-item + .breadcrumb-item::before {
+  color: var(--second-color);
+}
+
+.breadcrumb-modern .breadcrumb-item.active {
+  color: var(--second-color);
+  font-weight: 600;
+}
+
+/* Стили для дропзоны */
+.dropzone-modern {
+  border: 2px dashed rgba(102, 126, 234, 0.3);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 2rem;
+  text-align: center;
+}
+
+.dropzone-modern:hover {
+  border-color: var(--second-color);
+  background: rgba(102, 126, 234, 0.05);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+}
+
+.dropzone-modern.dragover {
+  border-color: var(--second-color);
+  background: rgba(102, 126, 234, 0.1);
+  transform: scale(1.02);
+}
+
+/* Стили для загрузки файлов */
+.file-upload-modern {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.file-upload-modern:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.file-upload-modern input[type="file"] {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+/* Стили для рейтингов */
+.rating-modern {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.rating-modern .star {
+  font-size: 1.5rem;
+  color: #dee2e6;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rating-modern .star:hover,
+.rating-modern .star.active {
+  color: #ffc107;
+  transform: scale(1.1);
+}
+
+/* Стили для слайдеров */
+.slider-modern {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(102, 126, 234, 0.2);
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slider-modern::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slider-modern::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.slider-modern::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slider-modern::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Стили для переключателей */
+.switch-modern {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch-modern input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider-switch {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 34px;
+}
+
+.slider-switch:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+input:checked + .slider-switch {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+input:checked + .slider-switch:before {
+  transform: translateX(26px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* Стили для чекбоксов */
+.checkbox-modern {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+
+.checkbox-modern input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.checkbox-modern .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background-color: #eee;
+  border-radius: 4px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.checkbox-modern:hover .checkmark {
+  background-color: rgba(102, 126, 234, 0.2);
+}
+
+.checkbox-modern input:checked ~ .checkmark {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.checkbox-modern .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 7px;
+  top: 3px;
+  width: 6px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-modern input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Стили для радиокнопок */
+.radio-modern {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+
+.radio-modern input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radio-modern .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background-color: #eee;
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.radio-modern:hover .checkmark {
+  background-color: rgba(102, 126, 234, 0.2);
+}
+
+.radio-modern input:checked ~ .checkmark {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.radio-modern .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  top: 6px;
+  left: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+
+.radio-modern input:checked ~ .checkmark:after {
+  display: block;
+}
