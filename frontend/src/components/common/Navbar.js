@@ -199,7 +199,11 @@ const Navbar = ({
                 <div className="d-none d-md-flex align-items-center me-3">
                   <span
                     className="text-dark fw-medium"
-                    style={{ fontSize: "0.9rem" }}
+                    style={{
+                      fontSize: "0.9rem",
+                      color: "#495057",
+                      fontWeight: "500",
+                    }}
                   >
                     {getUserDisplayName()}
                   </span>
@@ -215,11 +219,18 @@ const Navbar = ({
                       height: "45px",
                       objectFit: "cover",
                       cursor: "pointer",
+                      transition: "transform 0.2s ease",
                     }}
                     alt="User Avatar"
                     loading="lazy"
                     onError={handleAvatarError}
                     onClick={toggleDropdown}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = "scale(1.05)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = "scale(1)";
+                    }}
                   />
 
                   {/* Индикатор dropdown */}
@@ -238,8 +249,18 @@ const Navbar = ({
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
+                      transition: "all 0.2s ease",
+                      boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
                     }}
                     onClick={toggleDropdown}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = "scale(1.1)";
+                      e.currentTarget.style.backgroundColor = "#0056b3";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = "scale(1)";
+                      e.currentTarget.style.backgroundColor = "#007bff";
+                    }}
                   >
                     <i
                       className={`fas fa-caret-${
@@ -251,29 +272,101 @@ const Navbar = ({
 
                 {/* Dropdown меню */}
                 {isDropdownOpen && (
-                  <div className="dropdown-menu show position-absolute end-0 mt-2 shadow-lg border-0 rounded-3">
-                    <div className="dropdown-header py-2 px-3 border-bottom">
-                      <div className="fw-bold text-dark">
+                  <div
+                    className="dropdown-menu show position-absolute end-0 mt-2 shadow-lg border-0 rounded-3"
+                    style={{
+                      minWidth: "220px",
+                      maxWidth: "280px",
+                      backgroundColor: "white",
+                      boxShadow: "0 10px 30px rgba(0, 0, 0, 0.15)",
+                      border: "1px solid rgba(0, 0, 0, 0.08)",
+                      zIndex: 1050,
+                      overflow: "hidden",
+                    }}
+                  >
+                    <div
+                      className="dropdown-header py-3 px-3 border-bottom"
+                      style={{
+                        backgroundColor: "transparent",
+                        borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
+                      }}
+                    >
+                      <div
+                        className="fw-bold text-dark"
+                        style={{ fontSize: "1.1rem", marginBottom: "2px" }}
+                      >
                         {getUserDisplayName()}
                       </div>
-                      <small className="text-muted">
+                      <small
+                        className="text-muted"
+                        style={{ fontSize: "0.85rem" }}
+                      >
                         {userType === "trainer" ? "Тренер" : "Студент"}
                       </small>
                     </div>
                     <NavLink
-                      className="dropdown-item py-2 px-3"
+                      className="dropdown-item py-2 px-3 d-flex align-items-center"
                       to={profileRoute}
                       onClick={() => setIsDropdownOpen(false)}
+                      style={{
+                        fontSize: "0.95rem",
+                        color: "#495057",
+                        textDecoration: "none",
+                        transition: "all 0.2s ease",
+                        borderRadius: "0",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = "#f8f9fa";
+                        e.currentTarget.style.color = "#007bff";
+                        e.currentTarget.style.transform = "translateX(2px)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = "transparent";
+                        e.currentTarget.style.color = "#495057";
+                        e.currentTarget.style.transform = "translateX(0)";
+                      }}
                     >
-                      <i className="fas fa-user me-2 text-muted"></i>
+                      <i
+                        className="fas fa-user me-2"
+                        style={{ color: "#6c757d", width: "16px" }}
+                      ></i>
                       Мой профиль
                     </NavLink>
-                    <div className="dropdown-divider"></div>
+                    <div
+                      className="dropdown-divider"
+                      style={{
+                        margin: "0.5rem 0",
+                        borderColor: "rgba(0, 0, 0, 0.1)",
+                      }}
+                    ></div>
                     <button
-                      className="dropdown-item py-2 px-3 text-danger"
+                      className="dropdown-item py-2 px-3 d-flex align-items-center"
                       onClick={handleLogout}
+                      style={{
+                        fontSize: "0.95rem",
+                        color: "#dc3545",
+                        backgroundColor: "transparent",
+                        border: "none",
+                        width: "100%",
+                        textAlign: "left",
+                        transition: "all 0.2s ease",
+                        borderRadius: "0",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = "#fff5f5";
+                        e.currentTarget.style.color = "#c82333";
+                        e.currentTarget.style.transform = "translateX(2px)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = "transparent";
+                        e.currentTarget.style.color = "#dc3545";
+                        e.currentTarget.style.transform = "translateX(0)";
+                      }}
                     >
-                      <i className="fas fa-sign-out-alt me-2"></i>
+                      <i
+                        className="fas fa-sign-out-alt me-2"
+                        style={{ width: "16px" }}
+                      ></i>
                       Выйти
                     </button>
                   </div>
