@@ -14,6 +14,11 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  background: linear-gradient(
+    135deg,
+    rgb(102, 126, 234) 0%,
+    rgb(118, 75, 162) 100%
+  );
 }
 
 /* Ensure footer stays at bottom */

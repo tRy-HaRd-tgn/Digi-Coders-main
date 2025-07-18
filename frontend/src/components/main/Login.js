@@ -289,6 +289,7 @@ const Login = () => {
         .modern-login-container {
           font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
             Roboto, sans-serif;
+          height: auto;
         }
 
         .modern-account-card:hover {

@@ -1101,7 +1101,7 @@ const ManageChapter = () => {
 
         .main-content {
           background: #f8f9fa;
-          min-height: calc(100vh - 200px);
+          
         }
 
         .manage-chapters-container {
