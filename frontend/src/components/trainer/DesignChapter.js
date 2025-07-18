@@ -460,7 +460,7 @@ const DesignChapter = () => {
         }
 
         .design-section {
-          padding: 60px 0;
+          
           background: #f8f9fa;
         }
 
