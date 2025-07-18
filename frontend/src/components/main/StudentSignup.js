@@ -1,16 +1,13 @@
 import { useFormik } from "formik";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
 import { motion } from "framer-motion";
 import { NavLink, useNavigate } from "react-router-dom";
-import app_config from "../../config";
 import jwt_decode from "jwt-decode";
-import { useUserContext } from "../../context/UserContext";
 import {
   initializeGoogleSignIn,
   renderGoogleButton,
-  promptGoogleSignIn,
 } from "../../utils/googleAuth";
 
 const StudentSignup = () => {
@@ -20,11 +17,6 @@ const StudentSignup = () => {
 
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(!show);
-
-  const [user, setUser] = useState({});
-  const [avatar, setAvatar] = useState("");
-
-  const { loggedIn, setLoggedIn } = useUserContext();
 
   const StudentsignupSchema = Yup.object().shape({
     name: Yup.string()
@@ -129,60 +121,33 @@ const StudentSignup = () => {
     });
   };
 
-  const handleSignOut = (event) => {
-    setUser({});
-    document.getElementById("signInDiv").hidden = false;
-  };
+  const handleCallbackResponse = useCallback(
+    async (response) => {
+      try {
+        if (!response || !response.credential) {
+          throw new Error("Invalid response from Google Sign-In");
+        }
 
-  const saveGoogleUser = async (googleObj) => {
-    setAvatar(googleObj.picture);
-    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
-    const response = await fetch(`${apiUrl}/user/add`, {
-      method: "POST",
-      body: JSON.stringify({
-        username: googleObj.name,
-        email: googleObj.email,
-        avatar: googleObj.picture,
-        createdAt: new Date(),
-        type: "google",
-      }),
-      headers: { "Content-Type": "application/json" },
-    });
+        var userObject = jwt_decode(response.credential);
 
-    if (response.status === 200) {
-      const data = await response.json();
-      sessionStorage.setItem("user", JSON.stringify(data));
-      setLoggedIn(true);
-      navigate("/");
-    }
-  };
+        const signInDiv = document.getElementById("signInDiv");
+        if (signInDiv) {
+          signInDiv.hidden = true;
+        }
+        sessionStorage.setItem("user", JSON.stringify(userObject));
 
-  const handleCallbackResponse = async (response) => {
-    try {
-      if (!response || !response.credential) {
-        throw new Error("Invalid response from Google Sign-In");
+        navigate("/main/course");
+      } catch (error) {
+        console.error("Error handling Google Sign-In response:", error);
+        Swal.fire({
+          icon: "error",
+          title: "Ошибка входа",
+          text: "Не удалось войти через Google. Попробуйте другой способ.",
+        });
       }
-
-      var userObject = jwt_decode(response.credential);
-
-      setUser(userObject);
-
-      const signInDiv = document.getElementById("signInDiv");
-      if (signInDiv) {
-        signInDiv.hidden = true;
-      }
-      sessionStorage.setItem("user", JSON.stringify(userObject));
-
-      navigate("/main/course");
-    } catch (error) {
-      console.error("Error handling Google Sign-In response:", error);
-      Swal.fire({
-        icon: "error",
-        title: "Ошибка входа",
-        text: "Не удалось войти через Google. Попробуйте другой способ.",
-      });
-    }
-  };
+    },
+    [navigate]
+  );
 
   useEffect(() => {
     const clientId =
@@ -196,7 +161,7 @@ const StudentSignup = () => {
       }
     } else {
     }
-  }, []);
+  }, [handleCallbackResponse]);
 
   return (
     <motion.div
