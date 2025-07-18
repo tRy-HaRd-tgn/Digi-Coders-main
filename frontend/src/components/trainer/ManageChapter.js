@@ -668,7 +668,7 @@ const ManageChapter = () => {
       </section>
 
       {/* Современные стили */}
-      <style jsx>{`
+      <style>{`
         .simple-header {
           background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
           padding: 60px 0 40px;

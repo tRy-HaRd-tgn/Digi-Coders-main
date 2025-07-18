@@ -347,7 +347,7 @@ const BrowseChapters = () => {
         </section>
       )}
 
-      <style jsx>{`
+      <style>{`
         .view-chapters-page {
           min-height: 100vh;
           background: #f8f9fa;

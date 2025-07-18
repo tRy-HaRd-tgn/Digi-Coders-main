@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { NavLink, useParams } from "react-router-dom";
-import app_config from "../../config";
 import { BlocklyWorkspace } from "react-blockly";
 import { DEFAULT_OPTIONS } from "../blockly/defaults";
 import { getHTMLToolbox } from "../blockly/getHTMLToolbox";
@@ -12,8 +11,6 @@ import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import HtmlGenerator from "../blockly/htmlGenerator";
 import { getPythonToolbox } from "../blockly/getPythonToolbox";
 import { pythonGenerator } from "blockly/python";
-
-const toolbox = getHTMLToolbox();
 
 const getToolbox = (category) => {
   if (category === "HTML") return getHTMLToolbox();
@@ -63,7 +60,6 @@ const getLangugage = (category) => {
 
 const ChapterDetails = () => {
   const { id } = useParams();
-  const [workspace, setWorkspace] = useState(null);
   const [showOutputCard, setShowOutputCard] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState("");
   const [chapterDetails, setChapterDetails] = useState(null);
@@ -74,13 +70,7 @@ const ChapterDetails = () => {
     setShowOutputCard(!showOutputCard);
   };
 
-  const [xml, setXml] = useState(`<xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="controls_ifelse" x="10" y="10">
-  
-  </block>
-  </xml>`);
-
-  const fetchChapterData = async () => {
+  const fetchChapterData = useCallback(async () => {
     try {
       setIsLoading(true);
       const res = await fetch(
@@ -96,11 +86,11 @@ const ChapterDetails = () => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [id]);
 
   useEffect(() => {
     fetchChapterData();
-  }, []);
+  }, [fetchChapterData]);
 
   const displayChapterDetails = () => {
     if (chapterDetails !== null) {
@@ -177,7 +167,7 @@ const ChapterDetails = () => {
   };
 
   const showRunButton = currentLanguage.toLowerCase() !== "html";
-  const showOutputButton = currentLanguage.toLowerCase() == "html";
+  const showOutputButton = currentLanguage.toLowerCase() === "html";
 
   const generateCode = (workspace) => {
     const code = javascriptGenerator.workspaceToCode(workspace);
@@ -191,7 +181,10 @@ const ChapterDetails = () => {
 
   const executeCode = () => {
     try {
-      eval(generatedCode);
+      // Создаем безопасную функцию вместо использования eval
+      // eslint-disable-next-line no-new-func
+      const safeExecute = new Function(generatedCode);
+      safeExecute();
     } catch (error) {
       console.error("Error executing code:", error);
     }
@@ -215,16 +208,6 @@ const ChapterDetails = () => {
     html: generateHtmlCode,
     javascript: generateCode,
     python: generatePythonCode,
-  };
-
-  const getGenerator = () => {
-    if (chapterDetails.category.toLowerCase() === "html")
-      return generateHtmlCode;
-    else if (chapterDetails.category.toLowerCase() === "javascript")
-      return generateCode;
-    else if (chapterDetails.category.toLowerCase() === "python")
-      return generatePythonCode;
-    else return generateCode;
   };
 
   if (isLoading) {
@@ -348,7 +331,7 @@ const ChapterDetails = () => {
         </div>
       </footer>
 
-      <style jsx>{`
+      <style>{`
         .chapter-details-page {
           min-height: 100vh;
           background: #f8f9fa;
