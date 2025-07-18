@@ -82,6 +82,19 @@ const UserProfile = () => {
             text: "Профиль успешно обновлен",
             showConfirmButton: false,
             timer: 1500,
+            background: "rgba(255, 255, 255, 0.95)",
+            backdrop: "rgba(0, 0, 0, 0.4)",
+            customClass: {
+              popup: "modern-swal-popup swal2-success",
+              title: "modern-swal-title",
+              content: "modern-swal-content",
+            },
+            showClass: {
+              popup: "animate__animated animate__fadeInDown",
+            },
+            hideClass: {
+              popup: "animate__animated animate__fadeOutUp",
+            },
           });
         } else {
           const errorData = await res.json();
@@ -91,6 +104,19 @@ const UserProfile = () => {
             text: errorData.message || "Не удалось обновить профиль",
             showConfirmButton: false,
             timer: 1500,
+            background: "rgba(255, 255, 255, 0.95)",
+            backdrop: "rgba(0, 0, 0, 0.4)",
+            customClass: {
+              popup: "modern-swal-popup swal2-error",
+              title: "modern-swal-title",
+              content: "modern-swal-content",
+            },
+            showClass: {
+              popup: "animate__animated animate__fadeInDown",
+            },
+            hideClass: {
+              popup: "animate__animated animate__fadeOutUp",
+            },
           });
         }
       } catch (error) {
@@ -101,6 +127,19 @@ const UserProfile = () => {
           text: "Произошла ошибка при обновлении профиля",
           showConfirmButton: false,
           timer: 1500,
+          background: "rgba(255, 255, 255, 0.95)",
+          backdrop: "rgba(0, 0, 0, 0.4)",
+          customClass: {
+            popup: "modern-swal-popup swal2-error",
+            title: "modern-swal-title",
+            content: "modern-swal-content",
+          },
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
         });
       } finally {
         setSubmitting(false);
@@ -117,6 +156,19 @@ const UserProfile = () => {
         text: "Пожалуйста, выберите изображение для загрузки",
         showConfirmButton: false,
         timer: 2000,
+        background: "rgba(255, 255, 255, 0.95)",
+        backdrop: "rgba(0, 0, 0, 0.4)",
+        customClass: {
+          popup: "modern-swal-popup swal2-warning",
+          title: "modern-swal-title",
+          content: "modern-swal-content",
+        },
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
       });
       return;
     }
@@ -165,6 +217,19 @@ const UserProfile = () => {
             text: "Фотография профиля успешно загружена",
             showConfirmButton: false,
             timer: 2000,
+            background: "rgba(255, 255, 255, 0.95)",
+            backdrop: "rgba(0, 0, 0, 0.4)",
+            customClass: {
+              popup: "modern-swal-popup swal2-success",
+              title: "modern-swal-title",
+              content: "modern-swal-content",
+            },
+            showClass: {
+              popup: "animate__animated animate__fadeInDown",
+            },
+            hideClass: {
+              popup: "animate__animated animate__fadeOutUp",
+            },
           });
         } else {
           throw new Error("Failed to update profile");
@@ -180,6 +245,19 @@ const UserProfile = () => {
         text: "Не удалось загрузить изображение. Попробуйте еще раз.",
         showConfirmButton: false,
         timer: 2000,
+        background: "rgba(255, 255, 255, 0.95)",
+        backdrop: "rgba(0, 0, 0, 0.4)",
+        customClass: {
+          popup: "modern-swal-popup swal2-error",
+          title: "modern-swal-title",
+          content: "modern-swal-content",
+        },
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
       });
     } finally {
       setIsUploading(false);

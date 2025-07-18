@@ -136,6 +136,19 @@ const TrainerProfile = () => {
             text: "Профиль успешно обновлен",
             showConfirmButton: false,
             timer: 1500,
+            background: "rgba(255, 255, 255, 0.95)",
+            backdrop: "rgba(0, 0, 0, 0.4)",
+            customClass: {
+              popup: "modern-swal-popup swal2-success",
+              title: "modern-swal-title",
+              content: "modern-swal-content",
+            },
+            showClass: {
+              popup: "animate__animated animate__fadeInDown",
+            },
+            hideClass: {
+              popup: "animate__animated animate__fadeOutUp",
+            },
           });
         } else {
           const errorData = await res.json();
@@ -145,6 +158,19 @@ const TrainerProfile = () => {
             text: errorData.message || "Не удалось обновить профиль",
             showConfirmButton: false,
             timer: 1500,
+            background: "rgba(255, 255, 255, 0.95)",
+            backdrop: "rgba(0, 0, 0, 0.4)",
+            customClass: {
+              popup: "modern-swal-popup swal2-error",
+              title: "modern-swal-title",
+              content: "modern-swal-content",
+            },
+            showClass: {
+              popup: "animate__animated animate__fadeInDown",
+            },
+            hideClass: {
+              popup: "animate__animated animate__fadeOutUp",
+            },
           });
         }
       } catch (error) {
@@ -155,6 +181,19 @@ const TrainerProfile = () => {
           text: "Произошла ошибка при обновлении профиля",
           showConfirmButton: false,
           timer: 1500,
+          background: "rgba(255, 255, 255, 0.95)",
+          backdrop: "rgba(0, 0, 0, 0.4)",
+          customClass: {
+            popup: "modern-swal-popup swal2-error",
+            title: "modern-swal-title",
+            content: "modern-swal-content",
+          },
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
         });
       } finally {
         setSubmitting(false);
@@ -269,6 +308,19 @@ const TrainerProfile = () => {
             text: "Фотография профиля успешно загружена и обновлена",
             showConfirmButton: false,
             timer: 2000,
+            background: "rgba(255, 255, 255, 0.95)",
+            backdrop: "rgba(0, 0, 0, 0.4)",
+            customClass: {
+              popup: "modern-swal-popup swal2-success",
+              title: "modern-swal-title",
+              content: "modern-swal-content",
+            },
+            showClass: {
+              popup: "animate__animated animate__fadeInDown",
+            },
+            hideClass: {
+              popup: "animate__animated animate__fadeOutUp",
+            },
           });
         } else {
           const errorData = await updateRes.json();

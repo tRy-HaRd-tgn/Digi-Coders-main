@@ -45,6 +45,19 @@ const StudentLogin = () => {
             text: "Вход выполнен успешно",
             showConfirmButton: false,
             timer: 1500,
+            background: "rgba(255, 255, 255, 0.95)",
+            backdrop: "rgba(0, 0, 0, 0.4)",
+            customClass: {
+              popup: "modern-swal-popup swal2-success",
+              title: "modern-swal-title",
+              content: "modern-swal-content",
+            },
+            showClass: {
+              popup: "animate__animated animate__fadeInDown",
+            },
+            hideClass: {
+              popup: "animate__animated animate__fadeOutUp",
+            },
           });
 
           const data = await res.json();

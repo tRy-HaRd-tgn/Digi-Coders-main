@@ -44,6 +44,19 @@ const ManageChapter = () => {
         title: "Глава успешно удалена",
         icon: "success",
         timer: 2000,
+        background: "rgba(255, 255, 255, 0.95)",
+        backdrop: "rgba(0, 0, 0, 0.4)",
+        customClass: {
+          popup: "modern-swal-popup swal2-success",
+          title: "modern-swal-title",
+          content: "modern-swal-content",
+        },
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
       });
       fetchUserData();
     } else {
@@ -220,9 +233,16 @@ const ManageChapter = () => {
                   <div className="form-group">
                     <label className="form-label">
                       <i className="fas fa-image me-2" />
-                      Изображение главы
+                      Изображение главы <span className="text-danger">*</span>
                     </label>
-                    <div className="file-upload-wrapper">
+                    <div
+                      className={`file-upload-wrapper ${
+                        (!selImage && managechapterForm.submitCount > 0) ||
+                        imageError
+                          ? "error-state"
+                          : ""
+                      }`}
+                    >
                       <label htmlFor="chapter-img" className="file-upload-btn">
                         <i className="fas fa-cloud-upload-alt" />
                         <span>Выбрать изображение</span>
@@ -249,10 +269,13 @@ const ManageChapter = () => {
                     </div>
                     {(imageError ||
                       (managechapterForm.touched.image &&
-                        managechapterForm.errors.image)) && (
+                        managechapterForm.errors.image) ||
+                      (!selImage && managechapterForm.submitCount > 0)) && (
                       <div className="error-message">
                         <i className="fas fa-exclamation-triangle" />
-                        {imageError || managechapterForm.errors.image}
+                        {imageError ||
+                          managechapterForm.errors.image ||
+                          "Изображение обязательно для загрузки"}
                       </div>
                     )}
                   </div>
@@ -509,21 +532,45 @@ const ManageChapter = () => {
         errors.category = "Выберите категорию";
       }
 
-      // Валидация изображения
+      // Валидация изображения - обязательное поле
       if (!selImage) {
         errors.image = "Изображение обязательно для загрузки";
+      } else if (imageError) {
+        errors.image = imageError;
       }
 
       return errors;
     },
 
     onSubmit: async (values, { setSubmitting, resetForm }) => {
+      // Дополнительная проверка изображения при отправке
       if (!selImage) {
         setImageError("Пожалуйста, выберите изображение для главы.");
         setPendingSubmit(true);
         setSubmitting(false);
+
+        // Показываем модальное окно с ошибкой
+        Swal.fire({
+          icon: "error",
+          title: "Ошибка!",
+          text: "Изображение обязательно для создания главы",
+          background: "rgba(255, 255, 255, 0.95)",
+          backdrop: "rgba(0, 0, 0, 0.4)",
+          customClass: {
+            popup: "modern-swal-popup swal2-error",
+            title: "modern-swal-title",
+            content: "modern-swal-content",
+          },
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
+        });
         return;
       }
+
       setImageError("");
       setPendingSubmit(false);
       values.icon = selImage.name;
@@ -543,6 +590,19 @@ const ManageChapter = () => {
           title: "Глава успешно создана",
           showConfirmButton: false,
           timer: 1500,
+          background: "rgba(255, 255, 255, 0.95)",
+          backdrop: "rgba(0, 0, 0, 0.4)",
+          customClass: {
+            popup: "modern-swal-popup swal2-success",
+            title: "modern-swal-title",
+            content: "modern-swal-content",
+          },
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
         });
         resetForm();
         setSelImage(null);
@@ -571,6 +631,19 @@ const ManageChapter = () => {
           icon: "error",
           title: "Ошибка!",
           text: "Что-то пошло не так!",
+          background: "rgba(255, 255, 255, 0.95)",
+          backdrop: "rgba(0, 0, 0, 0.4)",
+          customClass: {
+            popup: "modern-swal-popup swal2-error",
+            title: "modern-swal-title",
+            content: "modern-swal-content",
+          },
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
         });
       }
     },
@@ -586,62 +659,393 @@ const ManageChapter = () => {
 
   const uploadFile = (e) => {
     const file = e.target.files[0];
-    const fd = new FormData();
-    setSelImage(file);
-    setImageError(""); // Очищаем ошибку при выборе файла
-    fd.append("myfile", file);
-    fetch(`${process.env.REACT_APP_API_URL}/util/uploadfile`, {
-      method: "POST",
-      body: fd,
-    }).then((res) => {
-      if (res.status === 200) {
+
+    // Очищаем предыдущие ошибки
+    setImageError("");
+
+    if (!file) {
+      setImageError("Пожалуйста, выберите файл");
+      return;
+    }
+
+    // Проверка типа файла
+    const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
+    if (!allowedTypes.includes(file.type)) {
+      setImageError("Поддерживаются только файлы: JPG, JPEG, PNG, WEBP");
+      return;
+    }
+
+    // Проверка размера файла (максимум 5MB)
+    const maxSize = 5 * 1024 * 1024; // 5MB в байтах
+    if (file.size > maxSize) {
+      setImageError("Размер файла не должен превышать 5MB");
+      return;
+    }
+
+    // Проверка минимального размера файла (минимум 10KB)
+    const minSize = 10 * 1024; // 10KB в байтах
+    if (file.size < minSize) {
+      setImageError("Размер файла слишком маленький. Минимум 10KB");
+      return;
+    }
+
+    // Проверка имени файла
+    const fileName = file.name.toLowerCase();
+    if (fileName.includes(" ") || fileName.includes("_")) {
+      setImageError("Имя файла не должно содержать пробелы или подчеркивания");
+      return;
+    }
+
+    // Проверка расширения файла
+    const fileExtension = fileName.split(".").pop();
+    const allowedExtensions = ["jpg", "jpeg", "png", "webp"];
+    if (!allowedExtensions.includes(fileExtension)) {
+      setImageError("Неподдерживаемое расширение файла");
+      return;
+    }
+
+    // Дополнительная проверка через создание изображения
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+
+      // Проверка размеров изображения
+      if (img.width < 100 || img.height < 100) {
+        setImageError("Минимальный размер изображения: 100x100 пикселей");
+        return;
       }
-    });
+
+      if (img.width > 2000 || img.height > 2000) {
+        setImageError("Максимальный размер изображения: 2000x2000 пикселей");
+        return;
+      }
+
+      // Проверка соотношения сторон (не слишком узкое или широкое)
+      const aspectRatio = img.width / img.height;
+      if (aspectRatio < 0.5 || aspectRatio > 2) {
+        setImageError("Соотношение сторон должно быть между 1:2 и 2:1");
+        return;
+      }
+
+      // Если все проверки пройдены, загружаем файл
+      setSelImage(file);
+      const fd = new FormData();
+      fd.append("myfile", file);
+
+      fetch(`${process.env.REACT_APP_API_URL}/util/uploadfile`, {
+        method: "POST",
+        body: fd,
+      })
+        .then((res) => {
+          if (res.status === 200) {
+            // Успешная загрузка
+            console.log("Файл успешно загружен");
+          } else {
+            setImageError("Ошибка при загрузке файла на сервер");
+          }
+        })
+        .catch((error) => {
+          setImageError("Ошибка сети при загрузке файла");
+          console.error("Upload error:", error);
+        });
+    };
+
+    img.onerror = () => {
+      URL.revokeObjectURL(url);
+      setImageError("Невозможно прочитать файл как изображение");
+    };
+
+    img.src = url;
   };
 
   const handleChapterIconChange = async (e, chapter) => {
     const file = e.target.files[0];
     if (!file) return;
+
+    // Валидация файла
+    const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
+    if (!allowedTypes.includes(file.type)) {
+      Swal.fire({
+        icon: "error",
+        title: "Ошибка!",
+        text: "Поддерживаются только файлы: JPG, JPEG, PNG, WEBP",
+        background: "rgba(255, 255, 255, 0.95)",
+        backdrop: "rgba(0, 0, 0, 0.4)",
+        customClass: {
+          popup: "modern-swal-popup swal2-error",
+          title: "modern-swal-title",
+          content: "modern-swal-content",
+        },
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
+      return;
+    }
+
+    // Проверка размера файла (максимум 5MB)
+    const maxSize = 5 * 1024 * 1024;
+    if (file.size > maxSize) {
+      Swal.fire({
+        icon: "error",
+        title: "Ошибка!",
+        text: "Размер файла не должен превышать 5MB",
+        background: "rgba(255, 255, 255, 0.95)",
+        backdrop: "rgba(0, 0, 0, 0.4)",
+        customClass: {
+          popup: "modern-swal-popup swal2-error",
+          title: "modern-swal-title",
+          content: "modern-swal-content",
+        },
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
+      return;
+    }
+
+    // Проверка имени файла
+    const fileName = file.name.toLowerCase();
+    if (fileName.includes(" ") || fileName.includes("_")) {
+      Swal.fire({
+        icon: "error",
+        title: "Ошибка!",
+        text: "Имя файла не должно содержать пробелы или подчеркивания",
+        background: "rgba(255, 255, 255, 0.95)",
+        backdrop: "rgba(0, 0, 0, 0.4)",
+        customClass: {
+          popup: "modern-swal-popup swal2-error",
+          title: "modern-swal-title",
+          content: "modern-swal-content",
+        },
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
+      return;
+    }
+
+    // Проверка изображения через создание объекта Image
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+
+      // Проверка размеров изображения
+      if (img.width < 100 || img.height < 100) {
+        Swal.fire({
+          icon: "error",
+          title: "Ошибка!",
+          text: "Минимальный размер изображения: 100x100 пикселей",
+          background: "rgba(255, 255, 255, 0.95)",
+          backdrop: "rgba(0, 0, 0, 0.4)",
+          customClass: {
+            popup: "modern-swal-popup swal2-error",
+            title: "modern-swal-title",
+            content: "modern-swal-content",
+          },
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
+        });
+        return;
+      }
+
+      if (img.width > 2000 || img.height > 2000) {
+        Swal.fire({
+          icon: "error",
+          title: "Ошибка!",
+          text: "Максимальный размер изображения: 2000x2000 пикселей",
+          background: "rgba(255, 255, 255, 0.95)",
+          backdrop: "rgba(0, 0, 0, 0.4)",
+          customClass: {
+            popup: "modern-swal-popup swal2-error",
+            title: "modern-swal-title",
+            content: "modern-swal-content",
+          },
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
+        });
+        return;
+      }
+
+      // Проверка соотношения сторон
+      const aspectRatio = img.width / img.height;
+      if (aspectRatio < 0.5 || aspectRatio > 2) {
+        Swal.fire({
+          icon: "error",
+          title: "Ошибка!",
+          text: "Соотношение сторон должно быть между 1:2 и 2:1",
+          background: "rgba(255, 255, 255, 0.95)",
+          backdrop: "rgba(0, 0, 0, 0.4)",
+          customClass: {
+            popup: "modern-swal-popup swal2-error",
+            title: "modern-swal-title",
+            content: "modern-swal-content",
+          },
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
+        });
+        return;
+      }
+
+      // Если все проверки пройдены, загружаем файл
+      uploadChapterIcon(file, chapter);
+    };
+
+    img.onerror = () => {
+      URL.revokeObjectURL(url);
+      Swal.fire({
+        icon: "error",
+        title: "Ошибка!",
+        text: "Невозможно прочитать файл как изображение",
+        background: "rgba(255, 255, 255, 0.95)",
+        backdrop: "rgba(0, 0, 0, 0.4)",
+        customClass: {
+          popup: "modern-swal-popup swal2-error",
+          title: "modern-swal-title",
+          content: "modern-swal-content",
+        },
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
+    };
+
+    img.src = url;
+  };
+
+  const uploadChapterIcon = async (file, chapter) => {
     const fd = new FormData();
     fd.append("myfile", file);
-    const uploadRes = await fetch(
-      `${process.env.REACT_APP_API_URL}/util/uploadfile`,
-      {
-        method: "POST",
-        body: fd,
-      }
-    );
-    if (uploadRes.status === 200) {
-      const updateRes = await fetch(
-        `${process.env.REACT_APP_API_URL}/chapter/update/${chapter._id}`,
+
+    try {
+      const uploadRes = await fetch(
+        `${process.env.REACT_APP_API_URL}/util/uploadfile`,
         {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            ...chapter,
-            icon: file.name,
-            updated_at: new Date(),
-          }),
+          method: "POST",
+          body: fd,
         }
       );
-      if (updateRes.status === 200) {
-        Swal.fire({
-          icon: "success",
-          title: "Иконка обновлена!",
-          timer: 1200,
-          showConfirmButton: false,
-        });
-        fetchUserData();
+
+      if (uploadRes.status === 200) {
+        const updateRes = await fetch(
+          `${process.env.REACT_APP_API_URL}/chapter/update/${chapter._id}`,
+          {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              ...chapter,
+              icon: file.name,
+              updated_at: new Date(),
+            }),
+          }
+        );
+
+        if (updateRes.status === 200) {
+          Swal.fire({
+            icon: "success",
+            title: "Иконка обновлена!",
+            timer: 1200,
+            showConfirmButton: false,
+            background: "rgba(255, 255, 255, 0.95)",
+            backdrop: "rgba(0, 0, 0, 0.4)",
+            customClass: {
+              popup: "modern-swal-popup swal2-success",
+              title: "modern-swal-title",
+              content: "modern-swal-content",
+            },
+            showClass: {
+              popup: "animate__animated animate__fadeInDown",
+            },
+            hideClass: {
+              popup: "animate__animated animate__fadeOutUp",
+            },
+          });
+          fetchUserData();
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Ошибка при обновлении главы",
+            background: "rgba(255, 255, 255, 0.95)",
+            backdrop: "rgba(0, 0, 0, 0.4)",
+            customClass: {
+              popup: "modern-swal-popup swal2-error",
+              title: "modern-swal-title",
+              content: "modern-swal-content",
+            },
+            showClass: {
+              popup: "animate__animated animate__fadeInDown",
+            },
+            hideClass: {
+              popup: "animate__animated animate__fadeOutUp",
+            },
+          });
+        }
       } else {
         Swal.fire({
           icon: "error",
-          title: "Ошибка при обновлении главы",
+          title: "Ошибка загрузки файла",
+          background: "rgba(255, 255, 255, 0.95)",
+          backdrop: "rgba(0, 0, 0, 0.4)",
+          customClass: {
+            popup: "modern-swal-popup swal2-error",
+            title: "modern-swal-title",
+            content: "modern-swal-content",
+          },
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
         });
       }
-    } else {
+    } catch (error) {
+      console.error("Upload error:", error);
       Swal.fire({
         icon: "error",
-        title: "Ошибка загрузки файла",
+        title: "Ошибка сети",
+        text: "Проверьте подключение к интернету",
+        background: "rgba(255, 255, 255, 0.95)",
+        backdrop: "rgba(0, 0, 0, 0.4)",
+        customClass: {
+          popup: "modern-swal-popup swal2-error",
+          title: "modern-swal-title",
+          content: "modern-swal-content",
+        },
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
       });
     }
   };
@@ -788,7 +1192,7 @@ const ManageChapter = () => {
         .modern-modal .modal-header {
           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           color: white;
-          border-radius: 16px 16px 0 0;
+          border-radius: 3px 3px 0 0;
           border: none;
         }
 
@@ -839,6 +1243,16 @@ const ManageChapter = () => {
           align-items: center;
           gap: 1rem;
           flex-wrap: wrap;
+          padding: 1rem;
+          border: 2px solid #e9ecef;
+          border-radius: 8px;
+          transition: all 0.3s ease;
+        }
+
+        .file-upload-wrapper.error-state {
+          border-color: #dc3545;
+          background-color: rgba(220, 53, 69, 0.05);
+          box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
         }
 
         .file-upload-btn {
