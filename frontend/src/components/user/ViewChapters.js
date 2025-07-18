@@ -212,11 +212,7 @@ const BrowseChapters = () => {
         </div>
         <div className="container">
           <div className="hero-content">
-            <h1 className="hero-title">
-              {getCategoryFromURL()
-                ? `${getCategoryFromURL()} Курсы`
-                : "Digi Coders"}
-            </h1>
+            <h1 className="hero-title">Курсы</h1>
             <p className="hero-subtitle">
               Найдите интересующий вас курс или урок с помощью поиска ниже
             </p>
@@ -237,7 +233,6 @@ const BrowseChapters = () => {
         </div>
       </section>
 
-      {/* Filters Section */}
       <section className="filters-section">
         <div className="container">
           <div className="filters-container">
