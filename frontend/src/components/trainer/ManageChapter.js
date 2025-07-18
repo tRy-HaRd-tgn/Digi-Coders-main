@@ -289,8 +289,11 @@ const ManageChapter = () => {
                       Отмена
                     </button>
                     <button
-                      className="btn btn-primary submit-btn"
+                      className={`btn btn-primary submit-btn ${
+                        !selImage ? "disabled" : ""
+                      }`}
                       type="submit"
+                      disabled={!selImage}
                     >
                       <i className="fas fa-save me-2" />
                       Создать главу
@@ -1318,6 +1321,17 @@ const ManageChapter = () => {
         .submit-btn:hover {
           transform: translateY(-2px);
           box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn.disabled {
+          background: #6c757d !important;
+          cursor: not-allowed;
+          opacity: 0.6;
+        }
+
+        .submit-btn.disabled:hover {
+          transform: none;
+          box-shadow: none;
         }
 
         .chapters-table-container {
