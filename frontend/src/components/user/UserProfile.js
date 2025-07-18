@@ -191,14 +191,14 @@ const UserProfile = () => {
       className="user-profile-container"
       style={{
         background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-        minHeight: "100vh",
+        minHeight: "auto",
         padding: "2rem 0",
         fontFamily: "'Inter', sans-serif",
       }}
     >
       <div className="container-xl px-5 mb-8 mt-5">
         <motion.div
-          className="row d-flex justify-content-center"
+          className="row d-flex justify-content-center align-items-stretch"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -208,6 +208,7 @@ const UserProfile = () => {
               className="card glass-card"
               whileHover={{ y: -5 }}
               transition={{ duration: 0.3 }}
+              style={{ height: "100%" }}
             >
               <div className="card-body">
                 <div className="d-flex flex-column align-items-center text-center">
@@ -332,6 +333,7 @@ const UserProfile = () => {
               className="card h-100 mb-4 glass-card"
               whileHover={{ y: -5 }}
               transition={{ duration: 0.3 }}
+              style={{ height: "100%" }}
             >
               <div
                 className="card-header text-center fw-bold text-uppercase mb-5"
