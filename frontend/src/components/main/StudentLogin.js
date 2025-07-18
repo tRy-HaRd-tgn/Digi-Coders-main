@@ -4,7 +4,6 @@ import Swal from "sweetalert2";
 import { useFormik } from "formik";
 import { NavLink, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import app_config from "../../config";
 import { useUserContext } from "../../context/UserContext";
 
 const StudentLogin = () => {

@@ -5,7 +5,6 @@ import { useFormik } from "formik";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import app_config from "../../config";
 import { useTrainerContext } from "../../context/TrainerContext";
 
 const TrainerLogin = () => {

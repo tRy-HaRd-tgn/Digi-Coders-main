@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Swal from "sweetalert2";
 import app_config from "../../config";
 import { NavLink, useParams } from "react-router-dom";
@@ -13,7 +13,7 @@ const ManageChapter = () => {
   const [masterList, setMasterList] = useState([]);
   const [chapterList, setChapterList] = useState([]);
 
-  const fetchUserData = async () => {
+  const fetchUserData = useCallback(async () => {
     const res = await fetch(`${process.env.REACT_APP_API_URL}/chapter/getall`);
 
     const data = await res.json();
@@ -28,7 +28,7 @@ const ManageChapter = () => {
       setChapterList(data);
     }
     setMasterList(data);
-  };
+  }, [chaptername]);
 
   const deleteChapter = async (id) => {
     const res = await fetch(
@@ -488,13 +488,13 @@ const ManageChapter = () => {
 
   useEffect(() => {
     fetchUserData();
-  }, []);
+  }, [fetchUserData]);
 
   const [selImage, setSelImage] = useState(null);
   const [imageError, setImageError] = useState("");
   const [pendingSubmit, setPendingSubmit] = useState(false);
 
-  const [currentTrainer, setCurrentTrainer] = useState(
+  const [currentTrainer] = useState(
     JSON.parse(sessionStorage.getItem("trainer"))
   );
 
@@ -658,7 +658,7 @@ const ManageChapter = () => {
         managechapterForm.handleSubmit();
       }, 0);
     }
-  }, [selImage]);
+  }, [selImage, pendingSubmit, managechapterForm]);
 
   const uploadFile = (e) => {
     const file = e.target.files[0];

@@ -1,16 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
-import app_config from "../../config";
-import { BlocklyWorkspace } from "react-blockly";
-import { DEFAULT_OPTIONS } from "../blockly/defaults";
 import { getHTMLToolbox } from "../blockly/getHTMLToolbox";
 import "../blockly/htmlBlock";
 import { getJSToolbox } from "../blockly/getJSToolbox";
 import { getPythonToolbox } from "../blockly/getPythonToolbox";
 import XMLParser from "react-xml-parser";
 import Swal from "sweetalert2";
-
-const toolbox = getHTMLToolbox();
 
 const getToolbox = (category) => {
   if (category === "HTML") return getHTMLToolbox();
@@ -30,13 +25,7 @@ const DesignChapter = () => {
   const [selBlocks, setSelBlocks] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
-  const [xml, setXml] = useState(`<xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="controls_ifelse" x="10" y="10">
-  
-  </block>
-  </xml>`);
-
-  const fetchChapterData = async () => {
+  const fetchChapterData = useCallback(async () => {
     try {
       setIsLoading(true);
       const res = await fetch(
@@ -69,7 +58,7 @@ const DesignChapter = () => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [id]);
 
   const updateChapter = async () => {
     try {
@@ -144,7 +133,7 @@ const DesignChapter = () => {
 
   useEffect(() => {
     fetchChapterData();
-  }, []);
+  }, [fetchChapterData]);
 
   const getBlockType = (block) => {
     return block.blockxml

@@ -48,10 +48,6 @@ const TrainerAuth = ({ children }) => {
     return () => clearTimeout(timer);
   }, [loggedIn, updateUser]);
 
-  // Дополнительная проверка sessionStorage
-  const sessionTrainer = sessionStorage.getItem("trainer");
-  const sessionUser = sessionStorage.getItem("user");
-
   if (isChecking) {
     return <div>Loading...</div>;
   }
