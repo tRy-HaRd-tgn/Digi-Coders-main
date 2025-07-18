@@ -318,19 +318,6 @@ const ChapterDetails = () => {
         </div>
       </section>
 
-      <footer className="footer">
-        <div className="container">
-          <div className="footer-content">
-            <p className="footer-text">
-              © 2023 Copyright:&nbsp;
-              <NavLink className="footer-link" to="#">
-                DigiCoders.com
-              </NavLink>
-            </p>
-          </div>
-        </div>
-      </footer>
-
       <style>{`
         .chapter-details-page {
           min-height: 100vh;
@@ -599,31 +586,7 @@ const ChapterDetails = () => {
           border-radius: 0 0 15px 15px;
         }
 
-        .footer {
-          background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-          padding: 30px 0;
-          color: white;
-        }
 
-        .footer-content {
-          text-align: center;
-        }
-
-        .footer-text {
-          margin: 0;
-          font-size: 1.1rem;
-        }
-
-        .footer-link {
-          color: #29c1fe;
-          text-decoration: none;
-          font-weight: 600;
-          transition: color 0.3s ease;
-        }
-
-        .footer-link:hover {
-          color: #1e88e5;
-        }
 
         .loading-container {
           display: flex;
