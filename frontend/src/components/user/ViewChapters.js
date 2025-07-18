@@ -434,12 +434,20 @@ const BrowseChapters = () => {
           box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
+        .filters-section .container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
         .filters-container {
           display: flex;
           justify-content: center;
           align-items: center;
           gap: 30px;
-          flex-wrap: wrap;
+          flex-wrap: nowrap;
+          max-width: 800px;
+          margin: 0 auto;
         }
 
         .filter-group {
@@ -474,6 +482,7 @@ const BrowseChapters = () => {
         }
 
         .clear-filters-btn {
+          margin-top: auto;
           background: linear-gradient(45deg, #dc3545, #c82333);
           color: white;
           border: none;
@@ -690,12 +699,14 @@ const BrowseChapters = () => {
           }
 
           .filters-container {
-            flex-direction: column;
-            gap: 20px;
+            flex-direction: row;
+            gap: 15px;
+            flex-wrap: wrap;
+            max-width: 100%;
           }
 
           .filter-select {
-            min-width: 100%;
+            min-width: 140px;
           }
 
           .chapters-grid {
@@ -711,6 +722,17 @@ const BrowseChapters = () => {
 
           .continue-btn {
             justify-content: center;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .filters-container {
+            flex-direction: column;
+            gap: 15px;
+          }
+
+          .filter-select {
+            min-width: 100%;
           }
         }
       `}</style>
