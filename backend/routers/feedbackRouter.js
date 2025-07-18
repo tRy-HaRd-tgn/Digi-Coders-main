@@ -32,7 +32,7 @@ router.post("/authenticate", (req, res) => {
   Model.findOne(req.body)
     .then((result) => {
       if (result) res.json(result);
-      else res.status(401).json({ message: "Invalid Credentials" });
+      else res.status(401).json({ message: "Неверные учетные данные" });
     })
     .catch((err) => {
       console.error(err);

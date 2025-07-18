@@ -340,11 +340,11 @@
 
 /* Дополнительные стили для иконки ошибки в фиолетовом стиле */
 .swal2-icon.swal2-error {
-  border-color: #ef4444 !important;
+  border-color: #8b5cf6 !important;
 }
 
 .swal2-icon.swal2-error [class^="swal2-x-mark-line"] {
-  background-color: #ef4444 !important;
+  background-color: #8b5cf6 !important;
 }
 
 /* Стили для error модальных окон в фиолетовом стиле */
@@ -352,14 +352,14 @@
   background: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.98) 0%,
-    rgba(254, 242, 242, 0.95) 100%
+    rgba(248, 245, 255, 0.95) 100%
   ) !important;
-  border: 1px solid rgba(239, 68, 68, 0.2) !important;
-  box-shadow: 0 20px 60px rgba(239, 68, 68, 0.15) !important;
+  border: 1px solid rgba(139, 92, 246, 0.2) !important;
+  box-shadow: 0 20px 60px rgba(139, 92, 246, 0.15) !important;
 }
 
 .swal2-popup.swal2-error .swal2-title {
-  color: #dc2626 !important;
+  color: #5b21b6 !important;
   font-weight: 700 !important;
   font-size: 2rem !important;
   margin-bottom: 1.5rem !important;
@@ -367,7 +367,7 @@
 }
 
 .swal2-popup.swal2-error .swal2-content {
-  color: #ef4444 !important;
+  color: #7c3aed !important;
   font-size: 1.2rem !important;
   font-weight: 500 !important;
   line-height: 1.6 !important;
@@ -430,6 +430,26 @@
 
 .swal2-icon.swal2-success {
   animation: successPulse 0.6s ease-in-out !important;
+}
+
+/* Анимация для иконки ошибки */
+@keyframes errorPulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.swal2-icon.swal2-error {
+  animation: errorPulse 0.6s ease-in-out !important;
 }
 
 /* Стили для warning модальных окон */
@@ -499,6 +519,14 @@
   }
 
   .swal2-popup.swal2-warning .swal2-content {
+    font-size: 1.1rem !important;
+  }
+
+  .swal2-popup.swal2-error .swal2-title {
+    font-size: 1.6rem !important;
+  }
+
+  .swal2-popup.swal2-error .swal2-content {
     font-size: 1.1rem !important;
   }
 }

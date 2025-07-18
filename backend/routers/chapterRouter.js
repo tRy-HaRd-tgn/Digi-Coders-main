@@ -21,7 +21,7 @@ router.post("/authenticate", (req, res) => {
   Model.findOne(req.body)
     .then((result) => {
       if (result) res.json(result);
-      else res.status(401).json({ message: "Invalid Credentials" });
+      else res.status(401).json({ message: "Неверные учетные данные" });
     })
     .catch((err) => {
       console.error(err);
@@ -34,7 +34,7 @@ router.get("/getall", (req, res) => {
     .populate("trainer")
     .then((result) => {
       if (result) res.json(result);
-      else res.status(401).json({ message: "Invalid Credentials" });
+      else res.status(401).json({ message: "Неверные учетные данные" });
     })
     .catch((err) => {
       console.error(err);
@@ -47,7 +47,7 @@ router.get("/getbyid/:id", (req, res) => {
     .populate("trainer")
     .then((result) => {
       if (result) res.json(result);
-      else res.status(401).json({ message: "Invalid Credentials" });
+      else res.status(401).json({ message: "Неверные учетные данные" });
     })
     .catch((err) => {
       console.error(err);
@@ -60,7 +60,7 @@ router.put("/update/:id", (req, res) => {
     .populate("trainer")
     .then((result) => {
       if (result) res.json(result);
-      else res.status(401).json({ message: "Invalid Credentials" });
+      else res.status(401).json({ message: "Неверные учетные данные" });
     })
     .catch((err) => {
       console.error(err);
@@ -72,7 +72,7 @@ router.delete("/delete/:id", (req, res) => {
   Model.findByIdAndDelete(req.params.id)
     .then((result) => {
       if (result) res.json(result);
-      else res.status(401).json({ message: "Invalid Credentials" });
+      else res.status(401).json({ message: "Неверные учетные данные" });
     })
     .catch((err) => {
       console.error(err);
@@ -84,7 +84,7 @@ router.get("/getbytrainer/:id", (req, res) => {
   Model.find({ trainer: req.params.id })
     .then((result) => {
       if (result) res.json(result);
-      else res.status(401).json({ message: "Invalid Credentials" });
+      else res.status(401).json({ message: "Неверные учетные данные" });
     })
     .catch((err) => {
       console.error(err);

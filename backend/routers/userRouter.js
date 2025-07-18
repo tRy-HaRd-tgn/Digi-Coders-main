@@ -58,15 +58,13 @@ router.post("/authenticate", (req, res) => {
           lastLogin: new Date(),
           $inc: { timesLoggedin: 1 },
         })
-          .then((result) => {
-           
-          })
+          .then((result) => {})
           .catch((err) => {
             console.error(err);
           });
 
         res.json(result);
-      } else res.status(401).json({ message: "Invalid Credentials" });
+      } else res.status(401).json({ message: "Неверные учетные данные" });
     })
     .catch((err) => {
       console.error(err);
