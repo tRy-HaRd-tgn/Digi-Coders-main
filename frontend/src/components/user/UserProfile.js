@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
-import { NavLink } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
 import "./UserProfile.css";
 import app_config from "../../config";

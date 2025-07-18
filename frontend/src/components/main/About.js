@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
 import "./Home.css";
 
 const About = () => {
@@ -10,13 +9,10 @@ const About = () => {
     satisfaction: 0,
   });
 
-  const [isVisible, setIsVisible] = useState(false);
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true);
           animateStats();
         }
       },

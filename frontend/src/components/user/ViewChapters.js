@@ -15,15 +15,7 @@ const BrowseChapters = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  const trainerList = ["Prince Prajapati", "Mohit Mishra", "Rishabh Agnihotri"];
-
   const categoryList = ["HTML", "JavaScript", "Python"];
-
-  // Получаем параметр category из URL
-  const getCategoryFromURL = () => {
-    const urlParams = new URLSearchParams(location.search);
-    return urlParams.get("category");
-  };
 
   const sortChaptersAtoZ = () => {
     const sortedArray = [...chapterList].sort((a, b) =>
@@ -57,6 +49,11 @@ const BrowseChapters = () => {
       }
 
       // Фильтрация по категории (если есть параметр category в URL)
+      const getCategoryFromURL = () => {
+        const urlParams = new URLSearchParams(location.search);
+        return urlParams.get("category");
+      };
+
       const categoryFromURL = getCategoryFromURL();
       if (categoryFromURL) {
         filteredData = filteredData.filter(

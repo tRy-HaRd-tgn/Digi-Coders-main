@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom";
-import app_config from "../../config";
 import * as Yup from "yup";
 import "./Home.css";
 

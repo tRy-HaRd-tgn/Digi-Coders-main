@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { BlocklyWorkspace } from "react-blockly";
 import { DEFAULT_OPTIONS } from "../blockly/defaults";
 import { getHTMLToolbox } from "../blockly/getHTMLToolbox";
